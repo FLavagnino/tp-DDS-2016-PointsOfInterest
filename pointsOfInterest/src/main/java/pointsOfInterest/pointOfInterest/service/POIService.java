@@ -16,7 +16,7 @@ public class POIService {
 	}
 	
 	public boolean isValid(POI poi) {
-		return poi.getCoordenate() == null && poi.getName() == null;
+		return poi.getCoordenate() != null && poi.getName() != null;
 	}
 	
 	
