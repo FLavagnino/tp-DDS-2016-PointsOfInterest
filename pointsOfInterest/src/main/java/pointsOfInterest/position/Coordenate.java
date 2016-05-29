@@ -1,22 +1,23 @@
 package pointsOfInterest.position;
 
-public class Coordenate {
-
+public class Coordenate 
+{
 	private Double latitude;
 	private Double longitude;
 	
-	public Coordenate(Double latitude, Double longitude) {
+	public Coordenate(Double latitude, Double longitude) 
+	{
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
-	public Double getLatitude() {
+	public Double getLatitude() 
+	{
 		return latitude;
 	}
 
-	public Double getLongitude() {
+	public Double getLongitude() 
+	{
 		return longitude;
-	}
-	
-	
+	}	
 }
