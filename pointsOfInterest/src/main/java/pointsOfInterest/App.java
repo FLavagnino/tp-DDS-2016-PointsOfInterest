@@ -1,35 +1,29 @@
 package pointsOfInterest;
 
-import java.util.List;
-
-import pointsOfInterest.distanceService.DistanceService;
-import pointsOfInterest.distanceService.responseDTO.ElementDTO;
-import pointsOfInterest.distanceService.responseDTO.FullResponseDTO;
-import pointsOfInterest.distanceService.responseDTO.RowDTO;
+import pointsOfInterest.pointOfInterest.domain.POI;
+import pointsOfInterest.pointOfInterest.service.POIService;
+import pointsOfInterest.pointOfInterest.types.ManagementAndParticipationCenter;
+import pointsOfInterest.pointOfInterest.types.TypeOfPOI;
 import pointsOfInterest.position.Coordenate;
 
 public class App {
 
 	public static void main(String[] args) {
-	
-		//A modo de prueba
-		Coordenate originCoordenate = new Coordenate(-34.605655, -58.454029);
-		Coordenate destinationCoordenate = new Coordenate(-34.605187, -58.459587);
 		
-		DistanceService distanceService = new DistanceService();
-		FullResponseDTO fullResponseDTO = distanceService.getFullResponseOf(originCoordenate, destinationCoordenate);
-		List<String> originAddresses = fullResponseDTO.getOriginAddresses();
-		List<String> destinationAddresses = fullResponseDTO.getDestinationAddresses();
-		List<RowDTO> rows = fullResponseDTO.getRows();
-		List<ElementDTO> elements = rows.get(0).getElements();
+		//PRUEBA
+		Coordenate originCoordenate = new Coordenate(-34.598533, -58.420084);
+		Coordenate destinationCoordenate = new Coordenate(-34.659706, -58.467852);
+		TypeOfPOI typeMPC = new ManagementAndParticipationCenter();
 
-		System.out.println(originAddresses.get(0));
-		System.out.println(destinationAddresses.get(0));
-		System.out.println(	fullResponseDTO.getStatus());
-		System.out.println(elements.get(0).getDistance().get("text"));
-		System.out.println(elements.get(0).getDistance().get("value"));
-		System.out.println(elements.get(0).getDuration().get("text"));
-		System.out.println(elements.get(0).getDuration().get("value"));
+		POI poiMedrano = new POI("Medrano", originCoordenate, typeMPC);
+		POI poiCampus = new POI("Campus", destinationCoordenate, typeMPC);
+		
+		POIService poiService = new POIService();
+		
+		System.out.println(poiService.isValid(poiMedrano));
+		System.out.println(poiService.isValid(poiCampus));
+		System.out.println(poiService.isCloserTo(4000, poiMedrano, poiCampus));
+		System.out.println(poiService.isCloserTo(80000, poiCampus, poiMedrano));
 	}
 
 }
