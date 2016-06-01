@@ -27,7 +27,7 @@ public class App
 		
 		System.out.println("Es valido [" + poiMedrano.getName() + "]: " + poiService.isValid(poiMedrano));
 		System.out.println("Es valido [" + poiCampus.getName() + "]: " + poiService.isValid(poiCampus));
-		System.out.println("Esta a 4000mts [" + poiMedrano.getName() + "] de [" + poiCampus.getName() + "]: " + poiService.isCloserTo(4000, poiMedrano, poiCampus));
-		System.out.println("Esta a 80000mts [" + poiCampus.getName() + "] de [" + poiMedrano.getName() + "]: " + poiService.isCloserTo(80000, poiCampus, poiMedrano));
+		System.out.println("Esta a menos de 4000mts [" + poiMedrano.getName() + "] de [" + poiCampus.getName() + "]: " + poiService.isCloserTo(4000, poiMedrano, poiCampus));
+		System.out.println("Esta a menos de 8000mts [" + poiCampus.getName() + "] de [" + poiMedrano.getName() + "]: " + poiService.isCloserTo(8000, poiCampus, poiMedrano));
 	}
 }
