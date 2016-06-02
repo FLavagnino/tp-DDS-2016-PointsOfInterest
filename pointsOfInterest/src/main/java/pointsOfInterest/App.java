@@ -15,7 +15,7 @@ public class App
 		Coordenate destinationCoordenate = new Coordenate(-34.659706, -58.467852);
 		TypeOfPOI typeMPC = new ManagementAndParticipationCenter();
 
-		System.out.println("E0B - POC");
+		System.out.println("E0B - POC - Curso K3_ _ _ ");
 		
 		System.out.println("Creamos el POI Medrano");
 		POI poiMedrano = new POI("Medrano", originCoordenate, typeMPC);
