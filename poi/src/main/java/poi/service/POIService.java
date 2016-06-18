@@ -1,7 +1,7 @@
-package pointsOfInterest.pointOfInterest.service;
+package poi.service;
 
-import pointsOfInterest.distanceService.DistanceService;
-import pointsOfInterest.pointOfInterest.domain.POI;
+import poi.distance.service.DistanceService;
+import poi.domain.POI;
 
 public class POIService 
 {

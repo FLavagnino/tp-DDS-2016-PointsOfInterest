@@ -1,15 +1,15 @@
-package pointsOfInterest.distanceService;
+package poi.distance.service;
 
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import pointsOfInterest.distanceService.responseDTO.ElementDTO;
-import pointsOfInterest.distanceService.responseDTO.FullResponseDTO;
-import pointsOfInterest.distanceService.responseDTO.RowDTO;
-import pointsOfInterest.json.JsonFactory;
-import pointsOfInterest.position.Coordenate;
-import pointsOfInterest.web.service.HttpService;
+import poi.distance.service.response.DTO.ElementDTO;
+import poi.distance.service.response.DTO.FullResponseDTO;
+import poi.distance.service.response.DTO.RowDTO;
+import poi.domain.Coordenate;
+import poi.json.JsonFactory;
+import poi.web.service.HttpService;
 
 public class DistanceService {
 

@@ -1,47 +1,45 @@
-package pointsOfInterest.pointOfInterest.domain;
+package poi.domain;
 
-import pointsOfInterest.pointOfInterest.types.TypeOfPOI;
-import pointsOfInterest.position.Coordenate;
-
-public class POI {
-
-	private String name;
-	private Integer unit;
-	private Coordenate coordenate;
-	private Address address;
-	private TypeOfPOI type;
+public abstract class POI
+{
+	protected String name;
+	protected Integer unit;
+	protected Coordenate coordenate;
+	protected Address address;
 	
-	public POI(String name, Coordenate coordenate, TypeOfPOI type) {
+	protected POI(String name, Coordenate coordenate) 
+	{
 		this.name = name;
 		this.coordenate = coordenate;
-		this.type = type;
 	}
 
-	public void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
-			String apartment, String postalCode, String locality, String neighborhood, String province, String country) {
-	
+	protected void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
+			String apartment, String postalCode, String locality, String neighborhood, String province, String country) 
+	{	
 		this.address = new Address(street, number, streetOne, streetTwo, floor, apartment, 
 				postalCode, locality, neighborhood, province, country);
 	}
 	
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
-	public Integer getUnit() {
+	
+	public Integer getUnit()
+	{
 		return unit;
 	}
-	public Coordenate getCoordenate() {
+	
+	public Coordenate getCoordenate() 
+	{
 		return coordenate;
 	}
-	public Address getAddress() {
+	
+	public Address getAddress() 
+	{
 		return address;
 	}
-	public TypeOfPOI getType() {
-		return type;
-	}
 
-
-	
 	private class Address {
 		
 		private String street;
@@ -104,10 +102,6 @@ public class POI {
 		}
 		public String getCountry() {
 			return country;
-		}
-	
-		
-	}
-
-	
+		}	
+	}	
 }

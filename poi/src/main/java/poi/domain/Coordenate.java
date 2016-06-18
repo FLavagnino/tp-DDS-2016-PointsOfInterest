@@ -1,4 +1,4 @@
-package pointsOfInterest.position;
+package poi.domain;
 
 public class Coordenate 
 {

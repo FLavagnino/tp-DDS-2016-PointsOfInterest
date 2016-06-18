@@ -1,4 +1,4 @@
-package pointsOfInterest.json;
+package poi.json;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

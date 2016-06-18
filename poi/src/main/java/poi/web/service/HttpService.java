@@ -1,4 +1,4 @@
-package pointsOfInterest.web.service;
+package poi.web.service;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

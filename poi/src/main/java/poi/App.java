@@ -1,10 +1,7 @@
-package pointsOfInterest;
+package poi;
 
-import pointsOfInterest.pointOfInterest.domain.POI;
-import pointsOfInterest.pointOfInterest.service.POIService;
-import pointsOfInterest.pointOfInterest.types.ManagementAndParticipationCenter;
-import pointsOfInterest.pointOfInterest.types.TypeOfPOI;
-import pointsOfInterest.position.Coordenate;
+import poi.domain.*;
+import poi.service.POIService;
 
 public class App 
 {
@@ -13,15 +10,14 @@ public class App
 		//PRUEBA
 		Coordenate originCoordenate = new Coordenate(-34.598533, -58.420084);
 		Coordenate destinationCoordenate = new Coordenate(-34.659706, -58.467852);
-		TypeOfPOI typeMPC = new ManagementAndParticipationCenter();
 
-		System.out.println("E0B - POC - Curso K3_ _ _ ");
+		System.out.println("E0B - POC - Curso K3051");
 		
 		System.out.println("Creamos el POI Medrano");
-		POI poiMedrano = new POI("Medrano", originCoordenate, typeMPC);
+		Shop poiMedrano = new Shop("Medrano", originCoordenate);
 		
 		System.out.println("Creamos el POI Campus");
-		POI poiCampus = new POI("Campus", destinationCoordenate, typeMPC);
+		Shop poiCampus = new Shop("Campus", destinationCoordenate);
 		
 		POIService poiService = new POIService();
 		

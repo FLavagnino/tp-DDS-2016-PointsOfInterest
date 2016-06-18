@@ -1,4 +1,4 @@
-package pointsOfInterest.distanceService.responseDTO;
+package poi.distance.service.response.DTO;
 
 import java.util.List;
 
