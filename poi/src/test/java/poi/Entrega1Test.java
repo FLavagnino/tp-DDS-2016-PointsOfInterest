@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Entrega1Test {
-
+public class Entrega1Test 
+{
 	@Test
-	public void test() {
+	public void test() 
+	{
 		fail("Not yet implemented");
 	}
-
 }
