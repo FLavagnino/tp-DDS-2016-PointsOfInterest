@@ -1,16 +1,24 @@
 package poi.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.joda.time.DateTime;
+
+import poi.constant.Service;
+
 public abstract class POI
 {
 	protected String name;
 	protected Integer unit;
 	protected Coordenate coordenate;
 	protected Address address;
+	protected List<OpeningHour> openingHours;
 	
 	protected POI(String name, Coordenate coordenate) 
 	{
 		this.name = name;
 		this.coordenate = coordenate;
+		this.openingHours = new ArrayList<OpeningHour>();
 	}
 
 	protected void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
@@ -18,6 +26,21 @@ public abstract class POI
 	{	
 		this.address = new Address(street, number, streetOne, streetTwo, floor, apartment, 
 				postalCode, locality, neighborhood, province, country);
+	}
+	
+	public void addOpeningHour(OpeningHour openingHour)
+	{
+		this.openingHours.add(openingHour);
+	}
+
+	public List<OpeningHour> getOpeningHours()
+	{
+		return this.openingHours;
+	}
+	
+	public boolean isAvailable(DateTime dateTime, Service service)
+	{
+		return true;
 	}
 	
 	public String getName() 

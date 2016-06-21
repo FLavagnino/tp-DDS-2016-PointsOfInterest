@@ -1,12 +1,9 @@
 package poi;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
-import poi.domain.Coordenate;
-import poi.domain.Shop;
-import poi.service.POIService;
+import poi.domain.*;
+import poi.service.*;
 
 public class Entrega0BTest {
 

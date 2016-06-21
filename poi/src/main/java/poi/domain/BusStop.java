@@ -1,5 +1,9 @@
 package poi.domain;
 
+import org.joda.time.*;
+
+import poi.constant.Service;
+
 public class BusStop extends POI
 {
 	public BusStop(String name, Coordenate coordenate) 
@@ -17,5 +21,10 @@ public class BusStop extends POI
 		{
 			return false;
 		}
+	}
+	
+	public boolean isAvailable(DateTime dateTime, Service service)
+	{
+		return true;
 	}
 }
