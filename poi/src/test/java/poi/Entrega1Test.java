@@ -3,6 +3,7 @@ package poi;
 import static org.junit.Assert.*;
 
 import java.time.DayOfWeek;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -206,5 +207,15 @@ public class Entrega1Test
 		avaTime = new DateTime(2016, 6, 13, 18, 0, 0, 0);
 		result = poiService.isAvailable(shopPOI, avaTime, Service.NA);
 		assertTrue(result);
+	}
+	
+	@Test
+	public void searchTest()
+	{
+		String filter = "114";
+		POIService poiService = new POIService();
+		
+		List<POI> result = poiService.search(filter);
+		assertTrue(result.isEmpty());
 	}
 }

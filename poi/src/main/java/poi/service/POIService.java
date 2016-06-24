@@ -1,9 +1,12 @@
 package poi.service;
 
-import org.joda.time.DateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.joda.time.DateTime;
 import poi.constant.Service;
 import poi.distance.service.DistanceService;
+import poi.domain.OpeningHour;
 import poi.domain.POI;
 
 public class POIService 
@@ -28,5 +31,10 @@ public class POIService
 	public boolean isAvailable(POI poi, DateTime dateTime, Service service)
 	{
 		return poi.isAvailable(dateTime, service);
+	}
+	
+	public List<POI> search(String filter)
+	{
+		return new ArrayList<POI>();
 	}
 }
