@@ -38,5 +38,9 @@ public class CGP extends POI
 		return false;
 	}
 	
-	
+	public boolean isCloserTo(int meters, POI poiFrom)
+	{
+		// TODO: Completar este metodo y borrar el comentario.
+		return true;
+	}
 }

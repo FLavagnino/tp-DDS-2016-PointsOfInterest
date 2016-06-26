@@ -28,28 +28,31 @@ public class Entrega0BTest {
 	}
 	
 	@Test
-	public void isNotCloserTo4000mtsMedranoFromCampusTest() 
+	public void metersFromToMoreThan4000mtsTest() 
 	{
+		POIService poiService = new POIService();
+		int expected = 4000;
+		
 		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
 		Coordenate campusCoordenate = new Coordenate(-34.659706, -58.467852);
 
 		Shop poiMedrano = new Shop("Medrano", medranoCoordenate);
 		Shop poiCampus = new Shop("Campus", campusCoordenate);
 		
-		POIService poiService = new POIService();
-		assertFalse(poiService.isCloserTo(4000, poiMedrano, poiCampus));
+		assertTrue(expected <= poiService.metersFromTo(poiMedrano, poiCampus));
 	}
 	
 	@Test
-	public void isCloserTo80000mtsMedranoFromCampusTest() 
+	public void metersFromToLessThan80000mtsTest() 
 	{
+		POIService poiService = new POIService();
+		int expected = 80000;
 		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
 		Coordenate campusCoordenate = new Coordenate(-34.659706, -58.467852);
 
 		Shop poiMedrano = new Shop("Medrano", medranoCoordenate);
 		Shop poiCampus = new Shop("Campus", campusCoordenate);
 		
-		POIService poiService = new POIService();
-		assertTrue(poiService.isCloserTo(80000, poiMedrano, poiCampus));
+		assertFalse(expected <= poiService.metersFromTo(poiMedrano, poiCampus));
 	}
 }

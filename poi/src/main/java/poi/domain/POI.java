@@ -28,6 +28,11 @@ public abstract class POI
 				postalCode, locality, neighborhood, province, country);
 	}
 	
+	public boolean isCloserTo(int meters, POI poiFrom)
+	{
+		return true;
+	}
+	
 	public void addOpeningHour(OpeningHour openingHour)
 	{
 		this.openingHours.add(openingHour);

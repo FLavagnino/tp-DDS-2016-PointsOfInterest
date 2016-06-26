@@ -18,15 +18,21 @@ public class POIService
 		this.distanceService = new DistanceService();
 	}
 	
-	public boolean isCloserTo(Integer metersDistance, POI poiA, POI poiB) 
+	public int metersFromTo(POI poiFrom, POI poiTo) 
 	{
-		return metersDistance > distanceService.metersFromTo(poiA.getCoordenate(), poiB.getCoordenate());
+		return distanceService.metersFromTo(poiFrom.getCoordenate(), poiTo.getCoordenate());
 	}
 	
 	public boolean isValid(POI poi) 
 	{
 		return poi.getCoordenate() != null && poi.getName() != null;
-	}	
+	}
+	
+	public boolean isCloserTo(POI poiFrom, POI poiTo)
+	{
+		int meters = this.metersFromTo(poiFrom, poiTo);	
+		return poiTo.isCloserTo(meters, poiFrom);
+	}
 	
 	public boolean isAvailable(POI poi, DateTime dateTime, Service service)
 	{
