@@ -43,4 +43,14 @@ public class POIService
 	{
 		return new ArrayList<POI>();
 	}
+	
+	public void searchPOI(ArrayList<POI> ListPOI, POI onePoi)
+	{
+		for(int i=0; i< ListPOI.size() ; i++){
+			if ( ListPOI.get(i).equals(onePoi))
+			{
+				System.out.print(i);
+			}
+		}
+	}
 }
