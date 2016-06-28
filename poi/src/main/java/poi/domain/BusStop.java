@@ -9,11 +9,15 @@ import poi.constant.Service;
 
 public class BusStop extends POI
 {
-	protected String name;
 	protected Integer busLine;
-	protected Coordenate coordenate;
-	
 	List<BusStop> BusPoi = new ArrayList<BusStop>();
+	
+	protected void setBusLine(int busLine){
+		this.busLine = busLine;
+	}
+	public int getBusLine(){
+		return busLine;
+	}
 	
 	public BusStop(String name, Coordenate coordenate) 
 	{
@@ -27,8 +31,8 @@ public class BusStop extends POI
 	
 	public boolean matchFilter(String filter)
 	{
-		// Aca buscas por numero de bondi / etiqueta
-		if (BusPoi.contains(Integer.parseInt(filter)))
+		// busca por numero de bondi / etiqueta
+		if (BusPoi.contains(this.busLine))
 		{
 			return true;
 		}

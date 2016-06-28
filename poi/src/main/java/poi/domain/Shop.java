@@ -1,5 +1,8 @@
 package poi.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
@@ -7,9 +10,19 @@ import poi.constant.Service;
 
 public class Shop extends POI
 {
+	List<Shop> shopPoi = new ArrayList<Shop>();
+	protected String category;
+	
 	public Shop(String name, Coordenate coordenate) 
 	{
 		super(name, coordenate);
+	}
+	
+	public String getShopCategory(){
+		return this.category;
+	}
+	protected void setShopCategory(String category){
+		this.category = category;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, Service service)
@@ -37,8 +50,13 @@ public class Shop extends POI
 	
 	public boolean matchFilter(String filter)
 	{
-		// Aca buscas por rubro / etiqueta
-		return true;
+		// se busca por rubro / etiqueta
+		if(shopPoi.contains(this.category)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)

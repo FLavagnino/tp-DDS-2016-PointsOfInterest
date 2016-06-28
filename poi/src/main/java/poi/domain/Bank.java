@@ -1,10 +1,16 @@
 package poi.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.*;
 import poi.constant.Service;
 
 public class Bank extends POI 
 {	
+	List<Bank> BankPoi = new ArrayList<Bank>();
+		
+	
 	public Bank(String name, Coordenate coordenate) 
 	{
 		super(name, coordenate);
@@ -35,7 +41,15 @@ public class Bank extends POI
 	
 	public boolean matchFilter(String filter)
 	{
-		// Aca buscas por etiqueta.
+		// Se busca por etiqueta (name de banco).
+		if (BankPoi.contains(this.name))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		return true;
 	}
 	

@@ -1,5 +1,8 @@
 package poi.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
@@ -7,11 +10,19 @@ import poi.constant.Service;
 
 public class CGP extends POI 
 {
+	List<CGP> CGPpoi = new ArrayList<CGP>();
+	protected String services;
+	
 	public CGP(String name, Coordenate coordenate) 
 	{
 		super(name, coordenate);
 	}
-	
+	public String getCGPservices(){
+		return this.services;
+	}
+	protected void setCGPservices(String services){
+		this.services = services;
+	}
 	public boolean isAvailable(DateTime dateTime, Service service)
 	{
 		int dayOfWeek = dateTime.getDayOfWeek();
@@ -40,8 +51,13 @@ public class CGP extends POI
 	
 	public boolean matchFilter(String filter)
 	{
-		// Aca buscas por servicio / etiqueta
-		return true;
+		// se busca por servicio / etiqueta
+		if(CGPpoi.contains(this.services)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
