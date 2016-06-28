@@ -39,18 +39,19 @@ public class POIService
 		return poi.isAvailable(dateTime, service);
 	}
 	
-	public List<POI> search(String filter)
+	public List<POI> search(String filter, List<POI> poiList)
 	{
-		return new ArrayList<POI>();
-	}
-	
-	public void searchPOI(ArrayList<POI> ListPOI, POI onePoi)
-	{
-		for(int i=0; i< ListPOI.size() ; i++){
-			if ( ListPOI.get(i).equals(onePoi))
+		List<POI> result = new ArrayList<POI>();
+		
+		for(int i=0; i< poiList.size() ; i++)
+		{
+			POI poi = poiList.get(i);
+			if (poi.matchFilter(filter))
 			{
-				System.out.print(i);
+				result.add(poi);
 			}
 		}
+		
+		return result;
 	}
 }

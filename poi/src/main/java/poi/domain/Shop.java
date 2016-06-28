@@ -35,6 +35,12 @@ public class Shop extends POI
 		return false;
 	}
 	
+	public boolean matchFilter(String filter)
+	{
+		// Aca buscas por rubro / etiqueta
+		return true;
+	}
+	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		// TODO: Completar este metodo y borrar el comentario.

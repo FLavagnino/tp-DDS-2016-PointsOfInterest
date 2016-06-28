@@ -1,8 +1,6 @@
 package poi.domain;
 
 import java.time.DayOfWeek;
-
-import org.joda.time.*;
 import poi.constant.Service;
 
 public class OpeningHour 

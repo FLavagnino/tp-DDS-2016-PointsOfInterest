@@ -1,9 +1,6 @@
 package poi.domain;
 
-import java.time.DayOfWeek;
-
 import org.joda.time.*;
-
 import poi.constant.Service;
 
 public class Bank extends POI 
@@ -34,6 +31,12 @@ public class Bank extends POI
 		}
 		
 		return false;
+	}
+	
+	public boolean matchFilter(String filter)
+	{
+		// Aca buscas por etiqueta.
+		return true;
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)

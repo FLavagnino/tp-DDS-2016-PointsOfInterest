@@ -48,6 +48,11 @@ public abstract class POI
 		return true;
 	}
 	
+	public boolean matchFilter(String filter)
+	{
+		return true;
+	}
+	
 	public String getName() 
 	{
 		return name;

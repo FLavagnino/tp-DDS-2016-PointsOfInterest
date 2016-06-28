@@ -10,21 +10,15 @@ public class BusStop extends POI
 	{
 		super(name, coordenate);
 	}
-
-	private boolean isCloserTo(Integer metersDistance, POI poiA, POI poiB) 
-	{
-		if (metersDistance < 500)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 	
 	public boolean isAvailable(DateTime dateTime, Service service)
 	{
+		return true;
+	}
+	
+	public boolean matchFilter(String filter)
+	{
+		// Aca buscas por numero de bondi / etiqueta
 		return true;
 	}
 	

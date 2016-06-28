@@ -38,6 +38,12 @@ public class CGP extends POI
 		return false;
 	}
 	
+	public boolean matchFilter(String filter)
+	{
+		// Aca buscas por servicio / etiqueta
+		return true;
+	}
+	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		// TODO: Completar este metodo y borrar el comentario.

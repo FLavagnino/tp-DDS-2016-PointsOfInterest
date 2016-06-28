@@ -3,6 +3,7 @@ package poi;
 import static org.junit.Assert.*;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -215,7 +216,7 @@ public class Entrega1Test
 		String filter = "114";
 		POIService poiService = new POIService();
 		
-		List<POI> result = poiService.search(filter);
+		List<POI> result = poiService.search(filter, new ArrayList<POI>());
 		assertTrue(result.isEmpty());
 	}
 }
