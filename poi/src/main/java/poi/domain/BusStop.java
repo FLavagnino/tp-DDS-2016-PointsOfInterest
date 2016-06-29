@@ -44,7 +44,11 @@ public class BusStop extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		// TODO: Completar este metodo y borrar el comentario.
-		return true;
+		if(meters < 100)
+			
+			return true;
+		else
+			
+			return false;
 	}
 }

@@ -50,12 +50,15 @@ public class Bank extends POI
 		{
 			return false;
 		}
-		return true;
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		// TODO: Completar este metodo y borrar el comentario.
-		return true;
+		if(meters < 500)
+			
+			return true;
+		else
+			
+			return false;
 	}
 }
