@@ -14,6 +14,11 @@ public class BusStop extends POI
 		this.busLine = busLine;
 	}
 	
+	public int getBusLine()
+	{
+		return this.busLine;
+	}
+	
 	public boolean isAvailable(DateTime dateTime, Service service)
 	{
 		return true;

@@ -209,12 +209,23 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public void searchTest()
+	public void searchBusStopByBusLineTest()
 	{
 		String filter = "114";
-		POIService poiService = new POIService();
+		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
+		BusStop busPOI84 = new BusStop("Parada 84", busCoord, 84, "84");
+		BusStop busPOI114 = new BusStop("Parada 114", busCoord, 114, "114");
+		BusStop busPOI132 = new BusStop("Parada 132", busCoord, 132, "132");
+		List<POI> searchList = new ArrayList<POI>();
 		
-		List<POI> result = poiService.search(filter, new ArrayList<POI>());
-		assertTrue(result.isEmpty());
+		searchList.add(busPOI84);
+		searchList.add(busPOI114);
+		searchList.add(busPOI132);
+		
+		POIService poiService = new POIService();
+		List<POI> result = poiService.search(filter, searchList);
+		
+		assertTrue(result.size() == 1);
+		assertTrue(((BusStop)result.get(0)).getBusLine() == 114);
 	}
 }
