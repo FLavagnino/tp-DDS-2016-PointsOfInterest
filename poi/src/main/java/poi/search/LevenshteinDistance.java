@@ -15,15 +15,14 @@ public class LevenshteinDistance
         return c;
     }
 
-    public static int computeLevenshteinDistance(String str1, String str2) 
+    public static int distance(String str1, String str2) 
     {
-        return computeLevenshteinDistance(str1.toCharArray(),
-                                          str2.toCharArray());
+        return distance(str1.toCharArray(), str2.toCharArray());
     }
 
-    private static int computeLevenshteinDistance(char [] str1, char [] str2) 
+    private static int distance(char [] str1, char [] str2) 
     {
-        int [][]distance = new int[str1.length+1][str2.length+1];
+        int[][] distance = new int[str1.length+1][str2.length+1];
 
         for(int i=0;i<=str1.length;i++)
         {

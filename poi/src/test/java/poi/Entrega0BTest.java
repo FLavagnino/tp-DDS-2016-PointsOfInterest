@@ -11,7 +11,7 @@ public class Entrega0BTest {
 	public void isValidMedranoTest() 
 	{
 		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
-		Shop poiMedrano = new Shop("Medrano", medranoCoordenate);
+		Shop poiMedrano = new Shop("Medrano", medranoCoordenate, "tag1,tag2");
 		
 		POIService poiService = new POIService();
 		assertTrue(poiService.isValid(poiMedrano));
@@ -21,7 +21,7 @@ public class Entrega0BTest {
 	public void isValidCampusTest() 
 	{
 		Coordenate campusCoordenate = new Coordenate(-34.659706, -58.467852);
-		Shop poiCampus = new Shop("Campus", campusCoordenate);
+		Shop poiCampus = new Shop("Campus", campusCoordenate, "tag1,tag2");
 		
 		POIService poiService = new POIService();
 		assertTrue(poiService.isValid(poiCampus));
@@ -36,8 +36,8 @@ public class Entrega0BTest {
 		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
 		Coordenate campusCoordenate = new Coordenate(-34.659706, -58.467852);
 
-		Shop poiMedrano = new Shop("Medrano", medranoCoordenate);
-		Shop poiCampus = new Shop("Campus", campusCoordenate);
+		Shop poiMedrano = new Shop("Medrano", medranoCoordenate, "tag1,tag2");
+		Shop poiCampus = new Shop("Campus", campusCoordenate, "tag1,tag2");
 		
 		assertTrue(expected <= poiService.metersFromTo(poiMedrano, poiCampus));
 	}
@@ -50,8 +50,8 @@ public class Entrega0BTest {
 		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
 		Coordenate campusCoordenate = new Coordenate(-34.659706, -58.467852);
 
-		Shop poiMedrano = new Shop("Medrano", medranoCoordenate);
-		Shop poiCampus = new Shop("Campus", campusCoordenate);
+		Shop poiMedrano = new Shop("Medrano", medranoCoordenate, "tag1,tag2");
+		Shop poiCampus = new Shop("Campus", campusCoordenate, "tag1,tag2");
 		
 		assertFalse(expected <= poiService.metersFromTo(poiMedrano, poiCampus));
 	}

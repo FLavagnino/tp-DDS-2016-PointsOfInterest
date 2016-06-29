@@ -1,19 +1,19 @@
 package poi.domain;
 
-import java.time.DayOfWeek;
+import org.joda.time.*;
 import poi.constant.Service;
 
 public class OpeningHour 
 {
 	private Service service;
-	private DayOfWeek dayOfWeek;
+	private int dayOfWeek;
 	private int hourFrom;
 	private int minutesFrom;
 	private int hourTo;
 	private int minutesTo;
 	
 	
-	public OpeningHour(Service service, DayOfWeek dayOfWeek, int hourFrom, int minutesFrom,
+	public OpeningHour(Service service, int dayOfWeek, int hourFrom, int minutesFrom,
 						int hourTo, int minutesTo) 
 	{
 		this.service = service;
@@ -29,7 +29,7 @@ public class OpeningHour
 		return this.service;
 	}
 	
-	public DayOfWeek getDayOfWeek()
+	public int getDayOfWeek()
 	{
 		return this.dayOfWeek;
 	}

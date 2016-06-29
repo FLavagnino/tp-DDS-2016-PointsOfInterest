@@ -13,9 +13,9 @@ public class Shop extends POI
 	List<Shop> shopPoi = new ArrayList<Shop>();
 	protected String category;
 	
-	public Shop(String name, Coordenate coordenate) 
+	public Shop(String name, Coordenate coordenate, String tags) 
 	{
-		super(name, coordenate);
+		super(name, coordenate, tags);
 	}
 	
 	public String getShopCategory(){
@@ -31,7 +31,7 @@ public class Shop extends POI
 		
 		for (OpeningHour openingHour : openingHours) 
 		{
-			if (openingHour.getDayOfWeek().getValue() == dayOfWeek)
+			if (openingHour.getDayOfWeek() == dayOfWeek)
 			{
 				DateTime from = new DateTime(1, 1, 1, openingHour.getHoursFrom(), openingHour.getMinutesFrom(), 0, 0);
 				DateTime to = new DateTime(1, 1, 1, openingHour.getHoursTo(), openingHour.getMinutesTo(), 0, 0);

@@ -1,8 +1,6 @@
 package poi;
 
 import static org.junit.Assert.*;
-
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class Entrega1Test
 		
 		// We create the busStop POI
 		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
-		BusStop busPOI = new BusStop("Parada 84", busCoord);
+		BusStop busPOI = new BusStop("Parada 84", busCoord, 114, "tag1,tag2");
 		
 		// Test using the current time
 		result = poiService.isAvailable(busPOI, avaTime, Service.NA);
@@ -45,13 +43,13 @@ public class Entrega1Test
 		
 		// We create the Bank POI
 		Coordenate bankCoord = new Coordenate(-34.618191, -58.428769);		
-		Bank bankPOI = new Bank("Banco Galicia Av. La Plata", bankCoord);
+		Bank bankPOI = new Bank("Banco Galicia Av. La Plata", bankCoord, "tag1,tag2");
 		
-		OpeningHour monday = new OpeningHour(Service.NA, DayOfWeek.MONDAY, 10, 0, 15, 0);
-		OpeningHour tuesday = new OpeningHour(Service.NA, DayOfWeek.TUESDAY, 10, 0, 15, 0);
-		OpeningHour wednesday = new OpeningHour(Service.NA, DayOfWeek.WEDNESDAY, 10, 0, 15, 0);
-		OpeningHour thursday = new OpeningHour(Service.NA, DayOfWeek.THURSDAY, 10, 0, 15, 0);
-		OpeningHour friday = new OpeningHour(Service.NA, DayOfWeek.FRIDAY, 10, 0, 15, 0);
+		OpeningHour monday = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 10, 0, 15, 0);
+		OpeningHour tuesday = new OpeningHour(Service.NA, DateTimeConstants.TUESDAY, 10, 0, 15, 0);
+		OpeningHour wednesday = new OpeningHour(Service.NA, DateTimeConstants.WEDNESDAY, 10, 0, 15, 0);
+		OpeningHour thursday = new OpeningHour(Service.NA, DateTimeConstants.THURSDAY, 10, 0, 15, 0);
+		OpeningHour friday = new OpeningHour(Service.NA, DateTimeConstants.FRIDAY, 10, 0, 15, 0);
 		
 		bankPOI.addOpeningHour(monday);
 		bankPOI.addOpeningHour(tuesday);
@@ -94,14 +92,14 @@ public class Entrega1Test
 		
 		// We create the Bank POI
 		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);		
-		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord);
+		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, "tag1,tag2");
 		
-		OpeningHour mondayIncomes = new OpeningHour(Service.INCOMES, DayOfWeek.MONDAY, 10, 0, 14, 0);
-		OpeningHour tuesdayIncomes = new OpeningHour(Service.INCOMES, DayOfWeek.TUESDAY, 10, 0, 14, 0);
-		OpeningHour wednesdayIncomes = new OpeningHour(Service.INCOMES, DayOfWeek.WEDNESDAY, 10, 0, 14, 0);
-		OpeningHour thursdayIncomes = new OpeningHour(Service.INCOMES, DayOfWeek.THURSDAY, 10, 0, 14, 0);
-		OpeningHour fridayIncomes = new OpeningHour(Service.INCOMES, DayOfWeek.FRIDAY, 10, 0, 14, 0);
-		OpeningHour tuesdayABL = new OpeningHour(Service.ABL, DayOfWeek.TUESDAY, 10, 0, 14, 0);
+		OpeningHour mondayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.MONDAY, 10, 0, 14, 0);
+		OpeningHour tuesdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour wednesdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
+		OpeningHour thursdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.THURSDAY, 10, 0, 14, 0);
+		OpeningHour fridayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.FRIDAY, 10, 0, 14, 0);
+		OpeningHour tuesdayABL = new OpeningHour(Service.ABL, DateTimeConstants.TUESDAY, 10, 0, 14, 0);
 		
 		CGPPOI.addOpeningHour(mondayIncomes);
 		CGPPOI.addOpeningHour(tuesdayIncomes);
@@ -160,18 +158,18 @@ public class Entrega1Test
 		
 		// We create the Bank POI
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
-		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord);
+		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, "tag1,tag2");
 		
-		OpeningHour mondayMon = new OpeningHour(Service.NA, DayOfWeek.MONDAY, 10, 0, 13, 0);
-		OpeningHour mondayAft = new OpeningHour(Service.NA, DayOfWeek.MONDAY, 17, 0, 22, 30);
-		OpeningHour tuesdayMon = new OpeningHour(Service.NA, DayOfWeek.TUESDAY, 10, 0, 13, 0);
-		OpeningHour tuesdayAft = new OpeningHour(Service.NA, DayOfWeek.TUESDAY, 17, 0, 20, 30);
-		OpeningHour wednesdayMon = new OpeningHour(Service.NA, DayOfWeek.WEDNESDAY, 10, 0, 13, 0);
-		OpeningHour wednesdayAft = new OpeningHour(Service.NA, DayOfWeek.WEDNESDAY, 17, 0, 20, 30);
-		OpeningHour thursdayMon = new OpeningHour(Service.NA, DayOfWeek.THURSDAY, 10, 0, 13, 0);
-		OpeningHour thursdayAft = new OpeningHour(Service.NA, DayOfWeek.THURSDAY, 17, 0, 20, 30);
-		OpeningHour fridayMon = new OpeningHour(Service.NA, DayOfWeek.FRIDAY, 10, 0, 13, 0);
-		OpeningHour fridayAft = new OpeningHour(Service.NA, DayOfWeek.FRIDAY, 17, 0, 20, 30);
+		OpeningHour mondayMon = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 10, 0, 13, 0);
+		OpeningHour mondayAft = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 17, 0, 22, 30);
+		OpeningHour tuesdayMon = new OpeningHour(Service.NA, DateTimeConstants.TUESDAY, 10, 0, 13, 0);
+		OpeningHour tuesdayAft = new OpeningHour(Service.NA, DateTimeConstants.TUESDAY, 17, 0, 20, 30);
+		OpeningHour wednesdayMon = new OpeningHour(Service.NA, DateTimeConstants.WEDNESDAY, 10, 0, 13, 0);
+		OpeningHour wednesdayAft = new OpeningHour(Service.NA, DateTimeConstants.WEDNESDAY, 17, 0, 20, 30);
+		OpeningHour thursdayMon = new OpeningHour(Service.NA, DateTimeConstants.THURSDAY, 10, 0, 13, 0);
+		OpeningHour thursdayAft = new OpeningHour(Service.NA, DateTimeConstants.THURSDAY, 17, 0, 20, 30);
+		OpeningHour fridayMon = new OpeningHour(Service.NA, DateTimeConstants.FRIDAY, 10, 0, 13, 0);
+		OpeningHour fridayAft = new OpeningHour(Service.NA, DateTimeConstants.FRIDAY, 17, 0, 20, 30);
 		
 		shopPOI.addOpeningHour(mondayMon);
 		shopPOI.addOpeningHour(mondayAft);

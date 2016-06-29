@@ -13,12 +13,14 @@ public abstract class POI
 	protected Coordenate coordenate;
 	protected Address address;
 	protected List<OpeningHour> openingHours;
+	protected String tags;
 	
-	protected POI(String name, Coordenate coordenate) 
+	protected POI(String name, Coordenate coordenate, String tags) 
 	{
 		this.name = name;
 		this.coordenate = coordenate;
 		this.openingHours = new ArrayList<OpeningHour>();
+		this.tags = tags;
 	}
 
 	protected void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 

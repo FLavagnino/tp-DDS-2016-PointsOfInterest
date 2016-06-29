@@ -13,9 +13,9 @@ public class CGP extends POI
 	List<CGP> CGPpoi = new ArrayList<CGP>();
 	protected String services;
 	
-	public CGP(String name, Coordenate coordenate) 
+	public CGP(String name, Coordenate coordenate, String tags) 
 	{
-		super(name, coordenate);
+		super(name, coordenate, tags);
 	}
 	public String getCGPservices(){
 		return this.services;
@@ -31,7 +31,7 @@ public class CGP extends POI
 		{
 			if (service == openingHour.getService())
 			{				
-				if (openingHour.getDayOfWeek().getValue() == dayOfWeek)
+				if (openingHour.getDayOfWeek() == dayOfWeek)
 				{
 					DateTime from = new DateTime(1, 1, 1, openingHour.getHoursFrom(), openingHour.getMinutesFrom(), 0, 0);
 					DateTime to = new DateTime(1, 1, 1, openingHour.getHoursTo(), openingHour.getMinutesTo(), 0, 0);
