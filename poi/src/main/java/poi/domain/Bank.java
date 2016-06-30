@@ -1,8 +1,5 @@
 package poi.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.joda.time.*;
 import poi.constant.Service;
 import poi.search.LevenshteinDistance;

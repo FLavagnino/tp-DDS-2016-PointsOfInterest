@@ -6,7 +6,6 @@ import java.util.List;
 import org.joda.time.DateTime;
 import poi.constant.Service;
 import poi.distance.service.DistanceService;
-import poi.domain.OpeningHour;
 import poi.domain.POI;
 
 public class POIService 

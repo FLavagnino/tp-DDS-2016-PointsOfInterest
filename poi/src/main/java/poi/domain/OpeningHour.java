@@ -1,7 +1,6 @@
 package poi.domain;
 
-import org.joda.time.*;
-import poi.constant.Service;
+import poi.constant.*;
 
 public class OpeningHour 
 {

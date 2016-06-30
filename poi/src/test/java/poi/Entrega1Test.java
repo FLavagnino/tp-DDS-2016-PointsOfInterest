@@ -3,10 +3,7 @@ package poi;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
-import org.junit.experimental.categories.Categories;
-
 import poi.constant.*;
 import poi.domain.*;
 import poi.service.*;
@@ -90,10 +87,15 @@ public class Entrega1Test
 		// Vars
 		POIService poiService = new POIService();
 		boolean result = false;
+		List<Service> services = new ArrayList<Service>();
 		
 		// We create the Bank POI
-		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);		
-		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, "tag1,tag2");
+		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
+		
+		services.add(Service.INCOMES);
+		services.add(Service.ABL);
+		
+		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, services, "tag1,tag2");
 		
 		OpeningHour mondayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.MONDAY, 10, 0, 14, 0);
 		OpeningHour tuesdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.TUESDAY, 10, 0, 14, 0);
