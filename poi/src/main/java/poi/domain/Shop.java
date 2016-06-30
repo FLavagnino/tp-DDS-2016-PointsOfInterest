@@ -83,7 +83,12 @@ public class Shop extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		// TODO: Completar este metodo y borrar el comentario.
-		return true;
+		int radius = this.category.getDistance();
+		
+		if(meters < radius)
+			
+			return true;
+		else
+			return false;
 	}
 }
