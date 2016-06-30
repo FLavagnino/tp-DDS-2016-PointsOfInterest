@@ -17,9 +17,14 @@ public class POIService
 		this.distanceService = new DistanceService();
 	}
 	
+	public int metersFromToHaversine(POI poiFrom, POI poiTo) 
+	{
+		return distanceService.metersFromToHaversine(poiFrom.getCoordenate(), poiTo.getCoordenate());
+	}
+	
 	public int metersFromTo(POI poiFrom, POI poiTo) 
 	{
-		return distanceService.metersFromTo(poiFrom.getCoordenate(), poiTo.getCoordenate());
+		return distanceService.metersFromToHaversine(poiFrom.getCoordenate(), poiTo.getCoordenate());
 	}
 	
 	public boolean isValid(POI poi) 

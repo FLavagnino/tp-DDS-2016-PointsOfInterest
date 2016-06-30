@@ -10,6 +10,23 @@ import poi.service.*;
 public class Entrega0BTest {
 
 	@Test
+	public void haversineVSGoogleTest() 
+	{
+		POIService poiService = new POIService();
+
+		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
+		Coordenate campusCoordenate = new Coordenate(-34.659706, -58.467852);
+
+		Shop poiMedrano = new Shop("Medrano", medranoCoordenate, Category.FURNITURE, "tag1,tag2");
+		Shop poiCampus = new Shop("Campus", campusCoordenate, Category.FURNITURE, "tag1,tag2");
+		
+		int google = poiService.metersFromTo(poiMedrano, poiCampus);
+		int haversine = poiService.metersFromToHaversine(poiMedrano, poiCampus);
+		
+		assertTrue(google >= haversine);
+	}
+	
+	@Test
 	public void isValidMedranoTest() 
 	{
 		Coordenate medranoCoordenate = new Coordenate(-34.598533, -58.420084);
