@@ -159,7 +159,7 @@ public class Entrega1Test
 		
 		// We create the Bank POI
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
-		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, "tag1,tag2");
+		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, Category.FURNITURE, "tag1,tag2");
 		
 		OpeningHour mondayMon = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 10, 0, 13, 0);
 		OpeningHour mondayAft = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 17, 0, 22, 30);
