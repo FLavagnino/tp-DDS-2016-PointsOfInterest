@@ -1,14 +1,23 @@
 package poi.domain;
 
 import java.util.List;
+
+import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.LinearRing;
+import com.vividsolutions.jts.geom.Polygon;
+
 import poi.constant.Service;
 import poi.search.LevenshteinDistance;
 
 public class CGP extends POI 
 {
 	protected List<Service> services;
+	protected List<Coordenate> zoneCoord;
 	
 	public CGP(String name, Coordenate coordenate, List<Service> services, String tags) 
 	{
@@ -16,9 +25,16 @@ public class CGP extends POI
 		this.services = services;
 	}
 	
-	protected List<Service> getCGPservices()
+	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, List<Service> services, String tags) 
 	{
-		return this.services;
+		super(name, coordenate, tags);
+		this.services = services;
+		this.zoneCoord = zoneCoord;
+	}
+		
+	public List<Coordenate> getZoneCoord()
+	{
+		return this.zoneCoord;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, Service service)
@@ -88,7 +104,30 @@ public class CGP extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		// TODO: Completar este metodo y borrar el comentario.
-		return true;
+		return this.inCGPZone(this.zoneCoord, poiFrom.getCoordenate());
+	}
+	
+	private boolean inCGPZone(List<Coordenate> polyCoords, Coordenate poiCoord)
+	{
+		Coordinate[] coords = new Coordinate[polyCoords.size()];
+		
+		for(int i=0; i< polyCoords.size() ; i++)
+		{
+			Coordenate point = polyCoords.get(i);
+			Coordinate coord = new Coordinate(point.getLatitude(), point.getLongitude());
+			
+			coords[i] = coord;
+		}
+		
+		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+		
+		LinearRing ring = geometryFactory.createLinearRing( coords );
+		LinearRing holes[] = null; // use LinearRing[] to represent holes
+		Polygon polygon = geometryFactory.createPolygon(ring, holes );
+		
+		com.vividsolutions.jts.geom.Point point = geometryFactory.createPoint(new Coordinate(poiCoord.getLatitude(), poiCoord.getLongitude()));
+		boolean result = polygon.contains(point);
+		
+		return result;
 	}
 }

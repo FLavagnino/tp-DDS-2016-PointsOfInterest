@@ -66,11 +66,6 @@ public class Bank extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		if(meters < 500)
-			
-			return true;
-		else
-			
-			return false;
+		return (meters < 500);
 	}
 }

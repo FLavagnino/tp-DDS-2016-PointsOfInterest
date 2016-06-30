@@ -353,5 +353,83 @@ public class Entrega1Test
 		
 		assertTrue(result.size() == 2);
 	}
+	
+	@Test
+	public void isCloserToCGPOKTest()
+	{
+		POIService poiService = new POIService();
+		boolean result = false;
+		
+		List<Service> services = new ArrayList<Service>();
+		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
+		
+		// We create the Bank POI
+		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
+		
+		Coordenate zone1 = new Coordenate(-34.618194, -58.427373);
+		Coordenate zone2 = new Coordenate(-34.618706, -58.423339);
+		Coordenate zone3 = new Coordenate(-34.620949, -58.424058);
+		Coordenate zone4 = new Coordenate(-34.620887, -58.426236);
+		Coordenate zone5 = new Coordenate(-34.619704, -58.427845);
+		Coordenate zone6 = new Coordenate(-34.618194, -58.427373);
+		
+		zoneCoord.add(zone1);
+		zoneCoord.add(zone2);
+		zoneCoord.add(zone3);
+		zoneCoord.add(zone4);
+		zoneCoord.add(zone5);
+		zoneCoord.add(zone6);
+		
+		services.add(Service.INCOMES);
+		services.add(Service.ABL);
+		
+		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
+		
+		// We create the busStop POI
+		Coordenate busCoord = new Coordenate(-34.619572, -58.425753);
+		BusStop busPOI = new BusStop("Parada 84", busCoord, 114, "tag1,tag2");
+		
+		result = poiService.isCloserTo(busPOI, CGPPOI);
+		assertTrue(result);
+	}
+	
+	@Test
+	public void isCloserToCGPFAILTest()
+	{
+		POIService poiService = new POIService();
+		boolean result = false;
+		
+		List<Service> services = new ArrayList<Service>();
+		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
+		
+		// We create the Bank POI
+		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
+		
+		Coordenate zone1 = new Coordenate(-34.618194, -58.427373);
+		Coordenate zone2 = new Coordenate(-34.618706, -58.423339);
+		Coordenate zone3 = new Coordenate(-34.620949, -58.424058);
+		Coordenate zone4 = new Coordenate(-34.620887, -58.426236);
+		Coordenate zone5 = new Coordenate(-34.619704, -58.427845);
+		Coordenate zone6 = new Coordenate(-34.618194, -58.427373);
+		
+		zoneCoord.add(zone1);
+		zoneCoord.add(zone2);
+		zoneCoord.add(zone3);
+		zoneCoord.add(zone4);
+		zoneCoord.add(zone5);
+		zoneCoord.add(zone6);
+		
+		services.add(Service.INCOMES);
+		services.add(Service.ABL);
+		
+		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
+		
+		// We create the busStop POI
+		Coordenate busCoord = new Coordenate(-34.615793, -58.422781);
+		BusStop busPOI = new BusStop("Parada 84", busCoord, 114, "tag1,tag2");
+		
+		result = poiService.isCloserTo(busPOI, CGPPOI);
+		assertFalse(result);	
+	}
 }
 

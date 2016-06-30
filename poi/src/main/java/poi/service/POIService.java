@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import poi.constant.Service;
 import poi.distance.service.DistanceService;
-import poi.domain.POI;
+import poi.domain.*;
 
 public class POIService 
 {
@@ -24,9 +24,10 @@ public class POIService
 	
 	public int metersFromTo(POI poiFrom, POI poiTo) 
 	{
+		//return distanceService.metersFromTo(poiFrom.getCoordenate(), poiTo.getCoordenate());
 		return distanceService.metersFromToHaversine(poiFrom.getCoordenate(), poiTo.getCoordenate());
 	}
-	
+		
 	public boolean isValid(POI poi) 
 	{
 		return poi.getCoordenate() != null && poi.getName() != null;

@@ -1,9 +1,7 @@
 package poi.distance.service;
 
 import java.util.List;
-
 import com.fasterxml.jackson.core.type.TypeReference;
-
 import poi.distance.service.response.DTO.ElementDTO;
 import poi.distance.service.response.DTO.FullResponseDTO;
 import poi.distance.service.response.DTO.RowDTO;
@@ -38,7 +36,7 @@ public class DistanceService
 		List<ElementDTO> elements = rows.get(0).getElements();
 		return Integer.parseInt(elements.get(0).getDistance().get("value"));
 	}
-	
+		
 	private FullResponseDTO getFullResponseOf(Coordenate origin, Coordenate destination) 
 	{
 		String url = getUrl(origin, destination);
