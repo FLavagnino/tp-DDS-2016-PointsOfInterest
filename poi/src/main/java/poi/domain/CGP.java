@@ -57,9 +57,7 @@ public class CGP extends POI
 				return true;	
 			}
 		}
-
-
-		
+	
 		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		

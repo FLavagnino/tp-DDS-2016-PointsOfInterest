@@ -283,7 +283,7 @@ public class Entrega1Test
 		boolean result = false;
 		Coordenate bankCoord = new Coordenate(-34.616325, -58.428837);
 		Bank bankPOIRio = new Bank("Rio", bankCoord, "tag1,tag2");
-		Coordenate bankCoord2 = new Coordenate(-14.616325, -38.428837);
+		Coordenate bankCoord2 = new Coordenate(-34.619574, -58.429606);
 		Bank bankPOIGalicia = new Bank("Rio", bankCoord2, "tag1,tag2");
 		
 		result = poiService.isCloserTo(bankPOIRio, bankPOIGalicia);
@@ -298,7 +298,7 @@ public class Entrega1Test
 		boolean result = false;
 		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
 		BusStop busPOI84 = new BusStop("Parada 84", busCoord, 84, "84");
-		Coordenate busCoord2 = new Coordenate(-10.619160, -70.425443);
+		Coordenate busCoord2 = new Coordenate(-34.619186, -58.425894);
 		BusStop busPOI90 = new BusStop("Parada 90", busCoord2, 90, "90");
 		
 		result = poiService.isCloserTo(busPOI84, busPOI90);
