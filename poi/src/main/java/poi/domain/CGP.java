@@ -4,6 +4,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import poi.constant.Service;
+import poi.search.LevenshteinDistance;
 
 public class CGP extends POI 
 {
@@ -47,8 +48,43 @@ public class CGP extends POI
 	}
 	
 	public boolean matchFilter(String filter)
-	{
-		return true;
+	{		
+		// Now we will try with Levenshtein for the name
+		try 
+		{
+			// First we will try to find the bus line
+			if (this.services.contains(filter))
+			{
+				return true;
+			}
+		}
+		catch (NumberFormatException nfe) { }
+		
+		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		
+		if (distance < 2)
+		{
+			return true;
+		}
+
+		// Now we will try with Levenshtein for the tags
+		if (!tags.equals(null) && !tags.equals(""))
+		{
+			String[] tagList = tags.split(",");
+			
+			for (int i=0; i < tagList.length; i++)
+			{
+				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
+				
+				if (distance < 2)
+				{
+					return true;
+				}
+			}		
+		}
+
+		// Doesn't match anything
+		return false;
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
