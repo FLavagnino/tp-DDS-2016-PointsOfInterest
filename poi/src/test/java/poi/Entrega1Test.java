@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Categories;
 
-import poi.constant.Service;
+import poi.constant.*;
 import poi.domain.*;
 import poi.service.*;
 import org.joda.time.*;
@@ -227,5 +228,12 @@ public class Entrega1Test
 		
 		assertTrue(result.size() == 1);
 		assertTrue(((BusStop)result.get(0)).getBusLine() == 114);
+	}
+	
+	@Test
+	public void categories()
+	{
+		assertEquals(poi.constant.Category.FURNITURE.getName(), "muebleria");
+		assertEquals(poi.constant.Category.FURNITURE.getDistance(), 1000);
 	}
 }
