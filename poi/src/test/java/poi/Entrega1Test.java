@@ -251,4 +251,26 @@ public class Entrega1Test
 		assertTrue(result.size() == 1);
 		assertTrue(((Shop)result.get(0)).getShopCategory().getName() == "muebleria");
 	}
+	
+	@Test
+	public void searchBankByNameTest()
+	{
+		String filter = "Rio";
+		Coordenate bankCoord = new Coordenate(-34.616325, -58.428837);		
+		Bank bankPOIRio = new Bank("Rio", bankCoord, "tag1,tag2");
+		Bank bankPOIGalicia = new Bank("Galicia", bankCoord, "tag1,tag2");
+		Bank bankPOIFrances = new Bank("Frances", bankCoord, "tag1,tag2");
+
+		List<POI> searchList = new ArrayList<POI>();
+		
+		searchList.add(bankPOIRio);
+		searchList.add(bankPOIGalicia);
+		searchList.add(bankPOIFrances);
+		
+		POIService poiService = new POIService();
+		List<POI> result = poiService.search(filter, searchList);
+		
+		assertTrue(result.size() == 1);
+		assertTrue(((Bank)result.get(0)).getName() == "Rio");
+	}
 }

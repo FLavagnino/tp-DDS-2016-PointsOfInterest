@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.joda.time.*;
 import poi.constant.Service;
+import poi.search.LevenshteinDistance;
 
 public class Bank extends POI 
 {	
-	List<Bank> BankPoi = new ArrayList<Bank>();
-		
-	
 	public Bank(String name, Coordenate coordenate, String tags) 
 	{
 		super(name, coordenate, tags);
@@ -40,16 +38,33 @@ public class Bank extends POI
 	}
 	
 	public boolean matchFilter(String filter)
-	{
-		// Se busca por etiqueta (name de banco).
-		if (BankPoi.contains(this.name))
+	{		
+		// Now we will try with Levenshtein for the name
+		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		
+		if (distance < 2)
 		{
 			return true;
 		}
-		else
+
+		// Now we will try with Levenshtein for the tags
+		if (!tags.equals(null) && !tags.equals(""))
 		{
-			return false;
+			String[] tagList = tags.split(",");
+			
+			for (int i=0; i < tagList.length; i++)
+			{
+				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
+				
+				if (distance < 2)
+				{
+					return true;
+				}
+			}		
 		}
+
+		// Doesn't match anything
+		return false;
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
