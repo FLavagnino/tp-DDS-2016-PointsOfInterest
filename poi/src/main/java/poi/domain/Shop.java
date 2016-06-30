@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 import poi.constant.*;
+import poi.search.LevenshteinDistance;
 
 public class Shop extends POI
 {
@@ -48,7 +49,40 @@ public class Shop extends POI
 	
 	public boolean matchFilter(String filter)
 	{
-		return true;
+		// First will try with Levenshtein for the category
+		int distance = LevenshteinDistance.distance(this.category.getName().toLowerCase(), filter.toLowerCase());
+		
+		if (distance < 2)
+		{
+			return true;
+		}
+		
+		// Now we will try with Levenshtein for the name
+		distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		
+		if (distance < 2)
+		{
+			return true;
+		}
+
+		// Now we will try with Levenshtein for the tags
+		if (!tags.equals(null) && !tags.equals(""))
+		{
+			String[] tagList = tags.split(",");
+			
+			for (int i=0; i < tagList.length; i++)
+			{
+				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
+				
+				if (distance < 2)
+				{
+					return true;
+				}
+			}		
+		}
+
+		// Doesn't match anything
+		return false;
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)

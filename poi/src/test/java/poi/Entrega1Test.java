@@ -157,7 +157,7 @@ public class Entrega1Test
 		POIService poiService = new POIService();
 		boolean result = false;
 		
-		// We create the Bank POI
+		// We create the Shop POI
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
 		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, Category.FURNITURE, "tag1,tag2");
 		
@@ -231,9 +231,24 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public void categories()
+	public void searchShopByCategoryTest()
 	{
-		assertEquals(poi.constant.Category.FURNITURE.getName(), "muebleria");
-		assertEquals(poi.constant.Category.FURNITURE.getDistance(), 1000);
+		String filter = "muebleria";
+		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
+		Shop shopPOIFurniture = new Shop("Muebles Tito", shopCoord, Category.FURNITURE, "tag1,tag2");
+		Shop shopPOIHardstore = new Shop("El Clavo", shopCoord, Category.HARDSTORE, "tag1,tag2");
+		Shop shopPOILIbrary = new Shop("El Clavo", shopCoord, Category.LIBRARY, "tag1,tag2");
+
+		List<POI> searchList = new ArrayList<POI>();
+		
+		searchList.add(shopPOIFurniture);
+		searchList.add(shopPOIHardstore);
+		searchList.add(shopPOILIbrary);
+		
+		POIService poiService = new POIService();
+		List<POI> result = poiService.search(filter, searchList);
+		
+		assertTrue(result.size() == 1);
+		assertTrue(((Shop)result.get(0)).getShopCategory().getName() == "muebleria");
 	}
 }
