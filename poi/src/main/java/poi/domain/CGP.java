@@ -49,17 +49,18 @@ public class CGP extends POI
 	
 	public boolean matchFilter(String filter)
 	{		
-		// Now we will try with Levenshtein for the name
-		try 
+		// Now we will try with Categories
+		for(int i=0; i< this.services.size() ; i++)
 		{
-			// First we will try to find the bus line
-			if (this.services.contains(filter))
+			if (this.services.get(i).getName().toLowerCase().contains(filter.toLowerCase()))
 			{
-				return true;
+				return true;	
 			}
 		}
-		catch (NumberFormatException nfe) { }
+
+
 		
+		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < 2)

@@ -306,7 +306,7 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public voide isCloserToTestShop()
+	public void isCloserToTestShop()
 	{
 		POIService poiService = new POIService();
 		boolean result = false;
@@ -318,6 +318,40 @@ public class Entrega1Test
 		result = poiService.isCloserTo(shopPOIFurniture, shopPOITeatro);
 		assertTrue(result);
 	}
+	
+	@Test
+	public void searchCGPByServiceTest()
+	{
+		String filter = "asesoramiento";
+		Coordenate cgpCoord = new Coordenate(-34.616325, -58.428837);	
+		
+		List<Service> cgpPOIPalermoServ = new ArrayList<Service>();
+		cgpPOIPalermoServ.add(Service.ABL);
+		cgpPOIPalermoServ.add(Service.LEGAL_ADVICE);
+		cgpPOIPalermoServ.add(Service.ACCOUNTING_ADVICE);
+	
+		List<Service> cgpPOICentenarioServ = new ArrayList<Service>();
+		cgpPOICentenarioServ.add(Service.WEDDINGS);
+		cgpPOICentenarioServ.add(Service.LEGAL_ADVICE);
+	
+		List<Service> cgpPOICaballitoServ = new ArrayList<Service>();
+		cgpPOICaballitoServ.add(Service.CAR_PLATES);
+		cgpPOICaballitoServ.add(Service.INCOMES);
+		
+		CGP cgpPOIPalermo = new CGP("CGP Palermo", cgpCoord, cgpPOIPalermoServ, "tag1,tag2");
+		CGP cgpPOICentenario = new CGP("CGP Centenario", cgpCoord, cgpPOICentenarioServ, "tag1,tag2");
+		CGP cgpPOICaballito = new CGP("CGP Caballito", cgpCoord, cgpPOICaballitoServ, "tag1,tag2");
 
+		List<POI> searchList = new ArrayList<POI>();
+		
+		searchList.add(cgpPOIPalermo);
+		searchList.add(cgpPOICentenario);
+		searchList.add(cgpPOICaballito);
+		
+		POIService poiService = new POIService();
+		List<POI> result = poiService.search(filter, searchList);
+		
+		assertTrue(result.size() == 2);
+	}
 }
 
