@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.domain;
+package ar.edu.utn.dds.poi.pointOfInterest.domain;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
 
-import ar.edu.utn.dds.poi.constant.Service;
-import ar.edu.utn.dds.poi.search.LevenshteinDistance;
+import ar.edu.utn.dds.poi.distance.LevenshteinDistance;
+import ar.edu.utn.dds.poi.utils.constant.Service;
 
 public class CGP extends POI 
 {

@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.domain;
+package ar.edu.utn.dds.poi.pointOfInterest.domain;
 
 public class Address 
 {	

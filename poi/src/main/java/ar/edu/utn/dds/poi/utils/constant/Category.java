@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.constant;
+package ar.edu.utn.dds.poi.utils.constant;
 
 public enum Category 
 {	

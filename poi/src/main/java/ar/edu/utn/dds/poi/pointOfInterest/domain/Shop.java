@@ -1,10 +1,11 @@
-package ar.edu.utn.dds.poi.domain;
+package ar.edu.utn.dds.poi.pointOfInterest.domain;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
-import ar.edu.utn.dds.poi.constant.*;
-import ar.edu.utn.dds.poi.search.LevenshteinDistance;
+import ar.edu.utn.dds.poi.utils.constant.Category;
+import ar.edu.utn.dds.poi.utils.constant.Service;
+import ar.edu.utn.dds.poi.distance.LevenshteinDistance;
 
 public class Shop extends POI
 {

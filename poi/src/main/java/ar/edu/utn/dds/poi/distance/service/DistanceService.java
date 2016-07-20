@@ -6,8 +6,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import ar.edu.utn.dds.poi.distance.service.response.DTO.ElementDTO;
 import ar.edu.utn.dds.poi.distance.service.response.DTO.FullResponseDTO;
 import ar.edu.utn.dds.poi.distance.service.response.DTO.RowDTO;
-import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.json.JsonFactory;
+import ar.edu.utn.dds.poi.pointOfInterest.domain.Coordenate;
+import ar.edu.utn.dds.poi.web.json.JsonFactory;
 import ar.edu.utn.dds.poi.web.service.HttpService;
 
 public class DistanceService 

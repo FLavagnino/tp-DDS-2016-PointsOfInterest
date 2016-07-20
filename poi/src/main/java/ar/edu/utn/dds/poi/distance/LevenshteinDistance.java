@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.search;
+package ar.edu.utn.dds.poi.distance;
 
 public class LevenshteinDistance 
 {

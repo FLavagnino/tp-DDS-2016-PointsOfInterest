@@ -1,9 +1,9 @@
-package ar.edu.utn.dds.poi.domain;
+package ar.edu.utn.dds.poi.pointOfInterest.domain;
 
 import org.joda.time.*;
 
-import ar.edu.utn.dds.poi.constant.*;
-import ar.edu.utn.dds.poi.search.*;
+import ar.edu.utn.dds.poi.distance.LevenshteinDistance;
+import ar.edu.utn.dds.poi.utils.constant.Service;
 
 public class BusStop extends POI
 {

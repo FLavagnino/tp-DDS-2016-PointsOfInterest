@@ -1,10 +1,10 @@
-package ar.edu.utn.dds.poi.domain;
+package ar.edu.utn.dds.poi.pointOfInterest.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
 
-import ar.edu.utn.dds.poi.constant.Service;
+import ar.edu.utn.dds.poi.utils.constant.Service;
 
 public abstract class POI
 {

@@ -1,13 +1,13 @@
-package ar.edu.utn.dds.poi.service;
+package ar.edu.utn.dds.poi.pointOfInterest.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
 
-import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.distance.service.DistanceService;
-import ar.edu.utn.dds.poi.domain.*;
+import ar.edu.utn.dds.poi.pointOfInterest.domain.POI;
+import ar.edu.utn.dds.poi.utils.constant.Service;
 
 public class POIService 
 {

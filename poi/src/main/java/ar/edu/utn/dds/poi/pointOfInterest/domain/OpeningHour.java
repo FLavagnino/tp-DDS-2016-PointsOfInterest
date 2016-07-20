@@ -1,6 +1,6 @@
-package ar.edu.utn.dds.poi.domain;
+package ar.edu.utn.dds.poi.pointOfInterest.domain;
 
-import ar.edu.utn.dds.poi.constant.*;
+import ar.edu.utn.dds.poi.utils.constant.Service;
 
 public class OpeningHour 
 {

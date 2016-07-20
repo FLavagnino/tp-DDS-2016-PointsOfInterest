@@ -3,9 +3,10 @@ package ar.edu.utn.dds.poi.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import ar.edu.utn.dds.poi.constant.Category;
-import ar.edu.utn.dds.poi.domain.*;
-import ar.edu.utn.dds.poi.service.*;
+import ar.edu.utn.dds.poi.pointOfInterest.domain.Coordenate;
+import ar.edu.utn.dds.poi.pointOfInterest.domain.Shop;
+import ar.edu.utn.dds.poi.pointOfInterest.service.POIService;
+import ar.edu.utn.dds.poi.utils.constant.Category;
 
 public class Entrega0BTest {
 
