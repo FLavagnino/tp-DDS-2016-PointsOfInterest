@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
-import ar.edu.utn.dds.poi.utils.constant.Category;
-import ar.edu.utn.dds.poi.utils.constant.Service;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.Bank;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.BusStop;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.CGP;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.Coordenate;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.OpeningHour;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.POI;
-import ar.edu.utn.dds.poi.pointOfInterest.domain.Shop;
-import ar.edu.utn.dds.poi.pointOfInterest.service.POIService;
+import ar.edu.utn.dds.poi.constant.Category;
+import ar.edu.utn.dds.poi.constant.Service;
+import ar.edu.utn.dds.poi.domain.Bank;
+import ar.edu.utn.dds.poi.domain.BusStop;
+import ar.edu.utn.dds.poi.domain.CGP;
+import ar.edu.utn.dds.poi.domain.Coordenate;
+import ar.edu.utn.dds.poi.domain.OpeningHour;
+import ar.edu.utn.dds.poi.domain.POI;
+import ar.edu.utn.dds.poi.domain.Shop;
+import ar.edu.utn.dds.poi.service.POIService;
 
 import org.joda.time.*;
 
