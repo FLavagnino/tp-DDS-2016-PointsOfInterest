@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.dto;
+package ar.edu.utn.dds.poi.service.cgp;
 
 import java.util.ArrayList;
 import java.util.HashMap;

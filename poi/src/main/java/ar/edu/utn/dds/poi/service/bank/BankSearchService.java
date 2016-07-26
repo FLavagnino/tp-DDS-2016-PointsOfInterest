@@ -1,10 +1,9 @@
-package ar.edu.utn.dds.poi.service;
+package ar.edu.utn.dds.poi.service.bank;
 
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import ar.edu.utn.dds.poi.dto.BankServDTO;
 import ar.edu.utn.dds.poi.factory.JsonFactory;
 import ar.edu.utn.dds.poi.utils.HttpService;
 
