@@ -15,8 +15,8 @@ public class Address
 	private String country;
 	
 	public Address(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
-			String apartment, String postalCode, String locality, String neighborhood, String province, String country) {
-	
+			String apartment, String postalCode, String locality, String neighborhood, String province, String country) 
+	{
 		this.street = street;
 		this.number = number;
 		this.streetOne = streetOne;
@@ -30,37 +30,58 @@ public class Address
 		this.country = country;
 	}
 
-	public String getStreet() {
+	public String getStreet() 
+	{
 		return street;
 	}
-	public Integer getNumber() {
+	
+	public Integer getNumber() 
+	{
 		return number;
 	}
-	public String getStreetOne() {
+	
+	public String getStreetOne() 
+	{
 		return streetOne;
 	}
-	public String getStreetTwo() {
+	
+	public String getStreetTwo() 
+	{
 		return streetTwo;
 	}
-	public Integer getFloor() {
+	
+	public Integer getFloor() 
+	{
 		return floor;
 	}
-	public String getApartment() {
+	
+	public String getApartment() 
+	{
 		return apartment;
 	}
-	public String getPostalCode() {
+	
+	public String getPostalCode() 
+	{
 		return postalCode;
 	}
-	public String getLocality() {
+	
+	public String getLocality() 
+	{
 		return locality;
 	}
-	public String getNeighborhood() {
+	
+	public String getNeighborhood() 
+	{
 		return neighborhood;
 	}
-	public String getProvince() {
+	
+	public String getProvince() 
+	{
 		return province;
 	}
-	public String getCountry() {
+	
+	public String getCountry() 
+	{
 		return country;
 	}	
 }

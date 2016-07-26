@@ -1,8 +1,7 @@
 package ar.edu.utn.dds.poi.domain;
 
 import org.joda.time.*;
-
-import ar.edu.utn.dds.poi.constant.Service;
+import ar.edu.utn.dds.poi.constant.*;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class Bank extends POI 
@@ -54,7 +53,7 @@ public class Bank extends POI
 			{
 				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
 				
-				if (distance < 2)
+				if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 				{
 					return true;
 				}
