@@ -18,6 +18,7 @@ public class CGP extends POI
 {
 	protected List<Service> services;
 	protected List<Coordenate> zoneCoord;
+	public int maxLengthString = 2;
 	
 	public CGP(String name, Coordenate coordenate, List<Service> services, String tags) 
 	{
@@ -77,7 +78,7 @@ public class CGP extends POI
 		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
-		if (distance < 2)
+		if (distance < maxLengthString)
 		{
 			return true;
 		}
@@ -91,7 +92,7 @@ public class CGP extends POI
 			{
 				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
 				
-				if (distance < 2)
+				if (distance < maxLengthString)
 				{
 					return true;
 				}

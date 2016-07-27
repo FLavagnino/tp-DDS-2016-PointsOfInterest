@@ -8,7 +8,9 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 public class BusStop extends POI
 {
 	protected int busLine;
-		
+	public int maxLengthString = 2;	
+	public int maxMeterIsCloserTo = 100;
+	
 	public BusStop(String name, Coordenate coordenate, int busLine, String tags) 
 	{
 		super(name, coordenate, tags);	
@@ -42,7 +44,7 @@ public class BusStop extends POI
 		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
-		if (distance < 2)
+		if (distance < maxLengthString)
 		{
 			return true;
 		}
@@ -56,7 +58,7 @@ public class BusStop extends POI
 			{
 				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
 				
-				if (distance < 2)
+				if (distance < maxLengthString)
 				{
 					return true;
 				}
@@ -69,6 +71,6 @@ public class BusStop extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		return (meters < 100);
+		return (meters < maxMeterIsCloserTo);
 	}
 }
