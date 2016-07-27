@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.service.cgp;
+package ar.edu.utn.dds.poi.model.cgpSearchServiceDTO;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class CGPServDTO {
 	private String director;
 	private String domicilio;
 	private String telefono;
-	private ArrayList<CGPServServiceDTO> servicios;
+	private ArrayList<ServiceDTO> servicios;
 	
 	public Integer getComuna() {
 		return comuna;
@@ -41,10 +41,10 @@ public class CGPServDTO {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public ArrayList<CGPServServiceDTO> getServicios() {
+	public ArrayList<ServiceDTO> getServicios() {
 		return servicios;
 	}
-	public void setServicios(ArrayList<CGPServServiceDTO> servicios) {
+	public void setServicios(ArrayList<ServiceDTO> servicios) {
 		this.servicios = servicios;
 	}
 		

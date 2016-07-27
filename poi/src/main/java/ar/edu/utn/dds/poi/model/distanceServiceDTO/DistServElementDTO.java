@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.dto;
+package ar.edu.utn.dds.poi.model.distanceServiceDTO;
 
 import java.util.HashMap;
 
