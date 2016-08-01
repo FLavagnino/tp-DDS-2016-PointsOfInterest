@@ -10,6 +10,7 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 public class Shop extends POI
 {
 	protected Category category;
+	public int maxLengthString = 2;
 	
 	public Shop(String name, Coordenate coordenate, Category category, String tags) 
 	{
@@ -50,7 +51,7 @@ public class Shop extends POI
 		// First will try with Levenshtein for the category
 		int distance = LevenshteinDistance.distance(this.category.getName().toLowerCase(), filter.toLowerCase());
 		
-		if (distance < 2)
+		if (distance < maxLengthString)
 		{
 			return true;
 		}
@@ -58,7 +59,7 @@ public class Shop extends POI
 		// Now we will try with Levenshtein for the name
 		distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
-		if (distance < 2)
+		if (distance < maxLengthString)
 		{
 			return true;
 		}
@@ -72,7 +73,7 @@ public class Shop extends POI
 			{
 				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
 				
-				if (distance < 2)
+				if (distance < maxLengthString)
 				{
 					return true;
 				}
