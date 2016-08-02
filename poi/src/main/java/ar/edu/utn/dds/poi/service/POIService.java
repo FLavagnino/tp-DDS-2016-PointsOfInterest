@@ -65,15 +65,15 @@ public class POIService
 		return result;
 	}
 	
-	public void addPoi(POI poi) {
+	public void addPoi(POI poi) 
+	{
 		pois.add(poi);
 	}
 	
-	public List<POI> getPois() {
+	public List<POI> getPois() 
+	{
 		ExternalPOIService externalPOIService = new ExternalPOIService();
 		pois.addAll(externalPOIService.getExternalPois());
 		return pois;
 	}
-	
-	
 }

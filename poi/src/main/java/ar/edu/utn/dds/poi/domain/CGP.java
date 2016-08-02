@@ -11,6 +11,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
 
+import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
@@ -18,7 +19,6 @@ public class CGP extends POI
 {
 	protected List<Service> services;
 	protected List<Coordenate> zoneCoord;
-	public int maxLengthString = 2;
 	
 	public CGP(String name, Coordenate coordenate, List<Service> services, String tags) 
 	{
@@ -48,11 +48,18 @@ public class CGP extends POI
 			{				
 				if (openingHour.getDayOfWeek() == dayOfWeek)
 				{
-					DateTime from = new DateTime(1, 1, 1, openingHour.getHoursFrom(), openingHour.getMinutesFrom(), 0, 0);
-					DateTime to = new DateTime(1, 1, 1, openingHour.getHoursTo(), openingHour.getMinutesTo(), 0, 0);
-					Interval interval = new Interval(from, to);
+					DateTime from = new DateTime(Constant.JODATIME_COMPARE_YEAR, Constant.JODATIME_COMPARE_MONTH, 
+													Constant.JODATIME_COMPARE_DAY, openingHour.getHoursFrom(), 
+													openingHour.getMinutesFrom());
 					
-					DateTime avaTime = new DateTime (1, 1, 1, dateTime.getHourOfDay(), dateTime.getMinuteOfHour());
+					DateTime to = new DateTime(Constant.JODATIME_COMPARE_YEAR, Constant.JODATIME_COMPARE_MONTH, 
+													Constant.JODATIME_COMPARE_DAY, openingHour.getHoursTo(), 
+													openingHour.getMinutesTo());
+					
+					Interval interval = new Interval(from, to);
+					DateTime avaTime = new DateTime (Constant.JODATIME_COMPARE_YEAR, Constant.JODATIME_COMPARE_MONTH,
+														Constant.JODATIME_COMPARE_DAY, dateTime.getHourOfDay(), dateTime.getMinuteOfHour());
+					
 					if (interval.contains(avaTime))
 					{
 						return true;
@@ -78,7 +85,7 @@ public class CGP extends POI
 		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
-		if (distance < maxLengthString)
+		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
 			return true;
 		}
@@ -92,7 +99,7 @@ public class CGP extends POI
 			{
 				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
 				
-				if (distance < maxLengthString)
+				if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 				{
 					return true;
 				}
@@ -126,7 +133,8 @@ public class CGP extends POI
 		LinearRing holes[] = null; // use LinearRing[] to represent holes
 		Polygon polygon = geometryFactory.createPolygon(ring, holes );
 		
-		com.vividsolutions.jts.geom.Point point = geometryFactory.createPoint(new Coordinate(poiCoord.getLatitude(), poiCoord.getLongitude()));
+		com.vividsolutions.jts.geom.Point point = geometryFactory.createPoint(new Coordinate(poiCoord.getLatitude(), 
+																				poiCoord.getLongitude()));
 		boolean result = polygon.contains(point);
 		
 		return result;

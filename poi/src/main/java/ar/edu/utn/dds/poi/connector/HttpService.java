@@ -10,29 +10,44 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.eclipse.jetty.io.RuntimeIOException;
 
-public class HttpService {
+import ar.edu.utn.dds.poi.constant.Constant;
 
-	public InputStreamReader getInputStreamReaderOf(String url) {
-
+public class HttpService 
+{
+	public InputStreamReader getInputStreamReaderOf(String url) 
+	{
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(url);
 		HttpResponse response;
-		try {
+		
+		try 
+		{
 			response = client.execute(request);
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			throw new RuntimeIOException(e);
 		}
+		
 		int statusCode = response.getStatusLine().getStatusCode();
-		if(statusCode >= 400) {
-			throw new RuntimeException("Status code: " + statusCode);
+		
+		if(statusCode >= Constant.HTTP_SERVICE_STATUS_CODE_BAD_REQUEST) 
+		{
+			throw new RuntimeException(Constant.HTTP_SERVICE_STATUS_MSG + statusCode);
 		}
+		
 		HttpEntity entity = response.getEntity();
 		InputStreamReader stream;
-		try {
+		
+		try 
+		{
 			stream = new InputStreamReader(entity.getContent());
-		} catch (IOException e) {
-			throw new RuntimeException("Error getting an InputStreamReader", e);
+		} 
+		catch (IOException e) 
+		{
+			throw new RuntimeException(Constant.HTTP_SERVICE_ERROR_MSG, e);
 		}
+		
 		return stream;
 	}
 }

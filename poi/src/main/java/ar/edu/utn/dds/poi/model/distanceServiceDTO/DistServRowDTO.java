@@ -2,15 +2,17 @@ package ar.edu.utn.dds.poi.model.distanceServiceDTO;
 
 import java.util.List;
 
-public class DistServRowDTO {
-
+public class DistServRowDTO 
+{
 	List<DistServElementDTO> elements;
 
-	public List<DistServElementDTO> getElements() {
+	public List<DistServElementDTO> getElements() 
+	{
 		return elements;
 	}
 
-	public void setElements(List<DistServElementDTO> elements) {
+	public void setElements(List<DistServElementDTO> elements) 
+	{
 		this.elements = elements;
 	}
 }
