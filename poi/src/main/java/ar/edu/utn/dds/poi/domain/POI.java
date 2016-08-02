@@ -73,5 +73,14 @@ public abstract class POI
 	public Address getAddress() 
 	{
 		return address;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}	
+	
 }

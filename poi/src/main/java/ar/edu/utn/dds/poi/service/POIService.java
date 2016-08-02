@@ -12,9 +12,12 @@ public class POIService
 {
 	private DistanceService distanceService;
 	
+	private List<POI> pois;
+	
 	public POIService() 
 	{
 		this.distanceService = new DistanceService();
+		pois = new ArrayList<POI>();
 	}
 	
 	public int metersFromToHaversine(POI poiFrom, POI poiTo) 
@@ -44,9 +47,11 @@ public class POIService
 		return poi.isAvailable(dateTime, service);
 	}
 	
-	public List<POI> search(String filter, List<POI> poiList)
+	public List<POI> search(String filter)
 	{
 		List<POI> result = new ArrayList<POI>();
+		
+		List<POI> poiList = getPois();
 		
 		for(int i=0; i< poiList.size() ; i++)
 		{
@@ -59,4 +64,16 @@ public class POIService
 		
 		return result;
 	}
+	
+	public void addPoi(POI poi) {
+		pois.add(poi);
+	}
+	
+	public List<POI> getPois() {
+		ExternalPOIService externalPOIService = new ExternalPOIService();
+		pois.addAll(externalPOIService.getExternalPois());
+		return pois;
+	}
+	
+	
 }

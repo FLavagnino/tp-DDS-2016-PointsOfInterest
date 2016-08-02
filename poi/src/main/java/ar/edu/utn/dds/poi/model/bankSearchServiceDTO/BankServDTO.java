@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class BankServDTO {
 
 	private String banco;
-	private Integer x;
-	private Integer y;
+	private Double x;
+	private Double y;
 	private String sucursal;
 	private String gerente;
 	private ArrayList<String> servicios;
@@ -17,16 +17,16 @@ public class BankServDTO {
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
-	public Integer getX() {
+	public Double getX() {
 		return x;
 	}
-	public void setX(Integer x) {
+	public void setX(Double x) {
 		this.x = x;
 	}
-	public Integer getY() {
+	public Double getY() {
 		return y;
 	}
-	public void setY(Integer y) {
+	public void setY(Double y) {
 		this.y = y;
 	}
 	public String getSucursal() {

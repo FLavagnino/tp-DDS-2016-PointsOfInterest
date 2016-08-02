@@ -228,14 +228,14 @@ public class Entrega1Test
 		BusStop busPOI84 = new BusStop("Parada 84", busCoord, 84, "84");
 		BusStop busPOI114 = new BusStop("Parada 114", busCoord, 114, "114");
 		BusStop busPOI132 = new BusStop("Parada 132", busCoord, 132, "132");
-		List<POI> searchList = new ArrayList<POI>();
-		
-		searchList.add(busPOI84);
-		searchList.add(busPOI114);
-		searchList.add(busPOI132);
 		
 		POIService poiService = new POIService();
-		List<POI> result = poiService.search(filter, searchList);
+		
+		poiService.addPoi(busPOI84);
+		poiService.addPoi(busPOI114);
+		poiService.addPoi(busPOI132);
+		
+		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 1);
 		assertTrue(((BusStop)result.get(0)).getBusLine() == 114);
@@ -250,14 +250,13 @@ public class Entrega1Test
 		Shop shopPOIHardstore = new Shop("El Clavo", shopCoord, Category.HARDSTORE, "tag1,tag2");
 		Shop shopPOILIbrary = new Shop("El Clavo", shopCoord, Category.LIBRARY, "tag1,tag2");
 
-		List<POI> searchList = new ArrayList<POI>();
-		
-		searchList.add(shopPOIFurniture);
-		searchList.add(shopPOIHardstore);
-		searchList.add(shopPOILIbrary);
-		
 		POIService poiService = new POIService();
-		List<POI> result = poiService.search(filter, searchList);
+		
+		poiService.addPoi(shopPOIFurniture);
+		poiService.addPoi(shopPOIHardstore);
+		poiService.addPoi(shopPOILIbrary);
+		
+		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 1);
 		assertTrue(((Shop)result.get(0)).getShopCategory().getName() == "muebleria");
@@ -274,12 +273,13 @@ public class Entrega1Test
 
 		List<POI> searchList = new ArrayList<POI>();
 		
-		searchList.add(bankPOIRio);
-		searchList.add(bankPOIGalicia);
-		searchList.add(bankPOIFrances);
-		
 		POIService poiService = new POIService();
-		List<POI> result = poiService.search(filter, searchList);
+		
+		poiService.addPoi(bankPOIRio);
+		poiService.addPoi(bankPOIGalicia);
+		poiService.addPoi(bankPOIFrances);
+		
+		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 1);
 		assertTrue(((Bank)result.get(0)).getName() == "Rio");
@@ -353,14 +353,13 @@ public class Entrega1Test
 		CGP cgpPOICentenario = new CGP("CGP Centenario", cgpCoord, cgpPOICentenarioServ, "tag1,tag2");
 		CGP cgpPOICaballito = new CGP("CGP Caballito", cgpCoord, cgpPOICaballitoServ, "tag1,tag2");
 
-		List<POI> searchList = new ArrayList<POI>();
-		
-		searchList.add(cgpPOIPalermo);
-		searchList.add(cgpPOICentenario);
-		searchList.add(cgpPOICaballito);
-		
 		POIService poiService = new POIService();
-		List<POI> result = poiService.search(filter, searchList);
+		
+		poiService.addPoi(cgpPOIPalermo);
+		poiService.addPoi(cgpPOICentenario);
+		poiService.addPoi(cgpPOICaballito);
+		
+		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 2);
 	}
