@@ -23,13 +23,31 @@ public class Entrega2Test
 	@Test
 	public void bankServiceSearchByNameAndTagTest()
 	{
-		String filter = "Galicia";		
+		String filter = "Moneda Extranjera";		
 		POIService poiService = new POIService();		
 		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 1);
-		assertTrue(((Bank)result.get(0)).getName().equals("Galicia"));
-		assertTrue(((Bank)result.get(0)).getTags().contains("Moneda Extrangera"));
+		assertTrue(((Bank)result.get(0)).getTags().toLowerCase().contains("moneda extranjera"));
 	}
 	
+	@Test
+	public void cgpServiceSearchByNameTest()
+	{
+		String filter = "comuna 3";	
+		POIService poiService = new POIService();
+		List<POI> result = poiService.search(filter);
+		
+		assertTrue(result.size() == 10);
+	}
+	
+	@Test
+	public void cgpServiceSearchByTagTest()
+	{
+		String filter = "Villa Devoto";	
+		POIService poiService = new POIService();
+		List<POI> result = poiService.search(filter);
+		
+		assertTrue(result.size() == 1);
+	}
 }

@@ -13,6 +13,11 @@ public abstract class POI
 	protected List<OpeningHour> openingHours;
 	protected String tags;
 	
+	protected POI()
+	{
+		this.openingHours = new ArrayList<OpeningHour>();
+	}
+	
 	protected POI(String name, Coordenate coordenate, String tags) 
 	{
 		this.name = name;
@@ -31,6 +36,16 @@ public abstract class POI
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		return true;
+	}
+	
+	public void setCoordenate(Coordenate coordenate)
+	{
+		this.coordenate = coordenate;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 	
 	public void addOpeningHour(OpeningHour openingHour)

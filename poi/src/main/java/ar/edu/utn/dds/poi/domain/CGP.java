@@ -19,6 +19,10 @@ public class CGP extends POI
 	protected List<String> services;
 	protected List<Coordenate> zoneCoord;
 	
+	public CGP()
+	{		
+	}
+	
 	public CGP(String name, Coordenate coordenate, List<String> services, String tags) 
 	{
 		super(name, coordenate, tags);
@@ -30,6 +34,11 @@ public class CGP extends POI
 		super(name, coordenate, tags);
 		this.services = services;
 		this.zoneCoord = zoneCoord;
+	}
+	
+	public void setServices (List<String> services)
+	{
+		this.services = services;
 	}
 		
 	public List<Coordenate> getZoneCoord()
