@@ -19,4 +19,17 @@ public class Entrega2Test
 		assertTrue(result.size() == 1);
 		assertTrue(((Bank)result.get(0)).getName().equals("Galicia"));
 	}
+	
+	@Test
+	public void bankServiceSearchByNameAndTagTest()
+	{
+		String filter = "Galicia";		
+		POIService poiService = new POIService();		
+		List<POI> result = poiService.search(filter);
+		
+		assertTrue(result.size() == 1);
+		assertTrue(((Bank)result.get(0)).getName().equals("Galicia"));
+		assertTrue(((Bank)result.get(0)).getTags().contains("Moneda Extrangera"));
+	}
+	
 }
