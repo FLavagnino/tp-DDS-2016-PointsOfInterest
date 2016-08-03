@@ -21,7 +21,7 @@ public class CGPSearch
 			url += String.format(Constant.CGP_SEARCH_PARAM, area);
 		}
 		
-		System.out.println(url);
+		//System.out.println(url);
 		return jsonFactory.fromJson(httpService.getInputStreamReaderOf(url), 
 										new TypeReference<ArrayList<CGPServDTO>>() {});
 	}

@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.service;
+package ar.edu.utn.dds.poi.utils;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServElementDTO;
 import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServFullResponseDTO;
 import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServRowDTO;
 
-public class DistanceService 
+public class MetersDistance 
 {
 	public Integer metersFromToHaversine(Coordenate origin, Coordenate destination) 
 	{

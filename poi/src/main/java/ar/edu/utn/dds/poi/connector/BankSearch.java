@@ -20,7 +20,7 @@ public class BankSearch
 			url += String.format(Constant.BANK_SEARCH_PARAM, bank, service);
 		}
 		
-		System.out.println(url);
+		//System.out.println(url);
 		return jsonFactory.fromJson(httpService.getInputStreamReaderOf(url), 
 										new TypeReference<ArrayList<BankServDTO>>() {});
 	}
