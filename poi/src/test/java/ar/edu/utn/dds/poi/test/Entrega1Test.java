@@ -13,6 +13,7 @@ import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.OpeningHour;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
+import ar.edu.utn.dds.poi.exceptions.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
 
 import org.joda.time.*;
@@ -220,7 +221,7 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public void searchBusStopByBusLineTest()
+	public void searchBusStopByBusLineTest() throws InvalidPoiException
 	{
 		String filter = "114";
 		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
@@ -241,7 +242,7 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public void searchShopByCategoryTest()
+	public void searchShopByCategoryTest() throws InvalidPoiException
 	{
 		String filter = "muebleria";
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
@@ -262,7 +263,7 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public void searchBankByNameTest()
+	public void searchBankByNameTest() throws InvalidPoiException
 	{
 		String filter = "Rio";
 		Coordenate bankCoord = new Coordenate(-34.616325, -58.428837);		
@@ -327,7 +328,7 @@ public class Entrega1Test
 	}
 	
 	@Test
-	public void searchCGPByServiceTest()
+	public void searchCGPByServiceTest() throws InvalidPoiException
 	{
 		String filter = "Asesoramiento";
 		Coordenate cgpCoord = new Coordenate(-34.616325, -58.428837);	

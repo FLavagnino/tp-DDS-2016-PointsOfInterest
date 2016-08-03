@@ -6,6 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import ar.edu.utn.dds.poi.domain.POI;
+import ar.edu.utn.dds.poi.exceptions.InvalidPoiException;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
 public class POIService 
@@ -64,9 +65,16 @@ public class POIService
 		return result;
 	}
 	
-	public void addPoi(POI poi) 
+	public void addPoi(POI poi) throws InvalidPoiException 
 	{
-		poiList.add(poi);
+		if (this.isValid(poi))
+		{
+			poiList.add(poi);
+		}
+		else
+		{
+			throw new InvalidPoiException("Invalid POI. Please check all the coodenates and the name.");
+		}
 	}
 	
 	public void deletePoi(Integer unit)
@@ -74,10 +82,17 @@ public class POIService
 		poiList.removeIf( poi -> poi.getUnit() == unit );
 	}
 	
-	public void updatePoi(POI poi)
+	public void updatePoi(POI poi) throws InvalidPoiException
 	{
-		deletePoi(poi.getUnit());
-		addPoi(poi);
+		if (this.isValid(poi))
+		{
+			deletePoi(poi.getUnit());
+			addPoi(poi);
+		}
+		else
+		{
+			throw new InvalidPoiException("Invalid POI. Please check all the coodenates and the name.");
+		}
 	}
 	
 	public List<POI> getPois()
