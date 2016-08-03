@@ -5,10 +5,7 @@ import ar.edu.utn.dds.poi.constant.*;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class Bank extends POI 
-{	
-	public int maxLengthString = 2;	
-	public int maxMeterIsCloserTo = 500;
-	
+{		
 	public Bank(String name, Coordenate coordenate, String tags) 
 	{
 		super(name, coordenate, tags);
@@ -42,7 +39,7 @@ public class Bank extends POI
 		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
-		if (distance < maxLengthString)
+		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
 			return true;
 		}
@@ -69,6 +66,6 @@ public class Bank extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		return (meters < maxMeterIsCloserTo);
+		return (meters < Constant.BANK_ISCLOSERTO_DIST);
 	}
 }

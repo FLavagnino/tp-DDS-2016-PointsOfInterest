@@ -259,7 +259,7 @@ public class Entrega1Test
 		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 1);
-		assertTrue(((Shop)result.get(0)).getShopCategory().getName() == "muebleria");
+		assertTrue(((Shop)result.get(0)).getShopCategory().getName().equals("muebleria"));
 	}
 	
 	@Test
@@ -271,10 +271,7 @@ public class Entrega1Test
 		Bank bankPOIGalicia = new Bank("Galicia", bankCoord, "tag1,tag2");
 		Bank bankPOIFrances = new Bank("Frances", bankCoord, "tag1,tag2");
 
-		List<POI> searchList = new ArrayList<POI>();
-		
 		POIService poiService = new POIService();
-		
 		poiService.addPoi(bankPOIRio);
 		poiService.addPoi(bankPOIGalicia);
 		poiService.addPoi(bankPOIFrances);
@@ -282,7 +279,7 @@ public class Entrega1Test
 		List<POI> result = poiService.search(filter);
 		
 		assertTrue(result.size() == 1);
-		assertTrue(((Bank)result.get(0)).getName() == "Rio");
+		assertTrue(((Bank)result.get(0)).getName().equals("Rio"));
 	}
 	
 	@Test

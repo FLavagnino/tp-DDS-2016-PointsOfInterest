@@ -2,29 +2,39 @@ package ar.edu.utn.dds.poi.model.distanceServiceDTO;
 
 import java.util.HashMap;
 
-public class DistServElementDTO {
-
+public class DistServElementDTO 
+{
 	private HashMap<String, String> distance;
 	private HashMap<String, String> duration;
 	private String status;
 	
-	public HashMap<String, String> getDistance() {
+	public HashMap<String, String> getDistance() 
+	{
 		return distance;
 	}
-	public void setDistance(HashMap<String, String> distance) {
+	
+	public void setDistance(HashMap<String, String> distance) 
+	{
 		this.distance = distance;
 	}
-	public HashMap<String, String> getDuration() {
+	
+	public HashMap<String, String> getDuration() 
+	{
 		return duration;
 	}
-	public void setDuration(HashMap<String, String> duration) {
+	
+	public void setDuration(HashMap<String, String> duration) 
+	{
 		this.duration = duration;
 	}
-	public String getStatus() {
+	
+	public String getStatus() 
+	{
 		return status;
 	}
-	public void setStatus(String status) {
+	
+	public void setStatus(String status) 
+	{
 		this.status = status;
 	}
-	
 }

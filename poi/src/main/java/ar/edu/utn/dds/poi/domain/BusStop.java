@@ -2,14 +2,13 @@ package ar.edu.utn.dds.poi.domain;
 
 import org.joda.time.*;
 
+import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class BusStop extends POI
 {
 	protected int busLine;
-	public int maxLengthString = 2;	
-	public int maxMeterIsCloserTo = 100;
 	
 	public BusStop(String name, Coordenate coordenate, int busLine, String tags) 
 	{
@@ -44,7 +43,7 @@ public class BusStop extends POI
 		// Now we will try with Levenshtein for the name
 		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
-		if (distance < maxLengthString)
+		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
 			return true;
 		}
@@ -58,7 +57,7 @@ public class BusStop extends POI
 			{
 				distance = LevenshteinDistance.distance(tagList[i].toLowerCase(), filter.toLowerCase());
 				
-				if (distance < maxLengthString)
+				if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 				{
 					return true;
 				}
@@ -71,6 +70,6 @@ public class BusStop extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		return (meters < maxMeterIsCloserTo);
+		return (meters < Constant.BUSSTOP_ISCLOSERTO_DIST);
 	}
 }

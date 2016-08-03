@@ -7,17 +7,18 @@ import org.joda.time.DateTime;
 
 import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.domain.POI;
+import ar.edu.utn.dds.poi.utils.MetersDistance;
 
 public class POIService 
 {
-	private DistanceService distanceService;
+	private MetersDistance distanceService;
 	
-	private List<POI> pois;
+	private List<POI> poiList;
 	
 	public POIService() 
 	{
-		this.distanceService = new DistanceService();
-		pois = new ArrayList<POI>();
+		this.distanceService = new MetersDistance();
+		poiList = new ArrayList<POI>();
 	}
 	
 	public int metersFromToHaversine(POI poiFrom, POI poiTo) 
@@ -50,10 +51,9 @@ public class POIService
 	public List<POI> search(String filter)
 	{
 		List<POI> result = new ArrayList<POI>();
-		
-		List<POI> poiList = getPois();
-		
-		for(int i=0; i< poiList.size() ; i++)
+		List<POI> allPois = getPois();
+				
+		for(int i=0; i< allPois.size() ; i++)
 		{
 			POI poi = poiList.get(i);
 			if (poi.matchFilter(filter))
@@ -65,26 +65,28 @@ public class POIService
 		return result;
 	}
 	
-	public void addPoi(POI poi) {
-		pois.add(poi);
+	public void addPoi(POI poi) 
+	{
+		poiList.add(poi);
 	}
 	
-	public void deletePoi(Integer unit) {
-		pois.removeIf( poi -> poi.getUnit() == unit );
+	public void deletePoi(Integer unit)
+{
+		poiList.removeIf( poi -> poi.getUnit() == unit );
 	}
 	
-	public void updatePoi(POI poi) {
+	public void updatePoi(POI poi)
+	{
 		deletePoi(poi.getUnit());
 		addPoi(poi);
 	}
 	
-	public List<POI> getPois() {
+	public List<POI> getPois()
+	{
 		List<POI> allPois = new ArrayList<POI>();
-		allPois.addAll(pois);
+		allPois.addAll(poiList);
 		ExternalPOIService externalPOIService = new ExternalPOIService();
 		allPois.addAll(externalPOIService.getExternalPois());
 		return allPois;
 	}
-	
-	
 }
