@@ -5,7 +5,6 @@ import org.joda.time.Interval;
 
 import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class Shop extends POI
@@ -23,7 +22,7 @@ public class Shop extends POI
 		return this.category;
 	}
 	
-	public boolean isAvailable(DateTime dateTime, Service service)
+	public boolean isAvailable(DateTime dateTime, String service)
 	{
 		int dayOfWeek = dateTime.getDayOfWeek();
 		

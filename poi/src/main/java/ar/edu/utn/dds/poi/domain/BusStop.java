@@ -3,7 +3,6 @@ package ar.edu.utn.dds.poi.domain;
 import org.joda.time.*;
 
 import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class BusStop extends POI
@@ -21,7 +20,7 @@ public class BusStop extends POI
 		return this.busLine;
 	}
 	
-	public boolean isAvailable(DateTime dateTime, Service service)
+	public boolean isAvailable(DateTime dateTime, String service)
 	{
 		return true;
 	}

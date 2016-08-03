@@ -11,7 +11,7 @@ public class Bank extends POI
 		super(name, coordenate, tags);
 	}
 	
-	public boolean isAvailable(DateTime dateTime, Service service)
+	public boolean isAvailable(DateTime dateTime, String service)
 	{
 		int dayOfWeek = dateTime.getDayOfWeek();
 		

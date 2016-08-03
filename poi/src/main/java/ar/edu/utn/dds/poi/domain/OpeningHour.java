@@ -1,10 +1,8 @@
 package ar.edu.utn.dds.poi.domain;
 
-import ar.edu.utn.dds.poi.constant.Service;
-
 public class OpeningHour 
 {
-	private Service service;
+	private String service;
 	private int dayOfWeek;
 	private int hourFrom;
 	private int minutesFrom;
@@ -12,7 +10,7 @@ public class OpeningHour
 	private int minutesTo;
 	
 	
-	public OpeningHour(Service service, int dayOfWeek, int hourFrom, int minutesFrom,
+	public OpeningHour(String service, int dayOfWeek, int hourFrom, int minutesFrom,
 						int hourTo, int minutesTo) 
 	{
 		this.service = service;
@@ -23,7 +21,7 @@ public class OpeningHour
 		this.minutesTo = minutesTo;
 	}
 	
-	public Service getService()
+	public String getService()
 	{
 		return this.service;
 	}

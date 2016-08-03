@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.utn.dds.poi.connector.BankSearch;
-//import ar.edu.utn.dds.poi.connector.CGPSearch;
+import ar.edu.utn.dds.poi.connector.CGPSearch;
 import ar.edu.utn.dds.poi.domain.Bank;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.model.bankSearchServiceDTO.BankServDTO;
+import ar.edu.utn.dds.poi.model.cgpSearchServiceDTO.CGPServDTO;
 
 public class ExternalPOIService 
 {	
 	private BankSearch bankSearch;
-	//private CGPSearch cgpSearch;
+	private CGPSearch cgpSearch;
 	
 	public ExternalPOIService() 
 	{

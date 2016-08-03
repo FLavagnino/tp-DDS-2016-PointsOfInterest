@@ -6,7 +6,6 @@ import java.util.List;
 import org.junit.Test;
 
 import ar.edu.utn.dds.poi.constant.Category;
-import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.domain.Bank;
 import ar.edu.utn.dds.poi.domain.BusStop;
 import ar.edu.utn.dds.poi.domain.CGP;
@@ -33,11 +32,11 @@ public class Entrega1Test
 		BusStop busPOI = new BusStop("Parada 84", busCoord, 114, "tag1,tag2");
 		
 		// Test using the current time
-		result = poiService.isAvailable(busPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(busPOI, avaTime, "No aplica");
 		assertTrue(result);
 		
 		// Test using time 3 days from now.
-		result = poiService.isAvailable(busPOI, avaTime.plusDays(3), Service.NA);
+		result = poiService.isAvailable(busPOI, avaTime.plusDays(3), "No aplica");
 		assertTrue(result);	
 	}
 	
@@ -52,11 +51,11 @@ public class Entrega1Test
 		Coordenate bankCoord = new Coordenate(-34.618191, -58.428769);		
 		Bank bankPOI = new Bank("Banco Galicia Av. La Plata", bankCoord, "tag1,tag2");
 		
-		OpeningHour monday = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 10, 0, 15, 0);
-		OpeningHour tuesday = new OpeningHour(Service.NA, DateTimeConstants.TUESDAY, 10, 0, 15, 0);
-		OpeningHour wednesday = new OpeningHour(Service.NA, DateTimeConstants.WEDNESDAY, 10, 0, 15, 0);
-		OpeningHour thursday = new OpeningHour(Service.NA, DateTimeConstants.THURSDAY, 10, 0, 15, 0);
-		OpeningHour friday = new OpeningHour(Service.NA, DateTimeConstants.FRIDAY, 10, 0, 15, 0);
+		OpeningHour monday = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 15, 0);
+		OpeningHour tuesday = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 15, 0);
+		OpeningHour wednesday = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 15, 0);
+		OpeningHour thursday = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 15, 0);
+		OpeningHour friday = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 15, 0);
 		
 		bankPOI.addOpeningHour(monday);
 		bankPOI.addOpeningHour(tuesday);
@@ -66,27 +65,27 @@ public class Entrega1Test
 		
 		// Test using Sunday 11am
 		DateTime avaTime = new DateTime(2016, 6, 11, 11, 0, 0, 0);
-		result = poiService.isAvailable(bankPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(bankPOI, avaTime, "No aplica");
 		assertFalse(result);
 		
 		// Test using Sunday 16pm
 		avaTime = new DateTime(2016, 6, 11, 16, 0, 0, 0);
-		result = poiService.isAvailable(bankPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(bankPOI, avaTime, "No aplica");
 		assertFalse(result);
 		
 		// Test using Monday 10am
 		avaTime = new DateTime(2016, 6, 13, 10, 0, 0, 0);
-		result = poiService.isAvailable(bankPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(bankPOI, avaTime, "No aplica");
 		assertTrue(result);
 		
 		// Test using Monday 13pm
 		avaTime = new DateTime(2016, 6, 13, 13, 0, 0, 0);
-		result = poiService.isAvailable(bankPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(bankPOI, avaTime, "No aplica");
 		assertTrue(result);
 		
 		// Test using Monday 16pm,
 		avaTime = new DateTime(2016, 6, 13, 16, 0, 0, 0);
-		result = poiService.isAvailable(bankPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(bankPOI, avaTime, "No aplica");
 		assertFalse(result);
 	}
 	
@@ -96,22 +95,22 @@ public class Entrega1Test
 		// Vars
 		POIService poiService = new POIService();
 		boolean result = false;
-		List<Service> services = new ArrayList<Service>();
+		List<String> services = new ArrayList<String>();
 		
 		// We create the Bank POI
 		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
 		
-		services.add(Service.INCOMES);
-		services.add(Service.ABL);
+		services.add("Rentas");
+		services.add("ABL");
 		
 		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, services, "tag1,tag2");
 		
-		OpeningHour mondayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.MONDAY, 10, 0, 14, 0);
-		OpeningHour tuesdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.TUESDAY, 10, 0, 14, 0);
-		OpeningHour wednesdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
-		OpeningHour thursdayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.THURSDAY, 10, 0, 14, 0);
-		OpeningHour fridayIncomes = new OpeningHour(Service.INCOMES, DateTimeConstants.FRIDAY, 10, 0, 14, 0);
-		OpeningHour tuesdayABL = new OpeningHour(Service.ABL, DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour mondayIncomes = new OpeningHour("Rentas", DateTimeConstants.MONDAY, 10, 0, 14, 0);
+		OpeningHour tuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour wednesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
+		OpeningHour thursdayIncomes = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 14, 0);
+		OpeningHour fridayIncomes = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 14, 0);
+		OpeningHour tuesdayABL = new OpeningHour("ABL", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
 		
 		CGPPOI.addOpeningHour(mondayIncomes);
 		CGPPOI.addOpeningHour(tuesdayIncomes);
@@ -122,42 +121,42 @@ public class Entrega1Test
 		
 		// Test using INCOMES Sunday 11am
 		DateTime avaTime = new DateTime(2016, 6, 11, 11, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.INCOMES);
+		result = poiService.isAvailable(CGPPOI, avaTime, "Rentas");
 		assertFalse(result);
 		
 		// Test using INCOMES Sunday 16pm
 		avaTime = new DateTime(2016, 6, 11, 16, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.INCOMES);
+		result = poiService.isAvailable(CGPPOI, avaTime, "Rentas");
 		assertFalse(result);
 		
 		// Test using INCOMES Monday 10am
 		avaTime = new DateTime(2016, 6, 13, 10, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.INCOMES);
+		result = poiService.isAvailable(CGPPOI, avaTime, "Rentas");
 		assertTrue(result);
 		
 		// Test using INCOMES Monday 13pm
 		avaTime = new DateTime(2016, 6, 13, 13, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.INCOMES);
+		result = poiService.isAvailable(CGPPOI, avaTime, "Rentas");
 		assertTrue(result);
 		
 		// Test using INCOMES Monday 16pm,
 		avaTime = new DateTime(2016, 6, 13, 16, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.INCOMES);
+		result = poiService.isAvailable(CGPPOI, avaTime, "Rentas");
 		assertFalse(result);
 		
 		// Test using ABL Monday 13pm
 		avaTime = new DateTime(2016, 6, 13, 13, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.ABL);
+		result = poiService.isAvailable(CGPPOI, avaTime, "ABL");
 		assertFalse(result);
 		
 		// Test using ABL Tuesday 13pm
 		avaTime = new DateTime(2016, 6, 14, 13, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.ABL);
+		result = poiService.isAvailable(CGPPOI, avaTime, "ABL");
 		assertTrue(result);
 		
 		// Test using ABL Tuesday 15pm
 		avaTime = new DateTime(2016, 6, 14, 15, 0, 0, 0);
-		result = poiService.isAvailable(CGPPOI, avaTime, Service.ABL);
+		result = poiService.isAvailable(CGPPOI, avaTime, "ABL");
 		assertFalse(result);
 	}
 	
@@ -172,16 +171,16 @@ public class Entrega1Test
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
 		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, Category.FURNITURE, "tag1,tag2");
 		
-		OpeningHour mondayMon = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 10, 0, 13, 0);
-		OpeningHour mondayAft = new OpeningHour(Service.NA, DateTimeConstants.MONDAY, 17, 0, 22, 30);
-		OpeningHour tuesdayMon = new OpeningHour(Service.NA, DateTimeConstants.TUESDAY, 10, 0, 13, 0);
-		OpeningHour tuesdayAft = new OpeningHour(Service.NA, DateTimeConstants.TUESDAY, 17, 0, 20, 30);
-		OpeningHour wednesdayMon = new OpeningHour(Service.NA, DateTimeConstants.WEDNESDAY, 10, 0, 13, 0);
-		OpeningHour wednesdayAft = new OpeningHour(Service.NA, DateTimeConstants.WEDNESDAY, 17, 0, 20, 30);
-		OpeningHour thursdayMon = new OpeningHour(Service.NA, DateTimeConstants.THURSDAY, 10, 0, 13, 0);
-		OpeningHour thursdayAft = new OpeningHour(Service.NA, DateTimeConstants.THURSDAY, 17, 0, 20, 30);
-		OpeningHour fridayMon = new OpeningHour(Service.NA, DateTimeConstants.FRIDAY, 10, 0, 13, 0);
-		OpeningHour fridayAft = new OpeningHour(Service.NA, DateTimeConstants.FRIDAY, 17, 0, 20, 30);
+		OpeningHour mondayMon = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 13, 0);
+		OpeningHour mondayAft = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 17, 0, 22, 30);
+		OpeningHour tuesdayMon = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 13, 0);
+		OpeningHour tuesdayAft = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 17, 0, 20, 30);
+		OpeningHour wednesdayMon = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 13, 0);
+		OpeningHour wednesdayAft = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 17, 0, 20, 30);
+		OpeningHour thursdayMon = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 13, 0);
+		OpeningHour thursdayAft = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 17, 0, 20, 30);
+		OpeningHour fridayMon = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 13, 0);
+		OpeningHour fridayAft = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 17, 0, 20, 30);
 		
 		shopPOI.addOpeningHour(mondayMon);
 		shopPOI.addOpeningHour(mondayAft);
@@ -196,27 +195,27 @@ public class Entrega1Test
 		
 		// Test using Sunday 11am
 		DateTime avaTime = new DateTime(2016, 6, 11, 11, 0, 0, 0);
-		result = poiService.isAvailable(shopPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(shopPOI, avaTime, "No aplica");
 		assertFalse(result);
 		
 		// Test using Sunday 16pm
 		avaTime = new DateTime(2016, 6, 11, 16, 0, 0, 0);
-		result = poiService.isAvailable(shopPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(shopPOI, avaTime, "No aplica");
 		assertFalse(result);
 		
 		// Test using Monday 10am
 		avaTime = new DateTime(2016, 6, 13, 10, 0, 0, 0);
-		result = poiService.isAvailable(shopPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(shopPOI, avaTime, "No aplica");
 		assertTrue(result);
 		
 		// Test using Monday 14pm
 		avaTime = new DateTime(2016, 6, 13, 14, 0, 0, 0);
-		result = poiService.isAvailable(shopPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(shopPOI, avaTime, "No aplica");
 		assertFalse(result);
 		
 		// Test using Monday 18pm
 		avaTime = new DateTime(2016, 6, 13, 18, 0, 0, 0);
-		result = poiService.isAvailable(shopPOI, avaTime, Service.NA);
+		result = poiService.isAvailable(shopPOI, avaTime, "No aplica");
 		assertTrue(result);
 	}
 	
@@ -330,21 +329,21 @@ public class Entrega1Test
 	@Test
 	public void searchCGPByServiceTest()
 	{
-		String filter = "asesoramiento";
+		String filter = "Asesoramiento";
 		Coordenate cgpCoord = new Coordenate(-34.616325, -58.428837);	
 		
-		List<Service> cgpPOIPalermoServ = new ArrayList<Service>();
-		cgpPOIPalermoServ.add(Service.ABL);
-		cgpPOIPalermoServ.add(Service.LEGAL_ADVICE);
-		cgpPOIPalermoServ.add(Service.ACCOUNTING_ADVICE);
+		List<String> cgpPOIPalermoServ = new ArrayList<String>();
+		cgpPOIPalermoServ.add("ABL");
+		cgpPOIPalermoServ.add("Asesoramiento Legal");
+		cgpPOIPalermoServ.add("Asesoramiento Contable");
 	
-		List<Service> cgpPOICentenarioServ = new ArrayList<Service>();
-		cgpPOICentenarioServ.add(Service.WEDDINGS);
-		cgpPOICentenarioServ.add(Service.LEGAL_ADVICE);
+		List<String> cgpPOICentenarioServ = new ArrayList<String>();
+		cgpPOICentenarioServ.add("Bodas");
+		cgpPOICentenarioServ.add("Asesoramiento Legal");
 	
-		List<Service> cgpPOICaballitoServ = new ArrayList<Service>();
-		cgpPOICaballitoServ.add(Service.CAR_PLATES);
-		cgpPOICaballitoServ.add(Service.INCOMES);
+		List<String> cgpPOICaballitoServ = new ArrayList<String>();
+		cgpPOICaballitoServ.add("Patentes");
+		cgpPOICaballitoServ.add("Rentas");
 		
 		CGP cgpPOIPalermo = new CGP("CGP Palermo", cgpCoord, cgpPOIPalermoServ, "tag1,tag2");
 		CGP cgpPOICentenario = new CGP("CGP Centenario", cgpCoord, cgpPOICentenarioServ, "tag1,tag2");
@@ -367,7 +366,7 @@ public class Entrega1Test
 		POIService poiService = new POIService();
 		boolean result = false;
 		
-		List<Service> services = new ArrayList<Service>();
+		List<String> services = new ArrayList<String>();
 		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
 		
 		// We create the Bank POI
@@ -387,8 +386,8 @@ public class Entrega1Test
 		zoneCoord.add(zone5);
 		zoneCoord.add(zone6);
 		
-		services.add(Service.INCOMES);
-		services.add(Service.ABL);
+		services.add("Rentas");
+		services.add("ABL");
 		
 		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
 		
@@ -406,7 +405,7 @@ public class Entrega1Test
 		POIService poiService = new POIService();
 		boolean result = false;
 		
-		List<Service> services = new ArrayList<Service>();
+		List<String> services = new ArrayList<String>();
 		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
 		
 		// We create the Bank POI
@@ -426,8 +425,8 @@ public class Entrega1Test
 		zoneCoord.add(zone5);
 		zoneCoord.add(zone6);
 		
-		services.add(Service.INCOMES);
-		services.add(Service.ABL);
+		services.add("Rentas");
+		services.add("ABL");
 		
 		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
 		

@@ -12,21 +12,20 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
 
 import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class CGP extends POI 
 {
-	protected List<Service> services;
+	protected List<String> services;
 	protected List<Coordenate> zoneCoord;
 	
-	public CGP(String name, Coordenate coordenate, List<Service> services, String tags) 
+	public CGP(String name, Coordenate coordenate, List<String> services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, List<Service> services, String tags) 
+	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, List<String> services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
@@ -38,13 +37,15 @@ public class CGP extends POI
 		return this.zoneCoord;
 	}
 	
-	public boolean isAvailable(DateTime dateTime, Service service)
+	public boolean isAvailable(DateTime dateTime, String service)
 	{
 		int dayOfWeek = dateTime.getDayOfWeek();
 		
 		for (OpeningHour openingHour : openingHours) 
 		{
-			if (service == openingHour.getService())
+			int distance = LevenshteinDistance.distance(service.toLowerCase(), openingHour.getService().toLowerCase());
+			
+			if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 			{				
 				if (openingHour.getDayOfWeek() == dayOfWeek)
 				{
@@ -74,16 +75,17 @@ public class CGP extends POI
 	public boolean matchFilter(String filter)
 	{		
 		// Now we will try with Categories
+		int distance = 0;	
 		for(int i=0; i< this.services.size() ; i++)
 		{
-			if (this.services.get(i).getName().toLowerCase().contains(filter.toLowerCase()))
+			if (this.services.get(i).toLowerCase().contains(filter.toLowerCase()))
 			{
 				return true;	
 			}
 		}
 	
 		// Now we will try with Levenshtein for the name
-		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{

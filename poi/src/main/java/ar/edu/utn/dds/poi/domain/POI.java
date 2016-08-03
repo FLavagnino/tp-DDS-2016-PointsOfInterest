@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
 
-import ar.edu.utn.dds.poi.constant.Service;
-
 public abstract class POI
 {
 	protected String name;
@@ -45,7 +43,7 @@ public abstract class POI
 		return this.openingHours;
 	}
 	
-	public boolean isAvailable(DateTime dateTime, Service service)
+	public boolean isAvailable(DateTime dateTime, String service)
 	{
 		return true;
 	}

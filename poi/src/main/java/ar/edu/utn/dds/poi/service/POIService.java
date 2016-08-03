@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import ar.edu.utn.dds.poi.constant.Service;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
@@ -43,7 +42,7 @@ public class POIService
 		return poiTo.isCloserTo(meters, poiFrom);
 	}
 	
-	public boolean isAvailable(POI poi, DateTime dateTime, Service service)
+	public boolean isAvailable(POI poi, DateTime dateTime, String service)
 	{
 		return poi.isAvailable(dateTime, service);
 	}
