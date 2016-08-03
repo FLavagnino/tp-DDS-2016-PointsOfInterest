@@ -54,7 +54,7 @@ public class POIService
 				
 		for(int i=0; i< allPois.size() ; i++)
 		{
-			POI poi = poiList.get(i);
+			POI poi = allPois.get(i);
 			if (poi.matchFilter(filter))
 			{
 				result.add(poi);
