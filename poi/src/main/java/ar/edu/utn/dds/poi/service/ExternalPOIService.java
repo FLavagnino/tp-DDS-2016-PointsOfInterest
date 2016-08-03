@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.joda.time.DateTimeConstants;
-
 import ar.edu.utn.dds.poi.connector.BankSearch;
 import ar.edu.utn.dds.poi.connector.CGPSearch;
 import ar.edu.utn.dds.poi.domain.Bank;

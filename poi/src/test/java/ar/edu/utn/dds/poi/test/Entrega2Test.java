@@ -1,9 +1,11 @@
 package ar.edu.utn.dds.poi.test;
 
-import static org.junit.Assert.assertTrue;
 import java.util.List;
+
+import static org.junit.Assert.*;
 import org.junit.Test;
-import ar.edu.utn.dds.poi.domain.Bank;
+import org.junit.Before;
+
 import ar.edu.utn.dds.poi.domain.BusStop;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.POI;
@@ -12,133 +14,136 @@ import ar.edu.utn.dds.poi.service.POIService;
 
 public class Entrega2Test 
 {
+	
+	private POIService poiService;
+	private String filter;
+	private List<POI> result;
+	private POI poi;
+	private Coordenate coordenate;
+
+	@Before
+	public void setUp()
+	{
+		poiService = new POIService();
+		coordenate = new Coordenate(-34.619160, -58.425443);
+	}
+	
 	@Test
 	public void bankServiceSearchByNameTest()
 	{
-		String filter = "Galicia";		
-		POIService poiService = new POIService();		
-		List<POI> result = poiService.search(filter);
+		filter = "Galicia";		
+		result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((Bank)result.get(0)).getName().equals("Galicia"));
+		poi = result.get(0);
+		assertEquals(1, result.size());
+		assertEquals("Galicia", poi.getName());
 	}
 	
 	@Test
 	public void bankServiceSearchByNameAndTagTest()
 	{
-		String filter = "Moneda Extranjera";		
-		POIService poiService = new POIService();		
-		List<POI> result = poiService.search(filter);
-		
-		assertTrue(result.size() == 1);
-		assertTrue(((Bank)result.get(0)).getTags().toLowerCase().contains("moneda extranjera"));
+		filter = "Moneda Extranjera";		
+		result = poiService.search(filter);
+
+		poi = result.get(0);
+		assertEquals(1, result.size());
+		assertTrue(poi.getTags().toLowerCase().contains("moneda extranjera"));
 	}
 	
 	@Test
 	public void cgpServiceSearchByNameTest()
 	{
-		String filter = "comuna 3";	
-		POIService poiService = new POIService();
-		List<POI> result = poiService.search(filter);
+		filter = "comuna 3";	
+		result = poiService.search(filter);
 		
-		assertTrue(result.size() == 10);
+		assertEquals(10, result.size());
 	}
 	
 	@Test
 	public void cgpServiceSearchByTagTest()
 	{
-		String filter = "Villa Devoto";	
-		POIService poiService = new POIService();
-		List<POI> result = poiService.search(filter);
+		filter = "Villa Devoto";	
+		result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
+		assertEquals(1, result.size());
 	}
 	
-	@Test(expected = InvalidPoiException.class)
+	@Test (expected = InvalidPoiException.class)
 	public void addInvalidPOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
-		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
-		BusStop busPOI = new BusStop(null, busCoord, 114, "tag1,tag2");
+		poi = new BusStop(null, coordenate, 114, "tag1,tag2");
 		
-		POIService poiService = new POIService();
-		poiService.addPoi(busPOI);
+		poiService.addPoi(poi);
 	}
 	
 	@Test
 	public void addPOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
-		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
-		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
+		poi = new BusStop("Parada 114", coordenate, 114, "tag1,tag2");
 		
-		POIService poiService = new POIService();
-		poiService.addPoi(busPOI);
+		poiService.addPoi(poi);
 		
-		List<POI> result = poiService.search("114");
-		assertTrue(result.size() == 1);
+		result = poiService.search("114");
+		assertEquals(1, result.size());
 	}
 	
 	@Test
 	public void deletePOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
-		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
-		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
-		busPOI.setUnit(1);
+		poi = new BusStop("Parada 114", coordenate, 114, "tag1,tag2");
+		poi.setUnit(1);
 		
-		POIService poiService = new POIService();
-		poiService.addPoi(busPOI);
-		
-		List<POI> result = poiService.search("114");
-		assertTrue(result.size() == 1);	
-		
-		poiService.deletePoi(busPOI.getUnit());
+		poiService.addPoi(poi);
 		
 		result = poiService.search("114");
-		assertTrue(result.size() == 0);
+		assertEquals(1, result.size());	
+		
+		poiService.deletePoi(poi.getUnit());
+		
+		result = poiService.search("114");
+		assertEquals(0, result.size());	
 	}
 	
 	@Test(expected = InvalidPoiException.class)
 	public void updateInvalidPOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
-		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
-		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
-		busPOI.setUnit(1);
 		
-		POIService poiService = new POIService();
-		poiService.addPoi(busPOI);
+		BusStop poi = new BusStop("Parada 114", coordenate, 114, "tag1,tag2");
+		poi.setUnit(1);
 		
-		List<POI> result = poiService.search("114");
-		assertTrue(result.size() == 1);	
+		poiService.addPoi(poi);
 		
-		busPOI.setName(null);
-		poiService.updatePoi(busPOI);
+		result = poiService.search("114");
+		assertEquals(1, result.size());	
+		
+		poi.setName(null);
+		poiService.updatePoi(poi);
 	}
 	
 	@Test
 	public void updatePOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
-		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
-		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
-		busPOI.setUnit(1);
+		poi = new BusStop("Parada 114", coordenate, 114, "tag1,tag2");
+		poi.setUnit(1);
 		
-		POIService poiService = new POIService();
-		poiService.addPoi(busPOI);
+		poiService.addPoi(poi);
 		
-		List<POI> result = poiService.search("114");
-		assertTrue(result.size() == 1);	
+		result = poiService.search("114");
+		assertEquals(1, result.size());	
 		
-		busPOI.setName("Parada del 115");
-		busPOI.setBusLine(115);
-		poiService.updatePoi(busPOI);
+		poi.setName("Parada del 115");
+		((BusStop) poi).setBusLine(115);
+		poiService.updatePoi(poi);
 
 		result = poiService.search("114");
-		assertTrue(result.size() == 0);
+		assertEquals(0, result.size());	
 		
 		result = poiService.search("115");
-		assertTrue(result.size() == 1);
+		assertEquals(1, result.size());	
 	}
 }
