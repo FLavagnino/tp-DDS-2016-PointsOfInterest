@@ -78,4 +78,67 @@ public class Entrega2Test
 		List<POI> result = poiService.search("114");
 		assertTrue(result.size() == 1);
 	}
+	
+	@Test
+	public void deletePOITest() throws InvalidPoiException
+	{
+		// We create the busStop POI
+		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
+		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
+		busPOI.setUnit(1);
+		
+		POIService poiService = new POIService();
+		poiService.addPoi(busPOI);
+		
+		List<POI> result = poiService.search("114");
+		assertTrue(result.size() == 1);	
+		
+		poiService.deletePoi(busPOI.getUnit());
+		
+		result = poiService.search("114");
+		assertTrue(result.size() == 0);
+	}
+	
+	@Test(expected = InvalidPoiException.class)
+	public void updateInvalidPOITest() throws InvalidPoiException
+	{
+		// We create the busStop POI
+		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
+		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
+		busPOI.setUnit(1);
+		
+		POIService poiService = new POIService();
+		poiService.addPoi(busPOI);
+		
+		List<POI> result = poiService.search("114");
+		assertTrue(result.size() == 1);	
+		
+		busPOI.setName(null);
+		poiService.updatePoi(busPOI);
+	}
+	
+	@Test
+	public void updatePOITest() throws InvalidPoiException
+	{
+		// We create the busStop POI
+		Coordenate busCoord = new Coordenate(-34.619160, -58.425443);
+		BusStop busPOI = new BusStop("Parada 114", busCoord, 114, "tag1,tag2");
+		busPOI.setUnit(1);
+		
+		POIService poiService = new POIService();
+		poiService.addPoi(busPOI);
+		
+		List<POI> result = poiService.search("114");
+		assertTrue(result.size() == 1);	
+		
+		busPOI.setName("Parada del 115");
+		busPOI.setBusLine(115);
+		poiService.updatePoi(busPOI);
+
+		result = poiService.search("114");
+		assertTrue(result.size() == 0);
+		
+		result = poiService.search("115");
+		assertTrue(result.size() == 1);
+	}
 }
