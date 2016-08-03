@@ -70,7 +70,7 @@ public class POIService
 	}
 	
 	public void deletePoi(Integer unit)
-{
+	{
 		poiList.removeIf( poi -> poi.getUnit() == unit );
 	}
 	
