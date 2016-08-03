@@ -69,10 +69,21 @@ public class POIService
 		pois.add(poi);
 	}
 	
+	public void deletePoi(Integer unit) {
+		pois.removeIf( poi -> poi.getUnit() == unit );
+	}
+	
+	public void updatePoi(POI poi) {
+		deletePoi(poi.getUnit());
+		addPoi(poi);
+	}
+	
 	public List<POI> getPois() {
+		List<POI> allPois = new ArrayList<POI>();
+		allPois.addAll(pois);
 		ExternalPOIService externalPOIService = new ExternalPOIService();
-		pois.addAll(externalPOIService.getExternalPois());
-		return pois;
+		allPois.addAll(externalPOIService.getExternalPois());
+		return allPois;
 	}
 	
 	

@@ -60,6 +60,11 @@ public abstract class POI
 		return name;
 	}
 	
+	public void setUnit(Integer unit)
+	{
+		this.unit = unit;
+	}
+	
 	public Integer getUnit()
 	{
 		return unit;
