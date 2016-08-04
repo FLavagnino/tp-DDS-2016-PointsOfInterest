@@ -60,6 +60,15 @@ public class Entrega2Test
 	}
 	
 	@Test
+	public void cgpServiceSearchByNameTest2()
+	{
+		filter = "comuna 4";	
+		result = poiService.search(filter);
+		
+		assertEquals(10, result.size());
+	}
+	
+	@Test
 	public void cgpServiceSearchByTagTest()
 	{
 		filter = "Villa Devoto";	
