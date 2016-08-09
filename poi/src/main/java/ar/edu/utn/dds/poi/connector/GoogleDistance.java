@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServFullResponseDTO;
+import ar.edu.utn.dds.poi.dto.DistServFullResponseDTO;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
 
 public class GoogleDistance 

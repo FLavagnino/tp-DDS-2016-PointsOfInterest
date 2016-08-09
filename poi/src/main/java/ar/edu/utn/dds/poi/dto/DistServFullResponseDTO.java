@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.model.distanceServiceDTO;
+package ar.edu.utn.dds.poi.dto;
 
 import java.util.List;
 

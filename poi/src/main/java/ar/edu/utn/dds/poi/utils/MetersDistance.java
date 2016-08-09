@@ -5,9 +5,9 @@ import java.util.List;
 import ar.edu.utn.dds.poi.connector.GoogleDistance;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServElementDTO;
-import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServFullResponseDTO;
-import ar.edu.utn.dds.poi.model.distanceServiceDTO.DistServRowDTO;
+import ar.edu.utn.dds.poi.dto.DistServElementDTO;
+import ar.edu.utn.dds.poi.dto.DistServFullResponseDTO;
+import ar.edu.utn.dds.poi.dto.DistServRowDTO;
 
 public class MetersDistance 
 {

@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.model.cgpSearchServiceDTO;
+package ar.edu.utn.dds.poi.dto;
 
 import java.util.ArrayList;
 import java.util.HashMap;

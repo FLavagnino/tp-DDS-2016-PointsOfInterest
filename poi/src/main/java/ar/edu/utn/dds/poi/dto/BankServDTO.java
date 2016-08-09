@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.model.bankSearchServiceDTO;
+package ar.edu.utn.dds.poi.dto;
 
 import java.util.ArrayList;
 

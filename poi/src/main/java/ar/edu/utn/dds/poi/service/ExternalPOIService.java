@@ -11,9 +11,9 @@ import ar.edu.utn.dds.poi.domain.CGP;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.OpeningHour;
 import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.model.bankSearchServiceDTO.BankServDTO;
-import ar.edu.utn.dds.poi.model.cgpSearchServiceDTO.CGPServDTO;
-import ar.edu.utn.dds.poi.model.cgpSearchServiceDTO.ServiceDTO;
+import ar.edu.utn.dds.poi.dto.BankServDTO;
+import ar.edu.utn.dds.poi.dto.CGPServDTO;
+import ar.edu.utn.dds.poi.dto.ServiceDTO;
 
 public class ExternalPOIService 
 {	

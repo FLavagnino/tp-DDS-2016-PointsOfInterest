@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.model.cgpSearchServiceDTO.CGPServDTO;
+import ar.edu.utn.dds.poi.dto.CGPServDTO;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
 
 public class CGPSearch 
