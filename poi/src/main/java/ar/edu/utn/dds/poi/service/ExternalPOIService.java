@@ -73,21 +73,20 @@ public class ExternalPOIService
 				
 				for (HashMap<String, Integer> horario : service.getHorarios())
 				{
-					OpeningHour openingHour = new OpeningHour(serviceName, 
-													service.getDiaSemana(horario), 
-													service.getHoraDesde(horario), 
-													service.getMinutosDesde(horario), 
-													service.getHoraHasta(horario), 
-													service.getMinutosHasta(horario));
-					
-					cgpPOI.addOpeningHour(openingHour);
+					cgpPOI.addOpeningHour(new OpeningHour(serviceName, 
+													horario.get("diaSemana"), 
+													horario.get("horaDesde"), 
+													horario.get("minutosDesde"), 
+													horario.get("horaHasta"),
+													horario.get("minutosHasta")
+													));
 				}
 			}
 			
 			cgpPOI.setServices(services);
 			
 			// TODO: Set the correct coordenate
-			Coordenate cgpCoord = new Coordenate(-34.608828, -58.430982);	
+			Coordenate cgpCoord = new Coordenate(0.0, 0.0);	
 			cgpPOI.setCoordenate(cgpCoord);
 
 			pois.add(cgpPOI);
