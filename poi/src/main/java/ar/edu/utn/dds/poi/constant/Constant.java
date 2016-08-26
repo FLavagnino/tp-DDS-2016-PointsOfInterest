@@ -9,7 +9,9 @@ public class Constant
     
     // Web Service
     public final static String BANK_SEARCH_URL = "http://trimatek.org/Consultas/banco";
-    public final static String BANK_SEARCH_PARAM = "?banco=%s&servicio=%s";
+    public final static String BANK_SEARCH_ALL_PARAMS = "?banco=%s&servicio=%s";
+    public final static String BANK_SEARCH_SERVICE_PARAM = "?servicio=%s";
+    public final static String BANK_SEARCH_BANK_PARAM = "?banco=%s";
     public final static String CGP_SEARCH_URL = "http://trimatek.org/Consultas/centro";
     public final static String CGP_SEARCH_PARAM = "?zona=%s";
     public final static String GOOGLE_DIST_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=%s,%s&destinations=%s,%s&mode=walking&language=es&key=AIzaSyCaiXB_SY0hgO5l3sLfXnx_L4lB2GRTWOQ";

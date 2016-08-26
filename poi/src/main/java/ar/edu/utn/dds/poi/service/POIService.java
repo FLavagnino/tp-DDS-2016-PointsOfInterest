@@ -12,12 +12,14 @@ import ar.edu.utn.dds.poi.utils.MetersDistance;
 public class POIService 
 {
 	private MetersDistance distanceService;
+	private ExternalPOIService externalPOIService;
 	
 	private List<POI> poiList;
 	
 	public POIService() 
 	{
 		this.distanceService = new MetersDistance();
+		externalPOIService = new ExternalPOIService();
 		poiList = new ArrayList<POI>();
 	}
 	
@@ -51,11 +53,10 @@ public class POIService
 	public List<POI> search(String filter)
 	{
 		List<POI> result = new ArrayList<POI>();
-		List<POI> allPois = getPois();
+		result.addAll(externalPOIService.getExternalPois(filter));
 				
-		for(int i=0; i< allPois.size() ; i++)
+		for(POI poi : poiList)
 		{
-			POI poi = allPois.get(i);
 			if (poi.matchFilter(filter))
 			{
 				result.add(poi);
@@ -95,12 +96,11 @@ public class POIService
 		}
 	}
 	
-	public List<POI> getPois()
+	public List<POI> getAllPois()
 	{
 		List<POI> allPois = new ArrayList<POI>();
 		allPois.addAll(poiList);
-		ExternalPOIService externalPOIService = new ExternalPOIService();
-		allPois.addAll(externalPOIService.getExternalPois());
+		allPois.addAll(externalPOIService.getExternalPois(null));
 		return allPois;
 	}
 }

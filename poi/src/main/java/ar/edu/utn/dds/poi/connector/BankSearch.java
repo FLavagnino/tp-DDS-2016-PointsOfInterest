@@ -17,7 +17,15 @@ public class BankSearch
 		
 		if(bank != null && service != null) 
 		{
-			url += String.format(Constant.BANK_SEARCH_PARAM, bank, service);
+			url += String.format(Constant.BANK_SEARCH_ALL_PARAMS, bank, service);
+		}
+		else if (bank != null)
+		{
+			url += String.format(Constant.BANK_SEARCH_BANK_PARAM, bank);
+		}
+		else if (service != null)
+		{
+			url += String.format(Constant.BANK_SEARCH_SERVICE_PARAM, service);
 		}
 		
 		//System.out.println(url);
