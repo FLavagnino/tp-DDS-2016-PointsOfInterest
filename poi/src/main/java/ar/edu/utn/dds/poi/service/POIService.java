@@ -6,10 +6,10 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.exceptions.InvalidPoiException;
+import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
-public class POIService 
+public class POIService implements Searcher
 {
 	private MetersDistance distanceService;
 	private ExternalPOIService externalPOIService;

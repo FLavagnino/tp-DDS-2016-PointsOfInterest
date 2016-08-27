@@ -13,7 +13,7 @@ import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.OpeningHour;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
-import ar.edu.utn.dds.poi.exceptions.InvalidPoiException;
+import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
 
 import org.joda.time.*;

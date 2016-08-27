@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.exceptions;
+package ar.edu.utn.dds.poi.exception;
 
 public class InvalidPoiException extends Exception
 {

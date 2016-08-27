@@ -9,7 +9,7 @@ import org.junit.Before;
 import ar.edu.utn.dds.poi.domain.BusStop;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.exceptions.InvalidPoiException;
+import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
 
 public class Entrega2Test 
