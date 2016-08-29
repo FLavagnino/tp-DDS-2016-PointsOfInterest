@@ -23,6 +23,7 @@ public class admin {
 	}
 	public String getPassword(){
 		return password;
+		//adsasdasdasdsaddsa
 	}
 	
 }
