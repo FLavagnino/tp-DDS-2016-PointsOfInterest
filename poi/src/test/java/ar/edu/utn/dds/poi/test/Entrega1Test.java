@@ -15,6 +15,7 @@ import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
+import ar.edu.utn.dds.poi.service.SearchResult;
 
 import org.joda.time.*;
 
@@ -235,10 +236,10 @@ public class Entrega1Test
 		poiService.addPoi(busPOI114);
 		poiService.addPoi(busPOI132);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((BusStop)result.get(0)).getBusLine() == 114);
+		assertTrue(result.getPois().size() == 1);
+		assertTrue(((BusStop)result.getPois().get(0)).getBusLine() == 114);
 	}
 	
 	@Test
@@ -256,10 +257,10 @@ public class Entrega1Test
 		poiService.addPoi(shopPOIHardstore);
 		poiService.addPoi(shopPOILIbrary);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((Shop)result.get(0)).getShopCategory().getName().equals("muebleria"));
+		assertTrue(result.getPois().size() == 1);
+		assertTrue(((Shop)result.getPois().get(0)).getShopCategory().getName().equals("muebleria"));
 	}
 	
 	@Test
@@ -276,10 +277,10 @@ public class Entrega1Test
 		poiService.addPoi(bankPOIGalicia);
 		poiService.addPoi(bankPOIFrances);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((Bank)result.get(0)).getName().equals("Rio"));
+		assertTrue(result.getPois().size() == 1);
+		assertTrue(((Bank)result.getPois().get(0)).getName().equals("Rio"));
 	}
 	
 	@Test
@@ -356,9 +357,9 @@ public class Entrega1Test
 		poiService.addPoi(cgpPOICentenario);
 		poiService.addPoi(cgpPOICaballito);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 2);
+		assertTrue(result.getPois().size() == 2);
 	}
 	
 	@Test

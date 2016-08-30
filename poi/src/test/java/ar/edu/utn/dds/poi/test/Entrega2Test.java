@@ -11,13 +11,14 @@ import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
+import ar.edu.utn.dds.poi.service.SearchResult;
 
 public class Entrega2Test 
 {
 	
 	private POIService poiService;
 	private String filter;
-	private List<POI> result;
+	private SearchResult result;
 	private POI poi;
 	private Coordenate coordenate;
 
@@ -34,8 +35,8 @@ public class Entrega2Test
 		filter = "Galicia";		
 		result = poiService.search(filter);
 		
-		poi = result.get(0);
-		assertEquals(1, result.size());
+		poi = result.getPois().get(0);
+		assertEquals(1, result.getPois().size());
 		assertEquals("Galicia", poi.getName());
 	}
 	
@@ -45,8 +46,8 @@ public class Entrega2Test
 		filter = "Moneda Extranjera";		
 		result = poiService.search(filter);
 
-		poi = result.get(0);
-		assertEquals(1, result.size());
+		poi = result.getPois().get(0);
+		assertEquals(1, result.getPois().size());
 		assertTrue(poi.getTags().toLowerCase().contains("moneda extranjera"));
 	}
 	
@@ -56,7 +57,7 @@ public class Entrega2Test
 		filter = "comuna 3";	
 		result = poiService.search(filter);
 		
-		assertEquals(10, result.size());
+		assertEquals(10, result.getPois().size());
 	}
 	
 	@Test
@@ -65,7 +66,7 @@ public class Entrega2Test
 		filter = "comuna 4";	
 		result = poiService.search(filter);
 		
-		assertEquals(10, result.size());
+		assertEquals(10, result.getPois().size());
 	}
 	
 	@Test
@@ -74,7 +75,7 @@ public class Entrega2Test
 		filter = "Villa Devoto";	
 		result = poiService.search(filter);
 		
-		assertEquals(1, result.size());
+		assertEquals(1, result.getPois().size());
 	}
 	
 	@Test (expected = InvalidPoiException.class)
@@ -95,7 +96,7 @@ public class Entrega2Test
 		poiService.addPoi(poi);
 		
 		result = poiService.search("114");
-		assertEquals(1, result.size());
+		assertEquals(1, result.getPois().size());
 	}
 	
 	@Test
@@ -108,12 +109,12 @@ public class Entrega2Test
 		poiService.addPoi(poi);
 		
 		result = poiService.search("114");
-		assertEquals(1, result.size());	
+		assertEquals(1, result.getPois().size());	
 		
 		poiService.deletePoi(poi.getUnit());
 		
 		result = poiService.search("114");
-		assertEquals(0, result.size());	
+		assertEquals(0, result.getPois().size());	
 	}
 	
 	@Test(expected = InvalidPoiException.class)
@@ -127,7 +128,7 @@ public class Entrega2Test
 		poiService.addPoi(poi);
 		
 		result = poiService.search("114");
-		assertEquals(1, result.size());	
+		assertEquals(1, result.getPois().size());	
 		
 		poi.setName(null);
 		poiService.updatePoi(poi);
@@ -143,16 +144,16 @@ public class Entrega2Test
 		poiService.addPoi(poi);
 		
 		result = poiService.search("114");
-		assertEquals(1, result.size());	
+		assertEquals(1, result.getPois().size());	
 		
 		poi.setName("Parada del 115");
 		((BusStop) poi).setBusLine(115);
 		poiService.updatePoi(poi);
 
 		result = poiService.search("114");
-		assertEquals(0, result.size());	
+		assertEquals(0, result.getPois().size());	
 		
 		result = poiService.search("115");
-		assertEquals(1, result.size());	
+		assertEquals(1, result.getPois().size());	
 	}
 }

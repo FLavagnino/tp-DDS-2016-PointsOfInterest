@@ -50,7 +50,7 @@ public class POIService implements Searcher
 		return poi.isAvailable(dateTime, service);
 	}
 	
-	public List<POI> search(String filter)
+	public SearchResult search(String filter)
 	{
 		List<POI> result = new ArrayList<POI>();
 		result.addAll(externalPOIService.getExternalPois(filter));
@@ -63,7 +63,7 @@ public class POIService implements Searcher
 			}
 		}
 		
-		return result;
+		return new SearchResult(result);
 	}
 	
 	public void addPoi(POI poi) throws InvalidPoiException 
