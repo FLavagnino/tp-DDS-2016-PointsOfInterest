@@ -25,7 +25,7 @@ public class Constant
 	public final static int JODATIME_COMPARE_YEAR = 1;
 	public final static int JODATIME_COMPARE_MONTH = 1;
 	public final static int JODATIME_COMPARE_DAY = 1;
-	public final static int MAX_SEARCH_TIME = 10;
+	public final static int MAX_SEARCH_TIME = 100;
 	public final static String EMAIL = "ar.edu.utn.dds.poi@gmail.com";
 	public final static String PASSWORD = "!S1st3m4s"; 
 	

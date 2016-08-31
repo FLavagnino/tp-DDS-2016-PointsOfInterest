@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import ar.edu.utn.dds.poi.constant.Constant;
+import ar.edu.utn.dds.poi.service.historical.SearchResult;
 
 public class Timer implements Searcher {
 	

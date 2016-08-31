@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
+import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
 public class POIService implements Searcher
