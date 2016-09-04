@@ -32,5 +32,5 @@ public class Constant
 	// Utils
 	public final static double HAVERSINE_EARTH_RADIUS_METERS = 6372000.8; 
 	public final static String METERS_FROM_TO_VALUE_STRING = "value"; 
-	public final static String JSONFACTORY_FROMJSON_ERROR_MSG = "Error reading a InputStreamReader";
+	public final static String JSONFACTORY_FROMJSON_ERROR_MSG = "Error reading an InputStreamReader";
 }

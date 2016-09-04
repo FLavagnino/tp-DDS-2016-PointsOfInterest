@@ -31,7 +31,6 @@ public class POIService implements Searcher
 	
 	public int metersFromTo(POI poiFrom, POI poiTo) 
 	{
-		//return distanceService.metersFromTo(poiFrom.getCoordenate(), poiTo.getCoordenate());
 		return distanceService.metersFromToHaversine(poiFrom.getCoordenate(), poiTo.getCoordenate());
 	}
 		
@@ -75,7 +74,7 @@ public class POIService implements Searcher
 		}
 		else
 		{
-			throw new InvalidPoiException("Invalid POI. Please check all the coodenates and the name.");
+			throw new InvalidPoiException("Invalid POI. Please check all the coordenates and the name.");
 		}
 	}
 	
@@ -93,15 +92,7 @@ public class POIService implements Searcher
 		}
 		else
 		{
-			throw new InvalidPoiException("Invalid POI. Please check all the coodenates and the name.");
+			throw new InvalidPoiException("Invalid POI. Please check all the coordenates and the name.");
 		}
-	}
-	
-	public List<POI> getAllPois()
-	{
-		List<POI> allPois = new ArrayList<POI>();
-		allPois.addAll(poiList);
-		allPois.addAll(externalPOIService.getExternalPois(null));
-		return allPois;
 	}
 }
