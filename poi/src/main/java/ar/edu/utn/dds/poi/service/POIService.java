@@ -54,7 +54,7 @@ public class POIService implements Searcher
 	public SearchResult search(String filter)
 	{
 		List<POI> result = new ArrayList<POI>();
-		result.addAll(externalPOIService.getExternalPois(filter));
+		poiList.addAll(externalPOIService.getExternalPois(filter));
 				
 		for(POI poi : poiList)
 		{

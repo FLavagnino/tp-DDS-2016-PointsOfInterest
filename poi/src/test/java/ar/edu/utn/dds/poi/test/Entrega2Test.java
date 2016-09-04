@@ -1,7 +1,5 @@
 package ar.edu.utn.dds.poi.test;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;

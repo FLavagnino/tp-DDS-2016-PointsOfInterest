@@ -11,7 +11,6 @@ import ar.edu.utn.dds.poi.domain.BusStop;
 import ar.edu.utn.dds.poi.domain.CGP;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.OpeningHour;
-import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
@@ -266,21 +265,19 @@ public class Entrega1Test
 	@Test
 	public void searchBankByNameTest() throws InvalidPoiException
 	{
-		String filter = "Rio";
+		String filter = "Santader Rio";
 		Coordenate bankCoord = new Coordenate(-34.616325, -58.428837);		
-		Bank bankPOIRio = new Bank("Rio", bankCoord, "tag1,tag2");
 		Bank bankPOIGalicia = new Bank("Galicia", bankCoord, "tag1,tag2");
 		Bank bankPOIFrances = new Bank("Frances", bankCoord, "tag1,tag2");
 
 		POIService poiService = new POIService();
-		poiService.addPoi(bankPOIRio);
 		poiService.addPoi(bankPOIGalicia);
 		poiService.addPoi(bankPOIFrances);
 		
 		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.getPois().size() == 1);
-		assertTrue(((Bank)result.getPois().get(0)).getName().equals("Rio"));
+		assertEquals(1, result.getPois().size());
+		assertEquals("Santander Rio", ((Bank)result.getPois().get(0)).getName());
 	}
 	
 	@Test
