@@ -11,10 +11,10 @@ import ar.edu.utn.dds.poi.domain.BusStop;
 import ar.edu.utn.dds.poi.domain.CGP;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.OpeningHour;
-import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
+import ar.edu.utn.dds.poi.service.historical.SearchResult;
 
 import org.joda.time.*;
 
@@ -235,10 +235,10 @@ public class Entrega1Test
 		poiService.addPoi(busPOI114);
 		poiService.addPoi(busPOI132);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((BusStop)result.get(0)).getBusLine() == 114);
+		assertTrue(result.getPois().size() == 1);
+		assertTrue(((BusStop)result.getPois().get(0)).getBusLine() == 114);
 	}
 	
 	@Test
@@ -256,30 +256,28 @@ public class Entrega1Test
 		poiService.addPoi(shopPOIHardstore);
 		poiService.addPoi(shopPOILIbrary);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((Shop)result.get(0)).getShopCategory().getName().equals("muebleria"));
+		assertTrue(result.getPois().size() == 1);
+		assertTrue(((Shop)result.getPois().get(0)).getShopCategory().getName().equals("muebleria"));
 	}
 	
 	@Test
 	public void searchBankByNameTest() throws InvalidPoiException
 	{
-		String filter = "Rio";
+		String filter = "Santader Rio";
 		Coordenate bankCoord = new Coordenate(-34.616325, -58.428837);		
-		Bank bankPOIRio = new Bank("Rio", bankCoord, "tag1,tag2");
 		Bank bankPOIGalicia = new Bank("Galicia", bankCoord, "tag1,tag2");
 		Bank bankPOIFrances = new Bank("Frances", bankCoord, "tag1,tag2");
 
 		POIService poiService = new POIService();
-		poiService.addPoi(bankPOIRio);
 		poiService.addPoi(bankPOIGalicia);
 		poiService.addPoi(bankPOIFrances);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 1);
-		assertTrue(((Bank)result.get(0)).getName().equals("Rio"));
+		assertEquals(1, result.getPois().size());
+		assertEquals("Santander Rio", ((Bank)result.getPois().get(0)).getName());
 	}
 	
 	@Test
@@ -356,9 +354,9 @@ public class Entrega1Test
 		poiService.addPoi(cgpPOICentenario);
 		poiService.addPoi(cgpPOICaballito);
 		
-		List<POI> result = poiService.search(filter);
+		SearchResult result = poiService.search(filter);
 		
-		assertTrue(result.size() == 2);
+		assertTrue(result.getPois().size() == 2);
 	}
 	
 	@Test

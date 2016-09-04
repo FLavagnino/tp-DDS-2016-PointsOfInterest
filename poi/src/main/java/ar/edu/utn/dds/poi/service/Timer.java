@@ -1,6 +1,5 @@
 package ar.edu.utn.dds.poi.service;
 
-import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.domain.POI;
+import ar.edu.utn.dds.poi.service.historical.SearchResult;
 
 public class Timer implements Searcher {
 	
@@ -23,17 +22,22 @@ public class Timer implements Searcher {
 	}
 
 	@Override
-	public List<POI> search(String filter) {
+	public SearchResult search(String filter) {
 		long startingTime = System.currentTimeMillis();
-		List<POI> pois = poiService.search(filter);
+		
+		SearchResult searchResult = poiService.search(filter);
+		
 		long endingTime = System.currentTimeMillis();
 		long totalTime = endingTime - startingTime;
-		System.out.println("seconds " + totalTime / 1000);
+		
 		if (totalTime > (Constant.MAX_SEARCH_TIME * 1000)) {
+			//TODO completar con mail del usuario indicado
 			EmailSender emailSender = new EmailSender("faculavag@gmail.com");
 			new Thread(emailSender).start();
 		}
-		return pois;
+		
+		searchResult.setTime(totalTime);
+		return searchResult;
 	}
 	
 	private class EmailSender implements Runnable {
@@ -60,7 +64,7 @@ public class Timer implements Searcher {
 			try {
 				Message message = new MimeMessage(session);
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
-				message.setSubject("Testing Subject");
+				message.setSubject("[DDS-POI] Testing Subject");
 				message.setText("Testing Text,\n\n Bye!");
 
 				Transport.send(message);
