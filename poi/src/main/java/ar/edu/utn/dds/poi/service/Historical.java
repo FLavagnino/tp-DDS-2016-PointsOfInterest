@@ -17,13 +17,13 @@ public class Historical implements Searcher {
 	
 	public Historical() {
 		timer = new Timer();
-		historicalManager = new HistoricalManager();
+		historicalManager = HistoricalManager.getInstance();
 	}
 
 	@Override
 	public SearchResult search(String filter) {
 		SearchResult searchResult = timer.search(filter);
-		//El 1 representa el userID que va a haber que pasarle al constructor cuando este desarrollado lo de usuarios
+		//TODO El 1 representa el userID que va a haber que pasarle al constructor cuando este desarrollado lo de usuarios
 		historicalManager.saveSearch(new HistoricalSearch(1, filter, searchResult.getPois().size(), searchResult.getTime()));
 		return searchResult;
 	}
