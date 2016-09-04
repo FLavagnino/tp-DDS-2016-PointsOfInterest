@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.UUID;
-
 import ar.edu.utn.dds.poi.domain.*;
 
 public class AuthManager 
 {
 	private List<User> userList;
+	private static AuthManager instance = null;
+	
+	public static AuthManager getInstance() 
+	{
+		if(instance == null) 
+		{
+			instance = new AuthManager();
+		}
+		
+		return instance;
+	}
 	
 	public AuthManager()
 	{
@@ -80,5 +90,22 @@ public class AuthManager
 						.collect(Collectors.toList());
 		
 		return !users.isEmpty();
+	}
+	
+	public User getUser(String userName, String token)
+	{
+		List<User> users = userList.stream()
+						.filter(item -> item.getUserName().equals(userName) && 
+										item.getToken().equals(token))
+						.collect(Collectors.toList());
+		
+		if (!users.isEmpty())
+		{
+			return users.get(0);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

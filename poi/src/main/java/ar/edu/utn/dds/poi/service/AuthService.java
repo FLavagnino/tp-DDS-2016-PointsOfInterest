@@ -1,6 +1,7 @@
 package ar.edu.utn.dds.poi.service;
 
 import ar.edu.utn.dds.poi.auth.*;
+import ar.edu.utn.dds.poi.domain.*;
 
 public class AuthService 
 {
@@ -19,5 +20,10 @@ public class AuthService
 	public boolean validate(String userName, String token)
 	{
 		return this.authManager.validate(userName, token);
+	}
+	
+	public User getUser(String userName, String token)
+	{
+		return this.authManager.getUser(userName, token);
 	}
 }

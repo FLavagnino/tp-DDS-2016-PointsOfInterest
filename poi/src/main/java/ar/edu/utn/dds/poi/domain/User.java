@@ -5,6 +5,7 @@ public abstract class User
 	private String userName;
 	private String password;
 	private String token;
+	private Boolean auditMode;
 	
 	protected User()
 	{
@@ -25,6 +26,11 @@ public abstract class User
 		return this.token;
 	}
 	
+	public Boolean getAuditMode()
+	{
+		return this.auditMode;
+	}
+	
 	public void setUserName(String userName)
 	{
 		this.userName = userName;
@@ -38,5 +44,10 @@ public abstract class User
 	public void setToken(String token)
 	{
 		this.token = token;
+	}
+	
+	public void setAuditMode(Boolean auditMode)
+	{
+		this.auditMode = auditMode;
 	}
 }

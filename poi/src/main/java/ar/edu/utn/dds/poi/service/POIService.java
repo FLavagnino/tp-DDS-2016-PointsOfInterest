@@ -6,7 +6,8 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.exception.InvalidPoiException;
+import ar.edu.utn.dds.poi.domain.User;
+import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
@@ -14,14 +15,16 @@ public class POIService implements Searcher
 {
 	private MetersDistance distanceService;
 	private ExternalPOIService externalPOIService;
+	private AuthService authService;
 	
 	private List<POI> poiList;
 	
 	public POIService() 
 	{
 		this.distanceService = new MetersDistance();
-		externalPOIService = new ExternalPOIService();
-		poiList = new ArrayList<POI>();
+		this.externalPOIService = new ExternalPOIService();
+		this.authService = new AuthService();
+		this.poiList = new ArrayList<POI>();
 	}
 	
 	public int metersFromToHaversine(POI poiFrom, POI poiTo) 
@@ -64,6 +67,29 @@ public class POIService implements Searcher
 		}
 		
 		return new SearchResult(result);
+	}
+	
+	public SearchResult search(String filter, String userName, String token) throws InvalidUserException 
+	{
+		User user = this.authService.getUser(userName, token);
+		
+		if (user != null)
+		{	
+			if (user.getAuditMode())
+			{
+				Historical histSearch = new Historical();
+				// Le tenemos que pasar el usuario aca tambien.
+				return histSearch.search(filter);
+			}
+			else
+			{
+				return this.search(filter);
+			}
+		}
+		else
+		{
+			throw new InvalidUserException("Authentication error: Please do the login again."); 
+		}
 	}
 	
 	public void addPoi(POI poi) throws InvalidPoiException 
