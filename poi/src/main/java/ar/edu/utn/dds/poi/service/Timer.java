@@ -2,22 +2,23 @@ package ar.edu.utn.dds.poi.service;
 
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 
-public class Timer implements Searcher {
-	
+public class Timer implements Searcher 
+{	
 	private POIService poiService;
 	
-	public Timer() {
+	public Timer() 
+	{
 		poiService = new POIService();
 	}
 
 	@Override
-	public SearchResult search(String filter) {
+	public SearchResult search(String filter, String userName) 
+	{
 		long startingTime = System.currentTimeMillis();
 		SearchResult searchResult = poiService.search(filter);		
 		long endingTime = System.currentTimeMillis();
 		
 		searchResult.setTime(endingTime - startingTime);
 		return searchResult;
-	}
-	
+	}	
 }

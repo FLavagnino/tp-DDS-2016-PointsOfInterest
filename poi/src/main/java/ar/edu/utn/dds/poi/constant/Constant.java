@@ -18,6 +18,8 @@ public class Constant
     public final static String HTTP_SERVICE_STATUS_MSG = "Status code: ";
     public final static int HTTP_SERVICE_STATUS_CODE_BAD_REQUEST = 400;
     public final static String HTTP_SERVICE_ERROR_MSG = "Error getting an InputStreamReader";
+    public final static String POISERVICE_AUTH_ERROR_MSG = "Authentication error: Please do the login again.";
+    public final static String POISERVICE_INVALID_POI_MSG = "Invalid POI. Please check all the coordenates and the name.";
     
     // Domain
 	public final static int BANK_ISCLOSERTO_DIST = 500;
@@ -25,7 +27,6 @@ public class Constant
 	public final static int JODATIME_COMPARE_YEAR = 1;
 	public final static int JODATIME_COMPARE_MONTH = 1;
 	public final static int JODATIME_COMPARE_DAY = 1;
-	public final static int MAX_SEARCH_TIME = 100;
 	public final static String EMAIL = "ar.edu.utn.dds.poi@gmail.com";
 	public final static String PASSWORD = "!S1st3m4s"; 
 	
@@ -33,4 +34,15 @@ public class Constant
 	public final static double HAVERSINE_EARTH_RADIUS_METERS = 6372000.8; 
 	public final static String METERS_FROM_TO_VALUE_STRING = "value"; 
 	public final static String JSONFACTORY_FROMJSON_ERROR_MSG = "Error reading an InputStreamReader";
+	
+	// Audit
+	public final static int MAX_SEARCH_TIME = 100;
+	public final static String MAX_SEARCH_TIME_MAILTO = "faculavag@gmail.com";
+	public final static String MAIL_SMTP_AUTH_VALUE = "true";
+	public final static String MAIL_SMTP_STARTTLS_ENABLE_VALUE = "true";
+	public final static String MAIL_SMTP_HOST_VALUE = "smtp.gmail.com";
+	public final static String MAIL_SMTP_PORT_VALUE = "587";
+	public final static String MAIL_SUBJECT = "[DDS-POI] Search Time Notification";
+	public final static String MAIL_TEXT = "The search service has exceded the default time.";
+	public final static String MAIL_ERROR = "Could not send email to ";
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
+import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.*;
@@ -69,6 +70,22 @@ public class POIService implements Searcher
 		return new SearchResult(result);
 	}
 	
+	public SearchResult search(String filter, String userName)
+	{
+		List<POI> result = new ArrayList<POI>();
+		poiList.addAll(externalPOIService.getExternalPois(filter));
+				
+		for(POI poi : poiList)
+		{
+			if (poi.matchFilter(filter))
+			{
+				result.add(poi);
+			}
+		}
+		
+		return new SearchResult(result);
+	}
+	
 	public SearchResult search(String filter, String userName, String token) throws InvalidUserException 
 	{
 		User user = this.authService.getUser(userName, token);
@@ -77,9 +94,9 @@ public class POIService implements Searcher
 		{	
 			if (user.getAuditMode())
 			{
-				Historical histSearch = new Historical();
-				// Le tenemos que pasar el usuario aca tambien.
-				return histSearch.search(filter);
+				Audit auditSearch = new Audit();
+				
+				return auditSearch.search(filter, userName);
 			}
 			else
 			{
@@ -88,7 +105,7 @@ public class POIService implements Searcher
 		}
 		else
 		{
-			throw new InvalidUserException("Authentication error: Please do the login again."); 
+			throw new InvalidUserException(Constant.POISERVICE_AUTH_ERROR_MSG); 
 		}
 	}
 	
@@ -100,7 +117,7 @@ public class POIService implements Searcher
 		}
 		else
 		{
-			throw new InvalidPoiException("Invalid POI. Please check all the coordenates and the name.");
+			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
 		}
 	}
 	
@@ -118,7 +135,7 @@ public class POIService implements Searcher
 		}
 		else
 		{
-			throw new InvalidPoiException("Invalid POI. Please check all the coordenates and the name.");
+			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
 		}
 	}
 }
