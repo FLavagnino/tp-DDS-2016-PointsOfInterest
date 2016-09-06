@@ -2,42 +2,45 @@ package ar.edu.utn.dds.poi.service.historical;
 
 import org.joda.time.DateTime;
 
-public class HistoricalSearch {
-	
-	private Integer userId;
+public class HistoricalSearch 
+{
+	private String userName;
 	private String filter;
 	private Integer resultsNumber;
 	private long time;
 	private DateTime date;
 	
-	public HistoricalSearch(Integer userId, String filter, Integer resultsNumber, long time) {
-		this.userId = userId;
+	public HistoricalSearch(String userName, String filter, Integer resultsNumber, long time) 
+	{
+		this.userName = userName;
 		this.filter = filter;
 		this.resultsNumber = resultsNumber;
 		this.time = time;
 		this.date = new DateTime();
 	}
 	
-	public Integer getUserId() {
-		return userId;
+	public String getUserName() 
+	{
+		return userName;
 	}
 
-	public String getFilter() {
+	public String getFilter() 
+	{
 		return filter;
 	}
 
-	public Integer getResultsNumber() {
+	public Integer getResultsNumber() 
+	{
 		return resultsNumber;
 	}
 
-	public long getTime() {
+	public long getTime() 
+	{
 		return time;
 	}
 	
-	public DateTime getDate() {
+	public DateTime getDate() 
+	{
 		return date;
 	}
-	
-	
-
 }

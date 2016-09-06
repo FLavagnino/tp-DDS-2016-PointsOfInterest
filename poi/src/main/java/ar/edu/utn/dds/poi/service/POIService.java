@@ -10,6 +10,7 @@ import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
+import ar.edu.utn.dds.poi.service.report.ReportGenerator;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
 public class POIService implements Searcher
@@ -95,7 +96,6 @@ public class POIService implements Searcher
 			if (user.getAuditMode())
 			{
 				Audit auditSearch = new Audit();
-				
 				return auditSearch.search(filter, userName);
 			}
 			else
@@ -137,5 +137,11 @@ public class POIService implements Searcher
 		{
 			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
 		}
+	}
+	
+	public void totalSearchQtyByDateReport(DateTime date)
+	{
+		ReportGenerator reportGenerator = new ReportGenerator();
+		reportGenerator.totalSearchQtyByDate(date);
 	}
 }

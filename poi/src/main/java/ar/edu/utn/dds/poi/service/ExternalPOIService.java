@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import ar.edu.utn.dds.poi.connector.BankSearch;
-import ar.edu.utn.dds.poi.connector.CGPSearch;
-import ar.edu.utn.dds.poi.domain.Bank;
-import ar.edu.utn.dds.poi.domain.CGP;
-import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.domain.OpeningHour;
-import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.dto.BankServDTO;
-import ar.edu.utn.dds.poi.dto.CGPServDTO;
-import ar.edu.utn.dds.poi.dto.ServiceDTO;
+import ar.edu.utn.dds.poi.connector.*;
+import ar.edu.utn.dds.poi.domain.*;
+import ar.edu.utn.dds.poi.dto.*;
 
 public class ExternalPOIService 
 {	
@@ -109,38 +102,46 @@ public class ExternalPOIService
 	private List<BankServDTO> mergeBank(List<BankServDTO> listA, List<BankServDTO> listB)
 	{
 		Boolean contain;
-		for (BankServDTO bankB : listB) {
+		for (BankServDTO bankB : listB) 
+		{
 			contain = false;
-			for (BankServDTO bankA : listA) {
-				if (bankA.getBanco().equals(bankB.getBanco()) && bankA.getX().equals(bankB.getX()) && bankA.getY().equals(bankB.getY())) {
+			for (BankServDTO bankA : listA) 
+			{
+				if (bankA.getBanco().equals(bankB.getBanco()) && bankA.getX().equals(bankB.getX()) && bankA.getY().equals(bankB.getY())) 
+				{
 					contain = true;
 					break;
 				}
 			}
-			if(!contain) {
+			if(!contain) 
+			{
 				listA.add(bankB);
 			}
 		}
+		
 		return listA;
 	}
 	
 	private List<CGPServDTO> mergeCGP(List<CGPServDTO> listA, List<CGPServDTO> listB)
 	{
 		Boolean contain;
-		for (CGPServDTO cgpB : listB) {
+		for (CGPServDTO cgpB : listB) 
+		{
 			contain = false;
-			for (CGPServDTO cgpA : listA) {
-				if (cgpA.getComuna().equals(cgpB.getComuna()) && cgpA.getDomicilio().equals(cgpB.getDomicilio())) {
+			for (CGPServDTO cgpA : listA) 
+			{
+				if (cgpA.getComuna().equals(cgpB.getComuna()) && cgpA.getDomicilio().equals(cgpB.getDomicilio())) 
+				{
 					contain = true;
 					break;
 				}
 			}
-			if(!contain) {
+			if(!contain) 
+			{
 				listA.add(cgpB);
 			}
 		}
+		
 		return listA;
-	}
-	
-	
+	}	
 }

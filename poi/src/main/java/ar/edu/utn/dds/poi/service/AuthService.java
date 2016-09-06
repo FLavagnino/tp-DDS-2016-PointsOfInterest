@@ -9,7 +9,7 @@ public class AuthService
 	
 	public AuthService()
 	{
-		this.authManager = new AuthManager();
+		this.authManager = AuthManager.getInstance();
 	}
 	
 	public String login(String userName, String password)

@@ -29,36 +29,42 @@ public class AuthManager
 		aLuis.setUserName("luisk");
 		aLuis.setPassword("1234");
 		aLuis.setToken("");
+		aLuis.setAuditMode(false);
 		userList.add(aLuis);
 		
 		User aJuan = new Admin();	
 		aJuan.setUserName("juanc");
 		aJuan.setPassword("1111");
 		aJuan.setToken("");
+		aJuan.setAuditMode(false);
 		userList.add(aJuan);
 		
 		User aFacuL = new Admin();
 		aFacuL.setUserName("facul");
 		aFacuL.setPassword("2222");
 		aFacuL.setToken("");
+		aFacuL.setAuditMode(false);
 		userList.add(aFacuL);
 		
 		User aFacuB = new Admin();
 		aFacuB.setUserName("facub");
 		aFacuB.setPassword("3333");
 		aFacuB.setToken("");
+		aFacuB.setAuditMode(false);
 		userList.add(aFacuB);
 		
 		User tAbasto = new Terminal();
 		tAbasto.setUserName("t_abasto");
 		tAbasto.setPassword("4444");
 		tAbasto.setToken("");
+		tAbasto.setAuditMode(true);
 		userList.add(tAbasto);
 		
 		User tCaballito = new Terminal();	
 		tCaballito.setUserName("t_caballito");
 		tCaballito.setPassword("5555");
 		tCaballito.setToken("");
+		tCaballito.setAuditMode(true);
 		userList.add(tCaballito);
 	}
 	

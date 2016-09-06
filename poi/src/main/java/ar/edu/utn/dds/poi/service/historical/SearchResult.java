@@ -4,25 +4,28 @@ import java.util.List;
 
 import ar.edu.utn.dds.poi.domain.POI;
 
-public class SearchResult {
-	
+public class SearchResult 
+{	
 	private List<POI> pois;
 	private long time;
 	
-	public SearchResult(List<POI> pois) {
+	public SearchResult(List<POI> pois) 
+	{
 		this.pois = pois;
 	}
 
-	public List<POI> getPois() {
+	public List<POI> getPois() 
+	{
 		return pois;
 	}
 	
-	public void setTime(long time) {
+	public void setTime(long time) 
+	{
 		this.time = time;
 	}
 
-	public long getTime() {
+	public long getTime() 
+	{
 		return time;
 	}
-
 }
