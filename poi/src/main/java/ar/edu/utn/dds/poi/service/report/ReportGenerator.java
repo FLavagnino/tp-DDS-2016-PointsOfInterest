@@ -22,7 +22,7 @@ public class ReportGenerator
 		
 		for (HistoricalSearch histSearch : searchList)
 		{
-			System.out.println(histSearch.getUserName() + " " + histSearch.getResultsNumber());
+			System.out.println(histSearch.getUserId() + " " + histSearch.getResultsNumber());
 		}
 		
 //		List<User> users = userList.stream()

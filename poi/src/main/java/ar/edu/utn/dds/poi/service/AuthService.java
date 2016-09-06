@@ -22,8 +22,8 @@ public class AuthService
 		return this.authManager.validate(userName, token);
 	}
 	
-	public User getUser(String userName, String token)
+	public User getUser(int userId, String token)
 	{
-		return this.authManager.getUser(userName, token);
+		return this.authManager.getUser(userId, token);
 	}
 }

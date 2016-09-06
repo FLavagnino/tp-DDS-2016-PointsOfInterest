@@ -37,7 +37,6 @@ public class Constant
 	
 	// Audit
 	public final static int MAX_SEARCH_TIME = 100;
-	public final static String MAX_SEARCH_TIME_MAILTO = "faculavag@gmail.com";
 	public final static String MAIL_SMTP_AUTH_VALUE = "true";
 	public final static String MAIL_SMTP_STARTTLS_ENABLE_VALUE = "true";
 	public final static String MAIL_SMTP_HOST_VALUE = "smtp.gmail.com";

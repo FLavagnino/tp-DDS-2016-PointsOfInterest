@@ -71,7 +71,7 @@ public class POIService implements Searcher
 		return new SearchResult(result);
 	}
 	
-	public SearchResult search(String filter, String userName)
+	public SearchResult search(String filter, int userId)
 	{
 		List<POI> result = new ArrayList<POI>();
 		poiList.addAll(externalPOIService.getExternalPois(filter));
@@ -87,16 +87,16 @@ public class POIService implements Searcher
 		return new SearchResult(result);
 	}
 	
-	public SearchResult search(String filter, String userName, String token) throws InvalidUserException 
+	public SearchResult search(String filter, int userId, String token) throws InvalidUserException 
 	{
-		User user = this.authService.getUser(userName, token);
+		User user = this.authService.getUser(userId, token);
 		
 		if (user != null)
 		{	
 			if (user.getAuditMode())
 			{
 				Audit auditSearch = new Audit();
-				return auditSearch.search(filter, userName);
+				return auditSearch.search(filter, userId);
 			}
 			else
 			{

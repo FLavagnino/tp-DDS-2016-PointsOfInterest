@@ -14,6 +14,9 @@ public class Entrega3Test
 {	
 	private AuthService authService;
 	private POIService poiService;
+	private String userName;
+	private String password;
+	private String token;
 
 	@Before
 	public void setUp()
@@ -25,9 +28,9 @@ public class Entrega3Test
 	@Test
 	public void loginOKTest()
 	{
-		String userName = "luisk";
-		String password = "1234";
-		String token = "";
+		userName = "luisk";
+		password = "1234";
+		token = "";
 		
 		token = this.authService.login(userName, password);
 		Assert.isTrue(!token.isEmpty());
@@ -36,9 +39,9 @@ public class Entrega3Test
 	@Test
 	public void loginNotOKTest()
 	{
-		String userName = "luisk";
-		String password = "1111";
-		String token = "";
+		userName = "luisk";
+		password = "1111";
+		token = "";
 		
 		token = this.authService.login(userName, password);
 		Assert.isTrue(token.isEmpty());
@@ -47,9 +50,9 @@ public class Entrega3Test
 	@Test
 	public void tokenOKTest()
 	{
-		String userName = "luisk";
-		String password = "1234";
-		String token = "";
+		userName = "luisk";
+		password = "1234";
+		token = "";
 		boolean result = false;
 		
 		token = this.authService.login(userName, password);
@@ -78,14 +81,15 @@ public class Entrega3Test
 	public void reportTotalSearchQtyByDateTest() throws InvalidUserException
 	{
 		String userName = "t_caballito";
+		int userid = 1;
 		String password = "5555";
 		String token = "";
 		
 		token = this.authService.login(userName, password);
 		
-		this.poiService.search("Rio", userName, token);
-		this.poiService.search("Santander", userName, token);
-		this.poiService.search("Boedo", userName, token);
+		this.poiService.search("Rio", userid, token);
+		this.poiService.search("Santander", userid, token);
+		this.poiService.search("Boedo", userid, token);
 		
 		this.poiService.totalSearchQtyByDateReport(DateTime.now());
 	}

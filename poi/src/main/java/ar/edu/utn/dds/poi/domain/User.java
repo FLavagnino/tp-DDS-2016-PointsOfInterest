@@ -2,8 +2,10 @@ package ar.edu.utn.dds.poi.domain;
 
 public abstract class User 
 {
+	private int userId;
 	private String userName;
 	private String password;
+	private String email;
 	private String token;
 	private Boolean auditMode;
 	
@@ -50,4 +52,21 @@ public abstract class User
 	{
 		this.auditMode = auditMode;
 	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

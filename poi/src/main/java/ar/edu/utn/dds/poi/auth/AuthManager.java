@@ -98,10 +98,10 @@ public class AuthManager
 		return !users.isEmpty();
 	}
 	
-	public User getUser(String userName, String token)
+	public User getUser(int userId, String token)
 	{
 		List<User> users = userList.stream()
-						.filter(item -> item.getUserName().equals(userName) && 
+						.filter(item -> item.getUserId() == (userId) && 
 										item.getToken().equals(token))
 						.collect(Collectors.toList());
 		
@@ -113,5 +113,14 @@ public class AuthManager
 		{
 			return null;
 		}
+	}
+	
+	public String getMailOf(int userId) {
+		for (User user : userList) {
+			if(user.getUserId() == userId) {
+				return user.getEmail();
+			}
+		}
+		return null;
 	}
 }
