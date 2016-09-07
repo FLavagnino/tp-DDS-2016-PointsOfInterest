@@ -31,7 +31,7 @@ public class AuthManager
 		String token = "";
 		
 		List<User> users = userList.stream()
-							.filter(item -> item.getUserName().equals(userName) && 
+							.filter(item -> item.getUserName() == userName && 
 										item.getPassword().equals(password))
 							.collect(Collectors.toList());
 		
@@ -49,7 +49,7 @@ public class AuthManager
 	public boolean validate(String userName, String token)
 	{
 		List<User> users = userList.stream()
-						.filter(item -> item.getUserName().equals(userName) && 
+						.filter(item -> item.getUserName() == userName && 
 										item.getToken().equals(token))
 						.collect(Collectors.toList());
 		
@@ -59,7 +59,7 @@ public class AuthManager
 	public User getUser(String userName, String token)
 	{
 		List<User> users = userList.stream()
-						.filter(item -> item.getUserName() == (userName) && 
+						.filter(item -> item.getUserName() == userName && 
 										item.getToken().equals(token))
 						.collect(Collectors.toList());
 		
