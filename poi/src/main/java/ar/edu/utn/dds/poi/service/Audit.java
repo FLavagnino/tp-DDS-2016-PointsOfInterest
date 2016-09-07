@@ -17,13 +17,13 @@ public class Audit implements Searcher
 	}
 	
 	@Override
-	public SearchResult search(String filter, int userId) 
+	public SearchResult search(String filter, String userName) 
 	{
-		SearchResult searchResult = historical.search(filter, userId);
+		SearchResult searchResult = historical.search(filter, userName);
 		
 		if (searchResult.getTime() > (Constant.MAX_SEARCH_TIME * 1000)) 
 		{
-			String email = authManager.getMailOf(userId);
+			String email = authManager.getMailOf(userName);
 			EmailSender emailSender = new EmailSender(email);
 			new Thread(emailSender).start();
 		}

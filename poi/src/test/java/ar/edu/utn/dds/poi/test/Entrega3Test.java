@@ -4,16 +4,21 @@ import org.junit.Test;
 import com.vividsolutions.jts.util.Assert;
 import org.junit.Before;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.*;
 
-import ar.edu.utn.dds.poi.exception.InvalidUserException;
-import ar.edu.utn.dds.poi.service.AuthService;
-import ar.edu.utn.dds.poi.service.POIService;
+import ar.edu.utn.dds.poi.domain.Admin;
+import ar.edu.utn.dds.poi.domain.Terminal;
+import ar.edu.utn.dds.poi.domain.User;
+import ar.edu.utn.dds.poi.service.*;
+import ar.edu.utn.dds.poi.service.historical.HistoricalSearch;
 
 public class Entrega3Test 
 {	
 	private AuthService authService;
-	private POIService poiService;
+	private ReportService reportService;
 	private String userName;
 	private String password;
 	private String token;
@@ -21,8 +26,94 @@ public class Entrega3Test
 	@Before
 	public void setUp()
 	{
-		poiService = new POIService();
-		authService = new AuthService();
+		this.authService = new AuthService();
+		this.reportService = new ReportService();
+		
+		List<User> userList = new ArrayList<User>();
+		
+		User aLuis = new Admin();
+		aLuis.setUserName("luisk");
+		aLuis.setPassword("1234");
+		aLuis.setToken("");
+		aLuis.setAuditMode(false);
+		userList.add(aLuis);
+		
+		User aJuan = new Admin();	
+		aJuan.setUserName("juanc");
+		aJuan.setPassword("1111");
+		aJuan.setToken("");
+		aJuan.setAuditMode(false);
+		userList.add(aJuan);
+		
+		User aFacuL = new Admin();
+		aFacuL.setUserName("facul");
+		aFacuL.setPassword("2222");
+		aFacuL.setToken("");
+		aFacuL.setAuditMode(false);
+		userList.add(aFacuL);
+		
+		User aFacuB = new Admin();
+		aFacuB.setUserName("facub");
+		aFacuB.setPassword("3333");
+		aFacuB.setToken("");
+		aFacuB.setAuditMode(false);
+		userList.add(aFacuB);
+		
+		User tAbasto = new Terminal();
+		tAbasto.setUserName("t_abasto");
+		tAbasto.setPassword("4444");
+		tAbasto.setToken("");
+		tAbasto.setAuditMode(true);
+		userList.add(tAbasto);
+		
+		User tCaballito = new Terminal();	
+		tCaballito.setUserName("t_caballito");
+		tCaballito.setPassword("5555");
+		tCaballito.setToken("");
+		tCaballito.setAuditMode(true);
+		userList.add(tCaballito);
+		
+		User tBoedo = new Terminal();	
+		tCaballito.setUserName("t_boedo");
+		tCaballito.setPassword("6666");
+		tCaballito.setToken("");
+		tCaballito.setAuditMode(true);
+		userList.add(tBoedo);
+		
+		this.authService.setUsers(userList);
+		
+		List<HistoricalSearch> searches = new ArrayList<HistoricalSearch>();
+		DateTime date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
+		HistoricalSearch histSearch1 = new HistoricalSearch("t_abasto", "filtro abasto", 20, 15000, date);
+		searches.add(histSearch1);
+		date = new DateTime(2016, 6, 14, 0, 0, 0, 0);
+		HistoricalSearch histSearch2 = new HistoricalSearch("t_abasto", "filtro abasto", 30, 12000, date);
+		searches.add(histSearch2);		
+		date = new DateTime(2016, 6, 15, 0, 0, 0, 0);
+		HistoricalSearch histSearch3 = new HistoricalSearch("t_abasto", "filtro abasto", 42, 16000, date);
+		searches.add(histSearch3);	
+		
+		date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
+		HistoricalSearch histSearch4 = new HistoricalSearch("t_caballito", "filtro caballito", 25, 15000, date);
+		searches.add(histSearch4);
+		date = new DateTime(2016, 6, 14, 0, 0, 0, 0);
+		HistoricalSearch histSearch5 = new HistoricalSearch("t_caballito", "filtro caballito", 102, 12000, date);
+		searches.add(histSearch5);		
+		date = new DateTime(2016, 6, 15, 0, 0, 0, 0);
+		HistoricalSearch histSearch6 = new HistoricalSearch("t_caballito", "filtro caballito", 35, 16000, date);
+		searches.add(histSearch6);	
+		
+		date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
+		HistoricalSearch histSearch7 = new HistoricalSearch("t_boedo", "filtro boedo", 23, 15000, date);
+		searches.add(histSearch7);
+		date = new DateTime(2016, 6, 14, 0, 0, 0, 0);
+		HistoricalSearch histSearch8 = new HistoricalSearch("t_boedo", "filtro boedo", 58, 12000, date);
+		searches.add(histSearch8);		
+		date = new DateTime(2016, 6, 15, 0, 0, 0, 0);
+		HistoricalSearch histSearch9 = new HistoricalSearch("t_boedo", "filtro boedo", 15, 16000, date);
+		searches.add(histSearch9);	
+
+		this.reportService.setSearchResults(searches);
 	}
 	
 	@Test
@@ -78,19 +169,20 @@ public class Entrega3Test
 	}
 	
 	@Test
-	public void reportTotalSearchQtyByDateTest() throws InvalidUserException
-	{
-		String userName = "t_caballito";
-		int userid = 1;
-		String password = "5555";
-		String token = "";
-		
-		token = this.authService.login(userName, password);
-		
-		this.poiService.search("Rio", userid, token);
-		this.poiService.search("Santander", userid, token);
-		this.poiService.search("Boedo", userid, token);
-		
-		this.poiService.totalSearchQtyByDateReport(DateTime.now());
+	public void reportTotalSearchQtyByDateTest()
+	{	
+		this.reportService.totalSearchQtyByDate();
+	}
+	
+	@Test
+	public void partialSearchQtyByUserTest()
+	{	
+		this.reportService.partialSearchQtyByUser();
+	}
+	
+	@Test
+	public void totalSearchQtyByUserTest()
+	{	
+		this.reportService.totalSearchQtyByUser();
 	}
 }

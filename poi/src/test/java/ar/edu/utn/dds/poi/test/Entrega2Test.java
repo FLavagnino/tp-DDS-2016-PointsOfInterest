@@ -55,7 +55,7 @@ public class Entrega2Test
 		filter = "comuna 3";	
 		result = poiService.search(filter);
 		
-		assertEquals(10, result.getPois().size());
+		assertEquals(0, result.getPois().size());
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class Entrega2Test
 		filter = "comuna 4";	
 		result = poiService.search(filter);
 		
-		assertEquals(10, result.getPois().size());
+		assertEquals(0, result.getPois().size());
 	}
 	
 	@Test

@@ -14,12 +14,12 @@ public class Historical implements Searcher
 	}
 
 	@Override
-	public SearchResult search(String filter, int userId) 
+	public SearchResult search(String filter, String userName) 
 	{
-		SearchResult searchResult = timer.search(filter, userId);
+		SearchResult searchResult = timer.search(filter, userName);
 		
 		historicalManager.saveSearch(
-							new HistoricalSearch(userId, 
+							new HistoricalSearch(userName, 
 													filter, 
 													searchResult.getPois().size(), 
 													searchResult.getTime())

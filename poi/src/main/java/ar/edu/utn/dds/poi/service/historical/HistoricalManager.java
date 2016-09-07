@@ -31,4 +31,9 @@ public class HistoricalManager
 	{
 		return this.searches;
 	}
+	
+	public void setSearches(List<HistoricalSearch> searches)
+	{
+		this.searches = searches;
+	}
 }

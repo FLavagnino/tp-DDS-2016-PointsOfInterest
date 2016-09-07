@@ -23,49 +23,7 @@ public class AuthManager
 	
 	public AuthManager()
 	{
-		userList = new ArrayList<User>();
-		
-		User aLuis = new Admin();
-		aLuis.setUserName("luisk");
-		aLuis.setPassword("1234");
-		aLuis.setToken("");
-		aLuis.setAuditMode(false);
-		userList.add(aLuis);
-		
-		User aJuan = new Admin();	
-		aJuan.setUserName("juanc");
-		aJuan.setPassword("1111");
-		aJuan.setToken("");
-		aJuan.setAuditMode(false);
-		userList.add(aJuan);
-		
-		User aFacuL = new Admin();
-		aFacuL.setUserName("facul");
-		aFacuL.setPassword("2222");
-		aFacuL.setToken("");
-		aFacuL.setAuditMode(false);
-		userList.add(aFacuL);
-		
-		User aFacuB = new Admin();
-		aFacuB.setUserName("facub");
-		aFacuB.setPassword("3333");
-		aFacuB.setToken("");
-		aFacuB.setAuditMode(false);
-		userList.add(aFacuB);
-		
-		User tAbasto = new Terminal();
-		tAbasto.setUserName("t_abasto");
-		tAbasto.setPassword("4444");
-		tAbasto.setToken("");
-		tAbasto.setAuditMode(true);
-		userList.add(tAbasto);
-		
-		User tCaballito = new Terminal();	
-		tCaballito.setUserName("t_caballito");
-		tCaballito.setPassword("5555");
-		tCaballito.setToken("");
-		tCaballito.setAuditMode(true);
-		userList.add(tCaballito);
+		this.userList = new ArrayList<User>();
 	}
 	
 	public String login(String userName, String password)
@@ -98,10 +56,10 @@ public class AuthManager
 		return !users.isEmpty();
 	}
 	
-	public User getUser(int userId, String token)
+	public User getUser(String userName, String token)
 	{
 		List<User> users = userList.stream()
-						.filter(item -> item.getUserId() == (userId) && 
+						.filter(item -> item.getUserName() == (userName) && 
 										item.getToken().equals(token))
 						.collect(Collectors.toList());
 		
@@ -115,12 +73,21 @@ public class AuthManager
 		}
 	}
 	
-	public String getMailOf(int userId) {
-		for (User user : userList) {
-			if(user.getUserId() == userId) {
+	public String getMailOf(String userName) 
+	{
+		for (User user : userList) 
+		{
+			if(user.getUserName().equals(userName)) 
+			{
 				return user.getEmail();
 			}
 		}
+		
 		return null;
+	}
+	
+	public void setUserList(List<User> users)
+	{
+		this.userList = users;
 	}
 }

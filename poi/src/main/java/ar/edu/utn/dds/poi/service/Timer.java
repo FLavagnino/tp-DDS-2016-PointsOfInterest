@@ -12,7 +12,7 @@ public class Timer implements Searcher
 	}
 
 	@Override
-	public SearchResult search(String filter, int userId) 
+	public SearchResult search(String filter, String userName) 
 	{
 		long startingTime = System.currentTimeMillis();
 		SearchResult searchResult = poiService.search(filter);		

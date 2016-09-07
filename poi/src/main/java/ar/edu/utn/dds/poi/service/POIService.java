@@ -10,7 +10,6 @@ import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
-import ar.edu.utn.dds.poi.service.report.ReportGenerator;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
 public class POIService implements Searcher
@@ -71,7 +70,7 @@ public class POIService implements Searcher
 		return new SearchResult(result);
 	}
 	
-	public SearchResult search(String filter, int userId)
+	public SearchResult search(String filter, String userName)
 	{
 		List<POI> result = new ArrayList<POI>();
 		poiList.addAll(externalPOIService.getExternalPois(filter));
@@ -87,16 +86,16 @@ public class POIService implements Searcher
 		return new SearchResult(result);
 	}
 	
-	public SearchResult search(String filter, int userId, String token) throws InvalidUserException 
+	public SearchResult search(String filter, String userName, String token) throws InvalidUserException 
 	{
-		User user = this.authService.getUser(userId, token);
+		User user = this.authService.getUser(userName, token);
 		
 		if (user != null)
 		{	
 			if (user.getAuditMode())
 			{
 				Audit auditSearch = new Audit();
-				return auditSearch.search(filter, userId);
+				return auditSearch.search(filter, userName);
 			}
 			else
 			{
@@ -137,11 +136,5 @@ public class POIService implements Searcher
 		{
 			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
 		}
-	}
-	
-	public void totalSearchQtyByDateReport(DateTime date)
-	{
-		ReportGenerator reportGenerator = new ReportGenerator();
-		reportGenerator.totalSearchQtyByDate(date);
 	}
 }

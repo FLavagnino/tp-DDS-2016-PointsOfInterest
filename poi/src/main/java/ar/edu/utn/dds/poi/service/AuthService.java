@@ -1,5 +1,7 @@
 package ar.edu.utn.dds.poi.service;
 
+import java.util.List;
+
 import ar.edu.utn.dds.poi.auth.*;
 import ar.edu.utn.dds.poi.domain.*;
 
@@ -22,8 +24,13 @@ public class AuthService
 		return this.authManager.validate(userName, token);
 	}
 	
-	public User getUser(int userId, String token)
+	public User getUser(String userName, String token)
 	{
-		return this.authManager.getUser(userId, token);
+		return this.authManager.getUser(userName, token);
+	}
+	
+	public void setUsers(List<User> users)
+	{
+		this.authManager.setUserList(users);
 	}
 }

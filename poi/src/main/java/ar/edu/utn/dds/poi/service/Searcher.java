@@ -4,5 +4,5 @@ import ar.edu.utn.dds.poi.service.historical.SearchResult;
 
 public interface Searcher 
 {
-	public SearchResult search(String filter, int userId);
+	public SearchResult search(String filter, String userName);
 }

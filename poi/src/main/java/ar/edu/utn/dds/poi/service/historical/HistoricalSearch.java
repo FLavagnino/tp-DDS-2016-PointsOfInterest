@@ -4,24 +4,33 @@ import org.joda.time.DateTime;
 
 public class HistoricalSearch 
 {
-	private int userId;
+	private String userName;
 	private String filter;
 	private Integer resultsNumber;
 	private long time;
 	private DateTime date;
 	
-	public HistoricalSearch(int userId, String filter, Integer resultsNumber, long time) 
+	public HistoricalSearch(String userName, String filter, Integer resultsNumber, long time) 
 	{
-		this.userId = userId;
+		this.userName = userName;
 		this.filter = filter;
 		this.resultsNumber = resultsNumber;
 		this.time = time;
 		this.date = new DateTime();
 	}
 	
-	public int getUserId() 
+	public HistoricalSearch(String userName, String filter, Integer resultsNumber, long time, DateTime date) 
 	{
-		return userId;
+		this.userName = userName;
+		this.filter = filter;
+		this.resultsNumber = resultsNumber;
+		this.time = time;
+		this.date = date;
+	}
+	
+	public String getUserName() 
+	{
+		return userName;
 	}
 
 	public String getFilter() 
