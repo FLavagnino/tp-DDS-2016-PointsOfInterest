@@ -33,4 +33,9 @@ public class AuthService
 	{
 		this.authManager.setUserList(users);
 	}
+	
+	public String getMailOf(String userName)
+	{
+		return this.authManager.getMailOf(userName);
+	}
 }

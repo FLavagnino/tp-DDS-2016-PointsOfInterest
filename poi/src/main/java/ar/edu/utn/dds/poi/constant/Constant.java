@@ -36,7 +36,7 @@ public class Constant
 	public final static String JSONFACTORY_FROMJSON_ERROR_MSG = "Error reading an InputStreamReader";
 	
 	// Audit
-	public final static int MAX_SEARCH_TIME = 100;
+	public final static int MAX_SEARCH_TIME = 0;
 	public final static String MAIL_SMTP_AUTH_VALUE = "true";
 	public final static String MAIL_SMTP_STARTTLS_ENABLE_VALUE = "true";
 	public final static String MAIL_SMTP_HOST_VALUE = "smtp.gmail.com";

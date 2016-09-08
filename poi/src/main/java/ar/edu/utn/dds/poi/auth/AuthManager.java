@@ -75,15 +75,28 @@ public class AuthManager
 	
 	public String getMailOf(String userName) 
 	{
-		for (User user : userList) 
+		List<User> users = userList.stream()
+				.filter(item -> item.getUserName() == userName)
+				.collect(Collectors.toList());
+
+		if (!users.isEmpty())
 		{
-			if(user.getUserName().equals(userName)) 
-			{
-				return user.getEmail();
-			}
+			return users.get(0).getEmail();
 		}
-		
-		return null;
+		else
+		{
+			return null;
+		}
+
+//		for (User user : userList) 
+//		{
+//			if(user.getUserName() == userName)
+//			{
+//				return user.getEmail();
+//			}
+//		}
+//		
+//		return null;
 	}
 	
 	public void setUserList(List<User> users)
