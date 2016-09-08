@@ -12,6 +12,7 @@ import org.joda.time.*;
 import ar.edu.utn.dds.poi.domain.Admin;
 import ar.edu.utn.dds.poi.domain.Terminal;
 import ar.edu.utn.dds.poi.domain.User;
+import ar.edu.utn.dds.poi.exception.InvalidUserException;
 import ar.edu.utn.dds.poi.service.*;
 import ar.edu.utn.dds.poi.service.historical.HistoricalSearch;
 
@@ -19,6 +20,7 @@ public class Entrega3Test
 {	
 	private AuthService authService;
 	private ReportService reportService;
+	private POIService poiService;
 	private String userName;
 	private String password;
 	private String token;
@@ -28,6 +30,7 @@ public class Entrega3Test
 	{
 		this.authService = new AuthService();
 		this.reportService = new ReportService();
+		this.poiService = new POIService();
 		
 		List<User> userList = new ArrayList<User>();
 		
@@ -36,6 +39,7 @@ public class Entrega3Test
 		aLuis.setPassword("1234");
 		aLuis.setToken("");
 		aLuis.setAuditMode(false);
+		aLuis.setEmail("luiskahrs@gmail.com");
 		userList.add(aLuis);
 		
 		User aJuan = new Admin();	
@@ -43,6 +47,7 @@ public class Entrega3Test
 		aJuan.setPassword("1111");
 		aJuan.setToken("");
 		aJuan.setAuditMode(false);
+		aJuan.setEmail("luiskahrs@gmail.com");
 		userList.add(aJuan);
 		
 		User aFacuL = new Admin();
@@ -50,6 +55,7 @@ public class Entrega3Test
 		aFacuL.setPassword("2222");
 		aFacuL.setToken("");
 		aFacuL.setAuditMode(false);
+		aFacuL.setEmail("luiskahrs@gmail.com");
 		userList.add(aFacuL);
 		
 		User aFacuB = new Admin();
@@ -57,6 +63,7 @@ public class Entrega3Test
 		aFacuB.setPassword("3333");
 		aFacuB.setToken("");
 		aFacuB.setAuditMode(false);
+		aFacuB.setEmail("luiskahrs@gmail.com");
 		userList.add(aFacuB);
 		
 		User tAbasto = new Terminal();
@@ -64,6 +71,7 @@ public class Entrega3Test
 		tAbasto.setPassword("4444");
 		tAbasto.setToken("");
 		tAbasto.setAuditMode(true);
+		tAbasto.setEmail("luiskahrs@gmail.com");
 		userList.add(tAbasto);
 		
 		User tCaballito = new Terminal();	
@@ -71,13 +79,15 @@ public class Entrega3Test
 		tCaballito.setPassword("5555");
 		tCaballito.setToken("");
 		tCaballito.setAuditMode(true);
+		tCaballito.setEmail("luiskahrs@gmail.com");
 		userList.add(tCaballito);
 		
 		User tBoedo = new Terminal();	
-		tCaballito.setUserName("t_boedo");
-		tCaballito.setPassword("6666");
-		tCaballito.setToken("");
-		tCaballito.setAuditMode(true);
+		tBoedo.setUserName("t_boedo");
+		tBoedo.setPassword("6666");
+		tBoedo.setToken("");
+		tBoedo.setAuditMode(true);
+		tBoedo.setEmail("luiskahrs@gmail.com");
 		userList.add(tBoedo);
 		
 		this.authService.setUsers(userList);
@@ -184,5 +194,29 @@ public class Entrega3Test
 	public void totalSearchQtyByUserTest()
 	{	
 		this.reportService.totalSearchQtyByUser();
+	}
+	
+	@Test
+	public void searchWithAuditTest() throws InvalidUserException
+	{
+		userName = "t_caballito";
+		password = "5555";
+		token = "";
+		
+		token = this.authService.login(userName, password);
+		this.poiService.search("prueba_audit", userName, token);	
+		this.reportService.totalSearchQtyByDate();
+	}
+	
+	@Test
+	public void searchWithoutAuditTest() throws InvalidUserException
+	{
+		userName = "luisk";
+		password = "1234";
+		token = "";
+		
+		token = this.authService.login(userName, password);
+		this.poiService.search("prueba_no_audit", userName, token);
+		this.reportService.totalSearchQtyByDate();
 	}
 }
