@@ -1,16 +1,11 @@
 package ar.edu.utn.dds.poi.domain;
 import java.util.*;
+import ar.edu.utn.dds.poi.domain.Process;
 
 public class Admin extends User 
 {
-	private ArrayList<String> ListOfProcess = new ArrayList<String>();
-	
-	public void setProcessList(ArrayList<String> List){
-		this.ListOfProcess = List;
+	public void selectProcess(int process){
+		//ver
 	}
-	
-	public ArrayList<String> getListOfProcess(){
-		return ListOfProcess;
-	}
-		
+			
 }
