@@ -26,7 +26,7 @@ public class Process {
 	}
 	
 	public void deletePOI(){
-		//hacer
+		//en proceso.
 	}
 	public void addActionToUsers(){
 		//hacer
