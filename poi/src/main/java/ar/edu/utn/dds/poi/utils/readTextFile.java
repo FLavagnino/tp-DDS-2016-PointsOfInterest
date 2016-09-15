@@ -4,28 +4,29 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class readTextFile {
 	
-	public static void readText(String file) throws FileNotFoundException, IOException {
-		
-		String characters;
-		String nameShop;
-		ArrayList<String> things;
+	protected String characters;
+	protected String nameShop = "";
+	protected String onlyThings = "";
+	
+	public void readText(String file) throws FileNotFoundException, IOException {
 		
 		FileReader fr = new FileReader(file);
 		BufferedReader buffer = new BufferedReader(fr);
 			while((characters = buffer.readLine())!= null){
-				while((characters = buffer.readLine()) != ";"){
-					nameShop = characters;
+				while((characters = buffer.readLine()) != ";"){					
+						nameShop.concat(characters);	
 				}
-				while((characters = buffer.readLine()) != " "){
-					//things.add(characters);
-				}
+					onlyThings.concat(characters);
 			}
 		buffer.close();
 	}
-	
+	public String getNameShop(){
+		return this.nameShop;
+	}
+	public String getOnlyThings(){
+		return this.onlyThings;
+	}
 }
