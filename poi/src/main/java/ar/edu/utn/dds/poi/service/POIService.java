@@ -2,6 +2,8 @@ package ar.edu.utn.dds.poi.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.joda.time.DateTime;
 
@@ -11,12 +13,14 @@ import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
+import ar.edu.utn.dds.poi.utils.readTextFile;
 
 public class POIService implements Searcher
 {
 	private MetersDistance distanceService;
 	private ExternalPOIService externalPOIService;
 	private AuthService authService;
+	private readTextFile readFile;
 	
 	private List<POI> poiList;
 	
@@ -136,5 +140,36 @@ public class POIService implements Searcher
 		{
 			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
 		}
+	}
+	
+	public void processOne(POI poi, String path){
+
+		try{
+			readFile.readText(path);
+			if (poiList.contains(readFile.getNameShop())){
+				try{
+						this.updatePoi(poi);	
+					}
+					catch(InvalidPoiException a){
+						System.out.println("Invalid POI");
+					}
+				}
+				else{
+					try{
+						this.addPoi(poi);
+					}
+					catch(InvalidPoiException a){
+						System.out.println("Invalid POI.");
+					}
+				}
+		}
+		catch(FileNotFoundException a){
+			System.out.println("File not found");
+		}
+		catch(IOException b){
+			System.out.println("File error");
+		}
+		
+		
 	}
 }
