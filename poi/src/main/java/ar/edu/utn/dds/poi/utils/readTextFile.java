@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import ar.edu.utn.dds.poi.domain.Shop;
 
 public class readTextFile {
 	
 	protected String characters;
 	protected String nameShop = "";
 	protected String onlyThings = "";
+	
+	public Shop newShop;
 	
 	public void readText(String file) throws FileNotFoundException, IOException {
 		
@@ -22,11 +25,13 @@ public class readTextFile {
 					onlyThings.concat(characters);
 			}
 		buffer.close();
+		newShop.setName(nameShop);
+		newShop.setTags(onlyThings);
 	}
 	public String getNameShop(){
-		return this.nameShop;
+		return this.nameShop; // se puede borrar
 	}
 	public String getOnlyThings(){
-		return this.onlyThings;
+		return this.onlyThings; // se puede borrar
 	}
 }

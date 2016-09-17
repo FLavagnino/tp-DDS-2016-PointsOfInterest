@@ -146,9 +146,9 @@ public class POIService implements Searcher
 
 		try{
 			readFile.readText(path);
-			if (poiList.contains(readFile.getNameShop())){
+			if (poiList.contains(readFile.newShop)){
 				try{
-						this.updatePoi(poi);	
+						this.updatePoi(readFile.newShop);	
 					}
 					catch(InvalidPoiException a){
 						System.out.println("Invalid POI");
@@ -156,7 +156,7 @@ public class POIService implements Searcher
 				}
 				else{
 					try{
-						this.addPoi(poi);
+						this.addPoi(readFile.newShop);
 					}
 					catch(InvalidPoiException a){
 						System.out.println("Invalid POI.");
@@ -170,6 +170,9 @@ public class POIService implements Searcher
 			System.out.println("File error");
 		}
 		
+	}
+	
+	public void processTwo(){
 		
 	}
 }
