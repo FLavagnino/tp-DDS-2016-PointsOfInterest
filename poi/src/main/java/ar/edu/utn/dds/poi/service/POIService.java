@@ -172,7 +172,13 @@ public class POIService implements Searcher
 		
 	}
 	
-	public void processTwo(){
+	public void processTwo(String filter, DateTime date){
 		
+		DateTime dateToday = new DateTime();
+		SearchResult poiSearched = this.search(filter);
+		
+		if (dateToday.compareTo(date) > 0){
+			this.deletePoi(poiSearched.getPois().indexOf(poiSearched)); //ver bien esto y seguirlo
+		}
 	}
 }
