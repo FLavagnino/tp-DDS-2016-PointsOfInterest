@@ -175,10 +175,18 @@ public class POIService implements Searcher
 	public void processTwo(String filter, DateTime date){
 		
 		DateTime dateToday = new DateTime();
-		SearchResult poiSearched = this.search(filter);
+		SearchResult poisSearched = this.search(filter);	
+		POI poi = poisSearched.getPois().get(1);
 		
-		if (dateToday.compareTo(date) > 0){
-			this.deletePoi(poiSearched.getPois().indexOf(poiSearched)); //ver bien esto y seguirlo
+		if (dateToday.compareTo(date) > 0){ 
+			this.deletePoi(poi.getUnit()); //toma el primer poi de la lista de pois encontrados.
 		}
 	}
+	public void processThree(){
+		
+	}
+	public void processFour(){
+		 // en proceso.
+	}
+	
 }
