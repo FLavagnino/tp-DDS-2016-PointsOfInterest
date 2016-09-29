@@ -142,8 +142,8 @@ public class POIService implements Searcher
 		}
 	}
 	
-	public void processOne(POI poi, String path){
-
+	public void updateShopOfProcess1(POI poi, String path){
+		//proceso 1
 		try{
 			readFile.readText(path);
 			if (poiList.contains(readFile.newShop)){
@@ -172,8 +172,8 @@ public class POIService implements Searcher
 		
 	}
 	
-	public void processTwo(String filter, DateTime date){
-		
+	public void deletePOIOfProcess2(String filter, DateTime date){
+		//proceso 2
 		DateTime dateToday = new DateTime();
 		SearchResult poisSearched = this.search(filter);	
 		POI poi = poisSearched.getPois().get(1);
@@ -182,11 +182,11 @@ public class POIService implements Searcher
 			this.deletePoi(poi.getUnit()); //toma el primer poi de la lista de pois encontrados.
 		}
 	}
-	public void processThree(){
-		
+	public void addActionToUsersOfProcess3(){
+		//proceso 3
 	}
-	public void processFour(){
-		 // en proceso.
+	public void definitionOfAMultipleProcessOfProcess4(){
+		 // proceso 4
 	}
 	
 }
