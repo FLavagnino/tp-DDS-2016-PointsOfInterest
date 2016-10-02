@@ -16,20 +16,22 @@ public class ProcessAddActionToUsers extends ProcessPoi {
 	
 	private ArrayList<Actions> actionList;
 	Terminal terminal = new Terminal();
-
+	ArrayList<Actions> terminalListInit = terminal.getActionList();
+	
 //	En el constructor es donde queda definido el proceso siguiente
 	public ProcessAddActionToUsers(){
 		setSiguienteProceso(null);
 	}
 	
+	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		
 		Iterator iter = actionList.iterator();
 			
 			while (iter.hasNext())
-			actionList.add((Actions) iter.next());
+			 terminal.getActionList().add((Actions) iter.next());
 				
-			System.out.println(Constant.ACTION_ADDED_TU_USER);
+			System.out.println(Constant.ACTION_ADDED_TO_USER);
 
 	}
 
