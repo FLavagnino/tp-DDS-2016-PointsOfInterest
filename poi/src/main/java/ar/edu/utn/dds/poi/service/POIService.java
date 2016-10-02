@@ -17,6 +17,7 @@ import org.quartz.impl.matchers.KeyMatcher;
 
 import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
+import ar.edu.utn.dds.poi.domain.Bank;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
@@ -53,6 +54,12 @@ public class POIService implements Searcher
 		shopPOI = new Shop("libreria", coordenate, Category.LIBRARY, "tag1,tag2");
 		shopPOI.setUnit(2);
 		poiList.add(shopPOI);		
+		
+		Coordenate bankCoord = new Coordenate(-34.618191, -58.428769);
+		Bank bankPoi = new Bank("Banco Ciudad",bankCoord, "tags");
+		bankPoi.setUnit(3);
+		poiList.add(bankPoi);
+		
 	}
 	
 	public int metersFromToHaversine(POI poiFrom, POI poiTo) 
@@ -176,8 +183,40 @@ public class POIService implements Searcher
 		}
 	}
 		
-	public void deletePOIOfProcess2(String filter, DateTime date){
-		//ejecuta proceso 2
+	public void deletePOIOfProcess2() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+		// Crea una instancia del planificador
+				Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+				// Inicia el planificador
+				scheduler.start();
+				
+				// Identificador del job
+				JobKey key = new JobKey(ProcessDeletePoi.class.getSimpleName());
+
+				// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
+				JobDetail job = JobBuilder.newJob(ProcessDeletePoi.class).withIdentity(key).requestRecovery(true)
+						.build();
+
+				// Crea una instancia del disparador (trigger) de procesos
+				Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
+
+				// Crea una instancia del proceso inicial y su listener
+				ProcessPoi procesoInicial = new ProcessDeletePoi();		
+				ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
+				
+				// Asocia el listener al planificador
+				scheduler.getListenerManager().addJobListener((JobListener)procesoInicialListener,
+						KeyMatcher.keyEquals(key));
+			
+				// Agrega el proceso al planificador junto con su disparador (trigger)
+				StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
+				
+				// Para darle tiempo al planificador que se puedea inicializar y
+				// ejecutar los procesos
+				Thread.sleep(30000);
+
+				// Finaliza el planificador
+				scheduler.shutdown();
 	}
 	public void addActionToUsersOfProcess3(){
 		//proceso 3
