@@ -12,6 +12,8 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.matchers.KeyMatcher;
 
+
+
 public abstract class ProcessListener implements JobListener 
 {
 	public String getName() 
@@ -20,6 +22,7 @@ public abstract class ProcessListener implements JobListener
 	}
 
 	protected abstract void rollback();
+	
 
 	public void jobToBeExecuted(JobExecutionContext context) 
 	{

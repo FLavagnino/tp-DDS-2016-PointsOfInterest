@@ -15,12 +15,21 @@ import ar.edu.utn.dds.poi.processService.ProcessPoi;
 public class ProcessAddActionToUsers extends ProcessPoi {
 	
 	private ArrayList<Actions> actionList;
+	private ArrayList<Actions> actionList2;
 	Terminal terminal = new Terminal();
 	ArrayList<Actions> terminalListInit = terminal.getActionList();
 	
 //	En el constructor es donde queda definido el proceso siguiente
 	public ProcessAddActionToUsers(){
 		setSiguienteProceso(null);
+		actionList.add(Actions.UPDATEPOI);
+		actionList.add(Actions.ADDPOI);
+		actionList.add(Actions.SEARCH);
+		
+		actionList2.add(Actions.ADDPOI);
+		actionList2.add(Actions.DELETEPOI);
+		
+		//De alguna forma hay que pasarle las acciones
 	}
 	
 	@Override
@@ -28,6 +37,7 @@ public class ProcessAddActionToUsers extends ProcessPoi {
 		
 		Iterator iter = actionList.iterator();
 			
+			System.out.println(Constant.ADDING_ACTION_TO_USER);
 			while (iter.hasNext())
 			 terminal.getActionList().add((Actions) iter.next());
 				
