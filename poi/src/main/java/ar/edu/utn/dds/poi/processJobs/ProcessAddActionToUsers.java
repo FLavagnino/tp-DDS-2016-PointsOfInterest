@@ -7,6 +7,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import ar.edu.utn.dds.poi.constant.Actions;
+import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.Terminal;
 import ar.edu.utn.dds.poi.processService.ProcessPoi;
 
@@ -24,11 +25,11 @@ public class ProcessAddActionToUsers extends ProcessPoi {
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		
 		Iterator iter = actionList.iterator();
-		
-		while (iter.hasNext())
+			
+			while (iter.hasNext())
 			actionList.add((Actions) iter.next());
 				
-			System.out.println("La lista de acciones fue actualizada");
+			System.out.println(Constant.ACTION_ADDED_TU_USER);
 
 	}
 

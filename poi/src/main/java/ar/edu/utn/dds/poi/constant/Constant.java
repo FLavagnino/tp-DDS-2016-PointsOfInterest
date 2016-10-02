@@ -20,6 +20,7 @@ public class Constant
     public final static String HTTP_SERVICE_ERROR_MSG = "Error getting an InputStreamReader";
     public final static String POISERVICE_AUTH_ERROR_MSG = "Authentication error: Please do the login again.";
     public final static String POISERVICE_INVALID_POI_MSG = "Invalid POI. Please check all the coordenates and the name.";
+    public final static String ACTION_ADDED_TU_USER = "Action list has been updated";
     
     // Domain
 	public final static int BANK_ISCLOSERTO_DIST = 500;
