@@ -15,8 +15,11 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.KeyMatcher;
 
+import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
+import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.POI;
+import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.processJobs.ProcessUpdateShop;
@@ -39,6 +42,16 @@ public class POIService implements Searcher
 		this.externalPOIService = new ExternalPOIService();
 		this.authService = new AuthService();
 		this.poiList = new ArrayList<POI>();
+		
+		// Agrego algunos fake, despues deberian salir de la base de datos
+		Coordenate coordenate = new Coordenate(-34.619160, -58.425443);
+		Shop shopPOI = new Shop("muebleria", coordenate, Category.FURNITURE, "tag1,tag2");
+		shopPOI.setUnit(1);
+		poiList.add(shopPOI);
+
+		shopPOI = new Shop("libreria", coordenate, Category.LIBRARY, "tag1,tag2");
+		shopPOI.setUnit(2);
+		poiList.add(shopPOI);		
 	}
 	
 	public int metersFromToHaversine(POI poiFrom, POI poiTo) 
@@ -67,11 +80,22 @@ public class POIService implements Searcher
 		return poi.isAvailable(dateTime, service);
 	}
 	
+	// Solo para pruebas, despues lo tenemos que borrar.
+	public void listPOIs()
+	{
+		for(POI poi : poiList)
+		{
+			System.out.println("Nombre: " + poi.getName() + ", tags: " + poi.getTags());
+		}		
+	}
+	
 	public SearchResult search(String filter)
 	{
 		List<POI> result = new ArrayList<POI>();
+		
+		// Se agregan los pois externos.
 		poiList.addAll(externalPOIService.getExternalPois(filter));
-				
+						
 		for(POI poi : poiList)
 		{
 			if (poi.matchFilter(filter))
@@ -123,14 +147,14 @@ public class POIService implements Searcher
 	
 	public void addPoi(POI poi) throws InvalidPoiException 
 	{
-		if (this.isValid(poi))
-		{
+//		if (this.isValid(poi))
+//		{
 			poiList.add(poi);
-		}
-		else
-		{
-			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
-		}
+//		}
+//		else
+//		{
+//			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
+//		}
 	}
 	
 	public void deletePoi(Integer unit)
@@ -186,6 +210,8 @@ public class POIService implements Searcher
 
 		// Crea una instancia del proceso inicial y su listener
 		ProcessPoi procesoInicial = new ProcessUpdateShop();
+		procesoInicial.setNext(null);
+		
 		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
 		
 		// Asocia el listener al planificador

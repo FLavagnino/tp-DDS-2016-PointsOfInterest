@@ -16,6 +16,11 @@ public abstract class ProcessPoi implements Job
 	{
 		SIGUIENTE_PROCESO = siguienteProceso;
 	}
+	
+	public void setNext(Class siguienteProceso) 
+	{
+		setSiguienteProceso(siguienteProceso);
+	}
 
 //	Con el propósito de simplificar el código se usa la API Reflection de Java
 	public ProcessListener getProcesoListener() throws ClassNotFoundException, InstantiationException, IllegalAccessException 

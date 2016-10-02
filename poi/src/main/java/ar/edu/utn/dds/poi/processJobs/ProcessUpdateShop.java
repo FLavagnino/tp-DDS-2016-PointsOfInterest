@@ -2,18 +2,16 @@ package ar.edu.utn.dds.poi.processJobs;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
-import ar.edu.utn.dds.poi.utils.Mock;
+import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.ReadTextFile;
 import ar.edu.utn.dds.poi.processService.ProcessPoi;
 import ar.edu.utn.dds.poi.processJobs.ProcessDeletePoi;
@@ -25,28 +23,32 @@ public class ProcessUpdateShop extends ProcessPoi
 	
 	public ProcessUpdateShop()
 	{
-		setSiguienteProceso(ProcessDeletePoi.class);
+		//setSiguienteProceso(ProcessDeletePoi.class);
 	}
-	
+		
 	public void execute(JobExecutionContext context) throws JobExecutionException  
 	{	
 		try
 		{
+			// Vemos como esta la lista actualmente, despues hay que borrarlo.
+			System.out.println("\nAntes de actualizar...\n");
+			poiservice.listPOIs();
+			
 			readFile = new ReadTextFile();
 			readFile.readText(Constant.UPDATE_SHOP_FILE_PATH);
 			
-			// Esto lo deberiamos reemplazar por la base de datos.
-			List<Shop> poiList = new ArrayList<Shop>();
-			Mock mockValues = new Mock();
-			poiList = mockValues.getUpdateShopList();
-			
 			for (Shop shopToUpdate : readFile.shopsToUpdate) 
 			{
-				if (poiList.contains(shopToUpdate))
+				SearchResult searchResult = poiservice.search(shopToUpdate.getName());
+				
+				if (searchResult != null && searchResult.getPois().size() > 0)
 				{
+					Shop poi = (Shop) searchResult.getPois().get(0);
+					poi.setTags(shopToUpdate.getTags());
+					
 					try
-					{
-						poiservice.updatePoi(shopToUpdate);	
+					{	
+						poiservice.updatePoi(poi);	
 					}
 					catch(InvalidPoiException a)
 					{
@@ -57,7 +59,8 @@ public class ProcessUpdateShop extends ProcessPoi
 				{
 					try
 					{
-						poiservice.addPoi(shopToUpdate);
+						Shop newShop = new Shop(shopToUpdate.getName(), null, Category.BAZAAR, shopToUpdate.getTags());
+						poiservice.addPoi(newShop);
 					}
 					catch(InvalidPoiException a)
 					{
@@ -65,6 +68,11 @@ public class ProcessUpdateShop extends ProcessPoi
 					}
 				}
 			}
+			
+			// Vemos como quedo la lista de POIs.
+			System.out.println("\nLuego de actualizar...\n");
+			poiservice.listPOIs();
+			System.out.println("\n");
 		}
 		catch(FileNotFoundException a)
 		{
