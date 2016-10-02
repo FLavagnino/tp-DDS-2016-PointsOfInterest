@@ -12,54 +12,62 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.matchers.KeyMatcher;
 
-public abstract class ProcessListener implements JobListener {
-
-	public String getName() {
+public abstract class ProcessListener implements JobListener 
+{
+	public String getName() 
+	{
 		return getClass().getName();
 	}
 
 	protected abstract void rollback();
 
-	public void jobToBeExecuted(JobExecutionContext context) {
+	public void jobToBeExecuted(JobExecutionContext context) 
+	{
 		System.out.println("Before running the process: " + context.getJobDetail().getKey().getName());
-
 	}
 	
 	@Override
-	public void jobExecutionVetoed(JobExecutionContext context) {
+	public void jobExecutionVetoed(JobExecutionContext context) 
+	{
 	}
 
-	public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
+	public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) 
+	{
 		String jobName = context.getJobDetail().getKey().getName();
 
-		if (jobException == null) {
+		if (jobException == null) 
+		{
 			System.out.println("Process : " + jobName + " process executed successfully");
 
-			try {
+			try 
+			{
 				ejecutarProcesoAnidado(context);
-			} catch (SchedulerException e) {
+			} 
+			catch (SchedulerException e) 
+			{
 				System.out.println(e.getMessage());
 			}
 
-		} else {
-			System.out.println(
-					"There was an exception in the process: " + jobName + " The exception was thrown: " + jobException);
+		} 
+		else 
+		{
+			System.out.println("There was an exception in the process: " + jobName + " The exception was thrown: " + jobException);
 			rollback();
 		}
 	}
 
-	public void ejecutarProcesoAnidado(JobExecutionContext context) throws SchedulerException {
-
+	public void ejecutarProcesoAnidado(JobExecutionContext context) throws SchedulerException 
+	{
 		Scheduler scheduler = context.getScheduler();
-
 		String nombreProcesoActual = getClass().getName().replace("Listener", "");
 		
-		try {
+		try 
+		{
 			Class actualProceso = getClass().getClassLoader().loadClass(nombreProcesoActual);
-
 			Class siguienteProceso = ((ProcessPoi)actualProceso.newInstance()).getSiguienteProceso();
 
-			if (siguienteProceso != null) {
+			if (siguienteProceso != null) 
+			{
 				ProcessListener siguienteListener = ((ProcessPoi) siguienteProceso.newInstance()).getProcesoListener();
 				JobKey jobKey = new JobKey(siguienteProceso.getSimpleName());
 				JobDetail nextJob = JobBuilder.newJob(siguienteProceso).withIdentity(jobKey).requestRecovery(true).build();
@@ -68,14 +76,18 @@ public abstract class ProcessListener implements JobListener {
 				scheduler.scheduleJob(nextJob, trigger);
 			}
 
-		} catch (ClassNotFoundException cnf) {
+		} 
+		catch (ClassNotFoundException cnf) 
+		{
 			System.out.println(cnf.getMessage());
-		} catch (InstantiationException ie) {
+		} 
+		catch (InstantiationException ie) 
+		{
 			System.out.println(ie.getMessage());
-		} catch (IllegalAccessException iae) {
+		} 
+		catch (IllegalAccessException iae) 
+		{
 			System.out.println(iae.getMessage());
 		}
-
 	}
-
 }

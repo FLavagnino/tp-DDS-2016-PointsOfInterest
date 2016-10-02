@@ -44,4 +44,10 @@ public class Constant
 	public final static String MAIL_SUBJECT = "[DDS-POI] Search Time Notification";
 	public final static String MAIL_TEXT = "The search service has exceded the default time.";
 	public final static String MAIL_ERROR = "Could not send email to ";
+	
+	// Jobs
+	public final static String UPDATE_SHOP_FILE_PATH = "C:\\test\\update.txt";
+	public final static String UPDATE_SHOP_FILE_NOT_FOUND_ERROR_MSG = "File not found";
+	public final static String UPDATE_SHOP_FILE_ERROR_MSG = "File error";
+	public final static String UPDATE_SHOP_FILE_INVALID_POI_ERROR_MSG = "Invalid POI.";
 }

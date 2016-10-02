@@ -17,6 +17,11 @@ public class Shop extends POI
 		this.category = category;	
 	}
 	
+	public Shop(String name, String tags) 
+	{
+		super(name, null, tags);
+	}
+	
 	public Category getShopCategory()
 	{
 		return this.category;
