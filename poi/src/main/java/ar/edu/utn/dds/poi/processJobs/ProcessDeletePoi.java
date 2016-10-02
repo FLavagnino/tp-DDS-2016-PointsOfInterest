@@ -23,18 +23,15 @@ public class ProcessDeletePoi extends ProcessPoi{
 	}
 	
 	@Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		
+	public void execute(JobExecutionContext arg0) throws JobExecutionException 
+	{	
 		DateTime dateToday = new DateTime();
 		SearchResult poisSearched = poiservice.search(filter);	
 		POI poi = poisSearched.getPois().get(1);
 		
-		if (dateToday.compareTo(date) > 0){ 
+		if (dateToday.compareTo(date) > 0)
+		{ 
 			poiservice.deletePoi(poi.getUnit()); //toma el primer poi de la lista de pois encontrados.
 		}
-
 	}
-	
-	
-	
 }

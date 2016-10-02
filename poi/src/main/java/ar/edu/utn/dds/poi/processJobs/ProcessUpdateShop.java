@@ -14,45 +14,54 @@ import ar.edu.utn.dds.poi.utils.readTextFile;
 import ar.edu.utn.dds.poi.processService.ProcessPoi;
 import ar.edu.utn.dds.poi.processJobs.ProcessDeletePoi;
 
-public class ProcessUpdateShop extends ProcessPoi{
-	
+public class ProcessUpdateShop extends ProcessPoi
+{	
 	private List<POI> poiList;
 	private String path;
 	private readTextFile readFile;
 	
 	POIService poiservice = new POIService();
 	
-	public ProcessUpdateShop(){
+	public ProcessUpdateShop()
+	{
 		setSiguienteProceso(ProcessDeletePoi.class);
 	}
 	
-	public void execute(JobExecutionContext context) throws JobExecutionException  {
-		
-		try{
+	public void execute(JobExecutionContext context) throws JobExecutionException  
+	{	
+		try
+		{
 			readFile.readText(path);
-			if (poiList.contains(readFile.newShop)){
-				try{
-						poiservice.updatePoi(readFile.newShop);	
-					}
-					catch(InvalidPoiException a){
-						System.out.println("Invalid POI");
-					}
+			if (poiList.contains(readFile.newShop))
+			{
+				try
+				{
+					poiservice.updatePoi(readFile.newShop);	
 				}
-				else{
-					try{
-						poiservice.addPoi(readFile.newShop);
-					}
-					catch(InvalidPoiException a){
-						System.out.println("Invalid POI.");
-					}
+				catch(InvalidPoiException a)
+				{
+					System.out.println("Invalid POI");
 				}
+			}
+			else
+			{
+				try
+				{
+					poiservice.addPoi(readFile.newShop);
+				}
+				catch(InvalidPoiException a)
+				{
+					System.out.println("Invalid POI.");
+				}
+			}
 		}
-		catch(FileNotFoundException a){
+		catch(FileNotFoundException a)
+		{
 			System.out.println("File not found");
 		}
-		catch(IOException b){
+		catch(IOException b)
+		{
 			System.out.println("File error");
 		}	
-	}
-	
+	}	
 }
