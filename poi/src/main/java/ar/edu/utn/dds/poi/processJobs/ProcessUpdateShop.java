@@ -23,7 +23,7 @@ public class ProcessUpdateShop extends ProcessPoi
 	
 	public ProcessUpdateShop()
 	{
-		//setSiguienteProceso(ProcessDeletePoi.class);
+		setSiguienteProceso(ProcessDeletePoi.class);
 	}
 		
 	public void execute(JobExecutionContext context) throws JobExecutionException  

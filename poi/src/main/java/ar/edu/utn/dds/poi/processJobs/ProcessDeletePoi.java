@@ -18,7 +18,8 @@ public class ProcessDeletePoi extends ProcessPoi{
 	protected DateTime date;
 	POIService poiservice = new POIService();
 	
-	public ProcessDeletePoi(){
+	public ProcessDeletePoi()
+	{
 		setSiguienteProceso(ProcessAddActionToUsers.class);
 	}
 	

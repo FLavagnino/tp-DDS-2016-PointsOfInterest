@@ -27,4 +27,10 @@ public class Entrega4Test
 	{
 		this.poiService.updateShopProcess();
 	}
+	
+	@Test	
+	public void multiProcessTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
+	{
+		this.poiService.multiProcess();
+	}
 }

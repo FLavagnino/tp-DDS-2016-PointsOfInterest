@@ -22,6 +22,7 @@ import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.*;
+import ar.edu.utn.dds.poi.processJobs.ProcessDeletePoi;
 import ar.edu.utn.dds.poi.processJobs.ProcessUpdateShop;
 import ar.edu.utn.dds.poi.processService.ProcessListener;
 import ar.edu.utn.dds.poi.processService.ProcessPoi;
@@ -174,12 +175,7 @@ public class POIService implements Searcher
 			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
 		}
 	}
-	
-	public void updateShopOfProcess1(POI poi, String path){
-		//ejecuta proceso 1.
 		
-	}
-	
 	public void deletePOIOfProcess2(String filter, DateTime date){
 		//ejecuta proceso 2
 	}
@@ -190,6 +186,7 @@ public class POIService implements Searcher
 		 // proceso 4
 	}
 	
+	// Process 1: Update Shops from FILE.
 	public void updateShopProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
 		// Crea una instancia del planificador
@@ -209,9 +206,45 @@ public class POIService implements Searcher
 		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
 
 		// Crea una instancia del proceso inicial y su listener
-		ProcessPoi procesoInicial = new ProcessUpdateShop();
-		procesoInicial.setNext(null);
+		ProcessPoi procesoInicial = new ProcessUpdateShop();		
+		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
 		
+		// Asocia el listener al planificador
+		scheduler.getListenerManager().addJobListener((JobListener)procesoInicialListener,
+				KeyMatcher.keyEquals(key));
+	
+		// Agrega el proceso al planificador junto con su disparador (trigger)
+		StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
+		
+		// Para darle tiempo al planificador que se puedea inicializar y
+		// ejecutar los procesos
+		Thread.sleep(30000);
+
+		// Finaliza el planificador
+		scheduler.shutdown();
+	}
+	
+	// Process 4: Multiprocess
+	public void multiProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
+	{
+		// Crea una instancia del planificador
+		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+		// Inicia el planificador
+		scheduler.start();
+		
+		// Identificador del job
+		JobKey key = new JobKey(ProcessUpdateShop.class.getSimpleName());
+
+		// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
+		JobDetail job = JobBuilder.newJob(ProcessUpdateShop.class).withIdentity(key).requestRecovery(true)
+				.build();
+
+		// Crea una instancia del disparador (trigger) de procesos
+		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
+
+		// Crea una instancia del proceso inicial y su listener
+		ProcessPoi procesoInicial = new ProcessUpdateShop();	
 		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
 		
 		// Asocia el listener al planificador
@@ -220,10 +253,10 @@ public class POIService implements Searcher
 
 		// Agrega el proceso al planificador junto con su disparador (trigger)
 		StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
-
+		
 		// Para darle tiempo al planificador que se puedea inicializar y
 		// ejecutar los procesos
-		Thread.sleep(1000000000);
+		Thread.sleep(30000);
 
 		// Finaliza el planificador
 		scheduler.shutdown();
