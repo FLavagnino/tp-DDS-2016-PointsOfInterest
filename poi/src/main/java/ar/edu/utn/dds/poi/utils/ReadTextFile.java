@@ -6,32 +6,41 @@ import java.io.FileReader;
 import java.io.IOException;
 import ar.edu.utn.dds.poi.domain.Shop;
 
-public class readTextFile {
-	
+public class ReadTextFile 
+{	
 	protected String characters;
 	protected String nameShop = "";
 	protected String onlyThings = "";
 	
 	public Shop newShop;
 	
-	public void readText(String file) throws FileNotFoundException, IOException {
-		
+	public void readText(String file) throws FileNotFoundException, IOException 
+	{	
 		FileReader fr = new FileReader(file);
 		BufferedReader buffer = new BufferedReader(fr);
-			while((characters = buffer.readLine())!= null){
-				while((characters = buffer.readLine()) != ";"){					
-						nameShop.concat(characters);	
-				}
-					onlyThings.concat(characters);
+		
+		while((characters = buffer.readLine())!= null)
+		{
+			while((characters = buffer.readLine()) != ";")
+			{					
+					nameShop.concat(characters);	
 			}
+			
+			onlyThings.concat(characters);
+		}
+		
 		buffer.close();
 		newShop.setName(nameShop);
 		newShop.setTags(onlyThings);
 	}
-	public String getNameShop(){
+	
+	public String getNameShop()
+	{
 		return this.nameShop; // se puede borrar
 	}
-	public String getOnlyThings(){
+	
+	public String getOnlyThings()
+	{
 		return this.onlyThings; // se puede borrar
 	}
 }
