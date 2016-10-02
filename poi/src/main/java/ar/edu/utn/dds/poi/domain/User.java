@@ -1,5 +1,10 @@
 package ar.edu.utn.dds.poi.domain;
 
+import java.awt.List;
+import java.util.ArrayList;
+
+import ar.edu.utn.dds.poi.constant.Actions;
+
 public abstract class User 
 {
 	private int userId;
@@ -8,6 +13,7 @@ public abstract class User
 	private String email;
 	private String token;
 	private Boolean auditMode;
+	private ArrayList<Actions> actionList;
 	
 	protected User()
 	{
@@ -68,5 +74,9 @@ public abstract class User
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public ArrayList<Actions> getActionList()
+	{
+		return this.actionList;
+	}
 }
