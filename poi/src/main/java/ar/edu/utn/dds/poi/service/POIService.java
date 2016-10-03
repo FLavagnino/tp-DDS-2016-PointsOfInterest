@@ -15,18 +15,11 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.KeyMatcher;
 
-import ar.edu.utn.dds.poi.constant.Category;
-import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.domain.Bank;
-import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.domain.Shop;
-import ar.edu.utn.dds.poi.domain.User;
+import ar.edu.utn.dds.poi.constant.*;
+import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.exception.*;
-import ar.edu.utn.dds.poi.processJobs.ProcessDeletePoi;
-import ar.edu.utn.dds.poi.processJobs.ProcessUpdateShop;
-import ar.edu.utn.dds.poi.processService.ProcessListener;
-import ar.edu.utn.dds.poi.processService.ProcessPoi;
+import ar.edu.utn.dds.poi.processJobs.*;
+import ar.edu.utn.dds.poi.processService.*;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
@@ -261,6 +254,44 @@ public class POIService implements Searcher
 
 		// Finaliza el planificador
 		scheduler.shutdown();
+	}
+	
+	// Process 3: Add actions to user
+	public void addActionToUsersProcess () throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	{
+		// Crea una instancia del planificador
+		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+		// Inicia el planificador
+		scheduler.start();
+		
+		// Identificador del job
+		JobKey key = new JobKey(ProcessAddActionToUsers.class.getSimpleName());
+
+		// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
+		JobDetail job = JobBuilder.newJob(ProcessAddActionToUsers.class).withIdentity(key).requestRecovery(true)
+				.build();
+
+		// Crea una instancia del disparador (trigger) de procesos
+		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
+
+		// Crea una instancia del proceso inicial y su listener
+		ProcessPoi procesoInicial = new ProcessAddActionToUsers();		
+		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
+		
+		// Asocia el listener al planificador
+		scheduler.getListenerManager().addJobListener((JobListener)procesoInicialListener,
+				KeyMatcher.keyEquals(key));
+	
+		// Agrega el proceso al planificador junto con su disparador (trigger)
+		StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
+		
+		// Para darle tiempo al planificador que se puedea inicializar y
+		// ejecutar los procesos
+		Thread.sleep(30000);
+
+		// Finaliza el planificador
+		scheduler.shutdown();		
 	}
 	
 	// Process 4: Multiprocess

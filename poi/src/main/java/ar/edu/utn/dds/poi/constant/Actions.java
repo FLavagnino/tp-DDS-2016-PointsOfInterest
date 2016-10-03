@@ -1,7 +1,6 @@
 package ar.edu.utn.dds.poi.constant;
 
-public enum Actions {
-	
+public enum Actions 
+{	
 	UPDATEPOI, DELETEPOI, ADDPOI, SEARCH
-
 }

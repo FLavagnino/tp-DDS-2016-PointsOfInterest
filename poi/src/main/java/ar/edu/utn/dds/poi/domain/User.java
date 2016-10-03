@@ -17,6 +17,8 @@ public abstract class User
 	
 	protected User()
 	{
+		this.actionList = new ArrayList<Actions>();
+		actionList.add(Actions.SEARCH);
 	}
 	
 	public String getUserName()

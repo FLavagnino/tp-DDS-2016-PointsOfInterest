@@ -33,4 +33,10 @@ public class Entrega4Test
 	{
 		this.poiService.multiProcess();
 	}
+	
+	@Test	
+	public void addActionToUsersTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
+	{
+		this.poiService.addActionToUsersProcess();
+	}
 }
