@@ -39,4 +39,10 @@ public class Entrega4Test
 	{
 		this.poiService.addActionToUsersProcess();
 	}
+	
+//	@Test
+//	public void deletePoiTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
+//	{
+//		this.poiService.deletePOIOfProcess2();
+//	}
 }
