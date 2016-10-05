@@ -1,6 +1,5 @@
 package ar.edu.utn.dds.poi.domain;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import ar.edu.utn.dds.poi.constant.Actions;

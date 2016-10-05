@@ -2,17 +2,11 @@ package ar.edu.utn.dds.poi.processJobs;
 
 import ar.edu.utn.dds.poi.service.POIService;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
-import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.domain.Shop;
-import ar.edu.utn.dds.poi.exception.InvalidPoiException;
-import ar.edu.utn.dds.poi.processJobs.ProcessAddActionToUsers;
 import ar.edu.utn.dds.poi.processService.ProcessPoi;
 import ar.edu.utn.dds.poi.utils.Mock;
 import org.json.*;
-
-import java.io.FileNotFoundException;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -49,13 +43,9 @@ public class ProcessDeletePoi extends ProcessPoi{
 			{
 				POI poi = (POI) searchResult.getPois().get(0);
 				// poi.setTags(value.getTags());	
-				poiservice.deletePoi(poi.getUnit());	
-				
+				poiservice.deletePoi(poi.getUnit());		
 			}
 		}
-		    
-		    
-		    
 		    	// for (POI poi : mockList.getPoisToDelete()) {
 		    	//	if (poi.getUnit() == value){
 		    	//		poiservice.deletePoi(poi.getUnit());
@@ -73,6 +63,5 @@ public class ProcessDeletePoi extends ProcessPoi{
 				
 		//SearchResult poisSearched = poiservice.search("");
 		//POI poi = poisSearched.getPois().get(1);
-
 	}
 }

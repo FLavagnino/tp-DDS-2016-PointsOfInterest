@@ -31,7 +31,7 @@ public class ProcessAddActionToUsers extends ProcessPoi
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException 
 	{		
-		Iterator iter = actionList.iterator();
+		Iterator<Actions> iter = actionList.iterator();
 			
 		this.listActions();
 
