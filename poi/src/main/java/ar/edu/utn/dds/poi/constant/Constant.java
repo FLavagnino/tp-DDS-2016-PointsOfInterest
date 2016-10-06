@@ -22,6 +22,7 @@ public class Constant
     public final static String POISERVICE_INVALID_POI_MSG = "Invalid POI. Please check all the coordenates and the name.";
     public final static String ACTION_ADDED_TO_USER = "Action list has been updated";
     public final static String ADDING_ACTION_TO_USER = "Adding actions to list";
+    public final static String ROLLBACK_DONE = "Rollback performed, actionList is initial";
     
     // Domain
 	public final static int BANK_ISCLOSERTO_DIST = 500;

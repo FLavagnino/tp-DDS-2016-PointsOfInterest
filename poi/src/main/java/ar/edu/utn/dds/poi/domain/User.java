@@ -80,4 +80,11 @@ public abstract class User
 	{
 		return this.actionList;
 	}
+	
+	public void setActionList(ArrayList<Actions> actionList){
+		
+		this.actionList = actionList;
+		
+	}
+	
 }

@@ -1,5 +1,9 @@
 package ar.edu.utn.dds.poi.processService;
 
+import java.util.ArrayList;
+import ar.edu.utn.dds.poi.constant.Actions;
+import ar.edu.utn.dds.poi.domain.Terminal;
+
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -21,7 +25,7 @@ public abstract class ProcessListener implements JobListener
 		return getClass().getName();
 	}
 
-	protected abstract void rollback();
+	protected abstract void rollback(ArrayList<Actions> originalList, Terminal terminal);
 	
 
 	public void jobToBeExecuted(JobExecutionContext context) 

@@ -14,6 +14,7 @@ import ar.edu.utn.dds.poi.processService.ProcessPoi;
 public class ProcessAddActionToUsers extends ProcessPoi 
 {	
 	private ArrayList<Actions> actionList;
+	protected ArrayList<Actions> actionListInitial;
 	Terminal terminal = new Terminal();
 	
 //	En el constructor es donde queda definido el proceso siguiente
@@ -24,6 +25,8 @@ public class ProcessAddActionToUsers extends ProcessPoi
 		actionList = new ArrayList<Actions>();
 		actionList.add(Actions.UPDATEPOI);
 		actionList.add(Actions.ADDPOI);
+		
+		actionListInitial = actionList;
 				
 		//De alguna forma hay que pasarle las acciones
 	}
