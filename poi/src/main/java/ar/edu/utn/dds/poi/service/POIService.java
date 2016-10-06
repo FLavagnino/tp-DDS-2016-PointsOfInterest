@@ -18,8 +18,8 @@ import org.quartz.impl.matchers.KeyMatcher;
 import ar.edu.utn.dds.poi.constant.*;
 import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.exception.*;
-import ar.edu.utn.dds.poi.processJobs.*;
-import ar.edu.utn.dds.poi.processService.*;
+import ar.edu.utn.dds.poi.process.*;
+import ar.edu.utn.dds.poi.process.jobs.*;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 

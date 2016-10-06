@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.processJobs;
+package ar.edu.utn.dds.poi.process.jobs;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,7 +9,7 @@ import org.quartz.JobExecutionException;
 import ar.edu.utn.dds.poi.constant.Actions;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.Terminal;
-import ar.edu.utn.dds.poi.processService.ProcessPoi;
+import ar.edu.utn.dds.poi.process.ProcessPoi;
 
 public class ProcessAddActionToUsers extends ProcessPoi 
 {	

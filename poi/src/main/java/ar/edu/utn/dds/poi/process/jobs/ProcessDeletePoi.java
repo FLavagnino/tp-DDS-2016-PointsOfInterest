@@ -1,10 +1,10 @@
-package ar.edu.utn.dds.poi.processJobs;
+package ar.edu.utn.dds.poi.process.jobs;
 
 import ar.edu.utn.dds.poi.service.POIService;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.POI;
-import ar.edu.utn.dds.poi.processService.ProcessPoi;
+import ar.edu.utn.dds.poi.process.ProcessPoi;
 import ar.edu.utn.dds.poi.utils.Mock;
 import org.joda.time.DateTime;
 import org.joda.time.format.*;

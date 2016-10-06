@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.processService;
+package ar.edu.utn.dds.poi.process;
 
 import java.util.ArrayList;
 import ar.edu.utn.dds.poi.constant.Actions;
@@ -25,6 +25,7 @@ public abstract class ProcessListener implements JobListener
 		return getClass().getName();
 	}
 
+	protected abstract void rollback();
 	protected abstract void rollback(ArrayList<Actions> originalList, Terminal terminal);
 	
 

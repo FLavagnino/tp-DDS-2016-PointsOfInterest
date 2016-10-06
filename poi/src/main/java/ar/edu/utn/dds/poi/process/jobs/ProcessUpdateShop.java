@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.processJobs;
+package ar.edu.utn.dds.poi.process.jobs;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,11 +10,11 @@ import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
+import ar.edu.utn.dds.poi.process.ProcessPoi;
+import ar.edu.utn.dds.poi.process.jobs.ProcessDeletePoi;
 import ar.edu.utn.dds.poi.service.POIService;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.ReadTextFile;
-import ar.edu.utn.dds.poi.processService.ProcessPoi;
-import ar.edu.utn.dds.poi.processJobs.ProcessDeletePoi;
 
 public class ProcessUpdateShop extends ProcessPoi
 {	
