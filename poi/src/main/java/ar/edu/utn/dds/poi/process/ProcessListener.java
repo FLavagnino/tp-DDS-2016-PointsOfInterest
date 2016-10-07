@@ -16,8 +16,6 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.matchers.KeyMatcher;
 
-
-
 public abstract class ProcessListener implements JobListener 
 {
 	public String getName() 
@@ -43,10 +41,15 @@ public abstract class ProcessListener implements JobListener
 	{
 		String jobName = context.getJobDetail().getKey().getName();
 
+		// Logueamos el resultado del job, la idea es que se persista en base de datos
+		System.out.println("\nProcess: " + jobName + " process executed successfully");
+		System.out.println("Start time: " + context.getFireTime());
+		System.out.println("End time: " + context.getFireTime());
+		
 		if (jobException == null) 
-		{
-			System.out.println("Process : " + jobName + " process executed successfully");
-
+		{	
+			System.out.println("Result: SUCCESS");
+			
 			try 
 			{
 				ejecutarProcesoAnidado(context);
@@ -59,7 +62,8 @@ public abstract class ProcessListener implements JobListener
 		} 
 		else 
 		{
-			System.out.println("There was an exception in the process: " + jobName + " The exception was thrown: " + jobException);
+			System.out.println("Result: FAIL");
+			System.out.println("Exception: " + jobException.getMessage() + "\n");
 			rollback();
 		}
 	}

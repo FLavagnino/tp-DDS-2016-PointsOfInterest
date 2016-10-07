@@ -11,14 +11,14 @@ import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.Terminal;
 import ar.edu.utn.dds.poi.process.ProcessPoi;
 
-public class ProcessAddActionToUsers extends ProcessPoi 
+public class MultiProcessAddActionToUsers extends ProcessPoi 
 {	
 	private ArrayList<Actions> actionList;
 	protected ArrayList<Actions> actionListInitial;
 	Terminal terminal = new Terminal();
 	
 //	En el constructor es donde queda definido el proceso siguiente
-	public ProcessAddActionToUsers()
+	public MultiProcessAddActionToUsers()
 	{
 		setSiguienteProceso(null);
 		
@@ -35,8 +35,7 @@ public class ProcessAddActionToUsers extends ProcessPoi
 	public void execute(JobExecutionContext arg0) throws JobExecutionException 
 	{		
 		Iterator<Actions> iter = actionList.iterator();
-		
-		System.out.println("\nAntes de actualizar las acciones...");
+			
 		this.listActions();
 
 		while (iter.hasNext())
@@ -45,7 +44,6 @@ public class ProcessAddActionToUsers extends ProcessPoi
 			System.out.println(Constant.ACTION_ADDED_TO_USER);
 		}
 		
-		System.out.println("\nDespues de actualizar las acciones...");
 		this.listActions();
 	}
 	

@@ -5,12 +5,8 @@ import org.quartz.SchedulerException;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.dds.poi.constant.Category;
-import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.*;
-
 
 public class Entrega4Test 
 {	
@@ -28,21 +24,21 @@ public class Entrega4Test
 		this.poiService.updateShopProcess();
 	}
 	
-	@Test	
-	public void multiProcessTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
+	@Test
+	public void deletePoiTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		this.poiService.multiProcess();
+		this.poiService.deletePOIProcess();
 	}
-	
+
 	@Test	
 	public void addActionToUsersTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
 		this.poiService.addActionToUsersProcess();
 	}
 	
-//	@Test
-//	public void deletePoiTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
-//	{
-//		this.poiService.deletePOIOfProcess2();
-//	}
+	@Test	
+	public void multiProcessTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
+	{
+		this.poiService.multiProcess();
+	}
 }

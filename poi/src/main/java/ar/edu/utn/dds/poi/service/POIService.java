@@ -176,48 +176,6 @@ public class POIService implements Searcher
 		}
 	}
 		
-	public void deletePOIOfProcess2() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException{
-		// Crea una instancia del planificador
-				Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-
-				// Inicia el planificador
-				scheduler.start();
-				
-				// Identificador del job
-				JobKey key = new JobKey(ProcessDeletePoi.class.getSimpleName());
-
-				// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
-				JobDetail job = JobBuilder.newJob(ProcessDeletePoi.class).withIdentity(key).requestRecovery(true)
-						.build();
-
-				// Crea una instancia del disparador (trigger) de procesos
-				Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
-
-				// Crea una instancia del proceso inicial y su listener
-				ProcessPoi procesoInicial = new ProcessDeletePoi();		
-				ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
-				
-				// Asocia el listener al planificador
-				scheduler.getListenerManager().addJobListener((JobListener)procesoInicialListener,
-						KeyMatcher.keyEquals(key));
-			
-				// Agrega el proceso al planificador junto con su disparador (trigger)
-				StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
-				
-				// Para darle tiempo al planificador que se puedea inicializar y
-				// ejecutar los procesos
-				Thread.sleep(30000);
-
-				// Finaliza el planificador
-				scheduler.shutdown();
-	}
-	public void addActionToUsersOfProcess3(){
-		//proceso 3
-	}
-	public void definitionOfAMultipleProcessOfProcess4(){
-		 // proceso 4
-	}
-	
 	// Process 1: Update Shops from FILE.
 	public void updateShopProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
@@ -239,6 +197,44 @@ public class POIService implements Searcher
 
 		// Crea una instancia del proceso inicial y su listener
 		ProcessPoi procesoInicial = new ProcessUpdateShop();		
+		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
+		
+		// Asocia el listener al planificador
+		scheduler.getListenerManager().addJobListener((JobListener)procesoInicialListener,
+				KeyMatcher.keyEquals(key));
+	
+		// Agrega el proceso al planificador junto con su disparador (trigger)
+		StdSchedulerFactory.getDefaultScheduler().scheduleJob(job, trigger);
+		
+		// Para darle tiempo al planificador que se puedea inicializar y
+		// ejecutar los procesos
+		Thread.sleep(10000);
+
+		// Finaliza el planificador
+		scheduler.shutdown();
+	}
+	
+	// Process 2: Delete POIs	
+	public void deletePOIProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	{
+		// Crea una instancia del planificador
+		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+		// Inicia el planificador
+		scheduler.start();
+		
+		// Identificador del job
+		JobKey key = new JobKey(ProcessDeletePoi.class.getSimpleName());
+
+		// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
+		JobDetail job = JobBuilder.newJob(ProcessDeletePoi.class).withIdentity(key).requestRecovery(true)
+				.build();
+
+		// Crea una instancia del disparador (trigger) de procesos
+		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
+
+		// Crea una instancia del proceso inicial y su listener
+		ProcessPoi procesoInicial = new ProcessDeletePoi();		
 		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
 		
 		// Asocia el listener al planificador
@@ -288,7 +284,7 @@ public class POIService implements Searcher
 		
 		// Para darle tiempo al planificador que se puedea inicializar y
 		// ejecutar los procesos
-		Thread.sleep(30000);
+		Thread.sleep(10000);
 
 		// Finaliza el planificador
 		scheduler.shutdown();		
@@ -304,17 +300,17 @@ public class POIService implements Searcher
 		scheduler.start();
 		
 		// Identificador del job
-		JobKey key = new JobKey(ProcessUpdateShop.class.getSimpleName());
+		JobKey key = new JobKey(MultiProcessDeletePoi.class.getSimpleName());
 
 		// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
-		JobDetail job = JobBuilder.newJob(ProcessUpdateShop.class).withIdentity(key).requestRecovery(true)
+		JobDetail job = JobBuilder.newJob(MultiProcessDeletePoi.class).withIdentity(key).requestRecovery(true)
 				.build();
 
 		// Crea una instancia del disparador (trigger) de procesos
 		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
 
 		// Crea una instancia del proceso inicial y su listener
-		ProcessPoi procesoInicial = new ProcessUpdateShop();	
+		ProcessPoi procesoInicial = new MultiProcessDeletePoi();	
 		ProcessListener procesoInicialListener = procesoInicial.getProcesoListener();
 		
 		// Asocia el listener al planificador
@@ -326,7 +322,7 @@ public class POIService implements Searcher
 		
 		// Para darle tiempo al planificador que se puedea inicializar y
 		// ejecutar los procesos
-		Thread.sleep(30000);
+		Thread.sleep(10000);
 
 		// Finaliza el planificador
 		scheduler.shutdown();

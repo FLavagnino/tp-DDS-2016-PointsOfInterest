@@ -6,7 +6,7 @@ import org.quartz.Job;
 public abstract class ProcessPoi implements Job 
 {
 	private static Class SIGUIENTE_PROCESO;
-
+	
 	public static Class getSiguienteProceso() 
 	{
 		return SIGUIENTE_PROCESO;

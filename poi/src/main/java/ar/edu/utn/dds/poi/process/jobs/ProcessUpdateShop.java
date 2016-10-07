@@ -23,7 +23,7 @@ public class ProcessUpdateShop extends ProcessPoi
 	
 	public ProcessUpdateShop()
 	{
-		setSiguienteProceso(ProcessDeletePoi.class);
+		setSiguienteProceso(null);
 	}
 		
 	public void execute(JobExecutionContext context) throws JobExecutionException  
@@ -31,7 +31,7 @@ public class ProcessUpdateShop extends ProcessPoi
 		try
 		{
 			// Vemos como esta la lista actualmente, despues hay que borrarlo.
-			System.out.println("\nAntes de actualizar...\n");
+			System.out.println("\nAntes de actualizar...");
 			poiservice.listPOIs();
 			
 			readFile = new ReadTextFile();
@@ -70,7 +70,7 @@ public class ProcessUpdateShop extends ProcessPoi
 			}
 			
 			// Vemos como quedo la lista de POIs.
-			System.out.println("\nLuego de actualizar...\n");
+			System.out.println("\nLuego de actualizar...");
 			poiservice.listPOIs();
 			System.out.println("\n");
 		}

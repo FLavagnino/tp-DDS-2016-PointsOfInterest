@@ -12,14 +12,14 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 
-public class ProcessDeletePoi extends ProcessPoi
+public class MultiProcessDeletePoi extends ProcessPoi
 {
 	POIService poiservice = new POIService();
 	DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
 	
-	public ProcessDeletePoi()
+	public MultiProcessDeletePoi()
 	{
-		setSiguienteProceso(null);
+		setSiguienteProceso(MultiProcessAddActionToUsers.class);
 	}
 	
 	@Override
