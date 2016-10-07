@@ -49,9 +49,8 @@ public class Constant
 	public final static String MAIL_ERROR = "Could not send email to ";
 	
 	// Jobs
-	public final static String UPDATE_SHOP_FILE_PATH = "C:\\test\\update.txt";
+	public final static String UPDATE_SHOP_FILE_PATH = ".\\src\\test\\java\\ar\\edu\\utn\\dds\\poi\\test\\update.txt";
 	public final static String UPDATE_SHOP_FILE_NOT_FOUND_ERROR_MSG = "File not found";
 	public final static String UPDATE_SHOP_FILE_ERROR_MSG = "File error";
 	public final static String UPDATE_SHOP_FILE_INVALID_POI_ERROR_MSG = "Invalid POI.";
-	public final static String DELETE_POI_FILE_PATH = "C:\\test\\entrega4.json";
 }

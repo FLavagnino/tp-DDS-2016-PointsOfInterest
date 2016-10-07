@@ -1,0 +1,3 @@
+kiosko;kiosko prueba1 pepe
+muebleria;muebles mesas sillas
+ferreteria;tornillo martillo taladro
