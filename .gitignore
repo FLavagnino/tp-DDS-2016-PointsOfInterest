@@ -15,3 +15,5 @@ RemoteSystemsTempFiles
 .project
 .settings*
 *target*
+*.idea
+*pointsOfInterest.iml
