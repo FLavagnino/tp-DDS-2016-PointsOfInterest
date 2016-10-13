@@ -17,3 +17,5 @@ RemoteSystemsTempFiles
 *target*
 *.idea
 *pointsOfInterest.iml
+*/back/*
+*.DS_Store
