@@ -11,8 +11,8 @@ var inicializar = function() {
 
     $("input.available").click(function(){
         event.preventDefault();
-        $("#poisResult").empty();
         $("#search").removeClass('available');
+        $("#poisResult").empty();
 
         var inputKeywords = $("input.inputKeyWord");
         var keyword = "[" + inputKeywords[0].value;
@@ -23,12 +23,11 @@ var inicializar = function() {
             }
         }
         keyword += "]";
-        console.log(getUrl(keyword));
         $.ajax({
             url: getUrl(keyword),
         }).done(function(searchData) {
             if(searchData) {
-                if(searchData.items.length != 0) {
+                if(searchData.pois.length != 0) {
                     showPOIs(searchData);
                 } else {
                     alert("No se pudo encontrar ningun POI")
@@ -47,14 +46,15 @@ function isValidInput(input) {
 };
 
 function getUrl(keyword) {
-    return "http://localhost/search?keyword=" + keyword;
+    return "http://localhost:4567/poi/search/" + keyword;
 }
 
 function showPOIs(searchData) {
-    var source   = $("#poisResultTemplate-template").html();
+    var source   = $("#poisResultTemplate").html();
     var template = Handlebars.compile(source);
-    var html = $(template(data));
+    var html = $(template(searchData));
     html.appendTo("#poisResult");
 }
+
 
 $(document).ready(inicializar);

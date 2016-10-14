@@ -95,7 +95,7 @@ public class POIService implements Searcher
 		List<POI> result = new ArrayList<POI>();
 		
 		// Se agregan los pois externos.
-		poiList.addAll(externalPOIService.getExternalPois(filter));
+		//poiList.addAll(externalPOIService.getExternalPois(filter));
 						
 		for(POI poi : poiList)
 		{
@@ -104,6 +104,7 @@ public class POIService implements Searcher
 				result.add(poi);
 			}
 		}
+		result.addAll(externalPOIService.getExternalPois(filter));
 		
 		return new SearchResult(result);
 	}

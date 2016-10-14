@@ -30,12 +30,25 @@
 
 
     <script id="poisResultTemplate" type="text/x-handlebars-template">
-
+        <div>Resultados</div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+            </tr>
+            {{#each pois}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{tags}}</td>
+                </tr>
+            {{/each}}
+        </table>
     </script>
 
 
 
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/poi.js"></script>
 </body>
 </html>
