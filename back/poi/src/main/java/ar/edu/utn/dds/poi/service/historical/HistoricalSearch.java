@@ -9,6 +9,8 @@ public class HistoricalSearch
 	private Integer resultsNumber;
 	private long time;
 	private DateTime date;
+	private SearchResult searchResult;
+	private int searchKey;
 	
 	public HistoricalSearch(String userName, String filter, Integer resultsNumber, long time) 
 	{
@@ -51,5 +53,21 @@ public class HistoricalSearch
 	public DateTime getDate() 
 	{
 		return date;
+	}
+
+	public SearchResult getSearchResult() {
+		return searchResult;
+	}
+
+	public void setSearchResult(SearchResult searchResult) {
+		this.searchResult = searchResult;
+	}
+
+	public int getSearchKey() {
+		return searchKey;
+	}
+
+	public void setSearchKey(int searchKey) {
+		this.searchKey = searchKey;
 	}
 }

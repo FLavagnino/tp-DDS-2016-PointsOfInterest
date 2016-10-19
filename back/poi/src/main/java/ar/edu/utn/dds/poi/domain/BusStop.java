@@ -7,6 +7,8 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class BusStop extends POI
 {
+	protected final static String TYPE = "bus_stop";
+
 	protected int busLine;
 	
 	public BusStop(String name, Coordenate coordenate, int busLine, String tags) 
@@ -75,5 +77,9 @@ public class BusStop extends POI
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		return (meters < Constant.BUSSTOP_ISCLOSERTO_DIST);
+	}
+
+	public String getType() {
+		return TYPE;
 	}
 }

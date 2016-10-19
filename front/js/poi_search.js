@@ -1,7 +1,7 @@
 /**
  * Created by flavagnino on 12/10/16.
  */
-var inicializar = function() {
+var init = function() {
 
     $("#add").click(function(){
         event.preventDefault();
@@ -27,7 +27,7 @@ var inicializar = function() {
             url: getUrl(keyword),
         }).done(function(searchData) {
             if(searchData) {
-                if(searchData.pois.length != 0) {
+                if(searchData.search_result.pois.length != 0) {
                     showPOIs(searchData);
                 } else {
                     alert("No se pudo encontrar ningun POI")
@@ -46,7 +46,7 @@ function isValidInput(input) {
 };
 
 function getUrl(keyword) {
-    return "http://localhost:4567/poi/search/" + keyword;
+    return "http://localhost:4567/poi/search/all/" + keyword;
 }
 
 function showPOIs(searchData) {
@@ -55,6 +55,17 @@ function showPOIs(searchData) {
     var html = $(template(searchData));
     html.appendTo("#poisResult");
 }
+function openDetail(element) {
+    var detail_window = window.open('poi_detail.html', '_blank');
+    sessionStorage.setItem("type", element.attributes['data-type'].value);
+    sessionStorage.setItem("id", element.attributes['data-id'].value);
+    sessionStorage.setItem("search-key", element.parentElement.parentElement.attributes['data-search-key'].value);
+    if (detail_window) {
+        detail_window.focus();
+    } else {
+        alert('Please allow popups for this website');
+    }
+}
 
 
-$(document).ready(inicializar);
+$(document).ready(init);

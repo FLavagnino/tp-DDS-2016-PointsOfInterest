@@ -9,6 +9,8 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class Shop extends POI
 {
+	protected final static String TYPE = "shop";
+
 	protected Category category;
 	
 	public Shop(String name, Coordenate coordenate, Category category, String tags) 
@@ -99,5 +101,9 @@ public class Shop extends POI
 	{
 		int radius = this.category.getDistance();
 		return (meters < radius);
+	}
+
+	public String getType() {
+		return TYPE;
 	}
 }

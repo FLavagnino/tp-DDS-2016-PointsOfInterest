@@ -3,6 +3,7 @@ package ar.edu.utn.dds.poi.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 import org.joda.time.DateTime;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -105,24 +106,20 @@ public class POIService implements Searcher
 			}
 		}
 		result.addAll(externalPOIService.getExternalPois(filter));
+
+		//TODO: Borrar cuando este la DB
+		int keySeed = 0;
+		for(POI poi : result) {
+			poi.setKey(keySeed);
+			keySeed++;
+		}
 		
 		return new SearchResult(result);
 	}
 	
 	public SearchResult search(String filter, String userName)
 	{
-		List<POI> result = new ArrayList<POI>();
-		poiList.addAll(externalPOIService.getExternalPois(filter));
-				
-		for(POI poi : poiList)
-		{
-			if (poi.matchFilter(filter))
-			{
-				result.add(poi);
-			}
-		}
-		
-		return new SearchResult(result);
+		return this.search(filter);
 	}
 	
 	public SearchResult search(String filter, String userName, String token) throws InvalidUserException 
@@ -145,6 +142,10 @@ public class POIService implements Searcher
 		{
 			throw new InvalidUserException(Constant.POISERVICE_AUTH_ERROR_MSG); 
 		}
+	}
+
+	public POI getPoi(int key, int searchKey) {
+		return HistoricalManager.getInstance().getPoi(key, searchKey);
 	}
 	
 	public void addPoi(POI poi) throws InvalidPoiException 

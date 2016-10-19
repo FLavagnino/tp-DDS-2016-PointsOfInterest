@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <title>POI</title>
+    <title>POI Search</title>
 </head>
 <body>
     <div style="width: 60%;">
@@ -10,7 +10,7 @@
                 <table id="inputTable">
                     <tr>
                         <td>
-                            <input type="text" class="inputKeyWord">
+                            <input type="text" class="inputKeyWord" value="rio">
                         </td>
                     </tr>
                 </table>
@@ -31,13 +31,13 @@
 
     <script id="poisResultTemplate" type="text/x-handlebars-template">
         <div>Resultados</div>
-        <table>
+        <table data-search-key={{search_key}}>
             <tr>
                 <th>Nombre</th>
                 <th>Direccion</th>
             </tr>
-            {{#each pois}}
-                <tr>
+            {{#each search_result.pois}}
+                <tr data-type={{type}} data-id={{key}} onclick="openDetail(this)">
                     <td>{{name}}</td>
                     <td>{{tags}}</td>
                 </tr>
@@ -49,6 +49,6 @@
 
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
-    <script src="js/poi.js"></script>
+    <script src="js/poi_search.js"></script>
 </body>
 </html>

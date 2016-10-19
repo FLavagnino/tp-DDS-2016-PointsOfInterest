@@ -16,6 +16,8 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
 public class CGP extends POI 
 {
+	protected final static String TYPE = "cgp";
+
 	protected List<String> services;
 	protected List<Coordenate> zoneCoord;
 	
@@ -149,5 +151,9 @@ public class CGP extends POI
 		boolean result = polygon.contains(point);
 		
 		return result;
+	}
+
+	public String getType() {
+		return TYPE;
 	}
 }

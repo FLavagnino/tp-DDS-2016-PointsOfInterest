@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 
 public abstract class POI
 {
+	protected int key;
 	protected String name;
 	protected Integer unit;
 	protected Coordenate coordenate;
@@ -31,6 +32,15 @@ public abstract class POI
 	{	
 		this.address = new Address(street, number, streetOne, streetTwo, floor, apartment, 
 				postalCode, locality, neighborhood, province, country);
+	}
+
+	public int getKey() {
+		return key;
+	}
+
+	//TODO: Borrar cuando este la DB
+	public void setKey(int key) {
+		this.key = key;
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
@@ -99,6 +109,10 @@ public abstract class POI
 
 	public void setTags(String tags) {
 		this.tags = tags;
-	}	
+	}
+
+	public String getType() {
+		return this.getType();
+	}
 	
 }

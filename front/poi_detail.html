@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POI Detail</title>
+</head>
+<body>
+
+    <div id="poisDetail"></div>
+
+
+
+    <script id="poisDetailTemplate" type="text/x-handlebars-template">
+        <div>Detalle</div>
+        <table>
+            <tr>
+                <td>key</td>
+                <td>{{key}}</td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>{{name}}</td>
+            </tr>
+            <tr>
+                <td>latitude</td>
+                <td>{{coordenate.latitude}}</td>
+            </tr>
+            <tr>
+                <td>longitude</td>
+                <td>{{coordenate.longitude}}</td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td>{{address}}</td>
+            </tr>
+            <tr>
+                <td>tags</td>
+                <td>{{tags}}</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>{{type}}</td>
+            </tr>
+        </table>
+    </script>
+
+
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+    <script src="js/poi_detail.js"></script>
+
+</body>
+</html>

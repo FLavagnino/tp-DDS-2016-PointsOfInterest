@@ -7,6 +7,8 @@ public class Historical implements Searcher
 	private Timer timer;
 	private HistoricalManager historicalManager;
 
+	private int searchKey;
+
 	public Historical() 
 	{
 		this.timer = new Timer();
@@ -17,14 +19,18 @@ public class Historical implements Searcher
 	public SearchResult search(String filter, String userName) 
 	{
 		SearchResult searchResult = timer.search(filter, userName);
-		
-		historicalManager.saveSearch(
-							new HistoricalSearch(userName, 
-													filter, 
-													searchResult.getPois().size(), 
-													searchResult.getTime())
-							);
-		
+
+		HistoricalSearch historicalSearch = new HistoricalSearch(
+				userName, filter, searchResult.getPois().size(), searchResult.getTime());
+		historicalSearch.setSearchResult(searchResult);
+		historicalSearch.setSearchKey(searchKey);
+
+		historicalManager.saveSearch(historicalSearch);
+
 		return searchResult;
+	}
+
+	public void setSearchKey(int searchKey) {
+		this.searchKey = searchKey;
 	}
 }

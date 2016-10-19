@@ -4,8 +4,10 @@ import org.joda.time.*;
 import ar.edu.utn.dds.poi.constant.*;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
-public class Bank extends POI 
-{		
+public class Bank extends POI
+{
+	protected final static String TYPE = "bank";
+
 	public Bank(String name, Coordenate coordenate, String tags) 
 	{
 		super(name, coordenate, tags);
@@ -67,5 +69,9 @@ public class Bank extends POI
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		return (meters < Constant.BANK_ISCLOSERTO_DIST);
+	}
+
+	public String getType() {
+		return TYPE;
 	}
 }
