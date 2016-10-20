@@ -1,36 +1,52 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>POI Search - TP DDS 2016 - UTN FRBA </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title> TP DDS 2016 - UTN FRBA </title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-    <div class="content">
-        <div class="input-search">
-            <form>
-                <table id="inputTable">
-                    <tr>
-                        <td>
-                            <input type="text" class="inputKeyWord" value="rio">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        <div class="add-poi">
-            <input type="button" value="Add" id="add">
-        </div>
-        <div class="search-poi">
-            <input type="button" value="Search" id="search" class="available">
-        </div>
-    </div>
-    <div id="poisResult"></div>
-
-
-
-
-
-    <script id="poisResultTemplate" type="text/x-handlebars-template">
+<div id="logo">
+	<h1><a href="#">POI of interest	</a></h1>
+	<p><em> TP DDS 2016 - UTN FRBA </a></em></p>
+</div><hr />
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li><a href="poi_search.html" class="first">Search poi</a></li>
+			<li class="current_page_item"><a href="historical_search.html">Historical search</a></li>
+			<li><a href="tp-DDS-2016-PointsOfInterest\pointOfInterestWeb\WebContent\login.xhtml">Login</a></li>
+		</ul>
+	</div>
+</div>
+<div id="page"><div class="inner_copy"></div>
+	<div id="content">
+		<div class="post">
+			<h2 class="title"><a href="#">Search POIS </a></h2>
+			<div class="entry">
+                            <div class="input-search">
+                                <form>
+                                    <table id="inputTable">
+                                        <tr>
+                                            <td>
+                                                <input type="text" class="inputKeyWord" value="rio">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                                <div class="button-content">
+                                    <div class="add-poi">
+                                        <input type="button" value="Add" id="add">
+                                    </div>
+                                    <div class="search-poi">
+                                        <input type="button" value="Search" id="search" class="available">
+                                    </div>
+                                </div>
+                        <div id="poisResult"></div>
+                         <script id="poisResultTemplate" type="text/x-handlebars-template">
         <div>Resultados</div>
         <table>
             <tr>
@@ -66,5 +82,21 @@
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/poi_search.js"></script>
+			</div>
+		</div>
+	</div>
+	<div id="sidebar">
+		<ul>
+        
+			<li>
+				<h2>Search POI</h2>
+				<p>UTN FRBA - DDS 2016.</p>
+			</li>
+			
+		</ul>
+	</div>
+	<div style="clear:both">&nbsp;</div>
+</div>
+<div id="footer"><div class="fleft"><p>Copyright TP 2016 DDS UTN - FRBA.</p></div><div class="fright"><p></p></div><div class="fcenter"><p>Design by: UTN FRBA - DDS 2016 </p></div><div class="fclear"></div></div>
 </body>
 </html>
