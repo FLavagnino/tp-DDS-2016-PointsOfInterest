@@ -16,7 +16,7 @@ var init = function() {
             data: data,
         }).done(function(response) {
             $("#login-box")[0].style.display = "none";
-            $("#search-box")[0].style.display = "block";
+            $("#page")[0].style.display = "block";
         });
         $("#button-login").addClass('available-login');
     });
@@ -31,6 +31,24 @@ var init = function() {
         event.preventDefault();
         var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"></td></tr>";
         $("#inputTable").append(newInput);
+    });
+
+    $("#search-link").click(function(){
+        $("#login-box")[0].style.display = "none";
+        $("#page")[0].style.display = "block";
+        $("#historical-box")[0].style.display = "none";
+    });
+
+    $("#historical-link").click(function(){
+        $("#login-box")[0].style.display = "none";
+        $("#page")[0].style.display = "none";
+        $("#historical-box")[0].style.display = "block";
+    });
+
+    $("#login-link").click(function(){
+        $("#login-box")[0].style.display = "block";
+        $("#page")[0].style.display = "none";
+        $("#historical-box")[0].style.display = "none";
     });
 
     $("input.available").click(function(){
@@ -70,10 +88,66 @@ var init = function() {
         $("#search").addClass('available');
     });
 
+    $("input.available-historical-search").click(function(){
+        event.preventDefault();
+        $("#button-historical-search").removeClass('available-historical-search');
+        $("#historicalSearch").empty();
+
+        var inputUser = $("#input-historical-user")[0].value;
+        var inputDateFrom = formatDate($("#input-historical-date-from")[0].value);
+        var inputDateTo = formatDate($("#input-historical-date-to")[0].value);
+
+        var url = "";
+        if(inputUser != "") {
+            url = getHistoricalUserUrl(inputUser);
+        } else {
+            url = getHistoricalDateUrl(inputDateFrom, inputDateTo);
+        }
+
+        var headers = "";
+        headers = headers.concat("{\"user\":\"",userName,"\"}");
+
+        $.ajax({
+            type: "POST",
+            data: headers,
+            url: url,
+        }).done(function(searchData) {
+            if(searchData) {
+                if(searchData.historical_search.length != 0) {
+                    showHistoricalSearches(searchData);
+                } else {
+                    alert("No se pudo encontrar ningun dato")
+                }
+            } else {
+                alert("No se obtuvo respuesta de ajax")
+            }
+        });
+        $("#button-historical-search").addClass('available-historical-search');
+    });
+
+
 };
+
+function formatDate(date) {
+    if(date != "") {
+        var splitDateTime = date.split("-");
+        var splitDate = splitDateTime[0].split("/");
+        var splitTime = splitDateTime[1].split(":");
+        return splitDate[0]+"-"+splitDate[1]+"-"+splitDate[2]+"-"+splitTime[0]+"-"+splitTime[1];
+    }
+    return "";
+}
 
 function isValidInput(input) {
     return input != "";
+}
+
+function getHistoricalUserUrl(user) {
+    return "http://localhost:4567/poi/historical/" + user;
+}
+
+function getHistoricalDateUrl(from, to) {
+    return "http://localhost:4567/poi/historical/" + from + "/" + to;
 }
 
 function getSearchUrl(keyword) {
@@ -89,6 +163,13 @@ function showPOIs(searchData) {
     var template = Handlebars.compile(source);
     var html = $(template(searchData));
     html.appendTo("#poisResult");
+}
+
+function showHistoricalSearches(searchData) {
+    var source   = $("#historicalSearchTemplate").html();
+    var template = Handlebars.compile(source);
+    var html = $(template(searchData));
+    html.appendTo("#historicalSearch");
 }
 
 function openDetail(index) {

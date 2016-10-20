@@ -34,15 +34,16 @@ public class PoiController {
                     userName.get("user")));
         });
 
-        get("/poi/historical/:user", (request, response) -> {
+        post("/poi/historical/:user", (request, response) -> {
+            HashMap<String,String> userName = new ObjectMapper().readValue(request.body(), HashMap.class);
             response.type("application/json");
-
             return jsonFactory.toJson(Formatter.historicalSearchToDTO(
                     historicalManager.getSearches(
                             request.params("user"))));
         });
 
-        get("/poi/historical/:dateFrom/:dateTo", (request, response) -> {
+        post("/poi/historical/:dateFrom/:dateTo", (request, response) -> {
+            HashMap<String,String> userName = new ObjectMapper().readValue(request.body(), HashMap.class);
             response.type("application/json");
             return jsonFactory.toJson(Formatter.historicalSearchToDTO(
                     historicalManager.getSearches(

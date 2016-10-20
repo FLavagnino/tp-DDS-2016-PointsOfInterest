@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>POI Search - TP DDS 2016 - UTN FRBA </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title> TP DDS 2016 - UTN FRBA </title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+
+    <div id="logo">
+        <h1><a href="#">POI of interest	</a></h1>
+        <p><em> TP DDS 2016 - UTN FRBA </a></em></p>
+    </div><hr />
+    <div id="header">
+        <div id="menu">
+            <ul>
+                <li><a id="search-link" class="first">Search poi</a></li>
+                <li class="current_page_item"><a id="historical-link">Historical search</a></li>
+                <li><a id="login-link">Login</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
     <div id="login-box">
         <div>User</div>
         <div>
@@ -23,30 +46,103 @@
 
 
 
-    <div class="content" id="search-box" >
-        <div class="input-search">
-            <form>
-                <table id="inputTable">
-                    <tr>
-                        <td>
-                            <input type="text" class="inputKeyWord" value="rio">
-                        </td>
-                    </tr>
-                </table>
-            </form>
+
+
+
+
+
+
+
+    <div id="page" style="display: none"><div class="inner_copy"></div>
+        <div id="content">
+            <div class="post">
+                <h2 class="title"><a href="#">Search POIS </a></h2>
+                <div class="entry">
+                    <div class="input-search">
+                        <form>
+                            <table id="inputTable">
+                                <tr>
+                                    <td>
+                                        <input type="text" class="inputKeyWord" value="rio">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                        <div class="button-content">
+                            <div class="add-poi">
+                                <input type="button" value="Add" id="add">
+                            </div>
+                            <div class="search-poi">
+                                <input type="button" value="Search" id="search" class="available">
+                            </div>
+                        </div>
+                    <div id="poisResult"></div>
+                </div>
+            </div>
         </div>
-        <div class="add-poi">
-            <input type="button" value="Add" id="add">
+        <div id="sidebar">
+            <ul>
+                <li>
+                    <h2>Search POI</h2>
+                    <p>UTN FRBA - DDS 2016.</p>
+                </li>
+            </ul>
         </div>
-        <div class="search-poi">
-            <input type="button" value="Search" id="search" class="available">
+        <div style="clear:both">&nbsp;</div>
+    </div>
+
+
+
+
+    <div id="historical-box" style="display: none">
+
+        <div>
+            <div>User</div>
+            <div>
+                <input type="text" id="input-historical-user" placeholder="Insert user" value="FACUNDO">
+            </div>
+            <div>Date</div>
+            <div>
+                <input type="text" id="input-historical-date-from" placeholder="Insert form date (aaaa/mm/dd-hh:mm)" value="2016/10/20-18:11">
+            </div>
+            <div>
+                <input type="text" id="input-historical-date-to" placeholder="Insert to date (aaaa/mm/dd-hh:mm)" value="2016/10/20-18:11">
+            </div>
+            <div >
+                <input type="button" value="Search" id="button-historical-search" class="available-historical-search">
+            </div>
+        </div>
+        <div>
+            <div id="historicalSearch"></div>
         </div>
     </div>
-    <div id="poisResult"></div>
 
 
 
 
+
+
+
+
+
+
+    <div id="footer">
+        <div class="fleft">
+            <p>Copyright TP 2016 DDS UTN - FRBA.</p>
+        </div>
+        <div class="fright">
+            <p>
+
+            </p>
+        </div>
+        <div class="fcenter">
+            <p>Design by: UTN FRBA - DDS 2016 </p>
+        </div>
+        <div class="fclear">
+
+        </div>
+    </div>
 
     <script id="poisResultTemplate" type="text/x-handlebars-template">
         <div>Resultados</div>
@@ -56,32 +152,75 @@
                 <th>Direccion</th>
             </tr>
             {{#each pois}}
-                <tr onclick="openDetail({{@index}})">
-                    <td>{{name}}</td>
-                    <td>{{address}}</td>
-                    <div class="poiDetail" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);" >
-                        <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
-                            {{#if (isBusStopType type)}}
-                                <div>{{name}}</div>
-                            {{else if (isBankType type)}}
-                                <div>{{address}}</div>
-                            {{else if (isCGPType type)}}
-                                <div>{{address}}</div>
-                            {{else if (isShopType type)}}
-                                <td>{{name}}</td>
-                                <div>{{address}}</div>
-                            {{/if}}
-                        </div>
+            <tr onclick="openDetail({{@index}})">
+                <td>{{name}}</td>
+                <td>{{address}}</td>
+                <div class="poiDetail" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);" >
+                    <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+                        {{#if (isBusStopType type)}}
+                            <div>{{name}}</div>
+                            <div>{{unit}}</div>
+                            <div>{{coordenate.latitude}}</div>
+                            <div>{{coordenate.longitude}}</div>
+                            <div>{{address}}</div>
+                            <div>{{tags}}</div>
+                            <div>{{type}}</div>
+                        {{else if (isBankType type)}}
+                            <div>{{name}}</div>
+                            <div>{{unit}}</div>
+                            <div>{{coordenate.latitude}}</div>
+                            <div>{{coordenate.longitude}}</div>
+                            <div>{{address}}</div>
+                            <div>{{tags}}</div>
+                            <div>{{type}}</div>
+                        {{else if (isCGPType type)}}
+                            <div>{{name}}</div>
+                            <div>{{unit}}</div>
+                            <div>{{coordenate.latitude}}</div>
+                            <div>{{coordenate.longitude}}</div>
+                            <div>{{address}}</div>
+                            <div>{{tags}}</div>
+                            <div>{{type}}</div>
+                        {{else if (isShopType type)}}
+                            <div>{{name}}</div>
+                            <div>{{unit}}</div>
+                            <div>{{coordenate.latitude}}</div>
+                            <div>{{coordenate.longitude}}</div>
+                            <div>{{address}}</div>
+                            <div>{{tags}}</div>
+                            <div>{{type}}</div>
+                        {{/if}}
                     </div>
-                </tr>
+                </div>
+            </tr>
             {{/each}}
         </table>
     </script>
 
-
+    <script id="historicalSearchTemplate" type="text/x-handlebars-template">
+        <div>Resultados</div>
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Parametros</th>
+                <th>POIs</th>
+            </tr>
+            {{#each pois}}
+            <tr>
+                <td>{{date}}</td>
+                <td>{{user_name}}</td>
+                <td>{{filter}}</td>
+                <td>{{results_number}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </script>
 
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/poi_search.js"></script>
+
+
 </body>
 </html>
