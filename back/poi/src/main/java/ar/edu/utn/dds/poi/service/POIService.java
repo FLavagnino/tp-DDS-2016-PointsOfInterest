@@ -106,13 +106,6 @@ public class POIService implements Searcher
 			}
 		}
 		result.addAll(externalPOIService.getExternalPois(filter));
-
-		//TODO: Borrar cuando este la DB
-		int keySeed = 0;
-		for(POI poi : result) {
-			poi.setKey(keySeed);
-			keySeed++;
-		}
 		
 		return new SearchResult(result);
 	}
@@ -144,10 +137,6 @@ public class POIService implements Searcher
 		}
 	}
 
-	public POI getPoi(int key, int searchKey) {
-		return HistoricalManager.getInstance().getPoi(key, searchKey);
-	}
-	
 	public void addPoi(POI poi) throws InvalidPoiException 
 	{
 //		if (this.isValid(poi))

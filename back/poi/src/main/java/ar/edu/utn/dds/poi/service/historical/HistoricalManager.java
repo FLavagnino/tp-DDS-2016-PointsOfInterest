@@ -39,16 +39,4 @@ public class HistoricalManager
 		this.searches = searches;
 	}
 
-	public POI getPoi(int key, int searchKey) {
-		for (HistoricalSearch historicalSearch : this.getSearches()) {
-			if(historicalSearch.getSearchKey() == searchKey) {
-				for(POI poi : historicalSearch.getSearchResult().getPois()) {
-					if(poi.getKey() == key) {
-						return poi;
-					}
-				}
-			}
-		}
-		return null;
-	}
 }
