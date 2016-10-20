@@ -6,24 +6,25 @@
 	margin: 0 auto;
 	text-align:center;
 	margin-top:20%;
+	display: none;
 }
 
 .input-search{
-	style=float: left; 
+	float: left;
 	width: 40%; 
 	height: 100px; 
 	background-color: yellow;
 	float: left;
 }
 .add-poi{
-	style=float: left;
+	float: left;
 	width: 30%; 
 	height: 100px; 
 	background-color: blue;
 	float:right;
 }
 .search-poi{
-	style=float: right; 
+	float: right;
 	width: 30%; 
 	height: 100px; 
 	background-color: aqua;

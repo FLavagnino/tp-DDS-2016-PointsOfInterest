@@ -1,11 +1,14 @@
 package ar.edu.utn.dds.poi.controller;
 
+import ar.edu.utn.dds.poi.auth.AuthManager;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchDTO;
 import ar.edu.utn.dds.poi.service.Historical;
 import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 import ar.edu.utn.dds.poi.utils.Formatter;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static spark.Spark.*;
@@ -21,16 +24,14 @@ public class PoiController {
         jsonFactory = new JsonFactory();
         historicalManager = HistoricalManager.getInstance();
 
-        get("/poi/search/:keyword", (request, response) -> {
-            //TODO: colocar user de login y voletear esto de abajo
-            String userName = "lala";
-            response.cookie("user", userName);
+        post("/poi/search/:keyword", (request, response) -> {
+            HashMap<String,String> userName = new ObjectMapper().readValue(request.body(), HashMap.class);
 
             response.type("application/json");
 
             return jsonFactory.toJson(searcher.search(
                     Formatter.keywordToFilter(request.params("keyword")),
-                    userName));
+                    userName.get("user")));
         });
 
         get("/poi/historical/:user", (request, response) -> {
@@ -49,5 +50,9 @@ public class PoiController {
                             Formatter.stringToDateTime(request.params("dateTo")))));
         });
 
+        post("/poi/login", (request, response) -> {
+            HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
+            return AuthManager.getInstance().login(user.get("user"), user.get("pass"));
+        });
     }
 }
