@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.content{
+	width: 70%;
+	margin: 0 auto;
+	text-align:center;
+	margin-top:20%;
+}
+
+.input-search{
+	style=float: left; 
+	width: 40%; 
+	height: 100px; 
+	background-color: yellow;
+	float: left;
+}
+.add-poi{
+	style=float: left;
+	width: 30%; 
+	height: 100px; 
+	background-color: blue;
+	float:right;
+}
+.search-poi{
+	style=float: right; 
+	width: 30%; 
+	height: 100px; 
+	background-color: aqua;
+	float:right;
+}
