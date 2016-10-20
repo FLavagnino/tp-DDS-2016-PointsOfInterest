@@ -3,7 +3,6 @@ package ar.edu.utn.dds.poi.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 import org.joda.time.DateTime;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Historical Search</title>
+</head>
+<body>
+<div style="width: 60%;">
+    <div style="float: left; width: 40%; height: 100px; background-color: blueviolet">
+        <form>
+            <table id="inputTable">
+                <tr>
+                    <td>
+                        <input type="text" class="inputKeyWord" value="rio">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div style="float: left; width: 30%; height: 100px; background-color: blue">
+        <input type="button" value="Add" id="add">
+    </div>
+    <div style="float: right; width: 30%; height: 100px; background-color: aqua">
+        <input type="button" value="Search" id="search" class="available">
+    </div>
+</div>
+<div id="poisResult"></div>
+
+
+
+
+
+<script id="poisResultTemplate" type="text/x-handlebars-template">
+    <div>Resultados</div>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+        </tr>
+        {{#each pois}}
+        <tr onclick="openDetail({{@index}})">
+            <td>{{@index}}</td>
+            <td>{{name}}</td>
+            <td>{{address}}</td>
+            <div class="poiDetail" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);" >
+                <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+                    {{#if (isBusStopType type)}}
+                    <div>{{name}}</div>
+                    {{else if (isBankType type)}}
+                    <div>{{address}}</div>
+                    {{else if (isCGPType type)}}
+                    <div>{{address}}</div>
+                    {{else if (isShopType type)}}
+                    <td>{{name}}</td>
+                    <div>{{address}}</div>
+                    {{/if}}
+                </div>
+            </div>
+        </tr>
+        {{/each}}
+    </table>
+</script>
+
+
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/handlebars-v4.0.5.js"></script>
+<script src="js/historical_search.js"></script>
+</body>
+</html>
