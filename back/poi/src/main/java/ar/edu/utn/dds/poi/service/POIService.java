@@ -92,6 +92,8 @@ public class POIService implements Searcher
 	
 	public SearchResult search(String filter)
 	{
+		String[] filters = filter.split(" ");
+
 		List<POI> result = new ArrayList<POI>();
 		
 		// Se agregan los pois externos.
@@ -99,9 +101,11 @@ public class POIService implements Searcher
 						
 		for(POI poi : poiList)
 		{
-			if (poi.matchFilter(filter))
-			{
-				result.add(poi);
+			for(String f : filters) {
+				if (poi.matchFilter(f))
+				{
+					result.add(poi);
+				}
 			}
 		}
 		result.addAll(externalPOIService.getExternalPois(filter));

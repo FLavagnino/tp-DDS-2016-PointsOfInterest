@@ -28,14 +28,14 @@
 
 
 
-    <div id="login-box">
+    <div id="login-box" style="width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 50px">
         <div>User</div>
         <div>
-            <input type="text" id="input-user" placeholder="Insert your user" value="FACUNDO">
+            <input type="text" id="input-user" placeholder="Insert your user">
         </div>
         <div>Password</div>
         <div>
-            <input type="text" id="input-pass" placeholder="Insert your password" value="123123">
+            <input type="text" id="input-pass" placeholder="Insert your password">
         </div>
         <div >
             <input type="button" value="Login" id="button-login" class="available-login">
@@ -53,7 +53,7 @@
 
 
 
-    <div id="page" style="display: none"><div class="inner_copy"></div>
+    <div id="page" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 50px"><div class="inner_copy"></div>
         <div id="content">
             <div class="post">
                 <h2 class="title"><a href="#">Search POIS </a></h2>
@@ -63,7 +63,7 @@
                             <table id="inputTable">
                                 <tr>
                                     <td>
-                                        <input type="text" class="inputKeyWord" value="rio">
+                                        <input type="text" class="inputKeyWord">
                                     </td>
                                 </tr>
                             </table>
@@ -81,33 +81,26 @@
                 </div>
             </div>
         </div>
-        <div id="sidebar">
-            <ul>
-                <li>
-                    <h2>Search POI</h2>
-                    <p>UTN FRBA - DDS 2016.</p>
-                </li>
-            </ul>
-        </div>
+
         <div style="clear:both">&nbsp;</div>
     </div>
 
 
 
 
-    <div id="historical-box" style="display: none">
+    <div id="historical-box" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 50px">
 
         <div>
             <div>User</div>
             <div>
-                <input type="text" id="input-historical-user" placeholder="Insert user" value="FACUNDO">
+                <input type="text" id="input-historical-user" placeholder="Insert user">
             </div>
             <div>Date</div>
             <div>
-                <input type="text" id="input-historical-date-from" placeholder="Insert form date (aaaa/mm/dd-hh:mm)" value="2016/10/20-18:11">
+                <input type="text" id="input-historical-date-from" placeholder="form date (aaaa/mm/dd-hh:mm)">
             </div>
             <div>
-                <input type="text" id="input-historical-date-to" placeholder="Insert to date (aaaa/mm/dd-hh:mm)" value="2016/10/20-18:11">
+                <input type="text" id="input-historical-date-to" placeholder="to date (aaaa/mm/dd-hh:mm)">
             </div>
             <div >
                 <input type="button" value="Search" id="button-historical-search" class="available-historical-search">
@@ -206,7 +199,7 @@
                 <th>Parametros</th>
                 <th>POIs</th>
             </tr>
-            {{#each pois}}
+            {{#each historical_search}}
             <tr>
                 <td>{{date}}</td>
                 <td>{{user_name}}</td>

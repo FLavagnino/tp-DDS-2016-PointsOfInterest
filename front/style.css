@@ -41,7 +41,7 @@ hr {display:none}
 #search-text {width:150px;height:18px;padding:3px 0 0 5px;border:1px solid #333;background:#ECF9E4;color:#000}
 #search-submit {height:21px;margin-left:10px;padding:0 5px;background:#2A4345;border:1px solid #5F817E;color:#fff}
 /* Page */
-#page {width:920px;margin:0 auto;padding:20px 30px 0 30px;background:#fff}
+#page {width:920px;margin:0 auto;padding:20px 30px 0 30px;}
 /* LOGO */
 #logo {width:940px;height:80px;margin:0 auto;padding-left:20px}
 #logo h1, #logo p {margin:0;line-height:normal;text-transform:lowercase;font-weight:normal;color:#fff}
@@ -92,13 +92,7 @@ input[type="button"]:active{
   box-shadow: 0px 2px 0px 0px #2980B9;
  }
 
-.add-poi{
 
-background: white;
-}
-.search-poi{
-background: white;
-}
 .button-content{
 float:right;
 }
