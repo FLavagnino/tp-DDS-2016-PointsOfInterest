@@ -21,10 +21,10 @@ public class Entrega5Test
         
         session.beginTransaction();
  
-        User user = new Terminal();
+        User user = new User();
         user.setUserName("luis");
         user.setPassword("1234");
-        user.setUserId(1);
+//        user.setUserId(1);
         
         session.save(user);
       

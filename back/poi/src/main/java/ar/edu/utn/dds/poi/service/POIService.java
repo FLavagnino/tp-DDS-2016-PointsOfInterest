@@ -124,15 +124,15 @@ public class POIService implements Searcher
 		
 		if (user != null)
 		{	
-			if (user.getAuditMode())
-			{
+			//if (user.getAuditMode())
+			//{
 				Audit auditSearch = new Audit();
 				return auditSearch.search(filter, userName);
-			}
-			else
-			{
-				return this.search(filter);
-			}
+			//}
+			//else
+			//{
+			//	return this.search(filter);
+			//}
 		}
 		else
 		{
