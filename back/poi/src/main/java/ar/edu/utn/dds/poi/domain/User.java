@@ -1,11 +1,17 @@
 package ar.edu.utn.dds.poi.domain;
 
 import java.util.ArrayList;
-
 import ar.edu.utn.dds.poi.constant.Actions;
+import javax.persistence.*;
 
+@Entity
+@Table
 public abstract class User 
 {
+    @Id
+    @GeneratedValue
+    private Long id;
+    
 	private int userId;
 	private String userName;
 	private String password;
@@ -81,10 +87,8 @@ public abstract class User
 		return this.actionList;
 	}
 	
-	public void setActionList(ArrayList<Actions> actionList){
-		
-		this.actionList = actionList;
-		
+	public void setActionList(ArrayList<Actions> actionList)
+	{	
+		this.actionList = actionList;	
 	}
-	
 }
