@@ -26,7 +26,7 @@ hr {display:none}
 #header-wrapper {}
 #header {width:920px;height:90px;margin:0 auto;padding:0 30px;background:url(images/img02.jpg) no-repeat left top}
 /* Menu */
-#menu {float:left;width:600px;height:90px}
+#menu {float:left;width:650px;height:90px}
 #menu ul {margin:0;padding:20px 0 0 0;list-style:none;line-height:normal}
 #menu li {display:block;float:left}
 #menu a {display:block;float:left;height:32px;padding:14px 20px 0 20px;letter-spacing:-1px;text-decoration:none;text-align:center;text-transform:lowercase;font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;font-size:22px;font-weight:normal;color:#fff}

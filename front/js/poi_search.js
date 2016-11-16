@@ -45,6 +45,10 @@ var init = function() {
         $("#historical-box")[0].style.display = "block";
     });
 
+    $("#action-link").click(function(){
+        $("#login-box")[0].style.display = "none";
+    });
+
     $("#login-link").click(function(){
         $("#login-box")[0].style.display = "block";
         $("#page")[0].style.display = "none";
