@@ -1,5 +1,6 @@
 package ar.edu.utn.dds.poi.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.process.*;
 import ar.edu.utn.dds.poi.process.jobs.*;
+import ar.edu.utn.dds.poi.repository.UserRepository;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
 
@@ -320,5 +322,23 @@ public class POIService implements Searcher
 
 		// Finaliza el planificador
 		scheduler.shutdown();
+	}
+	
+	public Serializable saveUser(User user)
+	{
+		UserRepository userRep = new UserRepository();
+		return userRep.save(user);
+	}
+	
+	public void updateUser(User user)
+	{
+		UserRepository userRep = new UserRepository();
+		userRep.update(user);
+	}
+	
+	public User getUser(Serializable userID)
+	{
+		UserRepository userRep = new UserRepository();
+		return userRep.get(userID);
 	}
 }

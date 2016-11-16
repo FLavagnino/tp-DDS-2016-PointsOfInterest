@@ -21,6 +21,6 @@
     <property name="current_session_context_class">thread</property>
  
     <mapping class="ar.edu.utn.dds.poi.domain.User" />
- 
+    <mapping class="ar.edu.utn.dds.poi.domain.Action" /> 
 </session-factory>
 </hibernate-configuration>

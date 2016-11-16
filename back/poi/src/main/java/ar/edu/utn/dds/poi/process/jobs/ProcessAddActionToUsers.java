@@ -41,7 +41,7 @@ public class ProcessAddActionToUsers extends ProcessPoi
 
 		while (iter.hasNext())
 		{
-			terminal.getActionList().add((Actions) iter.next());
+			// TODO terminal.getActionList().add((Actions) iter.next());
 			System.out.println(Constant.ACTION_ADDED_TO_USER);
 		}
 		
@@ -51,9 +51,10 @@ public class ProcessAddActionToUsers extends ProcessPoi
 	
 	private void listActions()
 	{
-		for (Actions action : terminal.getActionList())
-		{
-			System.out.println("Action: " + action.toString());
-		}
+		// TODO
+//		for (Actions action : terminal.getActionList())
+//		{
+//			System.out.println("Action: " + action.toString());
+//		}
 	}
 }
