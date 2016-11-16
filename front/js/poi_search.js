@@ -38,6 +38,7 @@ var init = function() {
         $("#page")[0].style.display = "block";
         $("#historical-box")[0].style.display = "none";
                 $("#actions")[0].style.display = "none";
+
     });
 
     $("#historical-link").click(function(){
