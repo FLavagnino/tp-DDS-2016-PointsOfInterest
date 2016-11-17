@@ -21,6 +21,7 @@ import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.process.*;
 import ar.edu.utn.dds.poi.process.jobs.*;
+import ar.edu.utn.dds.poi.repository.LogRepository;
 import ar.edu.utn.dds.poi.repository.POIRepository;
 import ar.edu.utn.dds.poi.repository.UserRepository;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
@@ -387,5 +388,11 @@ public class POIService implements Searcher
 	{
 		POIRepository poiRep = new POIRepository();
 		poiRep.deleteBank(bank);
+	}
+	
+	public Log getLog(Serializable logID)
+	{
+		LogRepository logRep = new LogRepository();
+		return logRep.getLog(logID);
 	}
 }

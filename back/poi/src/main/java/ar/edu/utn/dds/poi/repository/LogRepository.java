@@ -6,33 +6,33 @@ import ar.edu.utn.dds.poi.domain.Log;
 
 public class LogRepository 
 {
-	public Serializable saveHistoricalSearch(Log historicalSearch)
+	public Serializable saveHistoricalSearch(Log log)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         
         session.beginTransaction();
-        Serializable historicalSearchID = session.save(historicalSearch);
+        Serializable logID = session.save(log);
         session.getTransaction().commit();
         session.close();
         
-        return historicalSearchID;
+        return logID;
 	}
 	
-	public void update(Log historicalSearch)
+	public void update(Log log)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
-        session.update(historicalSearch);
+        session.update(log);
         session.getTransaction().commit();
         session.close();
 	}
 	
-	public Log getHistoricalSearch(Serializable historicalSearchID)
+	public Log getLog(Serializable logID)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
-        Log historicalSearch = session.get(Log.class, historicalSearchID);
+        Log log = session.get(Log.class, logID);
         session.close();
         
-        return historicalSearch;
+        return log;
 	}
 }

@@ -48,7 +48,7 @@ public class Log implements Serializable
 		return id;
 	}
 	
-    @OneToMany(mappedBy="historicalSearch", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="log", cascade = CascadeType.ALL)
 	public List<LogResult> getResults()
 	{
 		return results;

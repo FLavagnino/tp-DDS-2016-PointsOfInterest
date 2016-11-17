@@ -8,7 +8,7 @@ public class LogResult implements Serializable
 {
 	private Long id;
 	private String poiName;
-	private Log historicalSearch;
+	private Log log;
 	
 	public LogResult()
 	{
@@ -32,10 +32,9 @@ public class LogResult implements Serializable
 	}
 	
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name="historical_search_id", referencedColumnName = "id")
-	public Log getHistoricalSearch()
+	public Log getLog()
 	{
-		return historicalSearch;
+		return log;
 	}
 	
 	// Setters
@@ -49,8 +48,8 @@ public class LogResult implements Serializable
 		this.poiName = poiName;
 	}
 	
-	public void setHistoricalSearch(Log historicalSearch)
+	public void setLog(Log log)
 	{
-		this.historicalSearch = historicalSearch;
+		this.log = log;
 	}
 }
