@@ -1,30 +1,45 @@
 package ar.edu.utn.dds.poi.domain;
 
-import java.util.ArrayList;
-import ar.edu.utn.dds.poi.constant.Actions;
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table
-public class User 
+public class User implements Serializable
 {
-    @Id
-    @GeneratedValue
-    private Long id;
-    
-	//private int userId;
+    private Long id;   
 	private String userName;
 	private String password;
-	//private String email;
-	//private String token;
-	//private Boolean auditMode;
-	//private ArrayList<Actions> actionList;
+	private String email;
+	private String token;
+	private Boolean auditMode;
+	private List<Action> actions;
 	
 	public User()
 	{
-		//this.actionList = new ArrayList<Actions>();
-		//actionList.add(Actions.SEARCH);
 	}
+	
+    @Id @GeneratedValue
+    public Long getId()
+    {
+    	return id;
+    }
+    
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    public List<Action> getActions() 
+    { 
+    	return actions; 
+    }
+    
+    public void setId(Long id)
+    {
+    	this.id = id;
+    }
+       
+    public void setActions(List<Action> actions) 
+    { 
+    	this.actions = actions; 
+    }
 	
 	public String getUserName()
 	{
@@ -36,15 +51,15 @@ public class User
 		return this.password;
 	}
 	
-//	public String getToken()
-//	{
-//		return this.token;
-//	}
+	public String getToken()
+	{
+		return this.token;
+	}
 	
-//	public Boolean getAuditMode()
-//	{
-//		return this.auditMode;
-//	}
+	public Boolean getAuditMode()
+	{
+		return this.auditMode;
+	}
 	
 	public void setUserName(String userName)
 	{
@@ -56,39 +71,24 @@ public class User
 		this.password = password;
 	}
 	
-//	public void setToken(String token)
-//	{
-//		this.token = token;
-//	}
+	public void setToken(String token)
+	{
+		this.token = token;
+	}
 	
-//	public void setAuditMode(Boolean auditMode)
-//	{
-//		this.auditMode = auditMode;
-//	}
-//
-//	public int getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(int userId) {
-//		this.userId = userId;
-//	}
-//
-//	public String getEmail() {
-//		return email;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-//
-//	public ArrayList<Actions> getActionList()
-//	{
-//		return this.actionList;
-//	}
-//
-//	public void setActionList(ArrayList<Actions> actionList)
-//	{
-//		this.actionList = actionList;
-//	}
+
+	public void setAuditMode(Boolean auditMode)
+	{
+		this.auditMode = auditMode;
+	}
+
+	public String getEmail() 
+	{
+		return email;
+	}
+
+	public void setEmail(String email) 
+	{
+		this.email = email;
+	}
 }

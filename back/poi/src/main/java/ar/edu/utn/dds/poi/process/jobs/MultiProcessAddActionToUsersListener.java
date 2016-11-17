@@ -14,7 +14,7 @@ public class MultiProcessAddActionToUsersListener extends ProcessListener implem
 	@Override
 	protected void rollback(ArrayList<Actions> list, Terminal term)
 	{	
-		term.setActionList(list);	
+		// TODO term.setActionList(list);	
 		System.out.println(Constant.ROLLBACK_DONE);
 	}
 	

@@ -1,5 +1,8 @@
 package ar.edu.utn.dds.poi.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
@@ -7,11 +10,18 @@ import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
+@Entity
+@PrimaryKeyJoinColumn(name="poi_id")
 public class Shop extends POI
 {
-	protected final static String TYPE = "shop";
+	private String type;
 
 	protected Category category;
+	
+	public Shop()
+	{
+		this.type = "shop";
+	}
 	
 	public Shop(String name, Coordenate coordenate, Category category, String tags) 
 	{
@@ -22,6 +32,11 @@ public class Shop extends POI
 	public Shop(String name, String tags) 
 	{
 		super(name, null, tags);
+	}
+	
+	public String getType() 
+	{
+		return type;
 	}
 	
 	public Category getShopCategory()
@@ -101,9 +116,5 @@ public class Shop extends POI
 	{
 		int radius = this.category.getDistance();
 		return (meters < radius);
-	}
-
-	public String getType() {
-		return TYPE;
 	}
 }

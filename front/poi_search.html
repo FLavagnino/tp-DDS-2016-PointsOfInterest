@@ -18,6 +18,7 @@
             <ul>
                 <li><a id="search-link" class="first">Search poi</a></li>
                 <li class="current_page_item"><a id="historical-link">Historical search</a></li>
+                <li><a id="action-link">Acciones de consulta</a></li>
                 <li><a id="login-link">Login</a></li>
             </ul>
         </div>
@@ -25,6 +26,30 @@
 
 
 
+<div id="actions" style="width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 50px; display: none;">
+	<div>
+		Acciones ante la Búsqueda.
+
+	</div>
+		<select id="actions">
+			<option value="report">report</option>
+			<option value="resportpoi">resportpoi</option>
+			<option value="adduser">adduser</option>
+				<div class="button-content">
+	                            <div class="add-poi">
+	                                <input type="button" value="Add" id="add">
+	                            </div>
+	            </div>
+		</select>
+     
+     <!--  
+        VER POR QUE NO DESAPARECE 
+     <div class="hola">
+        <input type="button" value="cancel" id="add">
+        <input type="button" value="ok" id="add">
+       </div>
+    -->
+</div>
 
 
 
@@ -209,6 +234,21 @@
             {{/each}}
         </table>
     </script>
+
+    <script id="actionsList" type="text/x-handlebars-template">
+        <div>Resultados acciones</div>
+        <table>
+            <tr>
+                <th>Nombre accion uno</th>
+                <th>Nombre accion dos</th>
+                <th>Nombre accion tres</th>
+                <th>Nombre accion cuatro</th>
+            </tr>
+            {{/each}}
+        </table>
+    </script>
+
+
 
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>

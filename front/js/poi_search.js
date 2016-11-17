@@ -37,18 +37,30 @@ var init = function() {
         $("#login-box")[0].style.display = "none";
         $("#page")[0].style.display = "block";
         $("#historical-box")[0].style.display = "none";
+                $("#actions")[0].style.display = "none";
+
     });
 
     $("#historical-link").click(function(){
         $("#login-box")[0].style.display = "none";
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "block";
+                $("#actions")[0].style.display = "none";
+    });
+
+    $("#action-link").click(function(){
+        $("#login-box")[0].style.display = "none";
+        $("#page")[0].style.display = "none";
+        $("#historical-box")[0].style.display = "none";
+        $("#actions")[0].style.display = "block";
+
     });
 
     $("#login-link").click(function(){
-        $("#login-box")[0].style.display = "block";
-        $("#page")[0].style.display = "none";
+        $("#login-box")[0].style.display = "none";
+        $("#page")[0].style.display = "block";
         $("#historical-box")[0].style.display = "none";
+                $("#actions")[0].style.display = "none";
     });
 
     $("input.available").click(function(){

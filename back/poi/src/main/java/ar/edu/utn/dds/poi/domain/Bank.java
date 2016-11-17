@@ -1,16 +1,36 @@
 package ar.edu.utn.dds.poi.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import org.joda.time.*;
 import ar.edu.utn.dds.poi.constant.*;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
+@Entity
+@PrimaryKeyJoinColumn(name="poi_id")
 public class Bank extends POI
 {
-	protected final static String TYPE = "bank";
+	private String type;
 
+	public Bank()
+	{
+		this.type = "bank";
+	}
+	
 	public Bank(String name, Coordenate coordenate, String tags) 
 	{
 		super(name, coordenate, tags);
+	}
+	
+	public String getType()
+	{
+		return type;
+	}
+	
+	public void setType(String type)
+	{
+		this.type = type;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
@@ -69,9 +89,5 @@ public class Bank extends POI
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		return (meters < Constant.BANK_ISCLOSERTO_DIST);
-	}
-
-	public String getType() {
-		return TYPE;
 	}
 }
