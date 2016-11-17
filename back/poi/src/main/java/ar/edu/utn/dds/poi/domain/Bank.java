@@ -21,6 +21,7 @@ public class Bank extends POI
 	public Bank(String name, Coordenate coordenate, String tags) 
 	{
 		super(name, coordenate, tags);
+		this.type = "bank";
 	}
 	
 	public String getType()

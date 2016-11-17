@@ -24,6 +24,7 @@ public class BusStop extends POI
 	{
 		super(name, coordenate, tags);	
 		this.busLine = busLine;
+		this.type = "bus_stop";
 	}
 	
 	public int getBusLine()

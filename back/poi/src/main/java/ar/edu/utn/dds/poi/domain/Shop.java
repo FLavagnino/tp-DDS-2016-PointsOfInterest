@@ -26,12 +26,14 @@ public class Shop extends POI
 	public Shop(String name, Coordenate coordenate, Category category, String tags) 
 	{
 		super(name, coordenate, tags);
-		this.category = category;	
+		this.category = category;
+		this.type = "shop";
 	}
 	
 	public Shop(String name, String tags) 
 	{
 		super(name, null, tags);
+		this.type = "shop";
 	}
 	
 	public String getType() 
