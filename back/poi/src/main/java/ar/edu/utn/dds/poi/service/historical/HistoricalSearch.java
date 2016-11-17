@@ -27,28 +27,28 @@ public class HistoricalSearch
 		this.time = time;
 		this.date = date;
 	}
-	
-	public String getUserName() 
+
+	public String getUserName()
 	{
 		return userName;
 	}
 
-	public String getFilter() 
+	public String getFilter()
 	{
 		return filter;
 	}
 
-	public Integer getResultsNumber() 
+	public Integer getResultsNumber()
 	{
 		return resultsNumber;
 	}
 
-	public long getTime() 
+	public long getTime()
 	{
 		return time;
 	}
-	
-	public DateTime getDate() 
+
+	public DateTime getDate()
 	{
 		return date;
 	}

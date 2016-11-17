@@ -92,14 +92,19 @@ public class POIService implements Searcher
 	
 	public SearchResult search(String filter)
 	{
+		List<POI> result = filterPois(filter, this.poiList);
+
+		result.addAll(externalPOIService.getExternalPois(filter));
+		
+		return new SearchResult(result);
+	}
+
+	public List<POI> filterPois(String filter, List<POI> pois) {
 		String[] filters = filter.split(" ");
 
-		List<POI> result = new ArrayList<POI>();
-		
-		// Se agregan los pois externos.
-		//poiList.addAll(externalPOIService.getExternalPois(filter));
-						
-		for(POI poi : poiList)
+		List<POI> result = new ArrayList<>();
+
+		for(POI poi : pois)
 		{
 			for(String f : filters) {
 				if (poi.matchFilter(f))
@@ -108,9 +113,8 @@ public class POIService implements Searcher
 				}
 			}
 		}
-		result.addAll(externalPOIService.getExternalPois(filter));
-		
-		return new SearchResult(result);
+
+		return result;
 	}
 	
 	public SearchResult search(String filter, String userName)

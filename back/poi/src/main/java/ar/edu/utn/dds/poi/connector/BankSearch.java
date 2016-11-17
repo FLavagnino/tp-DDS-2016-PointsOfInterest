@@ -1,10 +1,10 @@
 package ar.edu.utn.dds.poi.connector;
 
 import java.util.ArrayList;
-import com.fasterxml.jackson.core.type.TypeReference;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.dto.BankServDTO;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 public class BankSearch 
 {		

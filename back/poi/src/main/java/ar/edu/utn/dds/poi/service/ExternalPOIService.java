@@ -7,6 +7,7 @@ import java.util.List;
 import ar.edu.utn.dds.poi.connector.*;
 import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.dto.*;
+import ar.edu.utn.dds.poi.utils.MongoUtil;
 
 public class ExternalPOIService 
 {	
@@ -26,6 +27,19 @@ public class ExternalPOIService
 		pois.addAll(getCGPsAsPois(keyString));
 		return pois;
 	}
+
+	public List<POI> getExternalPoisCached(String keyString)
+	{
+		MongoUtil mongoUtil = new MongoUtil();
+
+		List<POI> pois = new ArrayList<POI>();
+
+		for (String keyword : keyString.split(" ")) {
+			pois.addAll(mongoUtil.getPois(keyword));
+		}
+
+		return pois;
+	}
 	
 	private List<POI> getBanksAsPois(String keyString) 
 	{
@@ -39,11 +53,7 @@ public class ExternalPOIService
 
 		for (BankServDTO bankServDTO : banks) 
 		{
-			Coordenate coordenate = new Coordenate(bankServDTO.getX(), bankServDTO.getY());
-			String tags = String.join(",", bankServDTO.getServicios());
-			Bank bank = new Bank(bankServDTO.getBanco(), coordenate, tags);
-			
-			pois.add(bank);
+			pois.add(bankDTOToPOT(bankServDTO));
 		}
 		
 		return pois;
@@ -60,40 +70,7 @@ public class ExternalPOIService
 
 		for (CGPServDTO cgpServDTO : cgps) 
 		{
-			CGP cgpPOI = new CGP();
-			
-			cgpPOI.setName("Comuna " + cgpServDTO.getComuna().toString());
-			
-			String tags = String.join(",", cgpServDTO.getZonas());
-			cgpPOI.setTags(tags);
-			
-			List<String> services = new ArrayList<String>();
-			
-			for (ServiceDTO service : cgpServDTO.getServicios()) 
-			{
-				String serviceName = service.getNombre();
-				
-				services.add(serviceName);
-				
-				for (HashMap<String, Integer> horario : service.getHorarios())
-				{
-					cgpPOI.addOpeningHour(new OpeningHour(serviceName, 
-													horario.get("diaSemana"), 
-													horario.get("horaDesde"), 
-													horario.get("minutosDesde"), 
-													horario.get("horaHasta"),
-													horario.get("minutosHasta")
-													));
-				}
-			}
-			
-			cgpPOI.setServices(services);
-			
-			// TODO: Set the correct coordenate
-			Coordenate cgpCoord = new Coordenate(0.0, 0.0);	
-			cgpPOI.setCoordenate(cgpCoord);
-
-			pois.add(cgpPOI);
+			pois.add(cgpDTOToPOI(cgpServDTO));
 		}
 		
 		return pois;
@@ -143,5 +120,100 @@ public class ExternalPOIService
 		}
 		
 		return listA;
-	}	
+	}
+
+	public List<POI> getAllBanksAsPois()
+	{
+		List<BankServDTO> banks = bankSearch.getBanks(null, null);
+
+		List<POI> pois = new ArrayList<POI>();
+
+		for (BankServDTO bankServDTO : banks)
+		{
+			pois.add(bankDTOToPOT(bankServDTO));
+		}
+
+		return pois;
+	}
+
+	public List<POI> getAllCGPsAsPois()
+	{
+		List<CGPServDTO> cgps = cgpSearch.getCGPs(null);
+
+		List<POI> pois = new ArrayList<POI>();
+
+		for (CGPServDTO cgpServDTO : cgps)
+		{
+			pois.add(cgpDTOToPOI(cgpServDTO));
+		}
+
+		return pois;
+	}
+
+	private POI bankDTOToPOT(BankServDTO bankServDTO) {
+		Coordenate coordenate = new Coordenate(bankServDTO.getX(), bankServDTO.getY());
+		String tags = String.join(",", bankServDTO.getServicios());
+		return new Bank(bankServDTO.getBanco(), coordenate, tags);
+	}
+
+	private POI cgpDTOToPOI(CGPServDTO cgpServDTO) {
+		CGP cgpPOI = new CGP();
+
+		cgpPOI.setName("Comuna " + cgpServDTO.getComuna().toString());
+
+		String tags = String.join(",", cgpServDTO.getZonas());
+		cgpPOI.setTags(tags);
+
+		List<String> services = new ArrayList<String>();
+
+		for (ServiceDTO service : cgpServDTO.getServicios())
+		{
+			String serviceName = service.getNombre();
+
+			services.add(serviceName);
+
+			for (HashMap<String, Integer> horario : service.getHorarios())
+			{
+				cgpPOI.addOpeningHour(new OpeningHour(serviceName,
+						horario.get("diaSemana"),
+						horario.get("horaDesde"),
+						horario.get("minutosDesde"),
+						horario.get("horaHasta"),
+						horario.get("minutosHasta")
+				));
+			}
+		}
+
+		cgpPOI.setServices(services);
+
+		// TODO: Set the correct coordenate
+		Coordenate cgpCoord = new Coordenate(0.0, 0.0);
+		cgpPOI.setCoordenate(cgpCoord);
+
+		return cgpPOI;
+	}
+
+	public static void update() {
+		ExternalPOIService externalPOIService = new ExternalPOIService();
+
+		List<POI> pois = new ArrayList<>();
+
+		pois.addAll(externalPOIService.getAllBanksAsPois());
+		pois.addAll(externalPOIService.getAllCGPsAsPois());
+
+		MongoUtil mongoUtil = new MongoUtil();
+		List<POI> newPois = new ArrayList<>();
+
+		for(POI poi : pois) {
+			if(!mongoUtil.existPoi(poi.getName())) {
+				newPois.add(poi);
+			}
+		}
+
+		if(!newPois.isEmpty()) {
+			mongoUtil.savePois(pois);
+		}
+	}
+
+
 }
