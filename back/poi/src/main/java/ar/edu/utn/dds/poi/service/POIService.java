@@ -98,7 +98,7 @@ public class POIService implements Searcher
 	{
 		List<POI> result = filterPois(filter, this.poiList);
 
-		result.addAll(externalPOIService.getExternalPois(filter));
+		result.addAll(externalPOIService.getExternalPoisCached(filter));
 		
 		return new SearchResult(result);
 	}

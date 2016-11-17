@@ -1,8 +1,7 @@
 package ar.edu.utn.dds.poi.utils;
 
-import ar.edu.utn.dds.poi.domain.CGP;
-import ar.edu.utn.dds.poi.domain.Coordenate;
-import ar.edu.utn.dds.poi.domain.POI;
+import ar.edu.utn.dds.poi.domain.*;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -45,22 +44,19 @@ public class MongoUtil {
     }
 
     private POI documentToPOI(Document document) {
-        POI poi = null;
+        JsonFactory jsonFactory = new JsonFactory();
 
         switch (document.getString("type")) {
             case "cgp":
-                //poi = new CGP(
-                        //document.getString("name"),
-                        //new Coordenate(document.get("coordenate")))
-                break;
+                return jsonFactory.fromJson(document.toJson(), new TypeReference<CGP>() {});
             case "bank":
-                break;
+                return jsonFactory.fromJson(document.toJson(), new TypeReference<Bank>() {});
             case "bus_stop":
-                break;
+                return jsonFactory.fromJson(document.toJson(), new TypeReference<BusStop>() {});
             case "shop":
-                break;
+                return jsonFactory.fromJson(document.toJson(), new TypeReference<Shop>() {});
+            default:
+                return null;
         }
-
-        return poi;
     }
 }

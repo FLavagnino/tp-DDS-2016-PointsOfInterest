@@ -43,9 +43,9 @@ public class HistoricalManager
 		LogRepository logRep = new LogRepository();
 		logRep.saveHistoricalSearch(historicalSearch);
 		
-//		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
-//				Document.parse(jsonFactory.toJson(historicalSearch))
-//		);
+		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
+				Document.parse(jsonFactory.toJson(historicalSearch))
+		);
 	}
 	
 	public List<Log> getSearches()

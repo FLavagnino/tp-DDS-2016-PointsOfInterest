@@ -211,7 +211,7 @@ public class ExternalPOIService
 		}
 
 		if(!newPois.isEmpty()) {
-			mongoUtil.savePois(pois);
+			mongoUtil.savePois(newPois);
 		}
 	}
 
