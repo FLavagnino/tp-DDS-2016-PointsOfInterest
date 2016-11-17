@@ -1,5 +1,6 @@
 package ar.edu.utn.dds.poi.service.historical;
 
+import ar.edu.utn.dds.poi.domain.HistoricalSearch;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
 import ar.edu.utn.dds.poi.utils.MongoDB;
 import org.bson.Document;

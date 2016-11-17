@@ -1,5 +1,6 @@
 package ar.edu.utn.dds.poi.service;
 
+import ar.edu.utn.dds.poi.domain.HistoricalSearch;
 import ar.edu.utn.dds.poi.service.historical.*;
 
 public class Historical implements Searcher 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.eclipse.collections.impl.list.mutable.ListAdapter;
 import org.joda.time.DateTime;
 
+import ar.edu.utn.dds.poi.domain.HistoricalSearch;
 import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
-import ar.edu.utn.dds.poi.service.historical.HistoricalSearch;
 
 public class ReportService 
 {

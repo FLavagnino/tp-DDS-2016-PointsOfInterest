@@ -27,35 +27,6 @@ public class Entrega6Test
 	{
 		this.poiService = new POIService();
 	}
-	
-	@Test
-	// Prueba numero 4 Enunciado
-	public void insertUserTest()
-	{
-		// Obtengo un usuario para crear en la DB
-		User user = this.getNewUser();
-        
-        // Grabo el usuario
-        Serializable userID = poiService.saveUser(user);
-        System.out.println("Persisti el usuario: " + user.getUserName() + " con el ID: [" + user.getId() + "]");
-        
-        // Obtengo el usuario nuevamente de la DB
-        User dbUser = poiService.getUser(userID);
-        System.out.println("Obtuve al usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
-        
-        // Le cambio el nombre
-        String newUserName = "FacundoL";
-
-        dbUser.setUserName(newUserName);
-        System.out.println("Persisti el usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
-        poiService.updateUser(dbUser);
-        
-        // Lo obtengo de nuevo y me fijo que coincida el nombre
-        User resultUser = poiService.getUser(userID);
-        System.out.println("Obtuve al usuario: " + resultUser.getUserName() + " con el ID: [" + resultUser.getId() + "]");
-        
-        Assert.assertEquals(newUserName, resultUser.getUserName());
-	}
 		
 	@Test
 	// Prueba numero 1 Enunciado
@@ -110,6 +81,41 @@ public class Entrega6Test
 
         // Me fijo si es null
         Assert.assertNull(resultBank);
+	}
+	
+	@Test
+	// Prueba numero 3 Enunciado
+	public void searchTest()
+	{
+	}
+	
+	@Test
+	// Prueba numero 4 Enunciado
+	public void insertUserTest()
+	{
+		// Obtengo un usuario para crear en la DB
+		User user = this.getNewUser();
+        
+        // Grabo el usuario
+        Serializable userID = poiService.saveUser(user);
+        System.out.println("Persisti el usuario: " + user.getUserName() + " con el ID: [" + user.getId() + "]");
+        
+        // Obtengo el usuario nuevamente de la DB
+        User dbUser = poiService.getUser(userID);
+        System.out.println("Obtuve al usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
+        
+        // Le cambio el nombre
+        String newUserName = "FacundoL";
+
+        dbUser.setUserName(newUserName);
+        System.out.println("Persisti el usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
+        poiService.updateUser(dbUser);
+        
+        // Lo obtengo de nuevo y me fijo que coincida el nombre
+        User resultUser = poiService.getUser(userID);
+        System.out.println("Obtuve al usuario: " + resultUser.getUserName() + " con el ID: [" + resultUser.getId() + "]");
+        
+        Assert.assertEquals(newUserName, resultUser.getUserName());
 	}
 	
 	// Metodos de ayuda.

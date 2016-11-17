@@ -31,5 +31,7 @@
 	<mapping class="ar.edu.utn.dds.poi.domain.BusStop" />
 	<!--<mapping class="ar.edu.utn.dds.poi.domain.CGP" /> -->
 	<!--<mapping class="ar.edu.utn.dds.poi.domain.Shop" /> -->
+	<mapping class="ar.edu.utn.dds.poi.domain.HistoricalSearch" />
+	<mapping class="ar.edu.utn.dds.poi.domain.HistoricalSearchResult" />
 </session-factory>
 </hibernate-configuration>

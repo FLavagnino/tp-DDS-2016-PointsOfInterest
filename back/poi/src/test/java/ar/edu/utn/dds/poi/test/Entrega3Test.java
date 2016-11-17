@@ -10,11 +10,11 @@ import java.util.List;
 import org.joda.time.*;
 
 import ar.edu.utn.dds.poi.domain.Admin;
+import ar.edu.utn.dds.poi.domain.HistoricalSearch;
 import ar.edu.utn.dds.poi.domain.Terminal;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.InvalidUserException;
 import ar.edu.utn.dds.poi.service.*;
-import ar.edu.utn.dds.poi.service.historical.HistoricalSearch;
 
 public class Entrega3Test 
 {	

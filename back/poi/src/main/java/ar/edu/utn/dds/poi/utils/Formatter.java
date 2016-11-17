@@ -1,8 +1,9 @@
 package ar.edu.utn.dds.poi.utils;
 
+import ar.edu.utn.dds.poi.domain.HistoricalSearch;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchDTO;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchResponseDTO;
-import ar.edu.utn.dds.poi.service.historical.HistoricalSearch;
+
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
