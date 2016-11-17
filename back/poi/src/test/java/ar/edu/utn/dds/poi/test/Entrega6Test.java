@@ -104,6 +104,14 @@ public class Entrega6Test
 		
 		token = this.authService.login(userName, password);
 		this.poiService.search("Santander Rio", userName, token);	
+		
+		List<Log> logs = this.poiService.getLogByUserName(userName);
+		
+		Log lastLog = logs.get(logs.size() - 1);
+        System.out.println("Ultimo log para el usuario: " + userName + ":\n" +
+        		"Fecha: " + lastLog.getDate() + "\n" +
+        		"Filtro: " + lastLog.getFilter() + "\n" +  
+        		"Results Number: " + lastLog.getResultsNumber());
 	}
 	
 	@Test

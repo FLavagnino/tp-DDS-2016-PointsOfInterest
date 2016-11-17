@@ -395,4 +395,10 @@ public class POIService implements Searcher
 		LogRepository logRep = new LogRepository();
 		return logRep.getLog(logID);
 	}
+	
+	public List<Log> getLogByUserName(String userName)
+	{
+		LogRepository logRep = new LogRepository();
+		return logRep.getLogByUserName(userName);
+	}
 }

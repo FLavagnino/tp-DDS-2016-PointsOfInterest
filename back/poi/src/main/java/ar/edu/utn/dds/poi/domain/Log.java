@@ -7,6 +7,12 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
+@NamedQueries({
+	@NamedQuery(
+	name = "logByUser",
+	query = "from Log l where l.userName = :userName"
+	)
+})
 @Entity
 public class Log implements Serializable
 {
