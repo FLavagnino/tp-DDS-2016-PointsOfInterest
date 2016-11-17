@@ -88,28 +88,28 @@ public class Entrega6Test
 	public void insertBankTest()
 	{
 		// Obtengo un usuario para crear en la DB
-		 Bank bank = this.getNewBank();
+		Bank bank = this.getNewBank();
         
         // Grabo el POI
         Serializable bankID = poiService.saveBank(bank);
         System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
         
-//        // Obtengo el usuario nuevamente de la DB
-//        User dbUser = poiService.getUser(userID);
-//        System.out.println("Obtuve al usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
-//        
-//        // Le cambio el nombre
-//        String newUserName = "FacundoL";
-//
-//        dbUser.setUserName(newUserName);
-//       busStop System.out.println("Persisti el usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
-//        poiService.updateUser(dbUser);
-//        
-//        // Lo obtengo de nuevo y me fijo que coincida el nombre
-//        User resultUser = poiService.getUser(userID);
-//        System.out.println("Obtuve al usuario: " + resultUser.getUserName() + " con el ID: [" + resultUser.getId() + "]");
-//        
-//        Assert.equals(newUserName, resultUser.getUserName());
+        // Obtengo el poi nuevamente de la DB
+        Bank dbBank = poiService.getBank(bankID);
+        System.out.println("Obtuve al poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
+        
+        // Le cambio las coordenadas
+        Coordenate coords = new Coordenate(-34.0, -58.0);
+        dbBank.setCoordenate(coords);
+        
+        System.out.println("Persisti el poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
+        poiService.updateBank(dbBank);
+        
+        // Lo obtengo de nuevo y me fijo que coincida el nombre
+        Bank resultBank = poiService.getBank(bankID);
+        System.out.println("Obtuve al poi: " + resultBank.getName() + " con el ID: [" + resultBank.getId() + "]");
+        
+        Assert.equals(coords.getLatitude(), resultBank.getCoordenate().getLatitude());
 	}
 	
 	// Metodos de ayuda.

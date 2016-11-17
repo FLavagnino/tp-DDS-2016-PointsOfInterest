@@ -1,8 +1,6 @@
 package ar.edu.utn.dds.poi.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.joda.time.*;
