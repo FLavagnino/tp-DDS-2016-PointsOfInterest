@@ -21,6 +21,7 @@ import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.exception.*;
 import ar.edu.utn.dds.poi.process.*;
 import ar.edu.utn.dds.poi.process.jobs.*;
+import ar.edu.utn.dds.poi.repository.POIRepository;
 import ar.edu.utn.dds.poi.repository.UserRepository;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
 import ar.edu.utn.dds.poi.utils.MetersDistance;
@@ -340,5 +341,23 @@ public class POIService implements Searcher
 	{
 		UserRepository userRep = new UserRepository();
 		return userRep.get(userID);
+	}
+	
+	public Serializable saveBusStop(BusStop busStop)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.saveBusStop(busStop);
+	}
+	
+	public void updateBusStop(BusStop busStop)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.updateBusStop(busStop);
+	}
+	
+	public BusStop getBusStop(Serializable busID)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.getBusStop(busID);
 	}
 }

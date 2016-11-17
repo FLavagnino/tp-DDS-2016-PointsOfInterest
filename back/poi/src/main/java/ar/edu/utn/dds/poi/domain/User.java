@@ -17,8 +17,6 @@ public class User implements Serializable
 	
 	public User()
 	{
-		//this.actionList = new ArrayList<Actions>();
-		//actionList.add(Actions.SEARCH);
 	}
 	
     @Id @GeneratedValue

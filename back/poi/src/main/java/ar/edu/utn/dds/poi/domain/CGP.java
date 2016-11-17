@@ -2,6 +2,9 @@ package ar.edu.utn.dds.poi.domain;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
@@ -14,6 +17,8 @@ import com.vividsolutions.jts.geom.Polygon;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
+@Entity
+@PrimaryKeyJoinColumn(name="poi_id")
 public class CGP extends POI 
 {
 	protected final static String TYPE = "cgp";

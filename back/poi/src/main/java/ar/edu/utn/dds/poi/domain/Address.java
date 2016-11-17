@@ -1,18 +1,27 @@
 package ar.edu.utn.dds.poi.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Address 
 {	
+	private Long id;
+	private POI poi;
 	private String street;
-	private Integer number;
+	private int number;
 	private String streetOne;
 	private String streetTwo;
-	private Integer floor;
+	private int floor;
 	private String apartment;
 	private String postalCode;
 	private String locality;
 	private String neighborhood;
 	private String province;
 	private String country;
+	
+	public Address()
+	{
+	}
 	
 	public Address(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
 			String apartment, String postalCode, String locality, String neighborhood, String province, String country) 
@@ -30,12 +39,26 @@ public class Address
 		this.country = country;
 	}
 
+	// Getters
+	@Id
+	@GeneratedValue
+	public Long getId()
+	{
+		return this.id;
+	}
+	
+	@OneToOne(mappedBy = "address")
+	public POI getPoi()
+	{
+		return this.poi;
+	}
+	
 	public String getStreet() 
 	{
 		return street;
 	}
 	
-	public Integer getNumber() 
+	public int getNumber() 
 	{
 		return number;
 	}
@@ -50,7 +73,7 @@ public class Address
 		return streetTwo;
 	}
 	
-	public Integer getFloor() 
+	public int getFloor() 
 	{
 		return floor;
 	}
@@ -83,5 +106,71 @@ public class Address
 	public String getCountry() 
 	{
 		return country;
-	}	
+	}
+	
+	// Setters
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
+	
+	public void setPoi(POI poi)
+	{
+		this.poi = poi;
+	}
+	
+	public void setStreet(String street) 
+	{
+		this.street = street;
+	}
+	
+	public void setNumber(int number) 
+	{
+		this.number = number;
+	}
+	
+	public void setStreetOne(String streetOne) 
+	{
+		this.streetOne = streetOne;
+	}
+	
+	public void setStreetTwo(String streetTwo) 
+	{
+		this.streetTwo = streetTwo;
+	}
+	
+	public void setFloor(int floor) 
+	{
+		this.floor = floor;
+	}
+	
+	public void setApartment(String apartment) 
+	{
+		this.apartment = apartment;
+	}
+	
+	public void setPostalCode(String postalCode) 
+	{
+		this.postalCode = postalCode;
+	}
+	
+	public void setLocality(String locality) 
+	{
+		this.locality = locality;
+	}
+	
+	public void setNeighborhood(String neighborhood) 
+	{
+		this.neighborhood = neighborhood;
+	}
+	
+	public void setProvince(String province) 
+	{
+		this.province = province;
+	}
+	
+	public void setCountry(String country) 
+	{
+		this.country = country;
+	}
 }

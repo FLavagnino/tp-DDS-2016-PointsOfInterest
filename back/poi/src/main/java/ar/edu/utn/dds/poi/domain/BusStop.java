@@ -1,15 +1,24 @@
 package ar.edu.utn.dds.poi.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import org.joda.time.*;
 
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
+@Entity
+@PrimaryKeyJoinColumn(name="poi_id")
 public class BusStop extends POI
 {
-	protected final static String TYPE = "bus_stop";
-
-	protected int busLine;
+	private String type;
+	private int busLine;
+	
+	public BusStop()
+	{
+		this.type = "bus_stop";
+	}
 	
 	public BusStop(String name, Coordenate coordenate, int busLine, String tags) 
 	{
@@ -20,6 +29,16 @@ public class BusStop extends POI
 	public int getBusLine()
 	{
 		return this.busLine;
+	}
+	
+	public String getType() 
+	{
+		return type;
+	}
+	
+	public void setType(String type) 
+	{
+		this.type = type;
 	}
 	
 	public void setBusLine(Integer busLine)
@@ -77,9 +96,5 @@ public class BusStop extends POI
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
 		return (meters < Constant.BUSSTOP_ISCLOSERTO_DIST);
-	}
-
-	public String getType() {
-		return TYPE;
 	}
 }

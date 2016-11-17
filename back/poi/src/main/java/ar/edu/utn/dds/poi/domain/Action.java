@@ -18,7 +18,7 @@ public class Action implements Serializable
     public Long getId() { return id; }
     public String getName() { return name; }
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public User getUser() { return user; }
     
     public void setId(Long id) { this.id = id; }

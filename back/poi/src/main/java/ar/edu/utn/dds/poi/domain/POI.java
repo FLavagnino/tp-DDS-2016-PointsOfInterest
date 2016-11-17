@@ -2,10 +2,16 @@ package ar.edu.utn.dds.poi.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.*;
+
 import org.joda.time.DateTime;
 
-public abstract class POI
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class POI 
 {
+	protected Long id;
 	protected String name;
 	protected Integer unit;
 	protected Coordenate coordenate;
@@ -26,16 +32,69 @@ public abstract class POI
 		this.tags = tags;
 	}
 
-	protected void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
+    @Id
+    @GeneratedValue
+    @Column(name = "id", unique = true , nullable = false )
+    public Long getId() 
+    {
+            return this.id;
+    }
+ 
+    @OneToMany(mappedBy="poi", cascade = CascadeType.ALL)
+	public List<OpeningHour> getOpeningHours()
+	{
+		return this.openingHours;
+	}
+		
+	public String getName() 
+	{
+		return name;
+	}
+		
+	public Integer getUnit()
+	{
+		return unit;
+	}
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "coordenate_id", referencedColumnName = "id")
+	public Coordenate getCoordenate() 
+	{
+		return coordenate;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	public Address getAddress() 
+	{
+		return address;
+	}
+
+	public String getTags() 
+	{
+		return tags;
+	}
+	
+    public void setId(Long id)
+    {
+    	this.id = id;
+    }
+    
+	public void setAddress(Address address) 
+	{
+		this.address = address;
+	}
+
+	public void setOpeningHours(List<OpeningHour> openingHours)
+	{
+		this.openingHours = openingHours;
+	}
+    
+	public void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
 			String apartment, String postalCode, String locality, String neighborhood, String province, String country) 
 	{	
 		this.address = new Address(street, number, streetOne, streetTwo, floor, apartment, 
 				postalCode, locality, neighborhood, province, country);
-	}
-
-	public boolean isCloserTo(int meters, POI poiFrom)
-	{
-		return true;
 	}
 	
 	public void setCoordenate(Coordenate coordenate)
@@ -48,16 +107,17 @@ public abstract class POI
 		this.name = name;
 	}
 	
-	public void addOpeningHour(OpeningHour openingHour)
+	public void setTags(String tags) 
 	{
-		this.openingHours.add(openingHour);
-	}
-
-	public List<OpeningHour> getOpeningHours()
-	{
-		return this.openingHours;
+		this.tags = tags;
 	}
 	
+	public void setUnit(Integer unit)
+	{
+		this.unit = unit;
+	}
+	
+	// Methods
 	public boolean isAvailable(DateTime dateTime, String service)
 	{
 		return true;
@@ -68,41 +128,13 @@ public abstract class POI
 		return true;
 	}
 	
-	public String getName() 
+	public void addOpeningHour(OpeningHour openingHour)
 	{
-		return name;
+		this.openingHours.add(openingHour);
 	}
 	
-	public void setUnit(Integer unit)
+	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		this.unit = unit;
+		return true;
 	}
-	
-	public Integer getUnit()
-	{
-		return unit;
-	}
-	
-	public Coordenate getCoordenate() 
-	{
-		return coordenate;
-	}
-	
-	public Address getAddress() 
-	{
-		return address;
-	}
-
-	public String getTags() {
-		return tags;
-	}
-
-	public void setTags(String tags) {
-		this.tags = tags;
-	}
-
-	public String getType() {
-		return this.getType();
-	}
-
 }

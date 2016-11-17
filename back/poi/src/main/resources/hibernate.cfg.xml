@@ -22,5 +22,14 @@
  
     <mapping class="ar.edu.utn.dds.poi.domain.User" />
     <mapping class="ar.edu.utn.dds.poi.domain.Action" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.Action" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.POI" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.Address" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.Coordenate" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.OpeningHour" />
+	<mapping class="ar.edu.utn.dds.poi.domain.Bank" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.BusStop" />
+	<!--<mapping class="ar.edu.utn.dds.poi.domain.CGP" /> -->
+	<!--<mapping class="ar.edu.utn.dds.poi.domain.Shop" /> -->
 </session-factory>
 </hibernate-configuration>
