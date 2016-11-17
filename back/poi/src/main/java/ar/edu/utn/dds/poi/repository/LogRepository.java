@@ -3,16 +3,23 @@ package ar.edu.utn.dds.poi.repository;
 import java.io.Serializable;
 import org.hibernate.Session;
 import ar.edu.utn.dds.poi.domain.Log;
+import ar.edu.utn.dds.poi.domain.LogResult;
 
 public class LogRepository 
 {
 	public Serializable saveHistoricalSearch(Log log)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
-        
         session.beginTransaction();
+        
+        for (LogResult result : log.getResults())
+        {
+        	result.setLog(log);
+        }
+        
         Serializable logID = session.save(log);
         session.getTransaction().commit();
+        
         session.close();
         
         return logID;
