@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.collections.impl.list.mutable.ListAdapter;
 import org.joda.time.DateTime;
 
-import ar.edu.utn.dds.poi.domain.HistoricalSearch;
+import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 
 public class ReportService 
@@ -21,14 +21,14 @@ public class ReportService
 	{
 		System.out.println("\n---- Total Search Qty By Date ----\n");
 		
-		List<HistoricalSearch> searchList = this.historicalManager.getSearches();
+		List<Log> searchList = this.historicalManager.getSearches();
 		
-		ListAdapter.adapt(searchList).sortThisBy(HistoricalSearch::getDate);
+		ListAdapter.adapt(searchList).sortThisBy(Log::getDate);
 			
-		DateTime currentDate = searchList.get(0).getDate();
+		DateTime currentDate = DateTime.parse(searchList.get(0).getDate());
 		int searchQty = 0; 
 		
-		for (HistoricalSearch histSearch : searchList)
+		for (Log histSearch : searchList)
 		{	
 			if (histSearch.getDate().equals(currentDate)) 
 			{
@@ -37,7 +37,7 @@ public class ReportService
 			else
 			{
 				System.out.println(currentDate.toString("dd/MM/yyyy") + " " + searchQty);
-				currentDate = histSearch.getDate();
+				currentDate = DateTime.parse(histSearch.getDate());
 				searchQty = histSearch.getResultsNumber();
 			}
 		}
@@ -49,12 +49,12 @@ public class ReportService
 	{
 		System.out.println("\n---- Total Search Qty By User ----\n");
 		
-		List<HistoricalSearch> searchList = this.historicalManager.getSearches();
+		List<Log> searchList = this.historicalManager.getSearches();
 	
 		String currentUser = searchList.get(0).getUserName();
 		boolean printed = false;
 		
-		for (HistoricalSearch histSearch : searchList)
+		for (Log histSearch : searchList)
 		{	
 			if (histSearch.getUserName().equals(currentUser) && !printed) 
 			{
@@ -75,7 +75,7 @@ public class ReportService
 	{
 		System.out.println("\n---- Total Search Qty By User ----\n");
 		
-		List<HistoricalSearch> searchList = this.historicalManager.getSearches();
+		List<Log> searchList = this.historicalManager.getSearches();
 			
 		String currentUser = searchList.get(0).getUserName();
 		int searchQty = 0; 
@@ -97,7 +97,7 @@ public class ReportService
 		System.out.println(currentUser + " " + searchQty);
 	}
 	
-	public void setSearchResults(List<HistoricalSearch> searches)
+	public void setSearchResults(List<Log> searches)
 	{
 		this.historicalManager.setSearches(searches);
 	}

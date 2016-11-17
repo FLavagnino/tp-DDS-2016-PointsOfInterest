@@ -3,29 +3,40 @@ package ar.edu.utn.dds.poi.test;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
-
-import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.*;
+import ar.edu.utn.dds.poi.exception.InvalidUserException;
+import ar.edu.utn.dds.poi.service.AuthService;
 import ar.edu.utn.dds.poi.service.POIService;
-import ar.edu.utn.dds.poi.utils.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.OneToMany;
-
-import org.hibernate.*;
-
 public class Entrega6Test 
 {	
+	private AuthService authService;
 	private POIService poiService;
+	private String userName;
+	private String password;
+	private String token;
 	
 	@Before
 	public void setUp()
 	{
+		this.authService = new AuthService();
 		this.poiService = new POIService();
+		
+		List<User> userList = new ArrayList<User>();
+			
+		User tCaballito = new Terminal();	
+		tCaballito.setUserName("t_caballito");
+		tCaballito.setPassword("5555");
+		tCaballito.setToken("");
+		tCaballito.setAuditMode(true);
+		tCaballito.setEmail("luiskahrs@gmail.com");
+		userList.add(tCaballito);
+	
+		this.authService.setUsers(userList);
 	}
 		
 	@Test
@@ -85,8 +96,14 @@ public class Entrega6Test
 	
 	@Test
 	// Prueba numero 3 Enunciado
-	public void searchTest()
+	public void searchTest() throws InvalidUserException
 	{
+		userName = "t_caballito";
+		password = "5555";
+		token = "";
+		
+		token = this.authService.login(userName, password);
+		this.poiService.search("Santander Rio", userName, token);	
 	}
 	
 	@Test

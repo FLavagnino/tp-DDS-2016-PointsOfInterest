@@ -1,40 +1,38 @@
 package ar.edu.utn.dds.poi.repository;
 
 import java.io.Serializable;
-
 import org.hibernate.Session;
+import ar.edu.utn.dds.poi.domain.Log;
 
-import ar.edu.utn.dds.poi.domain.User;
-
-public class UserRepository 
+public class LogRepository 
 {
-	public Serializable save(User user)
+	public Serializable saveHistoricalSearch(Log historicalSearch)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         
         session.beginTransaction();
-        Serializable userID = session.save(user);
+        Serializable historicalSearchID = session.save(historicalSearch);
         session.getTransaction().commit();
         session.close();
         
-        return userID;
+        return historicalSearchID;
 	}
 	
-	public void update(User user)
+	public void update(Log historicalSearch)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
-        session.update(user);
+        session.update(historicalSearch);
         session.getTransaction().commit();
         session.close();
 	}
 	
-	public User get(Serializable userID)
+	public Log getHistoricalSearch(Serializable historicalSearchID)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
-        User user = session.get(User.class, userID);
+        Log historicalSearch = session.get(Log.class, historicalSearchID);
         session.close();
         
-        return user;
+        return historicalSearch;
 	}
 }

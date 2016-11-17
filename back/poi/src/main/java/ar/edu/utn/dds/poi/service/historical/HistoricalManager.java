@@ -1,6 +1,7 @@
 package ar.edu.utn.dds.poi.service.historical;
 
-import ar.edu.utn.dds.poi.domain.HistoricalSearch;
+import ar.edu.utn.dds.poi.domain.Log;
+import ar.edu.utn.dds.poi.repository.LogRepository;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
 import ar.edu.utn.dds.poi.utils.MongoDB;
 import org.bson.Document;
@@ -17,7 +18,7 @@ public class HistoricalManager
 
 	private JsonFactory jsonFactory;
 
-	private List<HistoricalSearch> searches = new ArrayList<HistoricalSearch>();
+	private List<Log> searches = new ArrayList<Log>();
 	
 	private HistoricalManager() 
 	{
@@ -34,32 +35,37 @@ public class HistoricalManager
 		return instance;
 	}
 	
-	public void saveSearch(HistoricalSearch historicalSearch) 
+	public void saveSearch(Log historicalSearch) 
 	{
 		this.searches.add(historicalSearch);
-		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
-				Document.parse(jsonFactory.toJson(historicalSearch))
-		);
+		
+		// Grabo en la db
+		LogRepository logRep = new LogRepository();
+		logRep.saveHistoricalSearch(historicalSearch);
+		
+//		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
+//				Document.parse(jsonFactory.toJson(historicalSearch))
+//		);
 	}
 	
-	public List<HistoricalSearch> getSearches()
+	public List<Log> getSearches()
 	{
 		return this.searches;
 	}
 	
-	public void setSearches(List<HistoricalSearch> searches)
+	public void setSearches(List<Log> searches)
 	{
 		this.searches = searches;
 
         List<Document> documents = new ArrayList<>();
-        for(HistoricalSearch search : searches) {
+        for(Log search : searches) {
             documents.add(Document.parse(jsonFactory.toJson(search)));
         }
 		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertMany(documents);
 	}
 
-	public List<HistoricalSearch> getSearches(String user) {
-		List<HistoricalSearch> searchesFiltered = new ArrayList<>();
+	public List<Log> getSearches(String user) {
+		List<Log> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoDB.getInstance().getMongoDatabase()
 				.getCollection("historical_searches").find(new Document("user_name", user))) {
 
@@ -68,7 +74,7 @@ public class HistoricalManager
 		return searchesFiltered;
 	}
 
-	public List<HistoricalSearch> getSearches(DateTime from, DateTime to) {
+	public List<Log> getSearches(DateTime from, DateTime to) {
         if(to == null) {
             return getSearchesFrom(from);
         }
@@ -76,7 +82,7 @@ public class HistoricalManager
             return getSearchesTo(to);
         }
 
-		List<HistoricalSearch> searchesFiltered = new ArrayList<>();
+		List<Log> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$gte:" + from + ",$lt:" + to + "}}"))) {
 
@@ -85,8 +91,8 @@ public class HistoricalManager
 		return searchesFiltered;
 	}
 
-    private List<HistoricalSearch> getSearchesFrom(DateTime from) {
-		List<HistoricalSearch> searchesFiltered = new ArrayList<>();
+    private List<Log> getSearchesFrom(DateTime from) {
+		List<Log> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$gte:" + from + "}}"))) {
 
@@ -95,8 +101,8 @@ public class HistoricalManager
 		return searchesFiltered;
     }
 
-    private List<HistoricalSearch> getSearchesTo(DateTime to) {
-		List<HistoricalSearch> searchesFiltered = new ArrayList<>();
+    private List<Log> getSearchesTo(DateTime to) {
+		List<Log> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$lt:" + to + "}}"))) {
 
@@ -105,9 +111,9 @@ public class HistoricalManager
 		return searchesFiltered;
     }
 
-    private HistoricalSearch createHistoricalSearch(Document document) {
+    private Log createHistoricalSearch(Document document) {
 		DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-		return new HistoricalSearch(
+		return new Log(
 				document.getString("user_name"),
 				document.getString("filter"),
 				document.getInteger("results_number"),

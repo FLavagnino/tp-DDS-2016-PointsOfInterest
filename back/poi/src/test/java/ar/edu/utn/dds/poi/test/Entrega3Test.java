@@ -10,7 +10,7 @@ import java.util.List;
 import org.joda.time.*;
 
 import ar.edu.utn.dds.poi.domain.Admin;
-import ar.edu.utn.dds.poi.domain.HistoricalSearch;
+import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.domain.Terminal;
 import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.exception.InvalidUserException;
@@ -92,35 +92,35 @@ public class Entrega3Test
 		
 		this.authService.setUsers(userList);
 		
-		List<HistoricalSearch> searches = new ArrayList<HistoricalSearch>();
+		List<Log> searches = new ArrayList<Log>();
 		DateTime date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
-		HistoricalSearch histSearch1 = new HistoricalSearch("t_abasto", "filtro abasto", 20, 15000, date);
+		Log histSearch1 = new Log("t_abasto", "filtro abasto", 20, 15000, date);
 		searches.add(histSearch1);
 		date = new DateTime(2016, 6, 14, 0, 0, 0, 0);
-		HistoricalSearch histSearch2 = new HistoricalSearch("t_abasto", "filtro abasto", 30, 12000, date);
+		Log histSearch2 = new Log("t_abasto", "filtro abasto", 30, 12000, date);
 		searches.add(histSearch2);		
 		date = new DateTime(2016, 6, 15, 0, 0, 0, 0);
-		HistoricalSearch histSearch3 = new HistoricalSearch("t_abasto", "filtro abasto", 42, 16000, date);
+		Log histSearch3 = new Log("t_abasto", "filtro abasto", 42, 16000, date);
 		searches.add(histSearch3);	
 		
 		date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
-		HistoricalSearch histSearch4 = new HistoricalSearch("t_caballito", "filtro caballito", 25, 15000, date);
+		Log histSearch4 = new Log("t_caballito", "filtro caballito", 25, 15000, date);
 		searches.add(histSearch4);
 		date = new DateTime(2016, 6, 14, 0, 0, 0, 0);
-		HistoricalSearch histSearch5 = new HistoricalSearch("t_caballito", "filtro caballito", 102, 12000, date);
+		Log histSearch5 = new Log("t_caballito", "filtro caballito", 102, 12000, date);
 		searches.add(histSearch5);		
 		date = new DateTime(2016, 6, 15, 0, 0, 0, 0);
-		HistoricalSearch histSearch6 = new HistoricalSearch("t_caballito", "filtro caballito", 35, 16000, date);
+		Log histSearch6 = new Log("t_caballito", "filtro caballito", 35, 16000, date);
 		searches.add(histSearch6);	
 		
 		date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
-		HistoricalSearch histSearch7 = new HistoricalSearch("t_boedo", "filtro boedo", 23, 15000, date);
+		Log histSearch7 = new Log("t_boedo", "filtro boedo", 23, 15000, date);
 		searches.add(histSearch7);
 		date = new DateTime(2016, 6, 14, 0, 0, 0, 0);
-		HistoricalSearch histSearch8 = new HistoricalSearch("t_boedo", "filtro boedo", 58, 12000, date);
+		Log histSearch8 = new Log("t_boedo", "filtro boedo", 58, 12000, date);
 		searches.add(histSearch8);		
 		date = new DateTime(2016, 6, 15, 0, 0, 0, 0);
-		HistoricalSearch histSearch9 = new HistoricalSearch("t_boedo", "filtro boedo", 15, 16000, date);
+		Log histSearch9 = new Log("t_boedo", "filtro boedo", 15, 16000, date);
 		searches.add(histSearch9);	
 
 		this.reportService.setSearchResults(searches);

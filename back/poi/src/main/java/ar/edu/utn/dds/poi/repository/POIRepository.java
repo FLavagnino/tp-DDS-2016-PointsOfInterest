@@ -5,13 +5,12 @@ import java.io.Serializable;
 import org.hibernate.Session;
 
 import ar.edu.utn.dds.poi.domain.*;
-import ar.edu.utn.dds.poi.utils.HibernateUtil;
 
 public class POIRepository 
 {
 	public Serializable saveBusStop(BusStop busStop)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateManager.getSessionFactory().openSession();
         
         session.beginTransaction();
         Serializable busID = session.save(busStop);
@@ -24,7 +23,7 @@ public class POIRepository
 	
 	public void updateBusStop(BusStop busStop)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();  
+        Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
         session.update(busStop);
         session.flush();
@@ -34,7 +33,7 @@ public class POIRepository
 	
 	public BusStop getBusStop(Serializable busID)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateManager.getSessionFactory().openSession();
         BusStop busStop = session.get(BusStop.class, busID);
         session.close();
         
@@ -43,7 +42,7 @@ public class POIRepository
 	
 	public void deleteBusStop(Serializable busID)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateManager.getSessionFactory().openSession();
         BusStop busStop = session.get(BusStop.class, busID);
         session.delete(busStop);
         session.close();
@@ -51,7 +50,7 @@ public class POIRepository
 	
 	public Serializable saveBank(Bank bank)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateManager.getSessionFactory().openSession();
         
         session.beginTransaction();
         Serializable bankID = session.save(bank);
@@ -64,7 +63,7 @@ public class POIRepository
 	
 	public void updateBank(Bank bank)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();  
+        Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
         session.flush();
         
@@ -76,7 +75,7 @@ public class POIRepository
 	
 	public Bank getBank(Serializable bankID)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateManager.getSessionFactory().openSession();
         Bank bank = session.get(Bank.class, bankID);
         session.close();
         
@@ -85,7 +84,7 @@ public class POIRepository
 	
 	public void deleteBank(Bank bank)
 	{
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateManager.getSessionFactory().openSession();
         session.beginTransaction();
         
         Object persistentInstance = session.load(Bank.class, bank.getId());

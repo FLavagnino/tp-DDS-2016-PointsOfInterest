@@ -8,37 +8,37 @@ import javax.persistence.*;
 import org.joda.time.DateTime;
 
 @Entity
-@Table(name="historical_search")
-public class HistoricalSearch implements Serializable
+public class Log implements Serializable
 {
 	private Long id;
-	private List<HistoricalSearchResult> results;
+	private List<LogResult> results;
 	private String userName;
 	private String filter;
 	private Integer resultsNumber;
 	private long time;
-	private DateTime date;
+	private String date;
 
-	public HistoricalSearch()
+	public Log()
 	{
 	}
 	
-	public HistoricalSearch(String userName, String filter, Integer resultsNumber, long time) 
+	public Log(String userName, List<LogResult> results, String filter, Integer resultsNumber, long time) 
+	{
+		this.userName = userName;
+		this.results = results;
+		this.filter = filter;
+		this.resultsNumber = resultsNumber;
+		this.time = time;
+		this.date = new DateTime().toString("dd/MM/yyyy");
+	}
+	
+	public Log(String userName, String filter, Integer resultsNumber, long time, DateTime date) 
 	{
 		this.userName = userName;
 		this.filter = filter;
 		this.resultsNumber = resultsNumber;
 		this.time = time;
-		this.date = new DateTime();
-	}
-	
-	public HistoricalSearch(String userName, String filter, Integer resultsNumber, long time, DateTime date) 
-	{
-		this.userName = userName;
-		this.filter = filter;
-		this.resultsNumber = resultsNumber;
-		this.time = time;
-		this.date = date;
+		this.date = date.toString("dd/MM/yyyy");
 	}
 	
 	@Id
@@ -48,8 +48,8 @@ public class HistoricalSearch implements Serializable
 		return id;
 	}
 	
-    @OneToMany(mappedBy="historical_search", cascade = CascadeType.ALL)
-	public List<HistoricalSearchResult> getResults()
+    @OneToMany(mappedBy="historicalSearch", cascade = CascadeType.ALL)
+	public List<LogResult> getResults()
 	{
 		return results;
 	}
@@ -74,7 +74,7 @@ public class HistoricalSearch implements Serializable
 		return time;
 	}
 
-	public DateTime getDate()
+	public String getDate()
 	{
 		return date;
 	}
@@ -105,12 +105,12 @@ public class HistoricalSearch implements Serializable
 		this.time = time;
 	}
 
-	public void setDate(DateTime date)
+	public void setDate(String date)
 	{
 		this.date = date;
 	}
 	
-	public void setResults(List<HistoricalSearchResult> results)
+	public void setResults(List<LogResult> results)
 	{
 		this.results = results;
 	}

@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.utils;
+package ar.edu.utn.dds.poi.repository;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import ar.edu.utn.dds.poi.domain.*;
 
-public class HibernateUtil 
+public class HibernateManager 
 {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 

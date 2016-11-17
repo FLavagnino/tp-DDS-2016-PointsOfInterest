@@ -1,6 +1,6 @@
 package ar.edu.utn.dds.poi.utils;
 
-import ar.edu.utn.dds.poi.domain.HistoricalSearch;
+import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchDTO;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchResponseDTO;
 
@@ -29,9 +29,9 @@ public class Formatter {
         );
     }
 
-    public static HistoricalSearchResponseDTO historicalSearchToDTO(List<HistoricalSearch> historicalSearches) {
+    public static HistoricalSearchResponseDTO historicalSearchToDTO(List<Log> historicalSearches) {
         List<HistoricalSearchDTO> historicalSearchDTOs = new ArrayList<>();
-        for (HistoricalSearch historicalSearch : historicalSearches) {
+        for (Log historicalSearch : historicalSearches) {
             historicalSearchDTOs.add(new HistoricalSearchDTO(
                     historicalSearch.getUserName(),
                     historicalSearch.getFilter(),

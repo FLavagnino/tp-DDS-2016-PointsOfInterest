@@ -4,15 +4,19 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="historical_search_result")
-public class HistoricalSearchResult implements Serializable
+public class LogResult implements Serializable
 {
 	private Long id;
 	private String poiName;
-	private HistoricalSearch historicalSearch;
+	private Log historicalSearch;
 	
-	public HistoricalSearchResult()
+	public LogResult()
 	{
+	}
+	
+	public LogResult(String poiName)
+	{
+		this.poiName = poiName;
 	}
 
 	@Id
@@ -28,7 +32,8 @@ public class HistoricalSearchResult implements Serializable
 	}
 	
     @ManyToOne(cascade = CascadeType.ALL)
-	public HistoricalSearch getHistoricalSearch()
+    //@JoinColumn(name="historical_search_id", referencedColumnName = "id")
+	public Log getHistoricalSearch()
 	{
 		return historicalSearch;
 	}
@@ -44,7 +49,7 @@ public class HistoricalSearchResult implements Serializable
 		this.poiName = poiName;
 	}
 	
-	public void setHistoricalSearch(HistoricalSearch historicalSearch)
+	public void setHistoricalSearch(Log historicalSearch)
 	{
 		this.historicalSearch = historicalSearch;
 	}

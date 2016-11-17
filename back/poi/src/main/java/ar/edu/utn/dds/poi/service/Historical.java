@@ -1,6 +1,11 @@
 package ar.edu.utn.dds.poi.service;
 
-import ar.edu.utn.dds.poi.domain.HistoricalSearch;
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.utn.dds.poi.domain.Log;
+import ar.edu.utn.dds.poi.domain.LogResult;
+import ar.edu.utn.dds.poi.domain.POI;
 import ar.edu.utn.dds.poi.service.historical.*;
 
 public class Historical implements Searcher 
@@ -18,7 +23,15 @@ public class Historical implements Searcher
 	public SearchResult search(String filter, String userName) 
 	{
 		SearchResult searchResult = timer.search(filter, userName);
-		historicalManager.saveSearch(new HistoricalSearch(userName, filter, searchResult.getPois().size(), searchResult.getTime()));
+		
+		List<LogResult> results = new ArrayList<LogResult>();
+		
+		for(POI poi : searchResult.getPois())
+		{
+			results.add(new LogResult(poi.getName()));
+		}
+		
+		historicalManager.saveSearch(new Log(userName, results, filter, searchResult.getPois().size(), searchResult.getTime()));
 		return searchResult;
 	}
 
