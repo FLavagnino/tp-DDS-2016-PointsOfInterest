@@ -41,6 +41,14 @@ public class POIRepository
         return busStop;
 	}
 	
+	public void deleteBusStop(Serializable busID)
+	{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        BusStop busStop = session.get(BusStop.class, busID);
+        session.delete(busStop);
+        session.close();
+	}
+	
 	public Serializable saveBank(Bank bank)
 	{
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -58,8 +66,10 @@ public class POIRepository
 	{
         Session session = HibernateUtil.getSessionFactory().openSession();  
         session.beginTransaction();
-        session.update(bank);
         session.flush();
+        
+        session.update(bank);
+
         session.getTransaction().commit();
         session.close();
 	}
@@ -71,5 +81,18 @@ public class POIRepository
         session.close();
         
         return bank;
+	}
+	
+	public void deleteBank(Bank bank)
+	{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        Object persistentInstance = session.load(Bank.class, bank.getId());
+        session.delete(persistentInstance);
+        
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
 	}
 }

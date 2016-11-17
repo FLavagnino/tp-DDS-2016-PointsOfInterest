@@ -2,8 +2,7 @@ package ar.edu.utn.dds.poi.test;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.vividsolutions.jts.util.Assert;
+import org.junit.Assert;
 
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.domain.*;
@@ -30,6 +29,7 @@ public class Entrega6Test
 	}
 	
 	@Test
+	// Prueba numero 4 Enunciado
 	public void insertUserTest()
 	{
 		// Obtengo un usuario para crear en la DB
@@ -38,6 +38,7 @@ public class Entrega6Test
         // Grabo el usuario
         Serializable userID = poiService.saveUser(user);
         System.out.println("Persisti el usuario: " + user.getUserName() + " con el ID: [" + user.getId() + "]");
+        
         // Obtengo el usuario nuevamente de la DB
         User dbUser = poiService.getUser(userID);
         System.out.println("Obtuve al usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
@@ -53,38 +54,11 @@ public class Entrega6Test
         User resultUser = poiService.getUser(userID);
         System.out.println("Obtuve al usuario: " + resultUser.getUserName() + " con el ID: [" + resultUser.getId() + "]");
         
-        Assert.equals(newUserName, resultUser.getUserName());
+        Assert.assertEquals(newUserName, resultUser.getUserName());
 	}
-	
+		
 	@Test
-	public void insertBusStopTest()
-	{
-		// Obtengo un usuario para crear en la DB
-		 BusStop busStop = this.getNewBusStop();
-        
-        // Grabo el POI
-        Serializable busID = poiService.saveBusStop(busStop);
-        System.out.println("Persisti el BusStop: " + busStop.getName() + " con el ID: [" + busStop.getId() + "]");
-        
-//        // Obtengo el usuario nuevamente de la DB
-//        User dbUser = poiService.getUser(userID);
-//        System.out.println("Obtuve al usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
-//        
-//        // Le cambio el nombre
-//        String newUserName = "FacundoL";
-//
-//        dbUser.setUserName(newUserName);
-//       busStop System.out.println("Persisti el usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
-//        poiService.updateUser(dbUser);
-//        
-//        // Lo obtengo de nuevo y me fijo que coincida el nombre
-//        User resultUser = poiService.getUser(userID);
-//        System.out.println("Obtuve al usuario: " + resultUser.getUserName() + " con el ID: [" + resultUser.getId() + "]");
-//        
-//        Assert.equals(newUserName, resultUser.getUserName());
-	}
-	
-	@Test
+	// Prueba numero 1 Enunciado
 	public void insertBankTest()
 	{
 		// Obtengo un usuario para crear en la DB
@@ -109,7 +83,33 @@ public class Entrega6Test
         Bank resultBank = poiService.getBank(bankID);
         System.out.println("Obtuve al poi: " + resultBank.getName() + " con el ID: [" + resultBank.getId() + "]");
         
-        Assert.equals(coords.getLatitude(), resultBank.getCoordenate().getLatitude());
+        Assert.assertEquals(coords.getLatitude(), resultBank.getCoordenate().getLatitude());
+	}
+	
+	@Test
+	// Prueba numero 2 Enunciado
+	public void deleteBankTest()
+	{
+		// Obtengo un usuario para crear en la DB
+		Bank bank = this.getNewBank();
+        
+        // Grabo el POI
+        Serializable bankID = poiService.saveBank(bank);
+        System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
+        
+        // Obtengo el poi nuevamente de la DB
+        Bank dbBank = poiService.getBank(bankID);
+        System.out.println("Obtuve al poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
+        
+        // Le cambio las coordenadas
+        System.out.println("Lo borro...");
+        poiService.deleteBank(dbBank);
+        
+        // Lo obtengo de nuevo y me fijo que coincida el nombre
+        Bank resultBank = poiService.getBank(dbBank.getId());
+
+        // Me fijo si es null
+        Assert.assertNull(resultBank);
 	}
 	
 	// Metodos de ayuda.

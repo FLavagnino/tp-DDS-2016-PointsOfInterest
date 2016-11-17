@@ -56,7 +56,7 @@ public abstract class POI
 		return unit;
 	}
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenate_id", referencedColumnName = "id")
 	public Coordenate getCoordenate() 
 	{

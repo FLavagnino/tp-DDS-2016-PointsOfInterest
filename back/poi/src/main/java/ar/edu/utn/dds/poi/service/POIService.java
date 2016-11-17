@@ -378,4 +378,10 @@ public class POIService implements Searcher
 		POIRepository poiRep = new POIRepository();
 		return poiRep.getBank(bankID);
 	}
+	
+	public void deleteBank(Bank bank)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.deleteBank(bank);
+	}
 }
