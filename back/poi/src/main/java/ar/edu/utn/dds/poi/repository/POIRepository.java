@@ -15,6 +15,7 @@ public class POIRepository
         
         session.beginTransaction();
         Serializable busID = session.save(busStop);
+        session.flush();
         session.getTransaction().commit();
         session.close();
         
@@ -26,6 +27,7 @@ public class POIRepository
         Session session = HibernateUtil.getSessionFactory().openSession();  
         session.beginTransaction();
         session.update(busStop);
+        session.flush();
         session.getTransaction().commit();
         session.close();
 	}
@@ -37,5 +39,37 @@ public class POIRepository
         session.close();
         
         return busStop;
+	}
+	
+	public Serializable saveBank(Bank bank)
+	{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+        Serializable bankID = session.save(bank);
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
+        
+        return bankID;
+	}
+	
+	public void updateBank(Bank bank)
+	{
+        Session session = HibernateUtil.getSessionFactory().openSession();  
+        session.beginTransaction();
+        session.update(bank);
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
+	}
+	
+	public Bank getBank(Serializable bankID)
+	{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Bank bank = session.get(Bank.class, bankID);
+        session.close();
+        
+        return bank;
 	}
 }

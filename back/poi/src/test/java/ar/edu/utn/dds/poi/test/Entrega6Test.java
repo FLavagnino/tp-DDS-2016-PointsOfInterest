@@ -84,6 +84,34 @@ public class Entrega6Test
 //        Assert.equals(newUserName, resultUser.getUserName());
 	}
 	
+	@Test
+	public void insertBankTest()
+	{
+		// Obtengo un usuario para crear en la DB
+		 Bank bank = this.getNewBank();
+        
+        // Grabo el POI
+        Serializable bankID = poiService.saveBank(bank);
+        System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
+        
+//        // Obtengo el usuario nuevamente de la DB
+//        User dbUser = poiService.getUser(userID);
+//        System.out.println("Obtuve al usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
+//        
+//        // Le cambio el nombre
+//        String newUserName = "FacundoL";
+//
+//        dbUser.setUserName(newUserName);
+//       busStop System.out.println("Persisti el usuario: " + dbUser.getUserName() + " con el ID: [" + dbUser.getId() + "]");
+//        poiService.updateUser(dbUser);
+//        
+//        // Lo obtengo de nuevo y me fijo que coincida el nombre
+//        User resultUser = poiService.getUser(userID);
+//        System.out.println("Obtuve al usuario: " + resultUser.getUserName() + " con el ID: [" + resultUser.getId() + "]");
+//        
+//        Assert.equals(newUserName, resultUser.getUserName());
+	}
+	
 	// Metodos de ayuda.
 	public User getNewUser()
 	{
@@ -118,6 +146,20 @@ public class Entrega6Test
 		Coordenate coords = new Coordenate(-34.619109, -58.425454);
 		BusStop busStop = new BusStop("Linea 84", coords, 84, "Colectivo,Linea84,84,Parada");
 		
+		busStop.setAddress(new Address());
+		busStop.setUnit(100);
+		
 		return busStop;
+	}
+	
+	public Bank getNewBank()
+	{
+		Coordenate coords = new Coordenate(-34.619109, -58.425454);
+		Bank bank = new Bank("Banco Galicia", coords, "Banco,Galicia,Dinero");
+		
+		bank.setAddress(new Address());
+		bank.setUnit(100);
+		
+		return bank;
 	}
 }

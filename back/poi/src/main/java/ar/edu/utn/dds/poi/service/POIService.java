@@ -360,4 +360,22 @@ public class POIService implements Searcher
 		POIRepository poiRep = new POIRepository();
 		return poiRep.getBusStop(busID);
 	}
+	
+	public Serializable saveBank(Bank bank)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.saveBank(bank);
+	}
+	
+	public void updateBank(Bank bank)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.updateBank(bank);
+	}
+	
+	public Bank getBank(Serializable bankID)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.getBank(bankID);
+	}
 }
