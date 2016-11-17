@@ -114,4 +114,14 @@ public class Log implements Serializable
 	{
 		this.results = results;
 	}
+
+	public String toJson() {
+		return "{" +
+			"user_name : \"" + userName + "\"," +
+			"filter : \"" + filter + "\"," +
+			"results_number : \"" + resultsNumber + "\"," +
+			"time : \"" + time + "\"," +
+			"date : \"" + date + "\"" +
+		"}";
+	}
 }

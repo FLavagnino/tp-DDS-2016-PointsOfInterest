@@ -14,7 +14,7 @@ public class PoiServer {
     public static void main(String[] args) {
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         Runnable periodicTask = () -> ExternalPOIService.update();
-        executor.scheduleAtFixedRate(periodicTask, 0, 10, TimeUnit.MINUTES);
+        executor.scheduleAtFixedRate(periodicTask, 0, 30, TimeUnit.MINUTES);
 
         poiController.start();
     }

@@ -44,7 +44,7 @@ public class HistoricalManager
 		logRep.saveHistoricalSearch(historicalSearch);
 		
 		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
-				Document.parse(jsonFactory.toJson(historicalSearch))
+				Document.parse(historicalSearch.toJson())
 		);
 	}
 	

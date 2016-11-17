@@ -21,6 +21,11 @@ public class MongoUtil {
                 Document.parse(jsonFactory.toJson(poi)));
     }
 
+    public void removePoi(POI poi) {
+        MongoDB.getInstance().getMongoDatabase().getCollection("external_pois").deleteOne(
+                Document.parse("{name: \"" + poi.getName() + "\"}"));
+    }
+
     public void savePois(List<POI> pois) {
         JsonFactory jsonFactory = new JsonFactory();
 
