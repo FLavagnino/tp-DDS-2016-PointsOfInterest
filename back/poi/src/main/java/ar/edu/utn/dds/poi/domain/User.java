@@ -75,7 +75,6 @@ public class User implements Serializable
 	{
 		this.token = token;
 	}
-	
 
 	public void setAuditMode(Boolean auditMode)
 	{
