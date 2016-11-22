@@ -69,6 +69,20 @@ public class Entrega6Test
 	}
 	
 	@Test
+	// Prueba numero 1 Enunciado
+	public void insertShopTest()
+	{
+		// Obtengo un usuario para crear en la DB
+		Shop shop = this.getNewShop();
+        
+        // Grabo el POI
+        Serializable shopID = poiService.saveShop(shop);
+        System.out.println("Persisti el Shop: " + shop.getName() + " con el ID: [" + shop.getId() + "]");
+        
+        Assert.assertNotNull(shopID);
+	}
+	
+	@Test
 	// Prueba numero 2 Enunciado
 	public void deleteBankTest()
 	{
@@ -192,5 +206,16 @@ public class Entrega6Test
 		bank.setUnit(100);
 		
 		return bank;
+	}
+	
+	public Shop getNewShop()
+	{
+		Coordenate coords = new Coordenate(-34.619109, -58.425454);
+		Shop shop = new Shop("Muebleria Tito", coords, "muebleria", 1000, "muebleria,muebles,tito");
+		
+		shop.setAddress(new Address());
+		shop.setUnit(101);
+		
+		return shop;
 	}
 }

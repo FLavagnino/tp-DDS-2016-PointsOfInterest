@@ -8,6 +8,7 @@ import org.quartz.JobExecutionException;
 
 import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
+import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.Shop;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.process.ProcessPoi;
@@ -59,7 +60,7 @@ public class ProcessUpdateShop extends ProcessPoi
 				{
 					try
 					{
-						Shop newShop = new Shop(shopToUpdate.getName(), null, Category.BAZAAR, shopToUpdate.getTags());
+						Shop newShop = new Shop(shopToUpdate.getName(), null, "", 0, shopToUpdate.getTags());
 						poiservice.addPoi(newShop);
 					}
 					catch(InvalidPoiException a)

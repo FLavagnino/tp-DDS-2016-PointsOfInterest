@@ -44,11 +44,11 @@ public class POIService implements Searcher
 		
 		// Agrego algunos fake, despues deberian salir de la base de datos
 		Coordenate coordenate = new Coordenate(-34.619160, -58.425443);
-		Shop shopPOI = new Shop("muebleria", coordenate, Category.FURNITURE, "tag1,tag2");
+		Shop shopPOI = new Shop("muebleria", coordenate, "muebleria", 1000, "tag1,tag2");
 		shopPOI.setUnit(1);
 		poiList.add(shopPOI);
 
-		shopPOI = new Shop("libreria", coordenate, Category.LIBRARY, "tag1,tag2");
+		shopPOI = new Shop("libreria", coordenate, "libreria", 1200, "tag1,tag2");
 		shopPOI.setUnit(2);
 		poiList.add(shopPOI);		
 		
@@ -388,6 +388,30 @@ public class POIService implements Searcher
 	{
 		POIRepository poiRep = new POIRepository();
 		poiRep.deleteBank(bank);
+	}
+	
+	public Serializable saveShop(Shop shop)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.saveShop(shop);
+	}
+	
+	public void updateShop(Shop shop)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.updateShop(shop);
+	}
+	
+	public Shop getShop(Serializable shopID)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.getShop(shopID);
+	}
+	
+	public void deleteShop(Shop shop)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.deleteShop(shop);
 	}
 	
 	public Log getLog(Serializable logID)

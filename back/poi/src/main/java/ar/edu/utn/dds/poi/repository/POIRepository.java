@@ -94,4 +94,51 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
+	
+	public Serializable saveShop(Shop shop)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+        Serializable shopID = session.save(shop);
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
+        
+        return shopID;
+	}
+	
+	public void updateShop(Shop shop)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();  
+        session.beginTransaction();
+        session.flush();
+        
+        session.update(shop);
+
+        session.getTransaction().commit();
+        session.close();
+	}
+	
+	public Shop getShop(Serializable shopID)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        Shop shop = session.get(Shop.class, shopID);
+        session.close();
+        
+        return shop;
+	}
+	
+	public void deleteShop(Shop shop)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        Object persistentInstance = session.load(Shop.class, shop.getId());
+        session.delete(persistentInstance);
+        
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
+	}
 }

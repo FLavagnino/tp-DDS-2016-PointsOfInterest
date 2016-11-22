@@ -2,11 +2,8 @@ package ar.edu.utn.dds.poi.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
-
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-
-import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
@@ -15,18 +12,19 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 public class Shop extends POI
 {
 	private String type;
-
-	protected Category category;
+	private String category;
+	private int categoryDistance;
 	
 	public Shop()
 	{
 		this.type = "shop";
 	}
 	
-	public Shop(String name, Coordenate coordenate, Category category, String tags) 
+	public Shop(String name, Coordenate coordenate, String category, int categoryDistance, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.category = category;
+		this.categoryDistance = categoryDistance;
 		this.type = "shop";
 	}
 	
@@ -41,9 +39,29 @@ public class Shop extends POI
 		return type;
 	}
 	
-	public Category getShopCategory()
+	public String getCategory()
 	{
 		return this.category;
+	}
+	
+	public int getCategoryDistance()
+	{
+		return this.categoryDistance;
+	}
+	
+	public void setType(String type) 
+	{
+		this.type = type;
+	}
+	
+	public void setCategory(String category)
+	{
+		this.category = category;
+	}
+	
+	public void setCategoryDistance(int categoryDistance)
+	{
+		this.categoryDistance = categoryDistance;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
@@ -79,7 +97,7 @@ public class Shop extends POI
 	public boolean matchFilter(String filter)
 	{
 		// First will try with Levenshtein for the category
-		int distance = LevenshteinDistance.distance(this.category.getName().toLowerCase(), filter.toLowerCase());
+		int distance = LevenshteinDistance.distance(this.category.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
@@ -116,7 +134,7 @@ public class Shop extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		int radius = this.category.getDistance();
+		int radius = this.categoryDistance;
 		return (meters < radius);
 	}
 }
