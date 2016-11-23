@@ -46,6 +46,15 @@ public class Log implements Serializable
 		this.time = time;
 		this.date = date.toString("dd/MM/yyyy");
 	}
+
+	public Log(String userName, String filter, Integer resultsNumber, long time, String date)
+	{
+		this.userName = userName;
+		this.filter = filter;
+		this.resultsNumber = resultsNumber;
+		this.time = time;
+		this.date = date;
+	}
 	
 	@Id
 	@GeneratedValue
