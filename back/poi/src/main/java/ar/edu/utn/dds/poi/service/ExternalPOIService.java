@@ -156,7 +156,8 @@ public class ExternalPOIService
 		return new Bank(bankServDTO.getBanco(), coordenate, tags);
 	}
 
-	private POI cgpDTOToPOI(CGPServDTO cgpServDTO) {
+	private POI cgpDTOToPOI(CGPServDTO cgpServDTO) 
+	{
 		CGP cgpPOI = new CGP();
 
 		cgpPOI.setName("Comuna " + cgpServDTO.getComuna().toString());
@@ -164,13 +165,12 @@ public class ExternalPOIService
 		String tags = String.join(",", cgpServDTO.getZonas());
 		cgpPOI.setTags(tags);
 
-		List<String> services = new ArrayList<String>();
+		String services = "";
 
 		for (ServiceDTO service : cgpServDTO.getServicios())
 		{
-			String serviceName = service.getNombre();
-
-			services.add(serviceName);
+			String serviceName = service.getNombre().toLowerCase();
+			services = services.concat(serviceName + ",");
 
 			for (HashMap<String, Integer> horario : service.getHorarios())
 			{

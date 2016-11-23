@@ -21,36 +21,51 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 @PrimaryKeyJoinColumn(name="poi_id")
 public class CGP extends POI 
 {
-	protected final static String TYPE = "cgp";
-
-	protected List<String> services;
+	protected String type;
+	protected String services;
 	protected List<Coordenate> zoneCoord;
 	
 	public CGP()
 	{		
+		this.type = "cgp";
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<String> services, String tags) 
+	public CGP(String name, Coordenate coordenate, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, List<String> services, String tags) 
+	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
 		this.zoneCoord = zoneCoord;
 	}
 	
-	public void setServices (List<String> services)
+	public void setServices(String services)
 	{
 		this.services = services;
+	}
+	
+	public void setType(String type) 
+	{
+		this.type = type;
 	}
 		
 	public List<Coordenate> getZoneCoord()
 	{
 		return this.zoneCoord;
+	}
+	
+	public String getType() 
+	{
+		return this.type;
+	}
+	
+	public String getServices ()
+	{
+		return this.services;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
@@ -92,9 +107,11 @@ public class CGP extends POI
 	{		
 		// Now we will try with Categories
 		int distance = 0;	
-		for(int i=0; i< this.services.size() ; i++)
+		String[] servList = services.split(",");
+		
+		for(int i=0; i< servList.length ; i++)
 		{
-			if (this.services.get(i).toLowerCase().contains(filter.toLowerCase()))
+			if (servList[i].toLowerCase().contains(filter.toLowerCase()))
 			{
 				return true;	
 			}
@@ -156,9 +173,5 @@ public class CGP extends POI
 		boolean result = polygon.contains(point);
 		
 		return result;
-	}
-
-	public String getType() {
-		return TYPE;
 	}
 }

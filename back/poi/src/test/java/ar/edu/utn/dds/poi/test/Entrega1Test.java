@@ -96,14 +96,11 @@ public class Entrega1Test
 		// Vars
 		POIService poiService = new POIService();
 		boolean result = false;
-		List<String> services = new ArrayList<String>();
+		String services = "rentas,abl";
 		
 		// We create the Bank POI
 		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
-		
-		services.add("Rentas");
-		services.add("ABL");
-		
+				
 		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, services, "tag1,tag2");
 		
 		OpeningHour mondayIncomes = new OpeningHour("Rentas", DateTimeConstants.MONDAY, 10, 0, 14, 0);
@@ -331,18 +328,9 @@ public class Entrega1Test
 		String filter = "Asesoramiento";
 		Coordenate cgpCoord = new Coordenate(-34.616325, -58.428837);	
 		
-		List<String> cgpPOIPalermoServ = new ArrayList<String>();
-		cgpPOIPalermoServ.add("ABL");
-		cgpPOIPalermoServ.add("Asesoramiento Legal");
-		cgpPOIPalermoServ.add("Asesoramiento Contable");
-	
-		List<String> cgpPOICentenarioServ = new ArrayList<String>();
-		cgpPOICentenarioServ.add("Bodas");
-		cgpPOICentenarioServ.add("Asesoramiento Legal");
-	
-		List<String> cgpPOICaballitoServ = new ArrayList<String>();
-		cgpPOICaballitoServ.add("Patentes");
-		cgpPOICaballitoServ.add("Rentas");
+		String cgpPOIPalermoServ = "ABL,Asesoramiento Legal,Asesoramiento Contable";
+		String cgpPOICentenarioServ = "Bodas,Asesoramiento Legal";
+		String cgpPOICaballitoServ = "Patentes,Rentas";
 		
 		CGP cgpPOIPalermo = new CGP("CGP Palermo", cgpCoord, cgpPOIPalermoServ, "tag1,tag2");
 		CGP cgpPOICentenario = new CGP("CGP Centenario", cgpCoord, cgpPOICentenarioServ, "tag1,tag2");
@@ -365,7 +353,7 @@ public class Entrega1Test
 		POIService poiService = new POIService();
 		boolean result = false;
 		
-		List<String> services = new ArrayList<String>();
+		String services = "Rentas,ABL";
 		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
 		
 		// We create the Bank POI
@@ -384,9 +372,6 @@ public class Entrega1Test
 		zoneCoord.add(zone4);
 		zoneCoord.add(zone5);
 		zoneCoord.add(zone6);
-		
-		services.add("Rentas");
-		services.add("ABL");
 		
 		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
 		
@@ -404,7 +389,7 @@ public class Entrega1Test
 		POIService poiService = new POIService();
 		boolean result = false;
 		
-		List<String> services = new ArrayList<String>();
+		String services = "Rentas,ABL";
 		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
 		
 		// We create the Bank POI
@@ -423,10 +408,7 @@ public class Entrega1Test
 		zoneCoord.add(zone4);
 		zoneCoord.add(zone5);
 		zoneCoord.add(zone6);
-		
-		services.add("Rentas");
-		services.add("ABL");
-		
+				
 		CGP CGPPOI = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
 		
 		// We create the busStop POI
