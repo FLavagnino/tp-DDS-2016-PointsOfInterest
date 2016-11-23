@@ -27,17 +27,64 @@ var init = function() {
         }
     };
 
+    $("#delete-poi").click(function(){
+        event.preventDefault();   
+        $("#inputTable tr:last").remove();
+    });
+
     $("#add").click(function(){
         event.preventDefault();
-        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"></td></tr>";
+        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" class=\"delete-poi\" value=\"Delete\" id=\"delete-poi\"></td></tr>";
         $("#inputTable").append(newInput);
     });
+
+    $("#addaction2").click(function(){
+    var valor = $('select#actions').val();
+    var tds=$("#inputTableActions tr:first td").length;
+            // Obtenemos el total de columnas (tr) del id "tabla"
+            var trs=$("#inputTableActions tr").length;
+            var nuevaFila="<tr>";
+            for(var i=0;i<tds;i++){
+                // añadimos las columnas
+                nuevaFila+="<td> "+(valor)+" ELIMINAR</td>";
+            }
+            // Añadimos una columna con el numero total de columnas.
+            // Añadimos uno al total, ya que cuando cargamos los valores para la
+            // columna, todavia no esta añadida
+          //  nuevaFila+="<td>"+ valor +" columnas";
+            nuevaFila+="</tr>";
+        $("#inputTableActions").append(nuevaFila);
+    });
+    
+
+
+        $("#addaction").click(function(){
+            // Obtenemos el numero de filas (td) que tiene la primera columna
+            // (tr) del id "tabla"
+            $("#inputTableActions").css("display", "block");
+            var tds=$("#inputTableActions tr:first td").length;
+            // Obtenemos el total de columnas (tr) del id "tabla"
+            var trs=$("#inputTableActions tr").length;
+            var nuevaFila="<tr>";
+            for(var i=0;i<tds;i++){
+                // añadimos las columnas
+                nuevaFila+="<td>columna "+(i+1)+" Añadida con jquery</td>";
+            }
+            // Añadimos una columna con el numero total de columnas.
+            // Añadimos uno al total, ya que cuando cargamos los valores para la
+            // columna, todavia no esta añadida
+            nuevaFila+="<td>"+(trs+1)+" columnas";
+            nuevaFila+="</tr>";
+            $("#inputTableActions").append(nuevaFila);
+        });
+
 
     $("#search-link").click(function(){
         $("#login-box")[0].style.display = "none";
         $("#page")[0].style.display = "block";
         $("#historical-box")[0].style.display = "none";
                 $("#actions")[0].style.display = "none";
+                $("#inputTableActions")[0].style.display = "none";
 
     });
 
@@ -46,6 +93,7 @@ var init = function() {
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "block";
                 $("#actions")[0].style.display = "none";
+                 $("#inputTableActions")[0].style.display = "none";
     });
 
     $("#action-link").click(function(){
@@ -53,14 +101,16 @@ var init = function() {
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "none";
         $("#actions")[0].style.display = "block";
+         $("#inputTableActions")[0].style.display = "block";
 
     });
 
     $("#login-link").click(function(){
         $("#login-box")[0].style.display = "none";
-        $("#page")[0].style.display = "block";
+        $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "none";
                 $("#actions")[0].style.display = "none";
+                 $("#inputTableActions")[0].style.display = "none";
     });
 
     $("input.available").click(function(){
