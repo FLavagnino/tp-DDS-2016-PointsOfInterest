@@ -1,22 +1,11 @@
 package ar.edu.utn.dds.poi.domain;
 
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-
+import javax.persistence.*;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.Polygon;
-
+import com.vividsolutions.jts.geom.*;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
@@ -26,7 +15,7 @@ public class CGP extends POI
 {
 	protected String type;
 	protected String services;
-	protected List<ZoneCoordenate> zoneCoord;
+	protected List<ZoneCoordenate> zoneCoordenates;
 	
 	public CGP()
 	{		
@@ -37,13 +26,15 @@ public class CGP extends POI
 	{
 		super(name, coordenate, tags);
 		this.services = services;
+		this.type = "cgp";
 	}
 	
 	public CGP(String name, Coordenate coordenate, List<ZoneCoordenate> zoneCoord, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
-		this.zoneCoord = zoneCoord;
+		this.zoneCoordenates = zoneCoord;
+		this.type = "cgp";
 	}
 	
 	public void setServices(String services)
@@ -56,15 +47,15 @@ public class CGP extends POI
 		this.type = type;
 	}
 	
-	public void setZoneCoord(List<ZoneCoordenate> zoneCoord)
+	public void setZoneCoordenates(List<ZoneCoordenate> zoneCoordenates)
 	{
-		this.zoneCoord = zoneCoord;
+		this.zoneCoordenates = zoneCoordenates;
 	}
 	
     @OneToMany(mappedBy="cgp", cascade = CascadeType.ALL)
-	public List<ZoneCoordenate> getZoneCoord()
+	public List<ZoneCoordenate> getZoneCoordenates()
 	{
-		return this.zoneCoord;
+		return this.zoneCoordenates;
 	}
 	
 	public String getType() 
@@ -156,7 +147,7 @@ public class CGP extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		return this.inCGPZone(this.zoneCoord, poiFrom.getCoordenate());
+		return this.inCGPZone(this.zoneCoordenates, poiFrom.getCoordenate());
 	}
 	
 	private boolean inCGPZone(List<ZoneCoordenate> polyCoords, Coordenate poiCoord)

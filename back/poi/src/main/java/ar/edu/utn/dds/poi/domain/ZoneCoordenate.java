@@ -29,8 +29,7 @@ public class ZoneCoordenate implements Serializable
 	}
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "poi_id")
-	public CGP getCGP()
+	public CGP getCgp()
 	{
 		return this.cgp;
 	}
@@ -60,7 +59,7 @@ public class ZoneCoordenate implements Serializable
 		this.id = id;
 	}
 	
-	public void setCGP(CGP cgp)
+	public void setCgp(CGP cgp)
 	{
 		this.cgp = cgp;
 	}

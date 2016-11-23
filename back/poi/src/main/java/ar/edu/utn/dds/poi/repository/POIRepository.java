@@ -141,4 +141,62 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
+	
+	public Serializable saveCGP(CGP cgp)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+        
+        for (ZoneCoordenate coord : cgp.getZoneCoordenates())
+        {
+        	coord.setCgp(cgp);
+        }
+        
+        for (OpeningHour hour : cgp.getOpeningHours())
+        {
+        	hour.setPoi(cgp);
+        }
+        
+        Serializable cgpID = session.save(cgp);
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
+        
+        return cgpID;
+	}
+	
+	public void updateCGP(CGP cgp)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();  
+        session.beginTransaction();
+        session.flush();
+        
+        session.update(cgp);
+
+        session.getTransaction().commit();
+        session.close();
+	}
+	
+	public CGP getCGP(Serializable cgpID)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        CGP cgp = session.get(CGP.class, cgpID);
+        session.close();
+        
+        return cgp;
+	}
+	
+	public void deleteCGP(CGP cgp)
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+        Object persistentInstance = session.load(CGP.class, cgp.getId());
+        session.delete(persistentInstance);
+        
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
+	}
 }

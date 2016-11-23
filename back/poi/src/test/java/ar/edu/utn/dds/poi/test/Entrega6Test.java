@@ -2,6 +2,7 @@ package ar.edu.utn.dds.poi.test;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.joda.time.DateTimeConstants;
 import org.junit.Assert;
 import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.exception.InvalidUserException;
@@ -80,6 +81,20 @@ public class Entrega6Test
         System.out.println("Persisti el Shop: " + shop.getName() + " con el ID: [" + shop.getId() + "]");
         
         Assert.assertNotNull(shopID);
+	}
+	
+	@Test
+	// Prueba numero 1 Enunciado
+	public void insertCGPTest()
+	{
+		// Obtengo un usuario para crear en la DB
+		CGP cgp = this.getNewCGP();
+        
+        // Grabo el POI
+        Serializable cgpID = poiService.saveCGP(cgp);
+        System.out.println("Persisti el CGP: " + cgp.getName() + " con el ID: [" + cgp.getId() + "]");
+        
+        Assert.assertNotNull(cgpID);
 	}
 	
 	@Test
@@ -217,5 +232,51 @@ public class Entrega6Test
 		shop.setUnit(101);
 		
 		return shop;
+	}
+	
+	public CGP getNewCGP()
+	{
+		String services = "Rentas,ABL";
+		List<ZoneCoordenate> zoneCoord = new ArrayList<ZoneCoordenate>();
+		
+		// We create the Bank POI
+		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
+		
+		ZoneCoordenate zone1 = new ZoneCoordenate(-34.618194, -58.427373);
+		ZoneCoordenate zone2 = new ZoneCoordenate(-34.618706, -58.423339);
+		ZoneCoordenate zone3 = new ZoneCoordenate(-34.620949, -58.424058);
+		ZoneCoordenate zone4 = new ZoneCoordenate(-34.620887, -58.426236);
+		ZoneCoordenate zone5 = new ZoneCoordenate(-34.619704, -58.427845);
+		ZoneCoordenate zone6 = new ZoneCoordenate(-34.618194, -58.427373);
+		
+		zoneCoord.add(zone1);
+		zoneCoord.add(zone2);
+		zoneCoord.add(zone3);
+		zoneCoord.add(zone4);
+		zoneCoord.add(zone5);
+		zoneCoord.add(zone6);
+				
+		CGP cgp = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
+		
+		cgp.setAddress(new Address("Mozart", 3000, "Dellepiane", "Castañares", 1, 
+							"A", "1234", "CABA", "Lugano", "Buenos Aires", "Argentina"));
+		
+		cgp.setUnit(101);
+		
+		OpeningHour mondayIncomes = new OpeningHour("Rentas", DateTimeConstants.MONDAY, 10, 0, 14, 0);
+		OpeningHour tuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour wednesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
+		OpeningHour thursdayIncomes = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 14, 0);
+		OpeningHour fridayIncomes = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 14, 0);
+		OpeningHour tuesdayABL = new OpeningHour("ABL", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		
+		cgp.addOpeningHour(mondayIncomes);
+		cgp.addOpeningHour(tuesdayIncomes);
+		cgp.addOpeningHour(wednesdayIncomes);
+		cgp.addOpeningHour(thursdayIncomes);
+		cgp.addOpeningHour(fridayIncomes);
+		cgp.addOpeningHour(tuesdayABL);
+		
+		return cgp;
 	}
 }
