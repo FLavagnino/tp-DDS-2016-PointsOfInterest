@@ -170,7 +170,7 @@ public class Entrega1Test
 		
 		// We create the Shop POI
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
-		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, Category.FURNITURE, "tag1,tag2");
+		Shop shopPOI = new Shop("Cinemark Av. La Plata", shopCoord, "muebleria", 1000, "tag1,tag2");
 		
 		OpeningHour mondayMon = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 13, 0);
 		OpeningHour mondayAft = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 17, 0, 22, 30);
@@ -246,9 +246,9 @@ public class Entrega1Test
 	{
 		String filter = "muebleria";
 		Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);		
-		Shop shopPOIFurniture = new Shop("Muebles Tito", shopCoord, Category.FURNITURE, "tag1,tag2");
-		Shop shopPOIHardstore = new Shop("El Clavo", shopCoord, Category.HARDSTORE, "tag1,tag2");
-		Shop shopPOILIbrary = new Shop("El Clavo", shopCoord, Category.LIBRARY, "tag1,tag2");
+		Shop shopPOIFurniture = new Shop("Muebles Tito", shopCoord, "muebleria", 1000, "tag1,tag2");
+		Shop shopPOIHardstore = new Shop("El Clavo", shopCoord, "ferreteria", 500, "tag1,tag2");
+		Shop shopPOILIbrary = new Shop("El Clavo", shopCoord, "libreria", 1200, "tag1,tag2");
 
 		POIService poiService = new POIService();
 		
@@ -259,7 +259,7 @@ public class Entrega1Test
 		SearchResult result = poiService.search(filter);
 		
 		assertTrue(result.getPois().size() == 1);
-		assertTrue(((Shop)result.getPois().get(0)).getShopCategory().getName().equals("muebleria"));
+		assertTrue(((Shop)result.getPois().get(0)).getCategory().equals("muebleria"));
 	}
 	
 	@Test
@@ -316,10 +316,10 @@ public class Entrega1Test
 		boolean result = false;
 		//Coordenate shopCoord = new Coordenate(-34.616325, -58.428837);
 		Coordenate shopCoord = new Coordenate(-34.608515, -58.372282);
-		Shop shopPOIFurniture = new Shop("Muebles Tito", shopCoord, Category.FURNITURE, "tag1,tag2");
+		Shop shopPOIFurniture = new Shop("Muebles Tito", shopCoord, "muebleria", 1000, "tag1,tag2");
 		//Coordenate shopCoord2 = new Coordenate(-34.616325, -58.428837);		
 		Coordenate shopCoord2 = new Coordenate(-34.608242, -58.370029);
-		Shop shopPOITeatro = new Shop("Teatro Metropolitan", shopCoord2, Category.FURNITURE, "tag1,tag2");
+		Shop shopPOITeatro = new Shop("Teatro Metropolitan", shopCoord2, "muebleria", 1000, "tag1,tag2");
 		
 		result = poiService.isCloserTo(shopPOIFurniture, shopPOITeatro);
 		assertTrue(result);
