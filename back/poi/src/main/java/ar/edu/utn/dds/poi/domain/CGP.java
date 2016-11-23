@@ -2,7 +2,10 @@ package ar.edu.utn.dds.poi.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.geotools.geometry.jts.JTSFactoryFinder;
@@ -23,7 +26,7 @@ public class CGP extends POI
 {
 	protected String type;
 	protected String services;
-	protected List<Coordenate> zoneCoord;
+	protected List<ZoneCoordenate> zoneCoord;
 	
 	public CGP()
 	{		
@@ -36,7 +39,7 @@ public class CGP extends POI
 		this.services = services;
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, String services, String tags) 
+	public CGP(String name, Coordenate coordenate, List<ZoneCoordenate> zoneCoord, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
@@ -52,8 +55,14 @@ public class CGP extends POI
 	{
 		this.type = type;
 	}
-		
-	public List<Coordenate> getZoneCoord()
+	
+	public void setZoneCoord(List<ZoneCoordenate> zoneCoord)
+	{
+		this.zoneCoord = zoneCoord;
+	}
+	
+    @OneToMany(mappedBy="cgp", cascade = CascadeType.ALL)
+	public List<ZoneCoordenate> getZoneCoord()
 	{
 		return this.zoneCoord;
 	}
@@ -150,13 +159,13 @@ public class CGP extends POI
 		return this.inCGPZone(this.zoneCoord, poiFrom.getCoordenate());
 	}
 	
-	private boolean inCGPZone(List<Coordenate> polyCoords, Coordenate poiCoord)
+	private boolean inCGPZone(List<ZoneCoordenate> polyCoords, Coordenate poiCoord)
 	{
 		Coordinate[] coords = new Coordinate[polyCoords.size()];
 		
 		for(int i=0; i< polyCoords.size() ; i++)
 		{
-			Coordenate point = polyCoords.get(i);
+			ZoneCoordenate point = polyCoords.get(i);
 			Coordinate coord = new Coordinate(point.getLatitude(), point.getLongitude());
 			
 			coords[i] = coord;

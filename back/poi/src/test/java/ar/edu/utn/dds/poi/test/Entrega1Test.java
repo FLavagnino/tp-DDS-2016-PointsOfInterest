@@ -12,6 +12,7 @@ import ar.edu.utn.dds.poi.domain.CGP;
 import ar.edu.utn.dds.poi.domain.Coordenate;
 import ar.edu.utn.dds.poi.domain.OpeningHour;
 import ar.edu.utn.dds.poi.domain.Shop;
+import ar.edu.utn.dds.poi.domain.ZoneCoordenate;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.service.POIService;
 import ar.edu.utn.dds.poi.service.historical.SearchResult;
@@ -354,17 +355,17 @@ public class Entrega1Test
 		boolean result = false;
 		
 		String services = "Rentas,ABL";
-		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
+		List<ZoneCoordenate> zoneCoord = new ArrayList<ZoneCoordenate>();
 		
 		// We create the Bank POI
 		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
 		
-		Coordenate zone1 = new Coordenate(-34.618194, -58.427373);
-		Coordenate zone2 = new Coordenate(-34.618706, -58.423339);
-		Coordenate zone3 = new Coordenate(-34.620949, -58.424058);
-		Coordenate zone4 = new Coordenate(-34.620887, -58.426236);
-		Coordenate zone5 = new Coordenate(-34.619704, -58.427845);
-		Coordenate zone6 = new Coordenate(-34.618194, -58.427373);
+		ZoneCoordenate zone1 = new ZoneCoordenate(-34.618194, -58.427373);
+		ZoneCoordenate zone2 = new ZoneCoordenate(-34.618706, -58.423339);
+		ZoneCoordenate zone3 = new ZoneCoordenate(-34.620949, -58.424058);
+		ZoneCoordenate zone4 = new ZoneCoordenate(-34.620887, -58.426236);
+		ZoneCoordenate zone5 = new ZoneCoordenate(-34.619704, -58.427845);
+		ZoneCoordenate zone6 = new ZoneCoordenate(-34.618194, -58.427373);
 		
 		zoneCoord.add(zone1);
 		zoneCoord.add(zone2);
@@ -390,17 +391,17 @@ public class Entrega1Test
 		boolean result = false;
 		
 		String services = "Rentas,ABL";
-		List<Coordenate> zoneCoord = new ArrayList<Coordenate>();
+		List<ZoneCoordenate> zoneCoord = new ArrayList<ZoneCoordenate>();
 		
 		// We create the Bank POI
 		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
 		
-		Coordenate zone1 = new Coordenate(-34.618194, -58.427373);
-		Coordenate zone2 = new Coordenate(-34.618706, -58.423339);
-		Coordenate zone3 = new Coordenate(-34.620949, -58.424058);
-		Coordenate zone4 = new Coordenate(-34.620887, -58.426236);
-		Coordenate zone5 = new Coordenate(-34.619704, -58.427845);
-		Coordenate zone6 = new Coordenate(-34.618194, -58.427373);
+		ZoneCoordenate zone1 = new ZoneCoordenate(-34.618194, -58.427373);
+		ZoneCoordenate zone2 = new ZoneCoordenate(-34.618706, -58.423339);
+		ZoneCoordenate zone3 = new ZoneCoordenate(-34.620949, -58.424058);
+		ZoneCoordenate zone4 = new ZoneCoordenate(-34.620887, -58.426236);
+		ZoneCoordenate zone5 = new ZoneCoordenate(-34.619704, -58.427845);
+		ZoneCoordenate zone6 = new ZoneCoordenate(-34.618194, -58.427373);
 		
 		zoneCoord.add(zone1);
 		zoneCoord.add(zone2);
