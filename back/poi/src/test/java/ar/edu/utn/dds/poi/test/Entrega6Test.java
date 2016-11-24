@@ -1,5 +1,6 @@
 package ar.edu.utn.dds.poi.test;
 
+import ar.edu.utn.dds.poi.repository.POIRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.joda.time.DateTimeConstants;
@@ -17,6 +18,7 @@ public class Entrega6Test
 {	
 	private AuthService authService;
 	private POIService poiService;
+	private POIRepository poiRepository;
 	private String userName;
 	private String password;
 	private String token;
@@ -26,8 +28,9 @@ public class Entrega6Test
 	{
 		this.authService = new AuthService();
 		this.poiService = new POIService();
+		poiRepository = new POIRepository();
 		
-		List<User> userList = new ArrayList<User>();
+		List<User> userList = new ArrayList<>();
 			
 		User tCaballito = new Terminal();	
 		tCaballito.setUserName("t_caballito");
@@ -48,11 +51,11 @@ public class Entrega6Test
 		Bank bank = this.getNewBank();
         
         // Grabo el POI
-        Serializable bankID = poiService.saveBank(bank);
+        Serializable bankID = poiRepository.savePOI(bank);
         System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
         
         // Obtengo el poi nuevamente de la DB
-        Bank dbBank = poiService.getBank(bankID);
+        Bank dbBank = poiRepository.getBank(bankID);
         System.out.println("Obtuve al poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
         
         // Le cambio las coordenadas
@@ -60,10 +63,10 @@ public class Entrega6Test
         dbBank.setCoordenate(coords);
         
         System.out.println("Persisti el poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
-        poiService.updateBank(dbBank);
+		poiRepository.updatePOI(dbBank);
         
         // Lo obtengo de nuevo y me fijo que coincida el nombre
-        Bank resultBank = poiService.getBank(bankID);
+        Bank resultBank = poiRepository.getBank(bankID);
         System.out.println("Obtuve al poi: " + resultBank.getName() + " con el ID: [" + resultBank.getId() + "]");
         
         Assert.assertEquals(coords.getLatitude(), resultBank.getCoordenate().getLatitude());
@@ -77,7 +80,7 @@ public class Entrega6Test
 		Shop shop = this.getNewShop();
         
         // Grabo el POI
-        Serializable shopID = poiService.saveShop(shop);
+        Serializable shopID = poiRepository.savePOI(shop);
         System.out.println("Persisti el Shop: " + shop.getName() + " con el ID: [" + shop.getId() + "]");
         
         Assert.assertNotNull(shopID);
@@ -91,7 +94,7 @@ public class Entrega6Test
 		CGP cgp = this.getNewCGP();
         
         // Grabo el POI
-        Serializable cgpID = poiService.saveCGP(cgp);
+        Serializable cgpID = poiRepository.savePOI(cgp);
         System.out.println("Persisti el CGP: " + cgp.getName() + " con el ID: [" + cgp.getId() + "]");
         
         Assert.assertNotNull(cgpID);
@@ -105,19 +108,19 @@ public class Entrega6Test
 		Bank bank = this.getNewBank();
         
         // Grabo el POI
-        Serializable bankID = poiService.saveBank(bank);
+        Serializable bankID = poiRepository.savePOI(bank);
         System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
         
         // Obtengo el poi nuevamente de la DB
-        Bank dbBank = poiService.getBank(bankID);
+        Bank dbBank = poiRepository.getBank(bankID);
         System.out.println("Obtuve al poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
         
         // Le cambio las coordenadas
         System.out.println("Lo borro...");
-        poiService.deleteBank(dbBank);
+		poiRepository.deletePOI(dbBank);
         
         // Lo obtengo de nuevo y me fijo que coincida el nombre
-        Bank resultBank = poiService.getBank(dbBank.getId());
+        Bank resultBank = poiRepository.getBank(dbBank.getId());
 
         // Me fijo si es null
         Assert.assertNull(resultBank);
@@ -189,7 +192,7 @@ public class Entrega6Test
         Action actionSearch = new Action();
         actionSearch.setName("Search");
 
-        List<Action> actions = new ArrayList<Action>();
+        List<Action> actions = new ArrayList<>();
         actionLog.setUser(user);
         actionSearch.setUser(user);
         
@@ -237,7 +240,7 @@ public class Entrega6Test
 	public CGP getNewCGP()
 	{
 		String services = "Rentas,ABL";
-		List<ZoneCoordenate> zoneCoord = new ArrayList<ZoneCoordenate>();
+		List<ZoneCoordenate> zoneCoord = new ArrayList<>();
 		
 		// We create the Bank POI
 		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
