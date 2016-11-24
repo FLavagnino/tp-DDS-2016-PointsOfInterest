@@ -36,7 +36,7 @@ var init = function() {
         event.preventDefault();
         var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" class=\"eliminar\" value=\"Delete\" id=\"delete-poi\"></td></tr>";
         $("#inputTable").append(newInput);
-    });
+    });//
 
     $("#addaction2").click(function(){
     var valor = $('select#actions').val();

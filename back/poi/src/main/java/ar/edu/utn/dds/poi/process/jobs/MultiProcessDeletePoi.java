@@ -46,7 +46,7 @@ public class MultiProcessDeletePoi extends ProcessPoi
 			if ((searchResult != null && searchResult.getPois().size() > 0) && (dateToday.compareTo(dateTimeJson) > 0))
 			{
 				POI poi = (POI) searchResult.getPois().get(0);
-				poiservice.deletePoi(poi.getUnit());		
+				poiservice.deletePoi(poi);
 			}
 		}
 		

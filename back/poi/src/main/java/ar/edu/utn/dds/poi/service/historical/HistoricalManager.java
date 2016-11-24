@@ -59,9 +59,10 @@ public class HistoricalManager
 
         List<Document> documents = new ArrayList<>();
         for(Log search : searches) {
-            documents.add(Document.parse(jsonFactory.toJson(search)));
+            documents.add(Document.parse(search.toJson()));
         }
-		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertMany(documents);
+		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
+				.insertMany(documents);
 	}
 
 	public List<Log> getSearches(String user) {
@@ -112,12 +113,11 @@ public class HistoricalManager
     }
 
     private Log createHistoricalSearch(Document document) {
-		DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
 		return new Log(
 				document.getString("user_name"),
 				document.getString("filter"),
-				document.getInteger("results_number"),
-				document.getLong("time"),
-				formatter.parseDateTime(document.getString("date")));
+				Integer.valueOf(document.get("results_number").toString()),
+				Long.valueOf(document.get("time").toString()),
+				document.getString("date"));
 	}
 }

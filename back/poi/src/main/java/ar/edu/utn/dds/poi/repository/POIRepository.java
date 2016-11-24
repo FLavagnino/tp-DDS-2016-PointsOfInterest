@@ -8,7 +8,7 @@ import ar.edu.utn.dds.poi.domain.*;
 
 public class POIRepository 
 {
-	public Serializable saveBusStop(BusStop busStop)
+	private Serializable saveBusStop(BusStop busStop)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         
@@ -20,8 +20,8 @@ public class POIRepository
         
         return busID;
 	}
-	
-	public void updateBusStop(BusStop busStop)
+
+    private void updateBusStop(BusStop busStop)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
@@ -30,8 +30,8 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
-	
-	public BusStop getBusStop(Serializable busID)
+
+    public BusStop getBusStop(Serializable busID)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         BusStop busStop = session.get(BusStop.class, busID);
@@ -39,16 +39,21 @@ public class POIRepository
         
         return busStop;
 	}
-	
-	public void deleteBusStop(Serializable busID)
+
+    private void deleteBusStop(BusStop busStop)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
-        BusStop busStop = session.get(BusStop.class, busID);
-        session.delete(busStop);
+        session.beginTransaction();
+
+        Object persistentInstance = session.load(Shop.class, busStop.getId());
+        session.delete(persistentInstance);
+
+        session.flush();
+        session.getTransaction().commit();
         session.close();
 	}
-	
-	public Serializable saveBank(Bank bank)
+
+    private Serializable saveBank(Bank bank)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         
@@ -60,8 +65,8 @@ public class POIRepository
         
         return bankID;
 	}
-	
-	public void updateBank(Bank bank)
+
+    private void updateBank(Bank bank)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
@@ -72,8 +77,8 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
-	
-	public Bank getBank(Serializable bankID)
+
+    public Bank getBank(Serializable bankID)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         Bank bank = session.get(Bank.class, bankID);
@@ -81,8 +86,8 @@ public class POIRepository
         
         return bank;
 	}
-	
-	public void deleteBank(Bank bank)
+
+    private void deleteBank(Bank bank)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         session.beginTransaction();
@@ -94,8 +99,8 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
-	
-	public Serializable saveShop(Shop shop)
+
+    private Serializable saveShop(Shop shop)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         
@@ -107,8 +112,8 @@ public class POIRepository
         
         return shopID;
 	}
-	
-	public void updateShop(Shop shop)
+
+    private void updateShop(Shop shop)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
@@ -119,8 +124,8 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
-	
-	public Shop getShop(Serializable shopID)
+
+    public Shop getShop(Serializable shopID)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         Shop shop = session.get(Shop.class, shopID);
@@ -128,8 +133,8 @@ public class POIRepository
         
         return shop;
 	}
-	
-	public void deleteShop(Shop shop)
+
+    private void deleteShop(Shop shop)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         session.beginTransaction();
@@ -141,8 +146,8 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
-	
-	public Serializable saveCGP(CGP cgp)
+
+    private Serializable saveCGP(CGP cgp)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         
@@ -165,8 +170,8 @@ public class POIRepository
         
         return cgpID;
 	}
-	
-	public void updateCGP(CGP cgp)
+
+    private void updateCGP(CGP cgp)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
@@ -177,8 +182,8 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
-	
-	public CGP getCGP(Serializable cgpID)
+
+    public CGP getCGP(Serializable cgpID)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         CGP cgp = session.get(CGP.class, cgpID);
@@ -186,8 +191,8 @@ public class POIRepository
         
         return cgp;
 	}
-	
-	public void deleteCGP(CGP cgp)
+
+    private void deleteCGP(CGP cgp)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
         session.beginTransaction();
@@ -199,4 +204,58 @@ public class POIRepository
         session.getTransaction().commit();
         session.close();
 	}
+
+	public Serializable savePOI(POI poi) {
+        switch (poi.getType()) {
+            case "cgp":
+                return saveCGP((CGP) poi);
+            case "bank":
+                return saveBank((Bank) poi);
+            case "bus_stop":
+                return saveBusStop((BusStop) poi);
+            case "shop":
+                return saveShop((Shop) poi);
+            default:
+                return null;
+        }
+    }
+
+    public void updatePOI(POI poi) {
+        switch (poi.getType()) {
+            case "cgp":
+                updateCGP((CGP) poi);
+                return;
+            case "bank":
+                updateBank((Bank) poi);
+                return;
+            case "bus_stop":
+                updateBusStop((BusStop) poi);
+                return;
+            case "shop":
+                updateShop((Shop) poi);
+                return;
+            default:
+                return;
+        }
+    }
+
+    public void deletePOI(POI poi) {
+        switch (poi.getType()) {
+            case "cgp":
+                deleteCGP((CGP) poi);
+                return;
+            case "bank":
+                deleteBank((Bank) poi);
+                return;
+            case "bus_stop":
+                deleteBusStop((BusStop) poi);
+                return;
+            case "shop":
+                deleteShop((Shop) poi);
+                return;
+            default:
+                return;
+        }
+    }
+
 }
