@@ -137,4 +137,14 @@ public abstract class POI
 	{
 		return true;
 	}
+
+	public String getType()
+	{
+		return this.getType();
+	}
+
+	public void setType(String type)
+	{
+		this.setType(type);
+	}
 }

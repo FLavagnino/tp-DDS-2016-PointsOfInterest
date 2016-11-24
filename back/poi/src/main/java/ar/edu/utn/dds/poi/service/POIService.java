@@ -32,6 +32,7 @@ public class POIService implements Searcher
 	private MetersDistance distanceService;
 	private ExternalPOIService externalPOIService;
 	private AuthService authService;
+	private POIRepository poiRepository;
 	
 	private List<POI> poiList;
 	
@@ -41,6 +42,7 @@ public class POIService implements Searcher
 		this.externalPOIService = new ExternalPOIService();
 		this.authService = new AuthService();
 		this.poiList = new ArrayList<POI>();
+		this.poiRepository = new POIRepository();
 		
 		// Agrego algunos fake, despues deberian salir de la base de datos
 		Coordenate coordenate = new Coordenate(-34.619160, -58.425443);
@@ -71,7 +73,11 @@ public class POIService implements Searcher
 		
 	public boolean isValid(POI poi) 
 	{
-		return poi.getCoordenate() != null && poi.getName() != null;
+		if (poi.getCoordenate() != null && poi.getName() != null) {
+			return true;
+		} else {
+			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
+		}
 	}
 	
 	public boolean isCloserTo(POI poiFrom, POI poiTo)
@@ -125,56 +131,43 @@ public class POIService implements Searcher
 	{
 		return this.search(filter);
 	}
-	
-	public SearchResult search(String filter, String userName, String token) throws InvalidUserException 
+
+	public SearchResult search(String filter, String userName, String token)
 	{
+		SearchResult searchResult = null;
 		User user = this.authService.getUser(userName, token);
 		
 		if (user != null)
 		{	
-			//if (user.getAuditMode())
-			//{
+			if (user.getAuditMode())
+			{
 				Audit auditSearch = new Audit();
-				return auditSearch.search(filter, userName);
-			//}
-			//else
-			//{
-			//	return this.search(filter);
-			//}
+				searchResult = auditSearch.search(filter, userName);
+			}
+			else
+			{
+				searchResult = this.search(filter);
+			}
 		}
-		else
-		{
-			throw new InvalidUserException(Constant.POISERVICE_AUTH_ERROR_MSG); 
-		}
+		return searchResult;
 	}
 
-	public void addPoi(POI poi) throws InvalidPoiException 
-	{
-//		if (this.isValid(poi))
-//		{
-			poiList.add(poi);
-//		}
-//		else
-//		{
-//			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
-//		}
+	public void addPoi(POI poi) {
+		if (this.isValid(poi)) {
+			poiRepository.savePOI(poi);
+		}
 	}
 	
-	public void deletePoi(Integer unit)
+	public void deletePoi(POI poi)
 	{
-		poiList.removeIf( poi -> poi.getUnit() == unit );
+		poiRepository.deletePOI(poi);
 	}
 	
 	public void updatePoi(POI poi) throws InvalidPoiException
 	{
 		if (this.isValid(poi))
 		{
-			deletePoi(poi.getUnit());
-			addPoi(poi);
-		}
-		else
-		{
-			throw new InvalidPoiException(Constant.POISERVICE_INVALID_POI_MSG);
+			poiRepository.updatePOI(poi);
 		}
 	}
 		
@@ -346,96 +339,6 @@ public class POIService implements Searcher
 	{
 		UserRepository userRep = new UserRepository();
 		return userRep.get(userID);
-	}
-	
-	public Serializable saveBusStop(BusStop busStop)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.saveBusStop(busStop);
-	}
-	
-	public void updateBusStop(BusStop busStop)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.updateBusStop(busStop);
-	}
-	
-	public BusStop getBusStop(Serializable busID)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.getBusStop(busID);
-	}
-	
-	public Serializable saveBank(Bank bank)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.saveBank(bank);
-	}
-	
-	public void updateBank(Bank bank)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.updateBank(bank);
-	}
-	
-	public Bank getBank(Serializable bankID)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.getBank(bankID);
-	}
-	
-	public void deleteBank(Bank bank)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.deleteBank(bank);
-	}
-	
-	public Serializable saveShop(Shop shop)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.saveShop(shop);
-	}
-	
-	public void updateShop(Shop shop)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.updateShop(shop);
-	}
-	
-	public Shop getShop(Serializable shopID)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.getShop(shopID);
-	}
-	
-	public void deleteShop(Shop shop)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.deleteShop(shop);
-	}
-	
-	public Serializable saveCGP(CGP cgp)
-	{
-		POIRepository poiRep = new POIRepository();      
-		return poiRep.saveCGP(cgp);
-	}
-	
-	public void updateCGP(CGP cgp)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.updateCGP(cgp);
-	}
-	
-	public CGP getCGP(Serializable cgpID)
-	{
-		POIRepository poiRep = new POIRepository();
-		return poiRep.getCGP(cgpID);
-	}
-	
-	public void deleteCGP(CGP cgp)
-	{
-		POIRepository poiRep = new POIRepository();
-		poiRep.deleteCGP(cgp);
 	}
 	
 	public Log getLog(Serializable logID)

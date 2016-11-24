@@ -1,6 +1,6 @@
 package ar.edu.utn.dds.poi.exception;
 
-public class InvalidPoiException extends Exception
+public class InvalidPoiException extends RuntimeException
 {
 	private static final long serialVersionUID = 1L;
 
