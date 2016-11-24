@@ -3,7 +3,7 @@
   associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="ar.edu.utn.dds.poi.domain.Action" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Action.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="256" width="174" x="2270" y="37"/>    
+    <position height="256" width="174" x="2721" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="ar.edu.utn.dds.poi.domain.Address" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Address.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="349" y="481"/>    
+    <position height="876" width="596" x="41" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="ar.edu.utn.dds.poi.domain.Admin" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Admin.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="184" x="2377" y="1569"/>    
+    <position height="116" width="184" x="2497" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="ar.edu.utn.dds.poi.domain.Bank" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Bank.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="236" width="285" x="1072" y="653"/>    
+    <position height="236" width="285" x="1048" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="ar.edu.utn.dds.poi.domain.BusStop" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/BusStop.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="296" width="289" x="1899" y="653"/>    
+    <position height="296" width="289" x="677" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="ar.edu.utn.dds.poi.domain.CGP" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/CGP.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="316" width="462" x="1397" y="653"/>    
+    <position height="376" width="454" x="1766" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   <class id="7" language="java" name="ar.edu.utn.dds.poi.domain.Coordenate" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Coordenate.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="336" width="223" x="1899" y="1569"/>    
+    <position height="336" width="223" x="1008" y="1609"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -68,7 +68,7 @@
   <class id="8" language="java" name="ar.edu.utn.dds.poi.domain.OpeningHour" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/OpeningHour.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="576" width="269" x="679" y="1569"/>    
+    <position height="576" width="269" x="1705" y="1609"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -77,7 +77,7 @@
   </class>  
   <class id="9" language="java" name="ar.edu.utn.dds.poi.domain.POI" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/POI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="576" width="650" x="1072" y="37"/>    
+    <position height="616" width="650" x="1048" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -86,7 +86,7 @@
   </class>  
   <class id="10" language="java" name="ar.edu.utn.dds.poi.domain.Shop" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Shop.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="276" width="313" x="719" y="653"/>    
+    <position height="376" width="311" x="1373" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -95,7 +95,7 @@
   </class>  
   <class id="11" language="java" name="ar.edu.utn.dds.poi.domain.Terminal" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Terminal.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="96" width="174" x="2163" y="1569"/>    
+    <position height="96" width="174" x="2935" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -104,7 +104,7 @@
   </class>  
   <class id="12" language="java" name="ar.edu.utn.dds.poi.domain.User" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/User.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="496" width="229" x="2270" y="653"/>    
+    <position height="496" width="229" x="2721" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -113,7 +113,7 @@
   </class>  
   <class id="13" language="java" name="ar.edu.utn.dds.poi.domain.Log" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/Log.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="536" width="349" x="2539" y="37"/>    
+    <position height="576" width="349" x="2260" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -122,167 +122,169 @@
   </class>  
   <class id="14" language="java" name="ar.edu.utn.dds.poi.domain.LogResult" project="pointsOfInterest" 
     file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/LogResult.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="276" width="197" x="2539" y="653"/>    
+    <position height="276" width="197" x="2260" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="16">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="17" name="zoneCoord">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="18" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="20" name="address">        
-        <position height="0" width="0" x="10" y="-610"/>      
-      </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1">        
-        <position height="0" width="0" x="10" y="-610"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="25">    
-    <bendpoint x="2218" y="653"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="26" name="coordenate">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="28">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="29" name="actions">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <bendpoint x="2239" y="653"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="32" name="poi">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="34">    
+  <class id="15" language="java" name="ar.edu.utn.dds.poi.domain.ZoneCoordenate" project="pointsOfInterest" 
+    file="/pointsOfInterest/src/main/java/ar/edu/utn/dds/poi/domain/ZoneCoordenate.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="336" width="258" x="1766" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="16">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <association id="35">    
-    <bendpoint x="688" y="653"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="36" name="poi">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="38">    
+  <generalization id="17">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="12"/>  
   </generalization>  
-  <generalization id="39">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="40">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="41" name="user">        
+  <association id="18">    
+    <bendpoint x="1017" y="693"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="19" name="poi">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
+      <multiplicity id="20" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="43">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="46">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="47" name="results"/>      
-      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <bendpoint x="667" y="653"/>    
+  <association id="21">    
+    <bendpoint x="1714" y="693"/>    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="50" name="openingHours">        
+      <attribute id="22" name="openingHours">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="51" minimum="0" maximum="2147483647">        
+      <multiplicity id="23" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="52">    
+  <association id="24">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="25" name="zoneCoordenates"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="28" name="actions">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="31">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="32" name="cgp"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="35" name="results">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="38">    
+    <bendpoint x="996" y="693"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="39" name="coordenate">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="42" name="poi">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="44">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="48" name="user">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="50">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
   <association id="53">    
-    <end type="SOURCE" refId="2" navigable="false">      
+    <bendpoint x="1735" y="693"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
       <attribute id="54" name="poi">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
@@ -293,14 +295,34 @@
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="56">    
+  <association id="56">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="57" name="address">        
+        <position height="0" width="0" x="10" y="-610"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="10" y="-610"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="60">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <association id="57">    
+  <association id="61">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="58" name="log"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
+      <attribute id="62" name="log">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="63" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
