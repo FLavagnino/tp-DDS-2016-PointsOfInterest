@@ -26,12 +26,13 @@
 	<mapping class="ar.edu.utn.dds.poi.domain.POI" /> 
 	<mapping class="ar.edu.utn.dds.poi.domain.Address" /> 
 	<mapping class="ar.edu.utn.dds.poi.domain.Coordenate" /> 
+	<mapping class="ar.edu.utn.dds.poi.domain.ZoneCoordenate" /> 
 	<mapping class="ar.edu.utn.dds.poi.domain.OpeningHour" />
 	<mapping class="ar.edu.utn.dds.poi.domain.Bank" /> 
 	<mapping class="ar.edu.utn.dds.poi.domain.BusStop" />
 	<mapping class="ar.edu.utn.dds.poi.domain.Log" />
 	<mapping class="ar.edu.utn.dds.poi.domain.LogResult" />
 	<mapping class="ar.edu.utn.dds.poi.domain.Shop" />
-	<!--<mapping class="ar.edu.utn.dds.poi.domain.CGP" /> -->
+	<mapping class="ar.edu.utn.dds.poi.domain.CGP" />
 </session-factory>
 </hibernate-configuration>

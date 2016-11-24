@@ -1,19 +1,11 @@
 package ar.edu.utn.dds.poi.domain;
 
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-
+import javax.persistence.*;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.Polygon;
-
+import com.vividsolutions.jts.geom.*;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 
@@ -21,36 +13,59 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 @PrimaryKeyJoinColumn(name="poi_id")
 public class CGP extends POI 
 {
-	protected final static String TYPE = "cgp";
-
-	protected List<String> services;
-	protected List<Coordenate> zoneCoord;
+	protected String type;
+	protected String services;
+	protected List<ZoneCoordenate> zoneCoordenates;
 	
 	public CGP()
 	{		
+		this.type = "cgp";
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<String> services, String tags) 
+	public CGP(String name, Coordenate coordenate, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
+		this.type = "cgp";
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<Coordenate> zoneCoord, List<String> services, String tags) 
+	public CGP(String name, Coordenate coordenate, List<ZoneCoordenate> zoneCoord, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
-		this.zoneCoord = zoneCoord;
+		this.zoneCoordenates = zoneCoord;
+		this.type = "cgp";
 	}
 	
-	public void setServices (List<String> services)
+	public void setServices(String services)
 	{
 		this.services = services;
 	}
-		
-	public List<Coordenate> getZoneCoord()
+	
+	public void setType(String type) 
 	{
-		return this.zoneCoord;
+		this.type = type;
+	}
+	
+	public void setZoneCoordenates(List<ZoneCoordenate> zoneCoordenates)
+	{
+		this.zoneCoordenates = zoneCoordenates;
+	}
+	
+    @OneToMany(mappedBy="cgp", cascade = CascadeType.ALL)
+	public List<ZoneCoordenate> getZoneCoordenates()
+	{
+		return this.zoneCoordenates;
+	}
+	
+	public String getType() 
+	{
+		return this.type;
+	}
+	
+	public String getServices ()
+	{
+		return this.services;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
@@ -92,9 +107,11 @@ public class CGP extends POI
 	{		
 		// Now we will try with Categories
 		int distance = 0;	
-		for(int i=0; i< this.services.size() ; i++)
+		String[] servList = services.split(",");
+		
+		for(int i=0; i< servList.length ; i++)
 		{
-			if (this.services.get(i).toLowerCase().contains(filter.toLowerCase()))
+			if (servList[i].toLowerCase().contains(filter.toLowerCase()))
 			{
 				return true;	
 			}
@@ -130,16 +147,16 @@ public class CGP extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		return this.inCGPZone(this.zoneCoord, poiFrom.getCoordenate());
+		return this.inCGPZone(this.zoneCoordenates, poiFrom.getCoordenate());
 	}
 	
-	private boolean inCGPZone(List<Coordenate> polyCoords, Coordenate poiCoord)
+	private boolean inCGPZone(List<ZoneCoordenate> polyCoords, Coordenate poiCoord)
 	{
 		Coordinate[] coords = new Coordinate[polyCoords.size()];
 		
 		for(int i=0; i< polyCoords.size() ; i++)
 		{
-			Coordenate point = polyCoords.get(i);
+			ZoneCoordenate point = polyCoords.get(i);
 			Coordinate coord = new Coordinate(point.getLatitude(), point.getLongitude());
 			
 			coords[i] = coord;
@@ -156,9 +173,5 @@ public class CGP extends POI
 		boolean result = polygon.contains(point);
 		
 		return result;
-	}
-
-	public String getType() {
-		return TYPE;
 	}
 }

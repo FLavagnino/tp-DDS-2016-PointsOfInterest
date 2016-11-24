@@ -26,7 +26,7 @@
 
 
 
-<div id="actions" style="width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 50px; display: none;">
+<div id="actions" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 50px">
 	<div>
 		Acciones ante la Búsqueda.
 
@@ -36,9 +36,26 @@
 			<option value="resportpoi">resportpoi</option>
 			<option value="adduser">adduser</option>
 				<div class="button-content">
-	                            <div class="add-poi">
-	                                <input type="button" value="Add" id="add">
+	                            <div class="addaction">
+	                                <input type="button" value="Add Action" id="addaction2"> 
 	                            </div>
+	                   <div class="input-search">
+                        <form>
+                             <table id="inputTableActions">
+                                <tr>
+                                    <td>
+                                        <!-- <input type="text" class="inputKeyWord"> -->
+                                    </td>
+                                </tr>
+                            </table>
+                       </form>
+
+                                <input type="button" value="Aceptar" id="aceptaction">
+                                <input type="button" value="Cancelar" id="cancelaction">
+
+					</div>
+
+
 	            </div>
 		</select>
      
@@ -89,6 +106,9 @@
                                 <tr>
                                     <td>
                                         <input type="text" class="inputKeyWord">
+                                         
+                              				  <input type="button" class="delete-poi" value="Delete" id="delete-poi">
+                           				
                                     </td>
                                 </tr>
                             </table>
@@ -183,6 +203,7 @@
                             <div>{{address}}</div>
                             <div>{{tags}}</div>
                             <div>{{type}}</div>
+                            <img src="images/busstop.png" style="width: 20px; height:20px">
                         {{else if (isBankType type)}}
                             <div>{{name}}</div>
                             <div>{{unit}}</div>
@@ -191,6 +212,7 @@
                             <div>{{address}}</div>
                             <div>{{tags}}</div>
                             <div>{{type}}</div>
+                            <img src="images/bank.jpg" style="width: 20px; height:20px">
                         {{else if (isCGPType type)}}
                             <div>{{name}}</div>
                             <div>{{unit}}</div>
@@ -199,6 +221,7 @@
                             <div>{{address}}</div>
                             <div>{{tags}}</div>
                             <div>{{type}}</div>
+                            <img src="images/cgp.png" style="width: 20px; height:20px">
                         {{else if (isShopType type)}}
                             <div>{{name}}</div>
                             <div>{{unit}}</div>
@@ -207,6 +230,7 @@
                             <div>{{address}}</div>
                             <div>{{tags}}</div>
                             <div>{{type}}</div>
+                            <img src="images/shop.png" style="width: 20px; height:20px">
                         {{/if}}
                     </div>
                 </div>
@@ -254,6 +278,22 @@
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/poi_search.js"></script>
 
+<script type="text/javascript">
+ 
+$(function(){
+	// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+	$("#agregar").on('click', function(){
+		$("#tabla tbody tr:eq(0)").clone().removeClass('fila-base').appendTo("#tabla tbody");
+	});
+ 
+	// Evento que selecciona la fila y la elimina 
+	$(document).on("click",".eliminar",function(){
+		var parent = $(this).parents().get(0);
+		$(parent).remove();
+	});
+});
+ 
+</script>
 
 </body>
 </html>

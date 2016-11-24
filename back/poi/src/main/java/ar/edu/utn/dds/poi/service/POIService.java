@@ -414,6 +414,30 @@ public class POIService implements Searcher
 		poiRep.deleteShop(shop);
 	}
 	
+	public Serializable saveCGP(CGP cgp)
+	{
+		POIRepository poiRep = new POIRepository();      
+		return poiRep.saveCGP(cgp);
+	}
+	
+	public void updateCGP(CGP cgp)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.updateCGP(cgp);
+	}
+	
+	public CGP getCGP(Serializable cgpID)
+	{
+		POIRepository poiRep = new POIRepository();
+		return poiRep.getCGP(cgpID);
+	}
+	
+	public void deleteCGP(CGP cgp)
+	{
+		POIRepository poiRep = new POIRepository();
+		poiRep.deleteCGP(cgp);
+	}
+	
 	public Log getLog(Serializable logID)
 	{
 		LogRepository logRep = new LogRepository();
