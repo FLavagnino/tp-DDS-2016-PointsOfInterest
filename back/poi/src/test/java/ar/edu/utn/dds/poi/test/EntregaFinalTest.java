@@ -53,6 +53,12 @@ public class EntregaFinalTest
 	@Test
 	public void insertBankTest()
 	{
+		List<Bank> banks = this.getBanks();
+		
+		for (Bank bank : banks)
+		{
+			poiRepository.save(bank);
+		}
 	}
 	
 	@Test
@@ -181,15 +187,62 @@ public class EntregaFinalTest
 		return busStop;
 	}
 	
-	public Bank getNewBank()
+	public List<Bank> getBanks()
 	{
-		Coordenate coords = new Coordenate(-34.619109, -58.425454);
-		Bank bank = new Bank("Banco Galicia", coords, "Banco,Galicia,Dinero");
+		List<Bank> banks = new ArrayList<Bank>();
 		
-		bank.setAddress(new Address());
-		bank.setUnit(100);
+		Coordenate coordsGalicia = new Coordenate(-34.618209, -58.428791);
+		Bank bankGalicia = new Bank("Banco Galicia", coordsGalicia, "Banco,Galicia,Dinero");
 		
-		return bank;
+		OpeningHour monday = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 15, 0);
+		OpeningHour tuesday = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 15, 0);
+		OpeningHour wednesday = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 15, 0);
+		OpeningHour thursday = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 15, 0);
+		OpeningHour friday = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 15, 0);
+		
+		bankGalicia.addOpeningHour(monday);
+		bankGalicia.addOpeningHour(tuesday);
+		bankGalicia.addOpeningHour(wednesday);
+		bankGalicia.addOpeningHour(thursday);
+		bankGalicia.addOpeningHour(friday);
+		
+		bankGalicia.setAddress(new Address("Av La Plata", 277, "Rosario", "Quito", 0, 
+				"PB", "1184", "CABA", "Caballito", "Buenos Aires", "Argentina"));
+		
+		bankGalicia.setUnit(70);
+		banks.add(bankGalicia);
+		
+		Coordenate coordsSantander = new Coordenate(-34.616646, -58.428791);
+		Bank bankRio = new Bank("Banco Santander Rio", coordsSantander, "Banco,Rio,Dinero");
+		
+		bankRio.addOpeningHour(monday);
+		bankRio.addOpeningHour(tuesday);
+		bankRio.addOpeningHour(wednesday);
+		bankRio.addOpeningHour(thursday);
+		bankRio.addOpeningHour(friday);
+		
+		bankRio.setAddress(new Address("Av La Plata", 154, "Rivadavia", "Quito", 0, 
+				"PB", "1184", "CABA", "Caballito", "Buenos Aires", "Argentina"));
+		
+		bankRio.setUnit(80);
+		banks.add(bankRio);
+		
+		Coordenate coordsCiudad = new Coordenate(-34.617264, -58.436827);
+		Bank bankCiudad = new Bank("Banco Ciudad", coordsCiudad, "Banco,Ciudad,Dinero");
+		
+		bankCiudad.addOpeningHour(monday);
+		bankCiudad.addOpeningHour(tuesday);
+		bankCiudad.addOpeningHour(wednesday);
+		bankCiudad.addOpeningHour(thursday);
+		bankCiudad.addOpeningHour(friday);
+		
+		bankCiudad.setAddress(new Address("Acoyte", 91, "Rivadavia", "Yerbal", 0, 
+				"PB", "1405", "CABA", "Caballito", "Buenos Aires", "Argentina"));
+		
+		bankCiudad.setUnit(90);
+		banks.add(bankCiudad);
+		
+		return banks;
 	}
 	
 	public List<Shop> getShops()
