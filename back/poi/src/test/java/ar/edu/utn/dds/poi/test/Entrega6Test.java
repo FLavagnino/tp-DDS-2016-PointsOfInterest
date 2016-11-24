@@ -40,7 +40,7 @@ public class Entrega6Test
 		tCaballito.setEmail("luiskahrs@gmail.com");
 		userList.add(tCaballito);
 	
-		this.authService.setUsers(userList);
+		//this.authService.setUsers(userList);
 	}
 
 	@Test

@@ -1,9 +1,13 @@
 package ar.edu.utn.dds.poi.repository;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 
+import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.domain.User;
 
 public class UserRepository 
@@ -36,5 +40,17 @@ public class UserRepository
         session.close();
         
         return user;
+	}
+	
+	public List<User> getAll()
+	{
+        Session session = HibernateManager.getSessionFactory().openSession();
+        
+        Query query = session.getNamedQuery("all");
+        
+        List<User> results = (List<User>)query.getResultList();
+        session.close();
+        
+        return results;
 	}
 }

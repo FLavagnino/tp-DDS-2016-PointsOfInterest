@@ -1,14 +1,13 @@
 package ar.edu.utn.dds.poi.auth;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.UUID;
 import ar.edu.utn.dds.poi.domain.*;
+import ar.edu.utn.dds.poi.repository.UserRepository;
 
 public class AuthManager 
 {
-	private List<User> userList;
 	private static AuthManager instance = null;
 	
 	public static AuthManager getInstance() 
@@ -23,14 +22,13 @@ public class AuthManager
 	
 	public AuthManager()
 	{
-		this.userList = new ArrayList<User>();
 	}
 	
 	public String login(String userName, String password)
 	{
 		String token = "";
 		
-		List<User> users = userList.stream()
+		List<User> users = getUserList().stream()
 							.filter(item -> item.getUserName() == userName && 
 										item.getPassword().equals(password))
 							.collect(Collectors.toList());
@@ -41,6 +39,9 @@ public class AuthManager
 			
 			token = UUID.randomUUID().toString();
 			currentUser.setToken(token);
+			
+			UserRepository userRep = new UserRepository();
+			userRep.update(currentUser);
 		}
 		
 		return token;
@@ -48,7 +49,7 @@ public class AuthManager
 	
 	public boolean validate(String userName, String token)
 	{
-		List<User> users = userList.stream()
+		List<User> users = getUserList().stream()
 						.filter(item -> item.getUserName() == userName && 
 										item.getToken().equals(token))
 						.collect(Collectors.toList());
@@ -58,7 +59,7 @@ public class AuthManager
 	
 	public User getUser(String userName, String token)
 	{
-		List<User> users = userList.stream()
+		List<User> users = getUserList().stream()
 						.filter(item -> item.getUserName() == userName && 
 										item.getToken().equals(token))
 						.collect(Collectors.toList());
@@ -75,7 +76,7 @@ public class AuthManager
 	
 	public String getMailOf(String userName) 
 	{
-		List<User> users = userList.stream()
+		List<User> users = getUserList().stream()
 				.filter(item -> item.getUserName() == userName)
 				.collect(Collectors.toList());
 
@@ -87,20 +88,11 @@ public class AuthManager
 		{
 			return null;
 		}
-
-//		for (User user : userList) 
-//		{
-//			if(user.getUserName() == userName)
-//			{
-//				return user.getEmail();
-//			}
-//		}
-//		
-//		return null;
 	}
-	
-	public void setUserList(List<User> users)
+		
+	public List<User> getUserList()
 	{
-		this.userList = users;
+		UserRepository userRep = new UserRepository();
+		return userRep.getAll();
 	}
 }

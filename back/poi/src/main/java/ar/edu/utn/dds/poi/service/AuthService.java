@@ -28,12 +28,7 @@ public class AuthService
 	{
 		return this.authManager.getUser(userName, token);
 	}
-	
-	public void setUsers(List<User> users)
-	{
-		this.authManager.setUserList(users);
-	}
-	
+		
 	public String getMailOf(String userName)
 	{
 		return this.authManager.getMailOf(userName);

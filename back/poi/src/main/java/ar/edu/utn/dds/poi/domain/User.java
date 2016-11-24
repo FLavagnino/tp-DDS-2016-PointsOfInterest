@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+@NamedQueries({
+	@NamedQuery(
+	name = "all",
+	query = "from User"
+	)
+})
 @Entity
 public class User implements Serializable
 {

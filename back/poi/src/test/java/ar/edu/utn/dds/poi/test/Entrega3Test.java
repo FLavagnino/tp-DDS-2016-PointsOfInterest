@@ -90,7 +90,7 @@ public class Entrega3Test
 		tBoedo.setEmail("luiskahrs@gmail.com");
 		userList.add(tBoedo);
 		
-		this.authService.setUsers(userList);
+		//this.authService.setUsers(userList);
 		
 		List<Log> searches = new ArrayList<Log>();
 		DateTime date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
