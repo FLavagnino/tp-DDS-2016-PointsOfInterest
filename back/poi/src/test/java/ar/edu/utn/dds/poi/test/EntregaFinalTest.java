@@ -6,6 +6,8 @@ import org.joda.time.DateTimeConstants;
 import org.junit.After;
 import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.repository.HibernateManager;
+import ar.edu.utn.dds.poi.repository.POIRepository;
+import ar.edu.utn.dds.poi.repository.UserRepository;
 import ar.edu.utn.dds.poi.service.POIService;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +15,14 @@ import java.util.UUID;
 
 public class EntregaFinalTest 
 {	
-	private POIService poiService;
+	private POIRepository poiRepository;
+	private UserRepository userRepository;
 	
 	@Before
 	public void setUp()
 	{
-		this.poiService = new POIService();
+		this.poiRepository = new POIRepository();
+		this.userRepository = new UserRepository();
 	}
 	
 	@After
@@ -33,7 +37,7 @@ public class EntregaFinalTest
 		
 		for (User user : users)
 		{
-			poiService.saveUser(user);
+			userRepository.save(user);
 		}
 	}
 	
@@ -44,7 +48,7 @@ public class EntregaFinalTest
 		
 		for (CGP cgp : cgps)
 		{
-			poiService.saveCGP(cgp);
+			poiRepository.save(cgp);
 		}
 	}
 	

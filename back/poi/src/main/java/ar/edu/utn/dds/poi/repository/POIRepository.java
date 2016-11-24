@@ -204,7 +204,7 @@ public class POIRepository
         session.close();
 	}
 
-	public Serializable savePOI(POI poi) {
+	public Serializable save(POI poi) {
         switch (poi.getType()) {
             case "cgp":
                 return saveCGP((CGP) poi);
@@ -219,7 +219,7 @@ public class POIRepository
         }
     }
 
-    public void updatePOI(POI poi) {
+    public void update(POI poi) {
         switch (poi.getType()) {
             case "cgp":
                 updateCGP((CGP) poi);
@@ -238,7 +238,7 @@ public class POIRepository
         }
     }
 
-    public void deletePOI(POI poi) {
+    public void delete(POI poi) {
         switch (poi.getType()) {
             case "cgp":
                 deleteCGP((CGP) poi);

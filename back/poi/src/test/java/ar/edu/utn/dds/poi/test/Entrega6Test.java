@@ -51,7 +51,7 @@ public class Entrega6Test
 		Bank bank = this.getNewBank();
         
         // Grabo el POI
-        Serializable bankID = poiRepository.savePOI(bank);
+        Serializable bankID = poiRepository.save(bank);
         System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
         
         // Obtengo el poi nuevamente de la DB
@@ -63,7 +63,7 @@ public class Entrega6Test
         dbBank.setCoordenate(coords);
         
         System.out.println("Persisti el poi: " + dbBank.getName() + " con el ID: [" + dbBank.getId() + "]");
-		poiRepository.updatePOI(dbBank);
+		poiRepository.update(dbBank);
         
         // Lo obtengo de nuevo y me fijo que coincida el nombre
         Bank resultBank = poiRepository.getBank(bankID);
@@ -80,7 +80,7 @@ public class Entrega6Test
 		Shop shop = this.getNewShop();
         
         // Grabo el POI
-        Serializable shopID = poiRepository.savePOI(shop);
+        Serializable shopID = poiRepository.save(shop);
         System.out.println("Persisti el Shop: " + shop.getName() + " con el ID: [" + shop.getId() + "]");
         
         Assert.assertNotNull(shopID);
@@ -94,7 +94,7 @@ public class Entrega6Test
 		CGP cgp = this.getNewCGP();
         
         // Grabo el POI
-        Serializable cgpID = poiRepository.savePOI(cgp);
+        Serializable cgpID = poiRepository.save(cgp);
         System.out.println("Persisti el CGP: " + cgp.getName() + " con el ID: [" + cgp.getId() + "]");
         
         Assert.assertNotNull(cgpID);
@@ -108,7 +108,7 @@ public class Entrega6Test
 		Bank bank = this.getNewBank();
         
         // Grabo el POI
-        Serializable bankID = poiRepository.savePOI(bank);
+        Serializable bankID = poiRepository.save(bank);
         System.out.println("Persisti el Bank: " + bank.getName() + " con el ID: [" + bank.getId() + "]");
         
         // Obtengo el poi nuevamente de la DB
@@ -117,7 +117,7 @@ public class Entrega6Test
         
         // Le cambio las coordenadas
         System.out.println("Lo borro...");
-		poiRepository.deletePOI(dbBank);
+		poiRepository.delete(dbBank);
         
         // Lo obtengo de nuevo y me fijo que coincida el nombre
         Bank resultBank = poiRepository.getBank(dbBank.getId());

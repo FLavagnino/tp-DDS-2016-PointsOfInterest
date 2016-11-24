@@ -154,20 +154,20 @@ public class POIService implements Searcher
 
 	public void addPoi(POI poi) {
 		if (this.isValid(poi)) {
-			poiRepository.savePOI(poi);
+			poiRepository.save(poi);
 		}
 	}
 	
 	public void deletePoi(POI poi)
 	{
-		poiRepository.deletePOI(poi);
+		poiRepository.delete(poi);
 	}
 	
 	public void updatePoi(POI poi) throws InvalidPoiException
 	{
 		if (this.isValid(poi))
 		{
-			poiRepository.updatePOI(poi);
+			poiRepository.update(poi);
 		}
 	}
 		
