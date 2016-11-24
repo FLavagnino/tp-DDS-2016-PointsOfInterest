@@ -1,11 +1,13 @@
 package ar.edu.utn.dds.poi.test;
 
 import ar.edu.utn.dds.poi.domain.*;
-import ar.edu.utn.dds.poi.service.Historical;
+import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 import ar.edu.utn.dds.poi.utils.MongoUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class Entrega7Test {
 	private MongoUtil mongoUtil;
@@ -35,8 +37,14 @@ public class Entrega7Test {
 	}
 
 	@Test
-	public void lala() {
-		Historical historical = new Historical();
-		historical.search("Rio", "Facundo");
+	public void saveSearch() {
+		Log log = new Log("Pepito", "Bus", 23, Long.valueOf(2), "2016/11/02");
+		log.setResults(new ArrayList<>());
+
+		Assert.assertEquals(0, HistoricalManager.getInstance().getSearches("Pepito").size());
+
+		HistoricalManager.getInstance().saveSearch(log);
+
+		Assert.assertEquals(1, HistoricalManager.getInstance().getSearches("Pepito").size());
 	}
 }

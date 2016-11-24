@@ -46,17 +46,20 @@ var init = function() {
             var nuevaFila="<tr>";
             for(var i=0;i<tds;i++){
                 // añadimos las columnas
-                nuevaFila+="<td> "+(valor)+" ELIMINAR</td>";
+                nuevaFila+="<td> "+(valor)+" <input type=\"button\" class=\"delete-action\" value=\"Delete\" id=\"delete-action\"> </td>";
             }
             // Añadimos una columna con el numero total de columnas.
             // Añadimos uno al total, ya que cuando cargamos los valores para la
-            // columna, todavia no esta añadida
+            // columna, todavia no esta añadida.
           //  nuevaFila+="<td>"+ valor +" columnas";
             nuevaFila+="</tr>";
         $("#inputTableActions").append(nuevaFila);
     });
     
-
+    $("#delete-action").click(function(){
+        event.preventDefault();   
+        $("#inputTableActions tr:last").remove();
+    });
 
         $("#addaction").click(function(){
             // Obtenemos el numero de filas (td) que tiene la primera columna

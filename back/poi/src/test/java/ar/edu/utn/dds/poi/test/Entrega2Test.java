@@ -109,7 +109,7 @@ public class Entrega2Test
 		result = poiService.search("114");
 		assertEquals(1, result.getPois().size());	
 		
-		poiService.deletePoi(poi.getUnit());
+		poiService.deletePoi(poi);
 		
 		result = poiService.search("114");
 		assertEquals(0, result.getPois().size());	
