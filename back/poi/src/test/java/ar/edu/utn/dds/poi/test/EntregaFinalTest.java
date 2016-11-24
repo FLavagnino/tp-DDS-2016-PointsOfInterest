@@ -75,6 +75,12 @@ public class EntregaFinalTest
 	@Test
 	public void insertBusStopTest()
 	{
+		List<BusStop> busStops = this.getBusStops();
+		
+		for (BusStop busStop : busStops)
+		{
+			poiRepository.save(busStop);
+		}
 	}
 		
 	// Metodos de ayuda.
@@ -176,15 +182,38 @@ public class EntregaFinalTest
 	}
 	
 	
-	public BusStop getNewBusStop()
+	public List<BusStop> getBusStops()
 	{
-		Coordenate coords = new Coordenate(-34.619109, -58.425454);
-		BusStop busStop = new BusStop("Linea 84", coords, 84, "Colectivo,Linea84,84,Parada");
+		List<BusStop> busStops = new ArrayList<BusStop>();
 		
-		busStop.setAddress(new Address());
-		busStop.setUnit(100);
+		Coordenate coords84 = new Coordenate(-34.619109, -58.425454);
+		BusStop busStop84 = new BusStop("Linea 84", coords84, 84, "Colectivo,Linea84,84,Parada");
 		
-		return busStop;
+		busStop84.setAddress(new Address("Agrelo", 4151, "Jose Marmol", "33 Orientales", 0, 
+				"PB", "1236", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		busStop84.setUnit(100);
+		busStops.add(busStop84);
+		
+		Coordenate coords132 = new Coordenate(-34.617670, -58.427310);
+		BusStop busStop132 = new BusStop("Linea 132", coords132, 132, "Colectivo,Linea132,132,Parada");
+		
+		busStop132.setAddress(new Address("Muñiz", 461, "Venezuela", "Quito", 0, 
+				"PB", "1236", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		busStop132.setUnit(110);
+		busStops.add(busStop132);
+		
+		Coordenate coords105 = new Coordenate(-34.614588, -58.428136);
+		BusStop busStop105 = new BusStop("Linea 105", coords105, 105, "Colectivo,Linea105,105,Parada");
+		
+		busStop105.setAddress(new Address("Rivadavia", 4337, "Yatay", "Av La Plata", 0, 
+				"PB", "1205", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		busStop105.setUnit(120);
+		busStops.add(busStop105);
+		
+		return busStops;
 	}
 	
 	public List<Bank> getBanks()
