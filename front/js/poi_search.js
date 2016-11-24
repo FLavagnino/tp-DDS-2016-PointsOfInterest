@@ -34,7 +34,7 @@ var init = function() {
 
     $("#add").click(function(){
         event.preventDefault();
-        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" class=\"delete-poi\" value=\"Delete\" id=\"delete-poi\"></td></tr>";
+        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" class=\"eliminar\" value=\"Delete\" id=\"delete-poi\"></td></tr>";
         $("#inputTable").append(newInput);
     });
 
@@ -46,7 +46,7 @@ var init = function() {
             var nuevaFila="<tr>";
             for(var i=0;i<tds;i++){
                 // añadimos las columnas
-                nuevaFila+="<td> "+(valor)+" <input type=\"button\" class=\"delete-action\" value=\"Delete\" id=\"delete-action\"> </td>";
+                nuevaFila+="<td> "+(valor)+" <input type=\"button\" class=\"eliminar\" value=\"Delete\" id=\"delete-action\"> </td>";
             }
             // Añadimos una columna con el numero total de columnas.
             // Añadimos uno al total, ya que cuando cargamos los valores para la
