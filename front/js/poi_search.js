@@ -50,7 +50,7 @@ var init = function() {
             }
             // Añadimos una columna con el numero total de columnas.
             // Añadimos uno al total, ya que cuando cargamos los valores para la
-            // columna, todavia no esta añadida
+            // columna, todavia no esta añadida.
           //  nuevaFila+="<td>"+ valor +" columnas";
             nuevaFila+="</tr>";
         $("#inputTableActions").append(nuevaFila);
