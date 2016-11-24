@@ -3,6 +3,7 @@ package ar.edu.utn.dds.poi.repository;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -53,4 +54,53 @@ public class UserRepository
         
         return results;
 	}
+
+	public User getUser(String userName) {
+        Session session = HibernateManager.getSessionFactory().openSession();
+
+        String hql = "from User where userName = :userName";
+        Query query = session.createQuery(hql);
+        query.setParameter("userName", userName);
+
+        List results = query.getResultList();
+        session.close();
+
+        return (User) results.get(0);
+    }
+
+    public User getUserWithToken(String userName, String token) {
+        Session session = HibernateManager.getSessionFactory().openSession();
+
+        String hql = "from User where userName = :userName and token = :token";
+        Query query = session.createQuery(hql);
+        query.setParameter("userName", userName);
+        query.setParameter("token", token);
+
+        User user = null;
+        try {
+            user = (User) query.getSingleResult();
+        } catch (NoResultException e) {}
+
+        session.close();
+
+        return user;
+    }
+
+    public User getUserWithPassword(String userName, String pass) {
+        Session session = HibernateManager.getSessionFactory().openSession();
+
+        String hql = "from User where userName = :userName and password = :pass";
+        Query query = session.createQuery(hql);
+        query.setParameter("userName", userName);
+        query.setParameter("pass", pass);
+
+        User user = null;
+        try {
+            user = (User) query.getSingleResult();
+        } catch (NoResultException e) {}
+
+        session.close();
+
+        return user;
+    }
 }

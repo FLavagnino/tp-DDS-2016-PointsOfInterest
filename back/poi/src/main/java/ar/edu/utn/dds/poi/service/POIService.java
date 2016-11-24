@@ -102,7 +102,7 @@ public class POIService implements Searcher
 	
 	public SearchResult search(String filter)
 	{
-		List<POI> result = filterPois(filter, this.poiList);
+		List<POI> result = filterPois(filter, poiRepository.getAllPois());
 
 		result.addAll(externalPOIService.getExternalPoisCached(filter));
 		

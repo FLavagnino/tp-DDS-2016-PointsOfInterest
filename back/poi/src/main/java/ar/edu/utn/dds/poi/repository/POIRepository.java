@@ -1,10 +1,13 @@
 package ar.edu.utn.dds.poi.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.hibernate.Session;
 
 import ar.edu.utn.dds.poi.domain.*;
+
+import javax.persistence.Query;
 
 public class POIRepository 
 {
@@ -267,6 +270,18 @@ public class POIRepository
             default:
                 return;
         }
+    }
+
+    public List<POI> getAllPois() {
+        Session session = HibernateManager.getSessionFactory().openSession();
+
+        String hql = "from POI";
+        Query query = session.createQuery(hql);
+
+        List results = query.getResultList();
+        session.close();
+
+        return results;
     }
 
 }

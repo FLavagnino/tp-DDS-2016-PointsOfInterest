@@ -1,5 +1,7 @@
 package ar.edu.utn.dds.poi.test;
 
+import ar.edu.utn.dds.poi.repository.HibernateManager;
+import org.hibernate.Session;
 import org.junit.Before;
 import org.junit.Test;
 import org.joda.time.DateTimeConstants;
@@ -7,6 +9,9 @@ import org.junit.After;
 import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.repository.POIRepository;
 import ar.edu.utn.dds.poi.repository.UserRepository;
+
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +32,30 @@ public class EntregaFinalTest
 	public void cleanUp()
 	{
 	}
-		
+
+	@Test
+	public void lala() {
+		getUser("facul", "fc5778db-0ede-4261--37c022d24fbb");
+	}
+
+	public User getUser(String userName, String token) {
+		Session session = HibernateManager.getSessionFactory().openSession();
+
+		String hql = "from User where userName = :userName and token = :token";
+		Query query = session.createQuery(hql);
+		query.setParameter("userName", userName);
+		query.setParameter("token", token);
+
+		User user = null;
+		try {
+			user = (User) query.getSingleResult();
+		} catch (NoResultException e) {}
+
+		session.close();
+
+		return user;
+	}
+
 	@Test
 	public void insertUserTest()
 	{
