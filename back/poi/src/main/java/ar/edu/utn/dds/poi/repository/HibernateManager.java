@@ -4,13 +4,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import ar.edu.utn.dds.poi.domain.*;
 
 public class HibernateManager 
 {
-	private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static SessionFactory sessionFactory = null;
 
+	public static SessionFactory getSessionFactory() 
+	{
+		if(sessionFactory == null) 
+		{
+			sessionFactory = buildSessionFactory();
+		}
+		
+		return sessionFactory;
+	}
+	
 	private static SessionFactory buildSessionFactory() 
 	{	
 		StandardServiceRegistry registry = null;
@@ -37,11 +45,6 @@ public class HibernateManager
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
-	}
-
-	public static SessionFactory getSessionFactory() 
-	{
-		return sessionFactory;
 	}
 
 	public static void shutdown()

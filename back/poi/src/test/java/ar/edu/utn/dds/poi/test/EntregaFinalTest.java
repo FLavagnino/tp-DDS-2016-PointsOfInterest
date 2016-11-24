@@ -3,37 +3,29 @@ package ar.edu.utn.dds.poi.test;
 import org.junit.Before;
 import org.junit.Test;
 import org.joda.time.DateTimeConstants;
-import org.junit.Assert;
+import org.junit.After;
 import ar.edu.utn.dds.poi.domain.*;
-import ar.edu.utn.dds.poi.exception.InvalidUserException;
-import ar.edu.utn.dds.poi.service.AuthService;
+import ar.edu.utn.dds.poi.repository.HibernateManager;
 import ar.edu.utn.dds.poi.service.POIService;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class EntregaFinalTest 
 {	
-	private AuthService authService;
 	private POIService poiService;
-	private String userName;
-	private String password;
-	private String token;
 	
 	@Before
 	public void setUp()
 	{
-		this.authService = new AuthService();
 		this.poiService = new POIService();
 	}
-
-	@Test
-	// Prueba numero 1 Enunciado
-	public void insertBankTest()
+	
+	@After
+	public void cleanUp()
 	{
 	}
-	
+		
 	@Test
 	public void insertUserTest()
 	{
@@ -46,15 +38,29 @@ public class EntregaFinalTest
 	}
 	
 	@Test
+	public void insertCGPTest()
+	{
+		List<CGP> cgps = this.getCGPs();
+		
+		for (CGP cgp : cgps)
+		{
+			poiService.saveCGP(cgp);
+		}
+	}
+	
+	@Test
+	public void insertBankTest()
+	{
+	}
+	
+	@Test
 	public void insertShopTest()
 	{
 	}
 	
 	@Test
-	public void insertCGPTest()
+	public void insertBusStopTest()
 	{
-		//CGP cgp = this.getNewCGP();
-        //poiService.saveCGP(cgp);
 	}
 		
 	// Metodos de ayuda.
@@ -192,46 +198,134 @@ public class EntregaFinalTest
 	public List<CGP> getCGPs()
 	{
 		List<CGP> cgps = new ArrayList<CGP>();
-		String services = "Rentas,ABL";
-		List<ZoneCoordenate> zoneCoord = new ArrayList<ZoneCoordenate>();
 		
-		// We create the Bank POI
-		Coordenate CGPCoord = new Coordenate(-34.608828, -58.430982);	
+		String servicesCent = "Rentas,ABL";
+		List<ZoneCoordenate> zoneCoordCent = new ArrayList<ZoneCoordenate>();
 		
-		ZoneCoordenate zone1 = new ZoneCoordenate(-34.618194, -58.427373);
-		ZoneCoordenate zone2 = new ZoneCoordenate(-34.618706, -58.423339);
-		ZoneCoordenate zone3 = new ZoneCoordenate(-34.620949, -58.424058);
-		ZoneCoordenate zone4 = new ZoneCoordenate(-34.620887, -58.426236);
-		ZoneCoordenate zone5 = new ZoneCoordenate(-34.619704, -58.427845);
-		ZoneCoordenate zone6 = new ZoneCoordenate(-34.618194, -58.427373);
+		Coordenate CGPCoordCent = new Coordenate(-34.608828, -58.430982);	
 		
-		zoneCoord.add(zone1);
-		zoneCoord.add(zone2);
-		zoneCoord.add(zone3);
-		zoneCoord.add(zone4);
-		zoneCoord.add(zone5);
-		zoneCoord.add(zone6);
+		ZoneCoordenate zone1Cent = new ZoneCoordenate(-34.618194, -58.427373);
+		ZoneCoordenate zone2Cent = new ZoneCoordenate(-34.618706, -58.423339);
+		ZoneCoordenate zone3Cent = new ZoneCoordenate(-34.620949, -58.424058);
+		ZoneCoordenate zone4Cent = new ZoneCoordenate(-34.620887, -58.426236);
+		ZoneCoordenate zone5Cent = new ZoneCoordenate(-34.619704, -58.427845);
+		ZoneCoordenate zone6Cent = new ZoneCoordenate(-34.618194, -58.427373);
+		
+		zoneCoordCent.add(zone1Cent);
+		zoneCoordCent.add(zone2Cent);
+		zoneCoordCent.add(zone3Cent);
+		zoneCoordCent.add(zone4Cent);
+		zoneCoordCent.add(zone5Cent);
+		zoneCoordCent.add(zone6Cent);
 				
-		CGP cgp = new CGP("CGP Parque Centenario", CGPCoord, zoneCoord, services, "tag1,tag2");
+		CGP cgpCent = new CGP("CGP Parque Centenario", CGPCoordCent, zoneCoordCent, servicesCent, "Parque,Centenario,CGP");
 		
-		cgp.setAddress(new Address("Mozart", 3000, "Dellepiane", "Castañares", 1, 
+		cgpCent.setAddress(new Address("Mozart", 3000, "Dellepiane", "Castañares", 1, 
 							"A", "1234", "CABA", "Lugano", "Buenos Aires", "Argentina"));
 		
-		cgp.setUnit(101);
+		cgpCent.setUnit(10);
 		
-		OpeningHour mondayIncomes = new OpeningHour("Rentas", DateTimeConstants.MONDAY, 10, 0, 14, 0);
-		OpeningHour tuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
-		OpeningHour wednesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
-		OpeningHour thursdayIncomes = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 14, 0);
-		OpeningHour fridayIncomes = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 14, 0);
-		OpeningHour tuesdayABL = new OpeningHour("ABL", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour CentMondayIncomes = new OpeningHour("Rentas", DateTimeConstants.MONDAY, 10, 0, 14, 0);
+		OpeningHour CentTuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour CentWednesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
+		OpeningHour CentThursdayIncomes = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 14, 0);
+		OpeningHour CentFridayIncomes = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 14, 0);
+		OpeningHour CentTuesdayABL = new OpeningHour("ABL", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
 		
-		cgp.addOpeningHour(mondayIncomes);
-		cgp.addOpeningHour(tuesdayIncomes);
-		cgp.addOpeningHour(wednesdayIncomes);
-		cgp.addOpeningHour(thursdayIncomes);
-		cgp.addOpeningHour(fridayIncomes);
-		cgp.addOpeningHour(tuesdayABL);
+		cgpCent.addOpeningHour(CentMondayIncomes);
+		cgpCent.addOpeningHour(CentTuesdayIncomes);
+		cgpCent.addOpeningHour(CentWednesdayIncomes);
+		cgpCent.addOpeningHour(CentThursdayIncomes);
+		cgpCent.addOpeningHour(CentFridayIncomes);
+		cgpCent.addOpeningHour(CentTuesdayABL);
+		
+		cgps.add(cgpCent);
+		
+		String servicesAcoyte = "ABL,Asesoramiento Legal,Asesoramiento Contable";
+		
+		List<ZoneCoordenate> zoneCoordAcoyte = new ArrayList<ZoneCoordenate>();
+		
+		Coordenate CGPCoordAcoyte = new Coordenate(-34.618327, -58.436408);	
+		
+		ZoneCoordenate zone1Acoyte = new ZoneCoordenate(-34.617232, -58.434037);
+		ZoneCoordenate zone2Acoyte = new ZoneCoordenate(-34.619227, -58.434885);
+		ZoneCoordenate zone3Acoyte = new ZoneCoordenate(-34.618953, -58.437653);
+		ZoneCoordenate zone4Acoyte = new ZoneCoordenate(-34.616993, -58.437846);
+		ZoneCoordenate zone5Acoyte = new ZoneCoordenate(-34.616428, -58.435775);
+		ZoneCoordenate zone6Acoyte = new ZoneCoordenate(-34.617232, -58.434037);
+		
+		zoneCoordAcoyte.add(zone1Acoyte);
+		zoneCoordAcoyte.add(zone2Acoyte);
+		zoneCoordAcoyte.add(zone3Acoyte);
+		zoneCoordAcoyte.add(zone4Acoyte);
+		zoneCoordAcoyte.add(zone5Acoyte);
+		zoneCoordAcoyte.add(zone6Acoyte);
+				
+		CGP cgpAcoyte = new CGP("CGP Acoyte", CGPCoordAcoyte, zoneCoordAcoyte, servicesAcoyte, "Acoyte,CGP");
+		
+		cgpAcoyte.setAddress(new Address("Acoyte", 2450, "Rivadavia", "Rosario", 2, 
+							"C", "1405", "CABA", "Caballito", "Buenos Aires", "Argentina"));
+		
+		cgpAcoyte.setUnit(20);
+		
+		OpeningHour AcoyteMondayIncomes = new OpeningHour("Asesoramiento Legal", DateTimeConstants.MONDAY, 10, 0, 14, 0);
+		OpeningHour AcoyteTuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour AcoyteWednesdayIncomes = new OpeningHour("Asesoramiento Contable", DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
+		OpeningHour AcoyteThursdayIncomes = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 14, 0);
+		OpeningHour AcoyteFridayIncomes = new OpeningHour("Asesoramiento Legal", DateTimeConstants.FRIDAY, 10, 0, 14, 0);
+		OpeningHour AcoyteTuesdayABL = new OpeningHour("ABL", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		
+		cgpAcoyte.addOpeningHour(AcoyteMondayIncomes);
+		cgpAcoyte.addOpeningHour(AcoyteTuesdayIncomes);
+		cgpAcoyte.addOpeningHour(AcoyteWednesdayIncomes);
+		cgpAcoyte.addOpeningHour(AcoyteThursdayIncomes);
+		cgpAcoyte.addOpeningHour(AcoyteFridayIncomes);
+		cgpAcoyte.addOpeningHour(AcoyteTuesdayABL);
+		
+		cgps.add(cgpAcoyte);
+		
+		String servicesLaPlata = "Bodas,Patentes";
+
+		List<ZoneCoordenate> zoneCoordLaPlata = new ArrayList<ZoneCoordenate>();
+		
+		Coordenate CGPCoordLaPlata = new Coordenate(-34.615015, -58.429166);	
+		
+		ZoneCoordenate zone1LaPlata = new ZoneCoordenate(-34.614026, -58.426613);
+		ZoneCoordenate zone2LaPlata = new ZoneCoordenate(-34.615909, -58.427063);
+		ZoneCoordenate zone3LaPlata = new ZoneCoordenate(-34.617286, -58.430099);
+		ZoneCoordenate zone4LaPlata = new ZoneCoordenate(-34.615644, -58.431859);
+		ZoneCoordenate zone5LaPlata = new ZoneCoordenate(-34.613401, -58.429756);
+		ZoneCoordenate zone6LaPlata = new ZoneCoordenate(-34.614026, -58.426613);
+		
+		zoneCoordLaPlata.add(zone1LaPlata);
+		zoneCoordLaPlata.add(zone2LaPlata);
+		zoneCoordLaPlata.add(zone3LaPlata);
+		zoneCoordLaPlata.add(zone4LaPlata);
+		zoneCoordLaPlata.add(zone5LaPlata);
+		zoneCoordLaPlata.add(zone6LaPlata);
+				
+		CGP cgpLaPlata = new CGP("CGP La Plata", CGPCoordLaPlata, zoneCoordLaPlata, servicesLaPlata, "La Plata,CGP");
+		
+		cgpLaPlata.setAddress(new Address("Av. La Plata", 152, "Rivadavia", "Chaco", 3, 
+							"D", "1411", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		cgpLaPlata.setUnit(30);
+		
+		OpeningHour LaPlataMondayIncomes = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 14, 0);
+		OpeningHour LaPlataTuesdayIncomes = new OpeningHour("Patentes", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		OpeningHour LaPlataWednesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 14, 0);
+		OpeningHour LaPlataThursdayIncomes = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 14, 0);
+		OpeningHour LaPlataFridayIncomes = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 14, 0);
+		OpeningHour LaPlataTuesdayABL = new OpeningHour("Bodas", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
+		
+		cgpLaPlata.addOpeningHour(LaPlataMondayIncomes);
+		cgpLaPlata.addOpeningHour(LaPlataTuesdayIncomes);
+		cgpLaPlata.addOpeningHour(LaPlataWednesdayIncomes);
+		cgpLaPlata.addOpeningHour(LaPlataThursdayIncomes);
+		cgpLaPlata.addOpeningHour(LaPlataFridayIncomes);
+		cgpLaPlata.addOpeningHour(LaPlataTuesdayABL);
+		
+		cgps.add(cgpLaPlata);
 		
 		return cgps;
 	}

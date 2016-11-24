@@ -171,7 +171,6 @@ public class POIRepository
         Session session = HibernateManager.getSessionFactory().openSession();  
         session.beginTransaction();
         session.flush();
-        
         session.update(cgp);
 
         session.getTransaction().commit();
