@@ -5,10 +5,8 @@ import org.junit.Test;
 import org.joda.time.DateTimeConstants;
 import org.junit.After;
 import ar.edu.utn.dds.poi.domain.*;
-import ar.edu.utn.dds.poi.repository.HibernateManager;
 import ar.edu.utn.dds.poi.repository.POIRepository;
 import ar.edu.utn.dds.poi.repository.UserRepository;
-import ar.edu.utn.dds.poi.service.POIService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -60,6 +58,12 @@ public class EntregaFinalTest
 	@Test
 	public void insertShopTest()
 	{
+		List<Shop> shops = this.getShops();
+		
+		for (Shop shop : shops)
+		{
+			poiRepository.save(shop);
+		}
 	}
 	
 	@Test
@@ -188,15 +192,85 @@ public class EntregaFinalTest
 		return bank;
 	}
 	
-	public Shop getNewShop()
+	public List<Shop> getShops()
 	{
-		Coordenate coords = new Coordenate(-34.619109, -58.425454);
-		Shop shop = new Shop("Muebleria Tito", coords, "muebleria", 1000, "muebleria,muebles,tito");
+		List<Shop> shops = new ArrayList<Shop>();
 		
-		shop.setAddress(new Address());
-		shop.setUnit(101);
+		Coordenate coordsMuebleria = new Coordenate(-34.619109, -58.425454);
+		Shop shopMuebleria = new Shop("Muebleria Tito", coordsMuebleria, "muebleria", 1000, "muebleria,muebles,tito");
 		
-		return shop;
+		OpeningHour mondayMon = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 13, 0);
+		OpeningHour mondayAft = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 17, 0, 22, 30);
+		OpeningHour tuesdayMon = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 13, 0);
+		OpeningHour tuesdayAft = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 17, 0, 20, 30);
+		OpeningHour wednesdayMon = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 10, 0, 13, 0);
+		OpeningHour wednesdayAft = new OpeningHour("No aplica", DateTimeConstants.WEDNESDAY, 17, 0, 20, 30);
+		OpeningHour thursdayMon = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 13, 0);
+		OpeningHour thursdayAft = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 17, 0, 20, 30);
+		OpeningHour fridayMon = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 13, 0);
+		OpeningHour fridayAft = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 17, 0, 20, 30);
+		
+		shopMuebleria.addOpeningHour(mondayMon);
+		shopMuebleria.addOpeningHour(mondayAft);
+		shopMuebleria.addOpeningHour(tuesdayMon);
+		shopMuebleria.addOpeningHour(tuesdayAft);
+		shopMuebleria.addOpeningHour(wednesdayMon);
+		shopMuebleria.addOpeningHour(wednesdayAft);
+		shopMuebleria.addOpeningHour(thursdayMon);
+		shopMuebleria.addOpeningHour(thursdayAft);
+		shopMuebleria.addOpeningHour(fridayMon);
+		shopMuebleria.addOpeningHour(fridayAft);
+		
+		shopMuebleria.setAddress(new Address("Agrelo", 4151, "Jose Marmol", "33 Orientales", 4, 
+				"B", "1211", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		shopMuebleria.setUnit(40);
+		
+		shops.add(shopMuebleria);
+		
+		Coordenate coordsLibreria = new Coordenate(-34.616902, -58.423823);
+		Shop shopLibreria = new Shop("Libreria Escuadra", coordsLibreria, "libreria", 1500, "libreria,libros,escuadra");
+				
+		shopLibreria.addOpeningHour(mondayMon);
+		shopLibreria.addOpeningHour(mondayAft);
+		shopLibreria.addOpeningHour(tuesdayMon);
+		shopLibreria.addOpeningHour(tuesdayAft);
+		shopLibreria.addOpeningHour(wednesdayMon);
+		shopLibreria.addOpeningHour(wednesdayAft);
+		shopLibreria.addOpeningHour(thursdayMon);
+		shopLibreria.addOpeningHour(thursdayAft);
+		shopLibreria.addOpeningHour(fridayMon);
+		shopLibreria.addOpeningHour(fridayAft);
+		
+		shopLibreria.setAddress(new Address("Quito", 4054, "33 Orientales", "Quintino Bocayuba", 0, 
+				"PB", "1211", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		shopLibreria.setUnit(50);
+		
+		shops.add(shopLibreria);
+		
+		Coordenate coordsFerreteria = new Coordenate(-34.614774, -58.423641);
+		Shop shopFerreteria = new Shop("Ferreteria El Tornillo", coordsFerreteria, "ferreteria", 200, "ferreteria,herramientas,tornillo");
+				
+		shopFerreteria.addOpeningHour(mondayMon);
+		shopFerreteria.addOpeningHour(mondayAft);
+		shopFerreteria.addOpeningHour(tuesdayMon);
+		shopFerreteria.addOpeningHour(tuesdayAft);
+		shopFerreteria.addOpeningHour(wednesdayMon);
+		shopFerreteria.addOpeningHour(wednesdayAft);
+		shopFerreteria.addOpeningHour(thursdayMon);
+		shopFerreteria.addOpeningHour(thursdayAft);
+		shopFerreteria.addOpeningHour(fridayMon);
+		shopFerreteria.addOpeningHour(fridayAft);
+		
+		shopFerreteria.setAddress(new Address("Hipolito Yrigoyen", 4013, "33 Orientales", "Quintino Bocayuba", 0, 
+				"PB", "1208", "CABA", "Almagro", "Buenos Aires", "Argentina"));
+		
+		shopFerreteria.setUnit(60);
+		
+		shops.add(shopFerreteria);
+		
+		return shops;
 	}
 	
 	public List<CGP> getCGPs()

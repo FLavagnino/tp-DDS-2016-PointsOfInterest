@@ -58,6 +58,12 @@ public class POIRepository
         Session session = HibernateManager.getSessionFactory().openSession();
         
         session.beginTransaction();
+        
+        for (OpeningHour hour : bank.getOpeningHours())
+        {
+        	hour.setPoi(bank);
+        }
+        
         Serializable bankID = session.save(bank);
         session.flush();
         session.getTransaction().commit();
@@ -105,6 +111,12 @@ public class POIRepository
         Session session = HibernateManager.getSessionFactory().openSession();
         
         session.beginTransaction();
+        
+        for (OpeningHour hour : shop.getOpeningHours())
+        {
+        	hour.setPoi(shop);
+        }
+        
         Serializable shopID = session.save(shop);
         session.flush();
         session.getTransaction().commit();
