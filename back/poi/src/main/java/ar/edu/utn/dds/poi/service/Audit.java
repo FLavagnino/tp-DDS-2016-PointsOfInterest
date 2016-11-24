@@ -23,8 +23,11 @@ public class Audit implements Searcher
 		if (searchResult.getTime() > (Constant.MAX_SEARCH_TIME * 1000)) 
 		{
 			String email = authService.getMailOf(userName);
-			EmailSender emailSender = new EmailSender(email);
-			new Thread(emailSender).run();
+
+			if(email != null) {
+				EmailSender emailSender = new EmailSender(email);
+				new Thread(emailSender).run();
+			}
 		}
 		
 		return searchResult;

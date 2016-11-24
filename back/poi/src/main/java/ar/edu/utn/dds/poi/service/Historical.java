@@ -24,7 +24,7 @@ public class Historical implements Searcher
 	{
 		SearchResult searchResult = timer.search(filter, userName);
 		
-		List<LogResult> results = new ArrayList<LogResult>();
+		List<LogResult> results = new ArrayList<>();
 		
 		for(POI poi : searchResult.getPois())
 		{
