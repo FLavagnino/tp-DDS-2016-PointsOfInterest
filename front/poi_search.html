@@ -67,29 +67,21 @@
 		<div id="page" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 50px; padding-top: 25px"><div class="inner_copy"></div>
 			<div id="content">
 				<div class="post">
-					<h2 class="title"><a href="#">Search POIS </a></h2>
+					<h2 class="title"><a href="#">Search</a></h2>
 					<div class="entry">
+						<input type="button" value="Add" id="add" style="padding:1px 15px;">&nbsp;<input type="button" value="Search" id="search" class="available" style="padding:1px 15px;">
+						<div id="searchError" style="color:red; font-weight:bold; visibility:hidden;">Error Default</div>
 						<div class="input-search">
 							<form>
 								<table id="inputTable">
 									<tr>
 										<td>
 											<input type="text" class="inputKeyWord">
-											 
-												  <input type="button" class="delete-poi" value="Delete" id="delete-poi">
-											
+											<input type="button" value="X"style="padding:1px 10px;" onClick="javascript:this.parentElement.parentElement.remove();">
 										</td>
 									</tr>
 								</table>
 							</form>
-						</div>
-						<div class="button-content">
-							<div class="add-poi">
-								<input type="button" value="Add" id="add">
-							</div>
-							<div class="search-poi">
-								<input type="button" value="Search" id="search" class="available">
-							</div>
 						</div>
 						<div id="poisResult"></div>
 					</div>

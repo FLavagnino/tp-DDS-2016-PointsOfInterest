@@ -52,14 +52,9 @@ var init = function() {
         }
     };
 
-    $("#delete-poi").click(function(){
-        event.preventDefault();   
-        $("#inputTable tr:last").remove();
-    });
-
     $("#add").click(function(){
         event.preventDefault();
-        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" class=\"eliminar\" value=\"Delete\" id=\"delete-poi\"></td></tr>";
+        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:this.parentElement.parentElement.remove();\"></td></tr>";
         $("#inputTable").append(newInput);
     });//
 
@@ -149,6 +144,9 @@ var init = function() {
         event.preventDefault();
         $("#search").removeClass('available');
         $("#poisResult").empty();
+		
+		$("#searchError").css("visibility", "hidden");
+		$("#searchError").html("Error Default");
 
         var inputKeywords = $("input.inputKeyWord");
 
@@ -168,17 +166,32 @@ var init = function() {
             type: "POST",
             data: headers,
             url: getSearchUrl(keyword),
-        }).done(function(searchData) {
-            if(searchData) {
-                if(searchData.pois.length != 0) {
+        })
+		.done(function(searchData) {
+            if(searchData) 
+			{
+                if(searchData.pois.length != 0) 
+				{
                     showPOIs(searchData);
-                } else {
-                    alert("No se pudo encontrar ningun POI")
+                } 
+				else 
+				{
+					$("#searchError").html("No se pudo encontrar ningun POI, intentelo cambiando los parametros de busqueda.");
+					$("#searchError").css("visibility", "visible");
                 }
-            } else {
-                alert("No se obtuvo respuesta de ajax")
+            } 
+			else 
+			{
+				$("#searchError").html("No se obtuvo respuesta de ajax, intentelo nuevamente.");
+				$("#searchError").css("visibility", "visible");
             }
+        })
+		.fail(function(searchData) 
+		{
+            $("#searchError").html("Hubo un error, por favor intentelo nuevamente.");
+			$("#searchError").css("visibility", "visible");
         });
+		
         $("#search").addClass('available');
     });
 
