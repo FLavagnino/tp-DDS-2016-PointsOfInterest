@@ -5,6 +5,8 @@ import javax.persistence.*;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vividsolutions.jts.geom.*;
 import ar.edu.utn.dds.poi.constant.Constant;
 import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
@@ -53,6 +55,7 @@ public class CGP extends POI
 	}
 	
     @OneToMany(mappedBy="cgp", cascade = CascadeType.ALL)
+    @JsonManagedReference
 	public List<ZoneCoordenate> getZoneCoordenates()
 	{
 		return this.zoneCoordenates;

@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @NamedQueries({
 	@NamedQuery(
 	name = "logByUser",
@@ -64,6 +66,7 @@ public class Log implements Serializable
 	}
 	
     @OneToMany(mappedBy="log", cascade = CascadeType.ALL)
+    @JsonManagedReference
 	public List<LogResult> getResults()
 	{
 		return results;

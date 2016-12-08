@@ -3,6 +3,8 @@ package ar.edu.utn.dds.poi.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class LogResult implements Serializable
 {
@@ -32,6 +34,7 @@ public class LogResult implements Serializable
 	}
 	
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
 	public Log getLog()
 	{
 		return log;

@@ -2,6 +2,8 @@ package ar.edu.utn.dds.poi.domain;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Address 
 {	
@@ -48,6 +50,7 @@ public class Address
 	}
 	
 	@OneToOne(mappedBy = "address")
+	@JsonManagedReference
 	public POI getPoi()
 	{
 		return this.poi;

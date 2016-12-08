@@ -3,7 +3,12 @@ var userName;
 
 var init = function() {
 
-    $("input.available-login").click(function(){
+    $("input.available-login").click(function()
+	{
+		// Oculto el mensaje de error.
+		$("#loginError").css("visibility", "hidden");
+		$("#loginError").html("Error Default");
+		
         event.preventDefault();
         $("#button-login").removeClass('available-login');
         userName = $("#input-user")[0].value;
@@ -14,10 +19,19 @@ var init = function() {
             type: "POST",
             url: getLoginUrl(),
             data: data,
-        }).done(function(response) {
-            $("#login-box")[0].style.display = "none";
+        })
+		.done(function(response) 
+		{
+            $("#login-box").hide();
             $("#page")[0].style.display = "block";
+			$("#header").show();
+        })
+		.fail(function(response) 
+		{
+            $("#loginError").html("Hubo un error, por favor intentelo nuevamente.");
+			$("#loginError").css("visibility", "visible");
         });
+		
         $("#button-login").addClass('available-login');
     });
 
@@ -108,12 +122,14 @@ var init = function() {
 
     });
 
-    $("#login-link").click(function(){
-        $("#login-box")[0].style.display = "none";
-        $("#page")[0].style.display = "none";
-        $("#historical-box")[0].style.display = "none";
-                $("#actions")[0].style.display = "none";
-                 $("#inputTableActions")[0].style.display = "none";
+    $("#logout-link").click(function(){
+		// Borrar GUID
+		$("#header").hide();
+        $("#login-box").show();
+        $("#page").hide();
+        $("#historical-box").hide();
+		$("#actions").hide();
+		$("#inputTableActions").hide();
     });
 
     $("input.available").click(function(){

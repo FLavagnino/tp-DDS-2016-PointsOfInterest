@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @NamedQueries({
 	@NamedQuery(
 	name = "all",
@@ -32,6 +34,7 @@ public class User implements Serializable
     }
     
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     public List<Action> getActions() 
     { 
     	return actions; 

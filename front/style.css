@@ -4,7 +4,13 @@
 .fclear {clear:both}
 .inner_copy {border:0;color:#f00;float:left;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
 body {margin:0;padding:0;background:#fff url(images/img01.jpg) repeat-x left top;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#464646}
-h1, h2, h3 {margin:0;text-transform:uppercase;font-weight:normal;color:#549900}
+h1, h2, h3 
+{
+	margin:0;
+	/*text-transform:uppercase;*/
+	font-weight:normal;
+	color:#549900
+}
 h1 {font-size:44px}
 h2 {font-size:18px}
 h3 {}
@@ -29,7 +35,7 @@ hr {display:none}
 #menu {float:left;width:650px;height:90px}
 #menu ul {margin:0;padding:20px 0 0 0;list-style:none;line-height:normal}
 #menu li {display:block;float:left}
-#menu a {display:block;float:left;height:32px;padding:14px 20px 0 20px;letter-spacing:-1px;text-decoration:none;text-align:center;text-transform:lowercase;font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;font-size:22px;font-weight:normal;color:#fff}
+#menu a {display:block;float:left;height:32px;padding:14px 20px 0 20px;letter-spacing:-1px;text-decoration:none;text-align:center;font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;font-size:22px;font-weight:normal;color:#fff}
 #menu a:hover {text-decoration:none}
 #menu .current_page_item a {}
 #menu .first {}
@@ -44,8 +50,8 @@ hr {display:none}
 #page {width:920px;margin:0 auto;padding:20px 30px 0 30px;}
 /* LOGO */
 #logo {width:940px;height:80px;margin:0 auto;padding-left:20px}
-#logo h1, #logo p {margin:0;line-height:normal;text-transform:lowercase;font-weight:normal;color:#fff}
-#logo p {margin-top:-4px; margin-top: 7px; text-transform:lowercase;font-size:13px;color:#238EC6}
+#logo h1, #logo p {margin:0;line-height:normal;font-weight:normal;color:#fff}
+#logo p {margin-top:-4px; margin-top: 7px; font-size:13px;color:#238EC6}
 #logo h1 {font-size:48px}
 #logo a {text-decoration:none;color:#238EC6}
 #logo h1 a {text-decoration:none;color:#fff}
@@ -65,23 +71,22 @@ hr {display:none}
 .post .links {display:block;width:120px;height:18px;margin:0 0 4px 0;padding:3px 0 0 40px;text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-size:11px;text-decoration:none;font-weight:bold;color:#fff}
 .post .comments {display:block;width:120px;height:18px;margin:0;padding:3px 0 0 40px;background:#90BF35;border:1px solid #5F817E;text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-size:11px;text-decoration:none;font-weight:bold;color:#fff}
 
-input[type="button"], input[type="reset"], input[type="submit"] {
-            text-align:center;
-            text-decoration: none;
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      display:inline-block;
-            color: #FFF;
-            background: #7F8C8D;
-            padding: 15px 40px;
-            white-space: nowrap;
-            margin: 10px 5px;
-            -webkit-transition: all 0.2s ease-in-out;
-            -ms-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out;
-            transition: all 0.2s ease-in-out;
-			 
-
+input[type="button"], input[type="reset"], input[type="submit"] 
+{
+	text-align:center;
+	text-decoration: none;
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	display:inline-block;
+	color: #FFF;
+	background: #7F8C8D;
+	padding: 15px 40px;
+	white-space: nowrap;
+	margin: 10px 0px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 input[type="button"]:hover{
   box-shadow: 0px 5px 0px 0px #2980B9;

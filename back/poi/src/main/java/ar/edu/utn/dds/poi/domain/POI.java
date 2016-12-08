@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import org.joda.time.DateTime;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class POI 
@@ -41,6 +43,7 @@ public abstract class POI
     }
  
     @OneToMany(mappedBy="poi", cascade = CascadeType.ALL)
+    @JsonManagedReference
 	public List<OpeningHour> getOpeningHours()
 	{
 		return this.openingHours;
@@ -58,6 +61,7 @@ public abstract class POI
 	
 	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenate_id", referencedColumnName = "id")
+	@JsonManagedReference
 	public Coordenate getCoordenate() 
 	{
 		return coordenate;
@@ -65,6 +69,7 @@ public abstract class POI
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@JsonManagedReference
 	public Address getAddress() 
 	{
 		return address;
