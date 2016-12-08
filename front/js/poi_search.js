@@ -1,11 +1,13 @@
 var indexFlag;
 var userName;
+var guid;
 
 var init = function() {
 
     $("input.available-login").click(function()
 	{
 		// Oculto el mensaje de error.
+		guid = "";
 		$("#loginError").css("visibility", "hidden");
 		$("#loginError").html("Error Default");
 		
@@ -22,9 +24,18 @@ var init = function() {
         })
 		.done(function(response) 
 		{
-            $("#login-box").hide();
-            $("#page")[0].style.display = "block";
-			$("#header").show();
+			if (response != "")
+			{
+				guid = response;
+				$("#login-box").hide();
+				$("#page")[0].style.display = "block";
+				$("#header").show();
+			}
+			else
+			{
+				$("#loginError").html("Usuario o clave invalidas, por favor intentelo de nuevo.");
+				$("#loginError").css("visibility", "visible");	
+			}
         })
 		.fail(function(response) 
 		{
@@ -123,7 +134,9 @@ var init = function() {
     });
 
     $("#logout-link").click(function(){
-		// Borrar GUID
+		guid = "";
+		$("#input-user").val("");
+		$("#input-pass").val("");
 		$("#header").hide();
         $("#login-box").show();
         $("#page").hide();
