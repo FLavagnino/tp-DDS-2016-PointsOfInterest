@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -21,7 +22,7 @@ public class Action implements Serializable
     public String getName() { return name; }
     
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     public User getUser() { return user; }
     
     public void setId(Long id) { this.id = id; }

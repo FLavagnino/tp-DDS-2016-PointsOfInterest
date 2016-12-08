@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @NamedQueries({
@@ -33,6 +36,7 @@ public class User implements Serializable
     	return id;
     }
     
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
     @JsonManagedReference
     public List<Action> getActions() 

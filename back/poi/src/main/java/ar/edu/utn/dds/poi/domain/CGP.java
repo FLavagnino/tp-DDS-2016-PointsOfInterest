@@ -3,6 +3,8 @@ package ar.edu.utn.dds.poi.domain;
 import java.util.List;
 import javax.persistence.*;
 import org.geotools.geometry.jts.JTSFactoryFinder;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
@@ -54,6 +56,7 @@ public class CGP extends POI
 		this.zoneCoordenates = zoneCoordenates;
 	}
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="cgp", cascade = CascadeType.ALL)
     @JsonManagedReference
 	public List<ZoneCoordenate> getZoneCoordenates()

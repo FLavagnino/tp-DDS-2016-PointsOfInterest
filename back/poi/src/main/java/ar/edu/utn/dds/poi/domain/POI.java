@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -42,6 +44,7 @@ public abstract class POI
             return this.id;
     }
  
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="poi", cascade = CascadeType.ALL)
     @JsonManagedReference
 	public List<OpeningHour> getOpeningHours()
@@ -59,6 +62,7 @@ public abstract class POI
 		return unit;
 	}
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenate_id", referencedColumnName = "id")
 	@JsonManagedReference
@@ -67,6 +71,7 @@ public abstract class POI
 		return coordenate;
 	}
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	@JsonManagedReference

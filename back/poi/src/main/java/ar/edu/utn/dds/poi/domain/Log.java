@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -65,6 +67,7 @@ public class Log implements Serializable
 		return id;
 	}
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="log", cascade = CascadeType.ALL)
     @JsonManagedReference
 	public List<LogResult> getResults()

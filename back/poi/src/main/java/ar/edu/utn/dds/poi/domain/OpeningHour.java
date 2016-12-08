@@ -3,6 +3,7 @@ package ar.edu.utn.dds.poi.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -40,7 +41,7 @@ public class OpeningHour implements Serializable
 	}
 	
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
 	public POI getPoi()
 	{
 		return this.poi;
