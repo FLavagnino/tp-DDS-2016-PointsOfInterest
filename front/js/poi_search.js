@@ -54,7 +54,7 @@ var init = function() {
 
     $("#add").click(function(){
         event.preventDefault();
-        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"><input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:this.parentElement.parentElement.remove();\"></td></tr>";
+        var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"  style=\"width:92%\" placeholder=\"Ingrese un criterio de búsqueda..\"><input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeFilter(this);\"></td></tr>";
         $("#inputTable").append(newInput);
     });//
 
@@ -279,6 +279,11 @@ function showHistoricalSearches(searchData) {
     html.appendTo("#historicalSearch");
 }
 
+function removeFilter(row)
+{
+	row.parentElement.parentElement.remove();	
+}
+
 function openDetail(index) {
     indexFlag = index;
     $(".poiDetail")[index].style.display = "block";
@@ -300,5 +305,51 @@ Handlebars.registerHelper('isShopType', function(type) {
     return type == "shop";
 });
 
+Handlebars.registerHelper('formatTime', function(hours, minutes) 
+{
+	time = hours + ":";
+	
+	if (minutes == 0)
+	{
+			time = time + "00";
+	}
+	else
+	{
+		time = time + minutes;
+	}
+	
+    return time;
+});
+
+Handlebars.registerHelper('dayOfWeekString', function(dayOfWeek) {
+	if (dayOfWeek == 1)
+	{
+		return "Lunes";
+	}
+	else if (dayOfWeek == 2)
+	{
+		return "Martes";
+	}
+	else if (dayOfWeek == 3)
+	{
+		return "Miercoles";
+	}
+	else if (dayOfWeek == 4)
+	{
+		return "Jueves";
+	}
+	else if (dayOfWeek == 5)
+	{
+		return "Viernes";
+	}
+	else if (dayOfWeek == 5)
+	{
+		return "Sabado";
+	}
+	else
+	{
+		return "Domingo";
+	}
+});
 
 $(document).ready(init);

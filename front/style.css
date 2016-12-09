@@ -1,5 +1,13 @@
-.fleft {float:left}
-.fright {float:right}
+.fleft 
+{
+	float:left
+}
+
+.fright 
+{
+	float:right
+}
+
 .fcenter {float:none;text-align:center}
 .fclear {clear:both}
 .inner_copy {border:0;color:#f00;float:left;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
@@ -88,10 +96,11 @@ input[type="button"], input[type="reset"], input[type="submit"]
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
-input[type="button"]:hover{
-  box-shadow: 0px 5px 0px 0px #2980B9;
-background: #39a0e5;
 
+input[type="button"]:hover
+{
+	box-shadow: 0px 0px 0px 0px #2980B9;
+	background: #39a0e5;
 }
 input[type="button"]:active{
   box-shadow: 0px 2px 0px 0px #2980B9;
@@ -100,6 +109,25 @@ input[type="button"]:active{
 
 .button-content{
 float:right;
+}
+
+table 
+{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th 
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) 
+{
+    background-color: #dddddd;
 }
 
 /* Sidebar */

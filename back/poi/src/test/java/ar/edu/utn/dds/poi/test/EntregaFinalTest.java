@@ -412,6 +412,7 @@ public class EntregaFinalTest
 							"A", "1234", "CABA", "Lugano", "Buenos Aires", "Argentina"));
 		
 		cgpCent.setUnit(10);
+		cgpCent.setZone("Parque Centenario");
 		
 		OpeningHour CentMondayIncomes = new OpeningHour("Rentas", DateTimeConstants.MONDAY, 10, 0, 14, 0);
 		OpeningHour CentTuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
@@ -455,6 +456,7 @@ public class EntregaFinalTest
 							"C", "1405", "CABA", "Caballito", "Buenos Aires", "Argentina"));
 		
 		cgpAcoyte.setUnit(20);
+		cgpAcoyte.setZone("Caballito");
 		
 		OpeningHour AcoyteMondayIncomes = new OpeningHour("Asesoramiento Legal", DateTimeConstants.MONDAY, 10, 0, 14, 0);
 		OpeningHour AcoyteTuesdayIncomes = new OpeningHour("No aplica", DateTimeConstants.TUESDAY, 10, 0, 14, 0);
@@ -498,6 +500,7 @@ public class EntregaFinalTest
 							"D", "1411", "CABA", "Almagro", "Buenos Aires", "Argentina"));
 		
 		cgpLaPlata.setUnit(30);
+		cgpLaPlata.setZone("Almagro");
 		
 		OpeningHour LaPlataMondayIncomes = new OpeningHour("No aplica", DateTimeConstants.MONDAY, 10, 0, 14, 0);
 		OpeningHour LaPlataTuesdayIncomes = new OpeningHour("Patentes", DateTimeConstants.TUESDAY, 10, 0, 14, 0);

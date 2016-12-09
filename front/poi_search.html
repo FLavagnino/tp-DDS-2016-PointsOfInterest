@@ -69,21 +69,21 @@
 				<div class="post">
 					<h2 class="title"><a href="#">Search</a></h2>
 					<div class="entry">
+						<div style="font-size:20px;">Criterio de Búsqueda</div>
 						<input type="button" value="Add" id="add" style="padding:1px 15px;">&nbsp;<input type="button" value="Search" id="search" class="available" style="padding:1px 15px;">
 						<div id="searchError" style="color:red; font-weight:bold; visibility:hidden;">Error Default</div>
 						<div class="input-search">
-							<form>
-								<table id="inputTable">
+							<form onkeypress="return event.keyCode != 13;">
+								<table id="inputTable" style="padding-top:10px; ">
 									<tr>
 										<td>
-											<input type="text" class="inputKeyWord">
-											<input type="button" value="X"style="padding:1px 10px;" onClick="javascript:this.parentElement.parentElement.remove();">
+											<input type="text" class="inputKeyWord" style="width:92%" placeholder="Ingrese un criterio de búsqueda..">
 										</td>
 									</tr>
 								</table>
 							</form>
 						</div>
-						<div id="poisResult"></div>
+						<div id="poisResult" style="padding-top:10px;"></div>
 					</div>
 				</div>
 			</div>
@@ -123,8 +123,8 @@
 			<div class="fclear"></div>
 		</div>
 		<script id="poisResultTemplate" type="text/x-handlebars-template">
-			<div>Resultados</div>
-			<table>
+			<div style="font-size:20px;">Resultados</div>
+			<table style="padding-top:10px; width: 100%;">
 				<tr>
 					<th>Nombre</th>
 					<th>Direccion</th>
@@ -132,45 +132,32 @@
 				{{#each pois}}
 				<tr onclick="openDetail({{@index}})">
 					<td>{{name}}</td>
-					<td>{{address}}</td>
+					<td>{{address.street}} {{address.number}}, CP {{address.postal_code}}, {{address.neighborhood}}</td>
 					<div class="poiDetail" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);" >
-						<div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+						<div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 30%;">
 							{{#if (isBusStopType type)}}
-								<div>{{name}}</div>
-								<div>{{unit}}</div>
-								<div>{{coordenate.latitude}}</div>
-								<div>{{coordenate.longitude}}</div>
-								<div>{{address}}</div>
-								<div>{{tags}}</div>
-								<div>{{type}}</div>
-								<img src="images/busstop.png" style="width: 20px; height:20px">
+								<img src="images/busstop.png" style="width: 100px; height:100px; padding: 5px 0px 10px 0px;">
+								<div><b>Nro. Linea: </b>{{bus_line}}</div>
 							{{else if (isBankType type)}}
-								<div>{{name}}</div>
-								<div>{{unit}}</div>
-								<div>{{coordenate.latitude}}</div>
-								<div>{{coordenate.longitude}}</div>
-								<div>{{address}}</div>
-								<div>{{tags}}</div>
-								<div>{{type}}</div>
-								<img src="images/bank.jpg" style="width: 20px; height:20px">
+								<img src="images/bank.jpg" style="width: 100px; height:100px; padding: 5px 0px 10px 0px;">
+								<div><b>Dirección: </b>{{address.street}} {{address.number}}, CP {{address.postal_code}}, {{address.neighborhood}}</div>
+								<div><b>Horarios: </b></div>	
+								{{#each opening_hours}}
+								<div>{{service}} - {{dayOfWeekString day_of_week}}, de {{formatTime hours_from minutes_from}} - a: {{formatTime hours_to minutes_to}}</div>
+								{{/each}}
 							{{else if (isCGPType type)}}
-								<div>{{name}}</div>
-								<div>{{unit}}</div>
-								<div>{{coordenate.latitude}}</div>
-								<div>{{coordenate.longitude}}</div>
-								<div>{{address}}</div>
-								<div>{{tags}}</div>
-								<div>{{type}}</div>
-								<img src="images/cgp.png" style="width: 20px; height:20px">
+								<img src="images/cgp.png" style="width: 100px; height:100px; padding: 5px 0px 10px 0px;">
+								<div><b>Dirección: </b>{{address.street}} {{address.number}}, CP {{address.postal_code}}, {{address.neighborhood}}</div>
+								<div><b>Zona: </b>{{zone}}</div>
+								<div><b>Servicios: </b>{{services}}</div>								
+								{{#each opening_hours}}
+								<div>{{service}} - {{dayOfWeekString day_of_week}}, de {{formatTime hours_from minutes_from}} - a: {{formatTime hours_to minutes_to}}</div>
+								{{/each}}
 							{{else if (isShopType type)}}
-								<div>{{name}}</div>
-								<div>{{unit}}</div>
-								<div>{{coordenate.latitude}}</div>
-								<div>{{coordenate.longitude}}</div>
-								<div>{{address}}</div>
-								<div>{{tags}}</div>
-								<div>{{type}}</div>
-								<img src="images/shop.png" style="width: 20px; height:20px">
+								<img src="images/shop.png" style="width: 100px; height:100px; padding: 5px 0px 10px 0px;">
+								<div><b>Dirección: </b>{{address.street}} {{address.number}}, CP {{address.postal_code}}, {{address.neighborhood}}</div>
+								<div><b>Nombre comercial o de fantasía: </b>{{name}}</div>
+								<div><b>Rubro: </b>{{category}}</div>
 							{{/if}}
 						</div>
 					</div>

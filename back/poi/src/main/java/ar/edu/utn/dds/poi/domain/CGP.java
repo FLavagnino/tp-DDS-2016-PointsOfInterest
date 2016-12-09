@@ -19,6 +19,7 @@ public class CGP extends POI
 {
 	protected String type;
 	protected String services;
+	protected String zone;
 	protected List<ZoneCoordenate> zoneCoordenates;
 	
 	public CGP()
@@ -56,6 +57,11 @@ public class CGP extends POI
 		this.zoneCoordenates = zoneCoordenates;
 	}
 	
+	public void setZone(String zone)
+	{
+		this.zone = zone;
+	}
+	
 	@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="cgp", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -72,6 +78,11 @@ public class CGP extends POI
 	public String getServices ()
 	{
 		return this.services;
+	}
+
+	public String getZone()
+	{
+		return this.zone;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
