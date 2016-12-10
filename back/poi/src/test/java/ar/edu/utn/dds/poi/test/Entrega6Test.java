@@ -45,6 +45,7 @@ public class Entrega6Test
 
 	@Test
 	// Prueba numero 1 Enunciado
+	// Inserta un banco en la base de datos.
 	public void insertBankTest()
 	{
 		// Obtengo un usuario para crear en la DB
@@ -74,6 +75,7 @@ public class Entrega6Test
 	
 	@Test
 	// Prueba numero 1 Enunciado
+	// Inserta un local comercial en la base de datos.
 	public void insertShopTest()
 	{
 		// Obtengo un usuario para crear en la DB
@@ -88,6 +90,7 @@ public class Entrega6Test
 	
 	@Test
 	// Prueba numero 1 Enunciado
+	// Inserta un CGP en la base de datos.
 	public void insertCGPTest()
 	{
 		// Obtengo un usuario para crear en la DB
@@ -102,6 +105,7 @@ public class Entrega6Test
 	
 	@Test
 	// Prueba numero 2 Enunciado
+	// Elimina un banco de la base de datos.
 	public void deleteBankTest()
 	{
 		// Obtengo un usuario para crear en la DB
@@ -128,6 +132,7 @@ public class Entrega6Test
 	
 	@Test
 	// Prueba numero 3 Enunciado
+	// Genera una busqueda e imprime el log para poder validar que se audito.
 	public void searchTest() throws InvalidUserException
 	{
 		userName = "t_caballito";
@@ -148,6 +153,7 @@ public class Entrega6Test
 	
 	@Test
 	// Prueba numero 4 Enunciado
+	// Inserta un usuario en la base de datos
 	public void insertUserTest()
 	{
 		// Obtengo un usuario para crear en la DB

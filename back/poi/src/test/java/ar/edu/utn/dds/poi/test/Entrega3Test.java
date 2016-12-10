@@ -127,6 +127,8 @@ public class Entrega3Test
 	}
 	
 	@Test
+	// Prueba del login. Se ingresa un usuario valido y se espera que el login sea
+	// satisfactorio.
 	public void loginOKTest()
 	{
 		userName = "luisk";
@@ -138,6 +140,8 @@ public class Entrega3Test
 	}
 	
 	@Test
+	// Prueba del login. Se ingresa un usuario invalido y se espera que el login sea
+	// falle.
 	public void loginNotOKTest()
 	{
 		userName = "luisk";
@@ -149,6 +153,8 @@ public class Entrega3Test
 	}
 	
 	@Test
+	// Prueba para controlar que el token se este generando correctamente al momento
+	// de hacer el login al sistema.
 	public void tokenOKTest()
 	{
 		userName = "luisk";
@@ -163,6 +169,8 @@ public class Entrega3Test
 	}
 	
 	@Test
+	// Prueba para vlaidar el token sobre un usuario. Se ingresa un token invalido y
+	// se espera que la validacion falle.
 	public void tokenNotOKTest()
 	{
 		String userName = "luisk";
@@ -179,24 +187,28 @@ public class Entrega3Test
 	}
 	
 	@Test
+	// Prueba para generar el reporte de busquedas por dia. Imprime el resultado por consola.
 	public void reportTotalSearchQtyByDateTest()
 	{	
 		this.reportService.totalSearchQtyByDate();
 	}
 	
 	@Test
+	//Prueba para generar el reporte de busquedas parciales por usuario. Imprime el resultado por consola.
 	public void partialSearchQtyByUserTest()
 	{	
 		this.reportService.partialSearchQtyByUser();
 	}
 	
 	@Test
+	//Prueba para generar el reporte de busquedas por usuario. Imprime el resultado por consola.
 	public void totalSearchQtyByUserTest()
 	{	
 		this.reportService.totalSearchQtyByUser();
 	}
 	
 	@Test
+	//Prueba para generar una busqueda con auditoria. Graba en el sistema los resultados.
 	public void searchWithAuditTest() throws InvalidUserException
 	{
 		userName = "t_caballito";
@@ -209,6 +221,7 @@ public class Entrega3Test
 	}
 	
 	@Test
+	//Prueba para generar una busqueda sin auditoria. No graba nada.
 	public void searchWithoutAuditTest() throws InvalidUserException
 	{
 		userName = "luisk";

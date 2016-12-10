@@ -22,6 +22,8 @@ import org.joda.time.*;
 public class Entrega1Test 
 {
 	@Test
+	// Prueba para controlar la disponibilidad del POI, en este caso parada de colectivo
+	// teniendo en cuenta la hora actual.
 	public void butStopAvailabilityTest() 
 	{
 		// Vars
@@ -43,6 +45,8 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para controlar la disponibilidad del POI, en este caso banco
+	// teniendo en cuenta la fecha, horario y servicio.
 	public void bankAvailabilityTest() 
 	{
 		// Vars
@@ -92,6 +96,8 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para controlar la disponibilidad del POI, en este caso CGP
+	// teniendo en cuenta la fecha, horario y servicio.
 	public void CGPAvailabilityTest() 
 	{
 		// Vars
@@ -160,6 +166,8 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para controlar la disponibilidad del POI, en este caso local comercial
+	// teniendo en cuenta la fecha y el horario.
 	public void shopAvailabilityTest() 
 	{
 		// Vars
@@ -219,6 +227,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para buscar una parada de colectivo por numero de linea.
 	public void searchBusStopByBusLineTest() throws InvalidPoiException
 	{
 		String filter = "114";
@@ -240,6 +249,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para buscar local comercial por categoria.
 	public void searchShopByCategoryTest() throws InvalidPoiException
 	{
 		String filter = "muebleria";
@@ -261,6 +271,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para buscar un banco por nombre.
 	public void searchBankByNameTest() throws InvalidPoiException
 	{
 		String filter = "Santader Rio";
@@ -279,6 +290,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para comprobar si un poi esta cerca de un banco
 	public void isCloserToTestBank()
 	{
 		POIService poiService = new POIService();
@@ -294,6 +306,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para comprobar si un poi esta cerca de una parada de colectivo
 	public void isCloserToTestBusStop()
 	{
 		POIService poiService = new POIService();
@@ -308,6 +321,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para comprobar si un poi esta cerca de un local comercial
 	public void isCloserToTestShop()
 	{
 		POIService poiService = new POIService();
@@ -324,6 +338,7 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para buscar un CGP por servicio prestado.
 	public void searchCGPByServiceTest() throws InvalidPoiException
 	{
 		String filter = "Asesoramiento";
@@ -349,6 +364,8 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para comprobar si un poi esta cerca de un CGP, se espera que el resultado
+	// sea satisfactorio.
 	public void isCloserToCGPOKTest()
 	{
 		POIService poiService = new POIService();
@@ -385,6 +402,8 @@ public class Entrega1Test
 	}
 	
 	@Test
+	// Prueba para comprobar si un poi esta cerca de un CGP, se espera que el resultado
+	// falle (no estan cerca).
 	public void isCloserToCGPFAILTest()
 	{
 		POIService poiService = new POIService();

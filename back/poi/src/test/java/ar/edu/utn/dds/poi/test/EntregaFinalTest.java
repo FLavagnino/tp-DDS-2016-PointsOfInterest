@@ -34,29 +34,7 @@ public class EntregaFinalTest
 	}
 
 	@Test
-	public void lala() {
-		getUser("facul", "fc5778db-0ede-4261--37c022d24fbb");
-	}
-
-	public User getUser(String userName, String token) {
-		Session session = HibernateManager.getSessionFactory().openSession();
-
-		String hql = "from User where userName = :userName and token = :token";
-		Query query = session.createQuery(hql);
-		query.setParameter("userName", userName);
-		query.setParameter("token", token);
-
-		User user = null;
-		try {
-			user = (User) query.getSingleResult();
-		} catch (NoResultException e) {}
-
-		session.close();
-
-		return user;
-	}
-
-	@Test
+	// Utilizamos este test para llenar la entidad correspondiente a User
 	public void insertUserTest()
 	{
 		List<User> users = this.getUsers();
@@ -68,6 +46,7 @@ public class EntregaFinalTest
 	}
 	
 	@Test
+	// Utilizamos este test para llenar la entidad correspondiente a CGP -> POI
 	public void insertCGPTest()
 	{
 		List<CGP> cgps = this.getCGPs();
@@ -79,6 +58,7 @@ public class EntregaFinalTest
 	}
 	
 	@Test
+	// Utilizamos este test para llenar la entidad correspondiente a Bank -> POI
 	public void insertBankTest()
 	{
 		List<Bank> banks = this.getBanks();
@@ -90,6 +70,7 @@ public class EntregaFinalTest
 	}
 	
 	@Test
+	// Utilizamos este test para llenar la entidad correspondiente a Shop -> POI
 	public void insertShopTest()
 	{
 		List<Shop> shops = this.getShops();
@@ -101,6 +82,7 @@ public class EntregaFinalTest
 	}
 	
 	@Test
+	// Utilizamos este test para llenar la entidad correspondiente a BusStop -> POI
 	public void insertBusStopTest()
 	{
 		List<BusStop> busStops = this.getBusStops();

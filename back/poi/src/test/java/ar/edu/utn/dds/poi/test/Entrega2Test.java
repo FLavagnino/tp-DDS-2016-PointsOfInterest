@@ -28,6 +28,7 @@ public class Entrega2Test
 	}
 	
 	@Test
+	// Prueba para buscar un banco por nombre, se espera que devuelva un resultado.
 	public void bankServiceSearchByNameTest()
 	{
 		filter = "Galicia";		
@@ -39,7 +40,8 @@ public class Entrega2Test
 	}
 	
 	@Test
-	public void bankServiceSearchByNameAndTagTest()
+	//Prueba para buscar un banco por sus tags, se espera que devuelva un resultado.
+	public void bankServiceSearchByTagTest()
 	{
 		filter = "Moneda Extranjera";		
 		result = poiService.search(filter);
@@ -50,6 +52,7 @@ public class Entrega2Test
 	}
 	
 	@Test
+	// Prueba para buscar un CGP por nombre, se espera que no haya resultados.
 	public void cgpServiceSearchByNameTest()
 	{
 		filter = "comuna 3";	
@@ -59,15 +62,7 @@ public class Entrega2Test
 	}
 	
 	@Test
-	public void cgpServiceSearchByNameTest2()
-	{
-		filter = "comuna 4";	
-		result = poiService.search(filter);
-		
-		assertEquals(0, result.getPois().size());
-	}
-	
-	@Test
+	//Prueba para buscar un CGP por sus tags, se espera que devuelva un resultado.
 	public void cgpServiceSearchByTagTest()
 	{
 		filter = "Villa Devoto";	
@@ -77,6 +72,7 @@ public class Entrega2Test
 	}
 	
 	@Test (expected = InvalidPoiException.class)
+	// Prueba que trata de agregar un POI invalido, se espera la exception correspondiente.
 	public void addInvalidPOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
@@ -86,6 +82,7 @@ public class Entrega2Test
 	}
 	
 	@Test
+	// Prueba que trata de agregar un POI, se espera que lo agregue.
 	public void addPOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
@@ -98,6 +95,7 @@ public class Entrega2Test
 	}
 	
 	@Test
+	// Prueba que trata de borrar un POI, se espera que lo borre.
 	public void deletePOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
@@ -116,6 +114,7 @@ public class Entrega2Test
 	}
 	
 	@Test(expected = InvalidPoiException.class)
+	// Prueba que trata de actualizar un POI invalido, se espera la exception correspondiente.
 	public void updateInvalidPOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI
@@ -133,6 +132,7 @@ public class Entrega2Test
 	}
 	
 	@Test
+	// Prueba que trata de actualizar un POI, se espera que se modifique correctamente.
 	public void updatePOITest() throws InvalidPoiException
 	{
 		// We create the busStop POI

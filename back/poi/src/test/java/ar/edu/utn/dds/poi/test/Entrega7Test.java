@@ -18,6 +18,8 @@ public class Entrega7Test {
 	}
 
 	@Test
+	// Prueba que crea un POI nuevo, lo persiste en MongoDB, luego lo borra
+	// Controla que el POI no exista mas.
 	public void saveAndRemovePOI() {
 		Coordenate coordenate = new Coordenate(-34.619109, -58.425454);
 		BusStop busStop = new BusStop("Linea 84", coordenate, 84, "Colectivo,Linea84,84,Parada");
@@ -37,7 +39,10 @@ public class Entrega7Test {
 	}
 
 	@Test
-	public void saveSearch() {
+	// Prueba para grabar un resultado de busqueda en MongoDB. Lo persiste y
+	// luego controla que se haya generado.
+	public void saveSearch() 
+	{
 		Log log = new Log("Pepito", "Bus", 23, Long.valueOf(2), "2016/11/02");
 		log.setResults(new ArrayList<>());
 
