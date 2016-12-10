@@ -48,7 +48,10 @@ var init = function() {
 
     window.onclick = function(event) {
         if (event.target == $(".poiDetail")[indexFlag]) {
-            $(".poiDetail")[indexFlag].style.display = "none";
+            $(".poiDetail").hide();
+        }
+		else if (event.target == $(".historicalDetail")[indexFlag]) {
+			$(".historicalDetail").hide();
         }
     };
 
@@ -56,7 +59,7 @@ var init = function() {
         event.preventDefault();
         var newInput = "<tr><td><input type=\"text\" class=\"inputKeyWord\"  style=\"width:92%\" placeholder=\"Ingrese un criterio de búsqueda..\"><input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeFilter(this);\"></td></tr>";
         $("#inputTable").append(newInput);
-    });//
+    });
 
     $("#addaction2").click(function(){
     var valor = $('select#actions').val();
@@ -81,33 +84,33 @@ var init = function() {
         $("#inputTableActions tr:last").remove();
     });
 
-        $("#addaction").click(function(){
-            // Obtenemos el numero de filas (td) que tiene la primera columna
-            // (tr) del id "tabla"
-            $("#inputTableActions").css("display", "block");
-            var tds=$("#inputTableActions tr:first td").length;
-            // Obtenemos el total de columnas (tr) del id "tabla"
-            var trs=$("#inputTableActions tr").length;
-            var nuevaFila="<tr>";
-            for(var i=0;i<tds;i++){
-                // añadimos las columnas
-                nuevaFila+="<td>columna "+(i+1)+" Añadida con jquery</td>";
-            }
-            // Añadimos una columna con el numero total de columnas.
-            // Añadimos uno al total, ya que cuando cargamos los valores para la
-            // columna, todavia no esta añadida
-            nuevaFila+="<td>"+(trs+1)+" columnas";
-            nuevaFila+="</tr>";
-            $("#inputTableActions").append(nuevaFila);
-        });
+	$("#addaction").click(function(){
+		// Obtenemos el numero de filas (td) que tiene la primera columna
+		// (tr) del id "tabla"
+		$("#inputTableActions").css("display", "block");
+		var tds=$("#inputTableActions tr:first td").length;
+		// Obtenemos el total de columnas (tr) del id "tabla"
+		var trs=$("#inputTableActions tr").length;
+		var nuevaFila="<tr>";
+		for(var i=0;i<tds;i++){
+			// añadimos las columnas
+			nuevaFila+="<td>columna "+(i+1)+" Añadida con jquery</td>";
+		}
+		// Añadimos una columna con el numero total de columnas.
+		// Añadimos uno al total, ya que cuando cargamos los valores para la
+		// columna, todavia no esta añadida
+		nuevaFila+="<td>"+(trs+1)+" columnas";
+		nuevaFila+="</tr>";
+		$("#inputTableActions").append(nuevaFila);
+	});
 
 
     $("#search-link").click(function(){
         $("#login-box")[0].style.display = "none";
         $("#page")[0].style.display = "block";
         $("#historical-box")[0].style.display = "none";
-                $("#actions")[0].style.display = "none";
-                $("#inputTableActions")[0].style.display = "none";
+        $("#actions")[0].style.display = "none";
+        $("#inputTableActions")[0].style.display = "none";
 
     });
 
@@ -115,8 +118,8 @@ var init = function() {
         $("#login-box")[0].style.display = "none";
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "block";
-                $("#actions")[0].style.display = "none";
-                 $("#inputTableActions")[0].style.display = "none";
+        $("#actions")[0].style.display = "none";
+        $("#inputTableActions")[0].style.display = "none";
     });
 
     $("#action-link").click(function(){
@@ -124,7 +127,7 @@ var init = function() {
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "none";
         $("#actions")[0].style.display = "block";
-         $("#inputTableActions")[0].style.display = "block";
+        $("#inputTableActions")[0].style.display = "block";
 
     });
 
@@ -199,16 +202,30 @@ var init = function() {
         event.preventDefault();
         $("#button-historical-search").removeClass('available-historical-search');
         $("#historicalSearch").empty();
+		
+		$("#historicalError").css("visibility", "hidden");
+		$("#historicalError").html("Error Default");
 
         var inputUser = $("#input-historical-user")[0].value;
         var inputDateFrom = formatDate($("#input-historical-date-from")[0].value);
         var inputDateTo = formatDate($("#input-historical-date-to")[0].value);
 
         var url = "";
-        if(inputUser != "") {
+		
+        if(inputUser != "") 
+		{
             url = getHistoricalUserUrl(inputUser);
-        } else {
-            url = getHistoricalDateUrl(inputDateFrom, inputDateTo);
+        } 
+		else 
+		{
+			if (inputDateFrom != "" && inputDateTo != "")
+			{
+				url = getHistoricalDateUrl(inputDateFrom, inputDateTo);
+			}
+			else
+			{
+				return;
+			}
         }
 
         var headers = "";
@@ -218,30 +235,66 @@ var init = function() {
             type: "POST",
             data: headers,
             url: url,
-        }).done(function(searchData) {
-            if(searchData) {
-                if(searchData.historical_search.length != 0) {
+        })
+		.done(function(searchData) {
+            if(searchData) 
+			{
+                if(searchData.historical_search.length != 0) 
+				{
                     showHistoricalSearches(searchData);
-                } else {
-                    alert("No se pudo encontrar ningun dato")
+                } 
+				else 
+				{
+					$("#historicalError").html("No se pudo encontrar ningun dato, intentelo cambiando los parametros de busqueda.");
+					$("#historicalError").css("visibility", "visible");
                 }
-            } else {
-                alert("No se obtuvo respuesta de ajax")
             }
+			else 
+			{
+				$("#historicalError").html("No se obtuvo respuesta de ajax, por favor intentelo nuevamente.");
+				$("#historicalError").css("visibility", "visible");
+            }
+        })
+		.fail(function(searchData) 
+		{
+            $("#historicalError").html("Hubo un error, por favor intentelo nuevamente.");
+			$("#historicalError").css("visibility", "visible");
         });
+		
         $("#button-historical-search").addClass('available-historical-search');
     });
 
 
 };
 
-function formatDate(date) {
-    if(date != "") {
+function formatDate(date) 
+{
+    if(date != "") 
+	{
         var splitDateTime = date.split("-");
-        var splitDate = splitDateTime[0].split("/");
-        var splitTime = splitDateTime[1].split(":");
-        return splitDate[0]+"-"+splitDate[1]+"-"+splitDate[2]+"-"+splitTime[0]+"-"+splitTime[1];
+		
+		if (splitDateTime.length != 2)
+		{
+			$("#historicalError").html("La fecha no es correcta, respete el formato aaaa/mm/dd-hh:MM e intentelo nuevamente.");
+			$("#historicalError").css("visibility", "visible");
+		}
+		else
+		{
+			var splitDate = splitDateTime[0].split("/");
+			var splitTime = splitDateTime[1].split(":");
+			
+			if (splitDate.length != 3 || splitTime.length != 2)
+			{
+				$("#historicalError").html("La fecha no es correcta, respete el formato aaaa/mm/dd-hh:MM e intentelo nuevamente.");
+				$("#historicalError").css("visibility", "visible");
+			}
+			else
+			{
+				return splitDate[0] + "-" + splitDate[1] + "-" + splitDate[2] + "-" + splitTime[0] + "-" + splitTime[1];				
+			}
+		}
     }
+	
     return "";
 }
 
@@ -287,6 +340,11 @@ function removeFilter(row)
 function openDetail(index) {
     indexFlag = index;
     $(".poiDetail")[index].style.display = "block";
+}
+
+function openHistoricalDetail(index) {
+    indexFlag = index;
+    $(".historicalDetail")[index].style.display = "block";
 }
 
 Handlebars.registerHelper('isBankType', function(type) {

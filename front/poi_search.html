@@ -89,21 +89,23 @@
 			</div>
 			<div style="clear:both">&nbsp;</div>
 		</div>
-		<div id="historical-box" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 145px; padding-top: 50px">
-			<div>
-				<div>User</div>
-				<div>
-					<input type="text" id="input-historical-user" placeholder="Insert user">
-				</div>
-				<div>Date</div>
-				<div>
-					<input type="text" id="input-historical-date-from" placeholder="form date (aaaa/mm/dd-hh:mm)">
-				</div>
-				<div>
-					<input type="text" id="input-historical-date-to" placeholder="to date (aaaa/mm/dd-hh:mm)">
-				</div>
-				<div >
-					<input type="button" value="Search" id="button-historical-search" class="available-historical-search">
+		<div id="historical-box" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 145px; padding-top: 25px;">
+			<div class="post">
+				<h2 class="title"><a href="#">Historial de búsquedas realizadas</a></h2>
+				<div class="entry">
+					<div style="font-size:20px;">Criterio de Búsqueda</div>
+					<div id="historicalError" style="color:red; font-weight:bold; visibility:hidden;">Error Default</div>
+					<div style="margin-bottom:5px; padding-top: 10px;">User</div>
+					<div>
+						<input type="text" id="input-historical-user" placeholder="Insert user">
+					</div>
+					<div style="margin-bottom:5px; padding-top: 10px;">Date</div>
+					<div>
+						<input type="text" id="input-historical-date-from" placeholder="from (aaaa/mm/dd-hh:mm)">&nbsp;<input type="text" id="input-historical-date-to" placeholder="to (aaaa/mm/dd-hh:mm)">
+					</div>
+					<div >
+						<input type="button" value="Search" id="button-historical-search" class="available-historical-search" style="padding:1px 15px;">
+					</div>
 				</div>
 			</div>
 			<div>
@@ -175,11 +177,16 @@
 					<th>POIs</th>
 				</tr>
 				{{#each historical_search}}
-				<tr>
+				<tr onclick="openHistoricalDetail({{@index}})">
 					<td>{{date}}</td>
 					<td>{{user_name}}</td>
 					<td>{{filter}}</td>
 					<td>{{results_number}}</td>
+					<div class="historicalDetail" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);" >
+						<div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 30%;">
+						Hola
+						</div>
+					</div>
 				</tr>
 				{{/each}}
 			</table>
