@@ -7,11 +7,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class PoiServer {
-
+public class PoiServer 
+{
     private static PoiController poiController;
 
-    public static void main(String[] args) {
+    @SuppressWarnings("static-access")
+	public static void main(String[] args) 
+    {
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         Runnable periodicTask = () -> ExternalPOIService.update();
         executor.scheduleAtFixedRate(periodicTask, 0, 30, TimeUnit.MINUTES);

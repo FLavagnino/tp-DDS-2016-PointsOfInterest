@@ -272,7 +272,8 @@ public class POIRepository
         }
     }
 
-    public List<POI> getAllPois() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<POI> getAllPois() {
         Session session = HibernateManager.getSessionFactory().openSession();
 
         String hql = "from POI";

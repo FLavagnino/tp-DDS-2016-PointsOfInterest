@@ -1,9 +1,7 @@
 package ar.edu.utn.dds.poi.domain;
 
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Address 

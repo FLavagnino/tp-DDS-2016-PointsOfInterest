@@ -2,13 +2,9 @@ package ar.edu.utn.dds.poi.repository;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-
 import org.hibernate.Session;
-
-import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.domain.User;
 
 public class UserRepository 
@@ -43,6 +39,7 @@ public class UserRepository
         return user;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<User> getAll()
 	{
         Session session = HibernateManager.getSessionFactory().openSession();
@@ -55,6 +52,7 @@ public class UserRepository
         return results;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public User getUser(String userName) {
         Session session = HibernateManager.getSessionFactory().openSession();
 

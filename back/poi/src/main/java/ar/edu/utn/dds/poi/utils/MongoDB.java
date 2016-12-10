@@ -3,13 +3,13 @@ package ar.edu.utn.dds.poi.utils;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
-public class MongoDB {
-
+public class MongoDB 
+{
     private static MongoDB instance = null;
-
     private MongoDatabase mongoDatabase;
 
-    private MongoDB() {
+    private MongoDB() 
+    {
         MongoClient mongoClient = new MongoClient();
         this.mongoDatabase = mongoClient.getDatabase("test");
     }
@@ -24,7 +24,8 @@ public class MongoDB {
         return instance;
     }
 
-    public MongoDatabase getMongoDatabase() {
+    public MongoDatabase getMongoDatabase() 
+    {
         return mongoDatabase;
     }
 }

@@ -2,10 +2,9 @@ package ar.edu.utn.dds.poi.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+@SuppressWarnings("serial")
 @Entity
 public class Coordenate implements Serializable
 {

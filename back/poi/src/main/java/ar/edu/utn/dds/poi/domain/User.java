@@ -9,6 +9,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+@SuppressWarnings("serial")
 @NamedQueries({
 	@NamedQuery(
 	name = "all",

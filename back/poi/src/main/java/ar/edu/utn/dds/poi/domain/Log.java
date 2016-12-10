@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+@SuppressWarnings("serial")
 @NamedQueries({
 	@NamedQuery(
 	name = "logByUser",

@@ -2,27 +2,19 @@ package ar.edu.utn.dds.poi.service.historical;
 
 import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.repository.LogRepository;
-import ar.edu.utn.dds.poi.utils.JsonFactory;
 import ar.edu.utn.dds.poi.utils.MongoDB;
 import org.bson.Document;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class HistoricalManager 
 {
 	private static HistoricalManager instance = null;
-
-	private JsonFactory jsonFactory;
-
 	private List<Log> searches = new ArrayList<Log>();
 	
 	private HistoricalManager() 
 	{
-		jsonFactory = new JsonFactory();
 	}
 	
 	public static HistoricalManager getInstance() 

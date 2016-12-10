@@ -1,7 +1,5 @@
 package ar.edu.utn.dds.poi.test;
 
-import ar.edu.utn.dds.poi.repository.HibernateManager;
-import org.hibernate.Session;
 import org.junit.Before;
 import org.junit.Test;
 import org.joda.time.DateTimeConstants;
@@ -9,9 +7,6 @@ import org.junit.After;
 import ar.edu.utn.dds.poi.domain.*;
 import ar.edu.utn.dds.poi.repository.POIRepository;
 import ar.edu.utn.dds.poi.repository.UserRepository;
-
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

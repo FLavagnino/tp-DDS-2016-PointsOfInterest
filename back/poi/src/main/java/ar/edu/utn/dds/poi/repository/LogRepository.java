@@ -47,6 +47,7 @@ public class LogRepository
         return log;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Log> getLogByUserName(String userName)
 	{
         Session session = HibernateManager.getSessionFactory().openSession();

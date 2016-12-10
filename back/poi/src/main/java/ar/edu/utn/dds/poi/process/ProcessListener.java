@@ -68,6 +68,7 @@ public abstract class ProcessListener implements JobListener
 		}
 	}
 
+	@SuppressWarnings({ "static-access", "rawtypes", "unchecked" })
 	public void ejecutarProcesoAnidado(JobExecutionContext context) throws SchedulerException 
 	{
 		Scheduler scheduler = context.getScheduler();

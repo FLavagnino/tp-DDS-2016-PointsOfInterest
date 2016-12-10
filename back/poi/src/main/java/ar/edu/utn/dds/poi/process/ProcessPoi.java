@@ -3,6 +3,7 @@ package ar.edu.utn.dds.poi.process;
 import org.quartz.Job;
 
 //Todos los procesos deben heredar de esta clase e implementar el método execute() que exige la interfaz Job
+@SuppressWarnings({ "rawtypes" })
 public abstract class ProcessPoi implements Job 
 {
 	private static Class SIGUIENTE_PROCESO;

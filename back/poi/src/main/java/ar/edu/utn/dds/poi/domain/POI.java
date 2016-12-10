@@ -3,12 +3,9 @@ package ar.edu.utn.dds.poi.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javax.persistence.*;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.boot.model.relational.Database;
 import org.joda.time.DateTime;
 import static java.util.Comparator.comparing;
 

@@ -1,9 +1,7 @@
 package ar.edu.utn.dds.poi.dto;
 
-import org.joda.time.DateTime;
-
-public class HistoricalSearchDTO {
-
+public class HistoricalSearchDTO 
+{
     private String userName;
     private String filter;
     private Integer resultsNumber;

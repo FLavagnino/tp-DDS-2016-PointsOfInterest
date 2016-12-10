@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-
-import ar.edu.utn.dds.poi.constant.Category;
 import ar.edu.utn.dds.poi.domain.Bank;
 import ar.edu.utn.dds.poi.domain.BusStop;
 import ar.edu.utn.dds.poi.domain.CGP;
