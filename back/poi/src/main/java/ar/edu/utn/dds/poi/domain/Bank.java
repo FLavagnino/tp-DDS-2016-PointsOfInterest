@@ -15,13 +15,13 @@ public class Bank extends POI
 
 	public Bank()
 	{
-		this.type = "bank";
+		type = "bank";
 	}
 	
 	public Bank(String name, Coordenate coordenate, String tags) 
 	{
 		super(name, coordenate, tags);
-		this.type = "bank";
+		type = "bank";
 	}
 	
 	public String getType()
@@ -60,7 +60,7 @@ public class Bank extends POI
 	public boolean matchFilter(String filter)
 	{		
 		// Now we will try with Levenshtein for the name
-		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		int distance = LevenshteinDistance.distance(name.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{

@@ -24,15 +24,15 @@ public class JsonFactory
 	@SuppressWarnings("deprecation")
 	public JsonFactory() 
 	{
-		this.objectMapper = new ObjectMapper();
+		objectMapper = new ObjectMapper();
 
 		SimpleModule module = new SimpleModule();
 		module.addSerializer(DateTime.class, new DateTimeSerializer(
 				new JacksonJodaDateFormat(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"))));
 		objectMapper.registerModule(module);
 		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-		this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		this.objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
 	}
 
 	public ObjectMapper getObjectMapper() 
@@ -44,7 +44,7 @@ public class JsonFactory
 	{
 		try 
 		{
-			return this.objectMapper.readValue(inputStreamReader, typeReference);
+			return objectMapper.readValue(inputStreamReader, typeReference);
 		} 
 		catch (IOException e) 
 		{
@@ -56,7 +56,7 @@ public class JsonFactory
 	{
 		try
 		{
-			return this.objectMapper.readValue(s, typeReference);
+			return objectMapper.readValue(s, typeReference);
 		}
 		catch (IOException e)
 		{
@@ -66,7 +66,7 @@ public class JsonFactory
 
 	public String toJson(Object object) {
 		try {
-			String jsonString = this.objectMapper.writeValueAsString(object);
+			String jsonString = objectMapper.writeValueAsString(object);
 			return jsonString;
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException("Error creating a json", e);

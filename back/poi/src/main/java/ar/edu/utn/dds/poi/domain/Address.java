@@ -45,14 +45,14 @@ public class Address
 	@GeneratedValue
 	public Long getId()
 	{
-		return this.id;
+		return id;
 	}
 	
 	@OneToOne(mappedBy = "address")
 	@JsonBackReference
 	public POI getPoi()
 	{
-		return this.poi;
+		return poi;
 	}
 	
 	public String getStreet() 

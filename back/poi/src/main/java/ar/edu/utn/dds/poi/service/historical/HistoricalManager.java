@@ -29,7 +29,7 @@ public class HistoricalManager
 	
 	public void saveSearch(Log historicalSearch) 
 	{
-		this.searches.add(historicalSearch);
+		searches.add(historicalSearch);
 		
 		// Grabo en la db
 		LogRepository logRep = new LogRepository();
@@ -42,7 +42,7 @@ public class HistoricalManager
 	
 	public List<Log> getSearches()
 	{
-		return this.searches;
+		return searches;
 	}
 	
 	public void setSearches(List<Log> searches)

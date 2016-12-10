@@ -17,7 +17,7 @@ public class Shop extends POI
 	
 	public Shop()
 	{
-		this.type = "shop";
+		type = "shop";
 	}
 	
 	public Shop(String name, Coordenate coordenate, String category, int categoryDistance, String tags) 
@@ -25,13 +25,13 @@ public class Shop extends POI
 		super(name, coordenate, tags);
 		this.category = category;
 		this.categoryDistance = categoryDistance;
-		this.type = "shop";
+		type = "shop";
 	}
 	
 	public Shop(String name, String tags) 
 	{
 		super(name, null, tags);
-		this.type = "shop";
+		type = "shop";
 	}
 	
 	public String getType() 
@@ -41,12 +41,12 @@ public class Shop extends POI
 	
 	public String getCategory()
 	{
-		return this.category;
+		return category;
 	}
 	
 	public int getCategoryDistance()
 	{
-		return this.categoryDistance;
+		return categoryDistance;
 	}
 	
 	public void setType(String type) 
@@ -97,7 +97,7 @@ public class Shop extends POI
 	public boolean matchFilter(String filter)
 	{
 		// First will try with Levenshtein for the category
-		int distance = LevenshteinDistance.distance(this.category.toLowerCase(), filter.toLowerCase());
+		int distance = LevenshteinDistance.distance(category.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
@@ -105,7 +105,7 @@ public class Shop extends POI
 		}
 		
 		// Now we will try with Levenshtein for the name
-		distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		distance = LevenshteinDistance.distance(name.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
@@ -134,7 +134,7 @@ public class Shop extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		int radius = this.categoryDistance;
+		int radius = categoryDistance;
 		return (meters < radius);
 	}
 }

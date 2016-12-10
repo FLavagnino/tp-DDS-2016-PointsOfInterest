@@ -19,8 +19,8 @@ public class EntregaFinalTest
 	@Before
 	public void setUp()
 	{
-		this.poiRepository = new POIRepository();
-		this.userRepository = new UserRepository();
+		poiRepository = new POIRepository();
+		userRepository = new UserRepository();
 	}
 	
 	@After
@@ -32,7 +32,7 @@ public class EntregaFinalTest
 	// Utilizamos este test para llenar la entidad correspondiente a User
 	public void insertUserTest()
 	{
-		List<User> users = this.getUsers();
+		List<User> users = getUsers();
 		
 		for (User user : users)
 		{
@@ -44,7 +44,7 @@ public class EntregaFinalTest
 	// Utilizamos este test para llenar la entidad correspondiente a CGP -> POI
 	public void insertCGPTest()
 	{
-		List<CGP> cgps = this.getCGPs();
+		List<CGP> cgps = getCGPs();
 		
 		for (CGP cgp : cgps)
 		{
@@ -56,7 +56,7 @@ public class EntregaFinalTest
 	// Utilizamos este test para llenar la entidad correspondiente a Bank -> POI
 	public void insertBankTest()
 	{
-		List<Bank> banks = this.getBanks();
+		List<Bank> banks = getBanks();
 		
 		for (Bank bank : banks)
 		{
@@ -68,7 +68,7 @@ public class EntregaFinalTest
 	// Utilizamos este test para llenar la entidad correspondiente a Shop -> POI
 	public void insertShopTest()
 	{
-		List<Shop> shops = this.getShops();
+		List<Shop> shops = getShops();
 		
 		for (Shop shop : shops)
 		{
@@ -80,7 +80,7 @@ public class EntregaFinalTest
 	// Utilizamos este test para llenar la entidad correspondiente a BusStop -> POI
 	public void insertBusStopTest()
 	{
-		List<BusStop> busStops = this.getBusStops();
+		List<BusStop> busStops = getBusStops();
 		
 		for (BusStop busStop : busStops)
 		{

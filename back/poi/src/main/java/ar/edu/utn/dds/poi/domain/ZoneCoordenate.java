@@ -27,19 +27,19 @@ public class ZoneCoordenate implements Serializable
 	@GeneratedValue
 	public Long getId()
 	{
-		return this.id;
+		return id;
 	}
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonBackReference
 	public CGP getCgp()
 	{
-		return this.cgp;
+		return cgp;
 	}
 	
 	public Double getLatitude() 
 	{
-		return this.latitude;
+		return latitude;
 	}
 
 	public Double getLongitude() 

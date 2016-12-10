@@ -25,14 +25,14 @@ public abstract class POI
 	
 	protected POI()
 	{
-		this.openingHours = new ArrayList<OpeningHour>();
+		openingHours = new ArrayList<OpeningHour>();
 	}
 	
 	protected POI(String name, Coordenate coordenate, String tags) 
 	{
 		this.name = name;
 		this.coordenate = coordenate;
-		this.openingHours = new ArrayList<OpeningHour>();
+		openingHours = new ArrayList<OpeningHour>();
 		this.tags = tags;
 	}
 
@@ -41,7 +41,7 @@ public abstract class POI
     @Column(name = "id", unique = true , nullable = false )
     public Long getId() 
     {
-            return this.id;
+            return id;
     }
  
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -49,8 +49,8 @@ public abstract class POI
     @JsonManagedReference
 	public List<OpeningHour> getOpeningHours()
 	{
-    	Collections.sort(this.openingHours, comparing(OpeningHour::getService));
-		return this.openingHours;
+    	Collections.sort(openingHours, comparing(OpeningHour::getService));
+		return openingHours;
 	}
 		
 	public String getName() 
@@ -104,7 +104,7 @@ public abstract class POI
 	public void setAddress(String street, Integer number, String streetOne, String streetTwo, Integer floor, 
 			String apartment, String postalCode, String locality, String neighborhood, String province, String country) 
 	{	
-		this.address = new Address(street, number, streetOne, streetTwo, floor, apartment, 
+		address = new Address(street, number, streetOne, streetTwo, floor, apartment, 
 				postalCode, locality, neighborhood, province, country);
 	}
 	
@@ -141,7 +141,7 @@ public abstract class POI
 	
 	public void addOpeningHour(OpeningHour openingHour)
 	{
-		this.openingHours.add(openingHour);
+		openingHours.add(openingHour);
 	}
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
@@ -151,11 +151,10 @@ public abstract class POI
 
 	public String getType()
 	{
-		return this.getType();
+		return "poi";
 	}
 
 	public void setType(String type)
 	{
-		this.setType(type);
 	}
 }

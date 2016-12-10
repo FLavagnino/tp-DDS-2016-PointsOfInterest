@@ -40,7 +40,7 @@ public class Log implements Serializable
 		this.filter = filter;
 		this.resultsNumber = resultsNumber;
 		this.time = time;
-		this.date = new DateTime().toString("dd/MM/yyyy");
+		date = new DateTime().toString("dd/MM/yyyy");
 	}
 	
 	public Log(String userName, String filter, Integer resultsNumber, long time, DateTime date) 

@@ -27,19 +27,19 @@ public class Coordenate implements Serializable
 	@GeneratedValue
 	public Long getId()
 	{
-		return this.id;
+		return id;
 	}
 	
 	@OneToOne(mappedBy = "coordenate")
 	@JsonBackReference
 	public POI getPoi()
 	{
-		return this.poi;
+		return poi;
 	}
 	
 	public Double getLatitude() 
 	{
-		return this.latitude;
+		return latitude;
 	}
 
 	public Double getLongitude() 

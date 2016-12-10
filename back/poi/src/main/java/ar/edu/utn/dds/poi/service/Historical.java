@@ -15,8 +15,8 @@ public class Historical implements Searcher
 
 	public Historical()
 	{
-		this.timer = new Timer();
-		this.historicalManager = HistoricalManager.getInstance();
+		timer = new Timer();
+		historicalManager = HistoricalManager.getInstance();
 	}
 
 	@Override

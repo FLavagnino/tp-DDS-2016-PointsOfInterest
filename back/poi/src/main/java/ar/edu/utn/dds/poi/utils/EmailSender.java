@@ -28,10 +28,10 @@ public class EmailSender implements Runnable
 	public void run() 
 	{
 		Properties props = new Properties();
-		props.put(this.MAIL_SMTP_AUTH, Constant.MAIL_SMTP_AUTH_VALUE);
-		props.put(this.MAIL_SMTP_STARTTLS_ENABLE, Constant.MAIL_SMTP_STARTTLS_ENABLE_VALUE);
-		props.put(this.MAIL_SMTP_HOST, Constant.MAIL_SMTP_HOST_VALUE);
-		props.put(this.MAIL_SMTP_PORT, Constant.MAIL_SMTP_PORT_VALUE);
+		props.put(MAIL_SMTP_AUTH, Constant.MAIL_SMTP_AUTH_VALUE);
+		props.put(MAIL_SMTP_STARTTLS_ENABLE, Constant.MAIL_SMTP_STARTTLS_ENABLE_VALUE);
+		props.put(MAIL_SMTP_HOST, Constant.MAIL_SMTP_HOST_VALUE);
+		props.put(MAIL_SMTP_PORT, Constant.MAIL_SMTP_PORT_VALUE);
 		
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() 
 									{

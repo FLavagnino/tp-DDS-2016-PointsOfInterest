@@ -14,14 +14,14 @@ public class ReportService
 	
 	public ReportService()
 	{
-		this.historicalManager = HistoricalManager.getInstance();
+		historicalManager = HistoricalManager.getInstance();
 	}
 	
 	public void totalSearchQtyByDate()
 	{
 		System.out.println("\n---- Total Search Qty By Date ----\n");
 		
-		List<Log> searchList = this.historicalManager.getSearches();
+		List<Log> searchList = historicalManager.getSearches();
 		
 		ListAdapter.adapt(searchList).sortThisBy(Log::getDate);
 			
@@ -49,7 +49,7 @@ public class ReportService
 	{
 		System.out.println("\n---- Total Search Qty By User ----\n");
 		
-		List<Log> searchList = this.historicalManager.getSearches();
+		List<Log> searchList = historicalManager.getSearches();
 	
 		String currentUser = searchList.get(0).getUserName();
 		boolean printed = false;
@@ -75,7 +75,7 @@ public class ReportService
 	{
 		System.out.println("\n---- Total Search Qty By User ----\n");
 		
-		List<Log> searchList = this.historicalManager.getSearches();
+		List<Log> searchList = historicalManager.getSearches();
 			
 		String currentUser = searchList.get(0).getUserName();
 		int searchQty = 0; 
@@ -99,6 +99,6 @@ public class ReportService
 	
 	public void setSearchResults(List<Log> searches)
 	{
-		this.historicalManager.setSearches(searches);
+		historicalManager.setSearches(searches);
 	}
 }

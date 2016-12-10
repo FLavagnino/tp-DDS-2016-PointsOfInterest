@@ -25,11 +25,11 @@ public enum Category
     
     public String getName()
     {
-    	return this.name;
+    	return name;
     }
     
     public int getDistance()
     {
-    	return this.distance;
+    	return distance;
     }
 }

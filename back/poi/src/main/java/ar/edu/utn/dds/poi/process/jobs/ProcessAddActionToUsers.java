@@ -37,7 +37,7 @@ public class ProcessAddActionToUsers extends ProcessPoi
 		Iterator<Actions> iter = actionList.iterator();
 		
 		System.out.println("\nAntes de actualizar las acciones...");
-		this.listActions();
+		listActions();
 
 		while (iter.hasNext())
 		{
@@ -46,7 +46,7 @@ public class ProcessAddActionToUsers extends ProcessPoi
 		}
 		
 		System.out.println("\nDespues de actualizar las acciones...");
-		this.listActions();
+		listActions();
 	}
 	
 	private void listActions()

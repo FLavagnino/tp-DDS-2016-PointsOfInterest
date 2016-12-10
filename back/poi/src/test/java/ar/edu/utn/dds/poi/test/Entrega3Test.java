@@ -28,9 +28,9 @@ public class Entrega3Test
 	@Before
 	public void setUp()
 	{
-		this.authService = new AuthService();
-		this.reportService = new ReportService();
-		this.poiService = new POIService();
+		authService = new AuthService();
+		reportService = new ReportService();
+		poiService = new POIService();
 		
 		List<User> userList = new ArrayList<User>();
 		
@@ -90,8 +90,6 @@ public class Entrega3Test
 		tBoedo.setEmail("luiskahrs@gmail.com");
 		userList.add(tBoedo);
 		
-		//this.authService.setUsers(userList);
-		
 		List<Log> searches = new ArrayList<Log>();
 		DateTime date = new DateTime(2016, 6, 13, 0, 0, 0, 0);
 		Log histSearch1 = new Log("t_abasto", "filtro abasto", 20, 15000, date);
@@ -123,7 +121,7 @@ public class Entrega3Test
 		Log histSearch9 = new Log("t_boedo", "filtro boedo", 15, 16000, date);
 		searches.add(histSearch9);	
 
-		this.reportService.setSearchResults(searches);
+		reportService.setSearchResults(searches);
 	}
 	
 	@Test
@@ -135,7 +133,7 @@ public class Entrega3Test
 		password = "1234";
 		token = "";
 		
-		token = this.authService.login(userName, password);
+		token = authService.login(userName, password);
 		Assert.isTrue(!token.isEmpty());
 	}
 	
@@ -148,7 +146,7 @@ public class Entrega3Test
 		password = "1111";
 		token = "";
 		
-		token = this.authService.login(userName, password);
+		token = authService.login(userName, password);
 		Assert.isTrue(token.isEmpty());
 	}
 	
@@ -162,8 +160,8 @@ public class Entrega3Test
 		token = "";
 		boolean result = false;
 		
-		token = this.authService.login(userName, password);
-		result = this.authService.validate(userName, token);
+		token = authService.login(userName, password);
+		result = authService.validate(userName, token);
 		
 		Assert.isTrue(result);
 	}
@@ -178,10 +176,10 @@ public class Entrega3Test
 		String token = "";
 		boolean result = false;
 		
-		this.authService.login(userName, password);
+		authService.login(userName, password);
 		
 		token = "token-no-valido";
-		result = this.authService.validate(userName, token);
+		result = authService.validate(userName, token);
 		
 		Assert.isTrue(!result);
 	}
@@ -190,21 +188,21 @@ public class Entrega3Test
 	// Prueba para generar el reporte de busquedas por dia. Imprime el resultado por consola.
 	public void reportTotalSearchQtyByDateTest()
 	{	
-		this.reportService.totalSearchQtyByDate();
+		reportService.totalSearchQtyByDate();
 	}
 	
 	@Test
 	//Prueba para generar el reporte de busquedas parciales por usuario. Imprime el resultado por consola.
 	public void partialSearchQtyByUserTest()
 	{	
-		this.reportService.partialSearchQtyByUser();
+		reportService.partialSearchQtyByUser();
 	}
 	
 	@Test
 	//Prueba para generar el reporte de busquedas por usuario. Imprime el resultado por consola.
 	public void totalSearchQtyByUserTest()
 	{	
-		this.reportService.totalSearchQtyByUser();
+		reportService.totalSearchQtyByUser();
 	}
 	
 	@Test
@@ -215,9 +213,9 @@ public class Entrega3Test
 		password = "5555";
 		token = "";
 		
-		token = this.authService.login(userName, password);
-		this.poiService.search("prueba_audit", userName, token);	
-		this.reportService.totalSearchQtyByDate();
+		token = authService.login(userName, password);
+		poiService.search("prueba_audit", userName, token);	
+		reportService.totalSearchQtyByDate();
 	}
 	
 	@Test
@@ -228,8 +226,8 @@ public class Entrega3Test
 		password = "1234";
 		token = "";
 		
-		token = this.authService.login(userName, password);
-		this.poiService.search("prueba_no_audit", userName, token);
-		this.reportService.totalSearchQtyByDate();
+		token = authService.login(userName, password);
+		poiService.search("prueba_no_audit", userName, token);
+		reportService.totalSearchQtyByDate();
 	}
 }

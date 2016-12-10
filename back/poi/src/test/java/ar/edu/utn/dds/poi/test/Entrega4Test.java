@@ -15,7 +15,7 @@ public class Entrega4Test
 	@Before
 	public void setUp() throws InvalidPoiException
 	{
-		this.poiService = new POIService();
+		poiService = new POIService();
 	}
 	
 	@Test
@@ -23,7 +23,7 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void updateShopTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		this.poiService.updateShopProcess();
+		poiService.updateShopProcess();
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void deletePoiTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		this.poiService.deletePOIProcess();
+		poiService.deletePOIProcess();
 	}
 
 	@Test	
@@ -39,7 +39,7 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void addActionToUsersTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		this.poiService.addActionToUsersProcess();
+		poiService.addActionToUsersProcess();
 	}
 	
 	@Test	
@@ -47,6 +47,6 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void multiProcessTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		this.poiService.multiProcess();
+		poiService.multiProcess();
 	}
 }

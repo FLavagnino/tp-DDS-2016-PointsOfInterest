@@ -36,44 +36,44 @@ public class OpeningHour implements Serializable
     @GeneratedValue
 	public Long getId()
 	{
-		return this.id;
+		return id;
 	}
 	
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
 	public POI getPoi()
 	{
-		return this.poi;
+		return poi;
 	}
 	
 	public String getService()
 	{
-		return this.service;
+		return service;
 	}
 	
 	public int getDayOfWeek()
 	{
-		return this.dayOfWeek;
+		return dayOfWeek;
 	}
 	
 	public int getHoursFrom()
 	{
-		return this.hourFrom;
+		return hourFrom;
 	}
 	
 	public int getMinutesFrom()
 	{
-		return this.minutesFrom;
+		return minutesFrom;
 	}
 	
 	public int getHoursTo()
 	{
-		return this.hourTo;
+		return hourTo;
 	}
 	
 	public int getMinutesTo()
 	{
-		return this.minutesTo;
+		return minutesTo;
 	}
 	
 	public void setService(String service)

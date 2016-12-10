@@ -38,11 +38,11 @@ public class POIService implements Searcher
 	
 	public POIService() 
 	{
-		this.distanceService = new MetersDistance();
-		this.externalPOIService = new ExternalPOIService();
-		this.authService = new AuthService();
-		this.poiList = new ArrayList<POI>();
-		this.poiRepository = new POIRepository();
+		distanceService = new MetersDistance();
+		externalPOIService = new ExternalPOIService();
+		authService = new AuthService();
+		poiList = new ArrayList<POI>();
+		poiRepository = new POIRepository();
 		
 		// Agrego algunos fake, despues deberian salir de la base de datos
 		Coordenate coordenate = new Coordenate(-34.619160, -58.425443);
@@ -82,7 +82,7 @@ public class POIService implements Searcher
 	
 	public boolean isCloserTo(POI poiFrom, POI poiTo)
 	{
-		int meters = this.metersFromTo(poiFrom, poiTo);	
+		int meters = metersFromTo(poiFrom, poiTo);	
 		return poiTo.isCloserTo(meters, poiFrom);
 	}
 	
@@ -129,13 +129,13 @@ public class POIService implements Searcher
 	
 	public SearchResult search(String filter, String userName)
 	{
-		return this.search(filter);
+		return search(filter);
 	}
 
 	public SearchResult search(String filter, String userName, String token)
 	{
 		SearchResult searchResult = null;
-		User user = this.authService.getUser(userName, token);
+		User user = authService.getUser(userName, token);
 		
 		if (user != null)
 		{	
@@ -146,14 +146,14 @@ public class POIService implements Searcher
 			}
 			else
 			{
-				searchResult = this.search(filter);
+				searchResult = search(filter);
 			}
 		}
 		return searchResult;
 	}
 
 	public void addPoi(POI poi) {
-		if (this.isValid(poi)) {
+		if (isValid(poi)) {
 			poiRepository.save(poi);
 		}
 	}
@@ -165,7 +165,7 @@ public class POIService implements Searcher
 	
 	public void updatePoi(POI poi) throws InvalidPoiException
 	{
-		if (this.isValid(poi))
+		if (isValid(poi))
 		{
 			poiRepository.update(poi);
 		}

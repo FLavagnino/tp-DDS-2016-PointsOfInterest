@@ -6,8 +6,8 @@ public class HistoricalSearchResponseDTO {
 
     private List<HistoricalSearchDTO> historicalSearch;
 
-    public HistoricalSearchResponseDTO(List<HistoricalSearchDTO> historicalSearchDTOs) {
-        this.historicalSearch = historicalSearchDTOs;
+    public HistoricalSearchResponseDTO(List<HistoricalSearchDTO> historicalSearch) {
+        this.historicalSearch = historicalSearch;
     }
 
     public List<HistoricalSearchDTO> getHistoricalSearch() {

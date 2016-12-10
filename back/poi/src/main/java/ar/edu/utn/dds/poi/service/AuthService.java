@@ -9,26 +9,26 @@ public class AuthService
 	
 	public AuthService()
 	{
-		this.authManager = AuthManager.getInstance();
+		authManager = AuthManager.getInstance();
 	}
 	
 	public String login(String userName, String password)
 	{
-		return this.authManager.login(userName, password);
+		return authManager.login(userName, password);
 	}
 	
 	public boolean validate(String userName, String token)
 	{
-		return this.authManager.validate(userName, token);
+		return authManager.validate(userName, token);
 	}
 	
 	public User getUser(String userName, String token)
 	{
-		return this.authManager.getUser(userName, token);
+		return authManager.getUser(userName, token);
 	}
 		
 	public String getMailOf(String userName)
 	{
-		return this.authManager.getMailOf(userName);
+		return authManager.getMailOf(userName);
 	}
 }

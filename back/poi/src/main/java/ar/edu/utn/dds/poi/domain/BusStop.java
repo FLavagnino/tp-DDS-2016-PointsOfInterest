@@ -17,19 +17,19 @@ public class BusStop extends POI
 	
 	public BusStop()
 	{
-		this.type = "bus_stop";
+		type = "bus_stop";
 	}
 	
 	public BusStop(String name, Coordenate coordenate, int busLine, String tags) 
 	{
 		super(name, coordenate, tags);	
 		this.busLine = busLine;
-		this.type = "bus_stop";
+		type = "bus_stop";
 	}
 	
 	public int getBusLine()
 	{
-		return this.busLine;
+		return busLine;
 	}
 	
 	public String getType() 
@@ -67,7 +67,7 @@ public class BusStop extends POI
 		catch (NumberFormatException nfe) { }
 		
 		// Now we will try with Levenshtein for the name
-		int distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		int distance = LevenshteinDistance.distance(name.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{

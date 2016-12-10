@@ -57,22 +57,22 @@ public class User implements Serializable
 	
 	public String getUserName()
 	{
-		return this.userName;
+		return userName;
 	}
 	
 	public String getPassword()
 	{
-		return this.password;
+		return password;
 	}
 	
 	public String getToken()
 	{
-		return this.token;
+		return token;
 	}
 	
 	public Boolean getAuditMode()
 	{
-		return this.auditMode;
+		return auditMode;
 	}
 	
 	public void setUserName(String userName)

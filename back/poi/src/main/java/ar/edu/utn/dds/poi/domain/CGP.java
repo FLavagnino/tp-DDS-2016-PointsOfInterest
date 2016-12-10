@@ -24,22 +24,22 @@ public class CGP extends POI
 	
 	public CGP()
 	{		
-		this.type = "cgp";
+		type = "cgp";
 	}
 	
 	public CGP(String name, Coordenate coordenate, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
-		this.type = "cgp";
+		type = "cgp";
 	}
 	
-	public CGP(String name, Coordenate coordenate, List<ZoneCoordenate> zoneCoord, String services, String tags) 
+	public CGP(String name, Coordenate coordenate, List<ZoneCoordenate> zoneCoordenates, String services, String tags) 
 	{
 		super(name, coordenate, tags);
 		this.services = services;
-		this.zoneCoordenates = zoneCoord;
-		this.type = "cgp";
+		this.zoneCoordenates = zoneCoordenates;
+		type = "cgp";
 	}
 	
 	public void setServices(String services)
@@ -67,22 +67,22 @@ public class CGP extends POI
     @JsonManagedReference
 	public List<ZoneCoordenate> getZoneCoordenates()
 	{
-		return this.zoneCoordenates;
+		return zoneCoordenates;
 	}
 	
 	public String getType() 
 	{
-		return this.type;
+		return type;
 	}
 	
 	public String getServices ()
 	{
-		return this.services;
+		return services;
 	}
 
 	public String getZone()
 	{
-		return this.zone;
+		return zone;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
@@ -135,7 +135,7 @@ public class CGP extends POI
 		}
 	
 		// Now we will try with Levenshtein for the name
-		distance = LevenshteinDistance.distance(this.name.toLowerCase(), filter.toLowerCase());
+		distance = LevenshteinDistance.distance(name.toLowerCase(), filter.toLowerCase());
 		
 		if (distance < Constant.LEVENSHTEIN_ACCEPTED_DIST)
 		{
@@ -164,7 +164,7 @@ public class CGP extends POI
 	
 	public boolean isCloserTo(int meters, POI poiFrom)
 	{
-		return this.inCGPZone(this.zoneCoordenates, poiFrom.getCoordenate());
+		return inCGPZone(zoneCoordenates, poiFrom.getCoordenate());
 	}
 	
 	private boolean inCGPZone(List<ZoneCoordenate> polyCoords, Coordenate poiCoord)

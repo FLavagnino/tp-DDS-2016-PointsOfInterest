@@ -33,7 +33,7 @@ public class MultiProcessAddActionToUsers extends ProcessPoi
 	{		
 		Iterator<Actions> iter = actionList.iterator();
 			
-		this.listActions();
+		listActions();
 
 		while (iter.hasNext())
 		{
@@ -41,7 +41,7 @@ public class MultiProcessAddActionToUsers extends ProcessPoi
 			//System.out.println(Constant.ACTION_ADDED_TO_USER);
 		}
 		
-		this.listActions();
+		listActions();
 	}
 	
 	private void listActions()

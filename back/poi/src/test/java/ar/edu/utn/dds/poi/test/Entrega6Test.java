@@ -26,8 +26,8 @@ public class Entrega6Test
 	@Before
 	public void setUp()
 	{
-		this.authService = new AuthService();
-		this.poiService = new POIService();
+		authService = new AuthService();
+		poiService = new POIService();
 		poiRepository = new POIRepository();
 		
 		List<User> userList = new ArrayList<>();
@@ -39,8 +39,7 @@ public class Entrega6Test
 		tCaballito.setAuditMode(true);
 		tCaballito.setEmail("luiskahrs@gmail.com");
 		userList.add(tCaballito);
-	
-		//this.authService.setUsers(userList);
+
 	}
 
 	@Test
@@ -49,7 +48,7 @@ public class Entrega6Test
 	public void insertBankTest()
 	{
 		// Obtengo un usuario para crear en la DB
-		Bank bank = this.getNewBank();
+		Bank bank = getNewBank();
         
         // Grabo el POI
         Serializable bankID = poiRepository.save(bank);
@@ -79,7 +78,7 @@ public class Entrega6Test
 	public void insertShopTest()
 	{
 		// Obtengo un usuario para crear en la DB
-		Shop shop = this.getNewShop();
+		Shop shop = getNewShop();
         
         // Grabo el POI
         Serializable shopID = poiRepository.save(shop);
@@ -94,7 +93,7 @@ public class Entrega6Test
 	public void insertCGPTest()
 	{
 		// Obtengo un usuario para crear en la DB
-		CGP cgp = this.getNewCGP();
+		CGP cgp = getNewCGP();
         
         // Grabo el POI
         Serializable cgpID = poiRepository.save(cgp);
@@ -109,7 +108,7 @@ public class Entrega6Test
 	public void deleteBankTest()
 	{
 		// Obtengo un usuario para crear en la DB
-		Bank bank = this.getNewBank();
+		Bank bank = getNewBank();
         
         // Grabo el POI
         Serializable bankID = poiRepository.save(bank);
@@ -139,10 +138,10 @@ public class Entrega6Test
 		password = "5555";
 		token = "";
 		
-		token = this.authService.login(userName, password);
-		this.poiService.search("Santander Rio", userName, token);	
+		token = authService.login(userName, password);
+		poiService.search("Santander Rio", userName, token);	
 		
-		List<Log> logs = this.poiService.getLogByUserName(userName);
+		List<Log> logs = poiService.getLogByUserName(userName);
 		
 		Log lastLog = logs.get(logs.size() - 1);
         System.out.println("Ultimo log para el usuario: " + userName + ":\n" +
@@ -157,7 +156,7 @@ public class Entrega6Test
 	public void insertUserTest()
 	{
 		// Obtengo un usuario para crear en la DB
-		User user = this.getNewUser();
+		User user = getNewUser();
         
         // Grabo el usuario
         Serializable userID = poiService.saveUser(user);

@@ -11,7 +11,7 @@ public class MongoDB
     private MongoDB() 
     {
         MongoClient mongoClient = new MongoClient();
-        this.mongoDatabase = mongoClient.getDatabase("test");
+        mongoDatabase = mongoClient.getDatabase("test");
     }
 
     public static MongoDB getInstance()
