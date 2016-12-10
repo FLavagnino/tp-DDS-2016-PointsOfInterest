@@ -1,24 +1,24 @@
-package ar.edu.utn.dds.poi.utils;
+package ar.edu.utn.dds.poi.repository;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
-public class MongoDB 
+public class MongoManager 
 {
-    private static MongoDB instance = null;
+    private static MongoManager instance = null;
     private MongoDatabase mongoDatabase;
 
-    private MongoDB() 
+    private MongoManager() 
     {
         MongoClient mongoClient = new MongoClient();
         mongoDatabase = mongoClient.getDatabase("test");
     }
 
-    public static MongoDB getInstance()
+    public static MongoManager getInstance()
     {
         if(instance == null)
         {
-            instance = new MongoDB();
+            instance = new MongoManager();
         }
 
         return instance;

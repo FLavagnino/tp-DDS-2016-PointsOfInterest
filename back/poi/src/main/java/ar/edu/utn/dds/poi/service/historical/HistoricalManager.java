@@ -2,7 +2,8 @@ package ar.edu.utn.dds.poi.service.historical;
 
 import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.repository.LogRepository;
-import ar.edu.utn.dds.poi.utils.MongoDB;
+import ar.edu.utn.dds.poi.repository.MongoManager;
+
 import org.bson.Document;
 import org.joda.time.DateTime;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class HistoricalManager
 		LogRepository logRep = new LogRepository();
 		logRep.saveHistoricalSearch(historicalSearch);
 		
-		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
+		MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
 				Document.parse(historicalSearch.toJson())
 		);
 	}
@@ -53,13 +54,13 @@ public class HistoricalManager
         for(Log search : searches) {
             documents.add(Document.parse(search.toJson()));
         }
-		MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
+		MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.insertMany(documents);
 	}
 
 	public List<Log> getSearches(String user) {
 		List<Log> searchesFiltered = new ArrayList<>();
-		for (Document document : MongoDB.getInstance().getMongoDatabase()
+		for (Document document : MongoManager.getInstance().getMongoDatabase()
 				.getCollection("historical_searches").find(new Document("user_name", user))) {
 
             searchesFiltered.add(createHistoricalSearch(document));
@@ -76,7 +77,7 @@ public class HistoricalManager
         }
 
 		List<Log> searchesFiltered = new ArrayList<>();
-		for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
+		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$gte:" + from + ",$lt:" + to + "}}"))) {
 
 			searchesFiltered.add(createHistoricalSearch(document));
@@ -86,7 +87,7 @@ public class HistoricalManager
 
     private List<Log> getSearchesFrom(DateTime from) {
 		List<Log> searchesFiltered = new ArrayList<>();
-		for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
+		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$gte:" + from + "}}"))) {
 
 			searchesFiltered.add(createHistoricalSearch(document));
@@ -96,7 +97,7 @@ public class HistoricalManager
 
     private List<Log> getSearchesTo(DateTime to) {
 		List<Log> searchesFiltered = new ArrayList<>();
-		for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("historical_searches")
+		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$lt:" + to + "}}"))) {
 
 			searchesFiltered.add(createHistoricalSearch(document));

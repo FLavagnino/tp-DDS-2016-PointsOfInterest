@@ -1,6 +1,8 @@
 package ar.edu.utn.dds.poi.utils;
 
 import ar.edu.utn.dds.poi.domain.*;
+import ar.edu.utn.dds.poi.repository.MongoManager;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.bson.Document;
 
@@ -10,19 +12,19 @@ import java.util.List;
 public class MongoUtil {
 
     public boolean existPoi(String name) {
-        return MongoDB.getInstance().getMongoDatabase()
+        return MongoManager.getInstance().getMongoDatabase()
                 .getCollection("external_pois").find(new Document("name", name))
                 .first() != null;
     }
 
     public void savePoi(POI poi) {
         JsonFactory jsonFactory = new JsonFactory();
-        MongoDB.getInstance().getMongoDatabase().getCollection("external_pois").insertOne(
+        MongoManager.getInstance().getMongoDatabase().getCollection("external_pois").insertOne(
                 Document.parse(jsonFactory.toJson(poi)));
     }
 
     public void removePoi(POI poi) {
-        MongoDB.getInstance().getMongoDatabase().getCollection("external_pois").deleteOne(
+        MongoManager.getInstance().getMongoDatabase().getCollection("external_pois").deleteOne(
                 Document.parse("{name: \"" + poi.getName() + "\"}"));
     }
 
@@ -34,13 +36,13 @@ public class MongoUtil {
             documents.add(Document.parse(jsonFactory.toJson(poi)));
         }
 
-        MongoDB.getInstance().getMongoDatabase().getCollection("external_pois").insertMany(documents);
+        MongoManager.getInstance().getMongoDatabase().getCollection("external_pois").insertMany(documents);
     }
 
     public List<POI> getPois(String filter) {
         List<POI> pois = new ArrayList<>();
 
-        for (Document document : MongoDB.getInstance().getMongoDatabase().getCollection("external_pois")
+        for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("external_pois")
                 .find(Document.parse("{name: /" + filter + "/}"))) {
             pois.add(documentToPOI(document));
         }

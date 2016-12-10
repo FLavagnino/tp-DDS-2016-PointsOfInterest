@@ -1,7 +1,7 @@
-package ar.edu.utn.dds.poi.service.web;
+package ar.edu.utn.dds.poi.web.service;
 
-import ar.edu.utn.dds.poi.controller.PoiController;
 import ar.edu.utn.dds.poi.service.ExternalPOIService;
+import ar.edu.utn.dds.poi.web.controller.PoiController;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

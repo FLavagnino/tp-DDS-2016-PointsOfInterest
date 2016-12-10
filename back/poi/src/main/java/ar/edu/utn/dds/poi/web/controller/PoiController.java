@@ -1,4 +1,4 @@
-package ar.edu.utn.dds.poi.controller;
+package ar.edu.utn.dds.poi.web.controller;
 
 import ar.edu.utn.dds.poi.auth.AuthManager;
 import ar.edu.utn.dds.poi.service.Historical;
