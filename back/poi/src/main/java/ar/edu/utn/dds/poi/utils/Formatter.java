@@ -1,6 +1,7 @@
 package ar.edu.utn.dds.poi.utils;
 
 import ar.edu.utn.dds.poi.domain.Log;
+import ar.edu.utn.dds.poi.domain.LogResult;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchDTO;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchResponseDTO;
 
@@ -8,6 +9,7 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Formatter {
 
@@ -30,16 +32,18 @@ public class Formatter {
     }
 
     public static HistoricalSearchResponseDTO historicalSearchToDTO(List<Log> historicalSearches) {
-        List<HistoricalSearchDTO> historicalSearchDTOs = new ArrayList<>();
-        for (Log historicalSearch : historicalSearches) {
-            historicalSearchDTOs.add(new HistoricalSearchDTO(
+        List<HistoricalSearchDTO> historicalSearchDTOs = historicalSearches.stream().map(Formatter::logDTO).collect(Collectors.toList());
+        return new HistoricalSearchResponseDTO(historicalSearchDTOs);
+    }
+
+    public static HistoricalSearchDTO logDTO(Log historicalSearch) {
+        return new HistoricalSearchDTO(
                     historicalSearch.getUserName(),
                     historicalSearch.getFilter(),
                     historicalSearch.getResultsNumber(),
                     historicalSearch.getTime(),
-                    historicalSearch.getDate().toString()
-            ));
-        }
-        return new HistoricalSearchResponseDTO(historicalSearchDTOs);
+                    historicalSearch.getDate().toString(),
+                    historicalSearch.getResults().stream().map(LogResult::getPoiName).collect(Collectors.toCollection(ArrayList::new))
+        );
     }
 }

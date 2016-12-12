@@ -4,18 +4,24 @@ import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.repository.LogRepository;
 import ar.edu.utn.dds.poi.repository.MongoManager;
 
+import ar.edu.utn.dds.poi.utils.Formatter;
+import ar.edu.utn.dds.poi.utils.JsonFactory;
 import org.bson.Document;
 import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HistoricalManager 
 {
 	private static HistoricalManager instance = null;
 	private List<Log> searches = new ArrayList<Log>();
+
+	JsonFactory jsonFactory;
 	
 	private HistoricalManager() 
 	{
+		jsonFactory = new JsonFactory();
 	}
 	
 	public static HistoricalManager getInstance() 
@@ -37,7 +43,7 @@ public class HistoricalManager
 		logRep.saveHistoricalSearch(historicalSearch);
 		
 		MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches").insertOne(
-				Document.parse(historicalSearch.toJson())
+				Document.parse(jsonFactory.toJson(Formatter.logDTO(historicalSearch)))
 		);
 	}
 	
@@ -52,7 +58,7 @@ public class HistoricalManager
 
         List<Document> documents = new ArrayList<>();
         for(Log search : searches) {
-            documents.add(Document.parse(search.toJson()));
+            documents.add(Document.parse(jsonFactory.toJson(Formatter.logDTO(search))));
         }
 		MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.insertMany(documents);
