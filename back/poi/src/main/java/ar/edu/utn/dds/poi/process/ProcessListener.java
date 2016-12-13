@@ -1,9 +1,5 @@
 package ar.edu.utn.dds.poi.process;
 
-import java.util.ArrayList;
-import ar.edu.utn.dds.poi.constant.Actions;
-import ar.edu.utn.dds.poi.domain.Terminal;
-
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -24,8 +20,6 @@ public abstract class ProcessListener implements JobListener
 	}
 
 	protected abstract void rollback();
-	protected abstract void rollback(ArrayList<Actions> originalList, Terminal terminal);
-	
 
 	public void jobToBeExecuted(JobExecutionContext context) 
 	{
@@ -62,6 +56,7 @@ public abstract class ProcessListener implements JobListener
 		} 
 		else 
 		{
+			// Enviar mail
 			System.out.println("Result: FAIL");
 			System.out.println("Exception: " + jobException.getMessage() + "\n");
 			rollback();

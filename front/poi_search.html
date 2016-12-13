@@ -143,10 +143,8 @@
 							{{else if (isBankType type)}}
 								<img src="images/bank.jpg" style="width: 100px; height:100px; padding: 5px 0px 10px 0px;">
 								<div><b>Dirección: </b>{{address.street}} {{address.number}}, CP {{address.postal_code}}, {{address.neighborhood}}</div>
-								<div><b>Horarios: </b></div>	
-								{{#each opening_hours}}
-								<div>{{service}} - {{dayOfWeekString day_of_week}}, de {{formatTime hours_from minutes_from}} - a: {{formatTime hours_to minutes_to}}</div>
-								{{/each}}
+								<div><b>Zona: </b>{{zone}}</div>
+								<div><b>Servicios: </b>{{services}}</div>	
 							{{else if (isCGPType type)}}
 								<img src="images/cgp.png" style="width: 100px; height:100px; padding: 5px 0px 10px 0px;">
 								<div><b>Dirección: </b>{{address.street}} {{address.number}}, CP {{address.postal_code}}, {{address.neighborhood}}</div>

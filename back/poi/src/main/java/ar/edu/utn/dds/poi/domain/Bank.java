@@ -12,6 +12,8 @@ import ar.edu.utn.dds.poi.utils.LevenshteinDistance;
 public class Bank extends POI
 {
 	private String type;
+	protected String services;
+	protected String zone;
 
 	public Bank()
 	{
@@ -29,9 +31,29 @@ public class Bank extends POI
 		return type;
 	}
 	
+	public String getServices ()
+	{
+		return services;
+	}
+
+	public String getZone()
+	{
+		return zone;
+	}
+	
 	public void setType(String type)
 	{
 		this.type = type;
+	}
+	
+	public void setZone(String zone)
+	{
+		this.zone = zone;
+	}
+	
+	public void setServices(String services)
+	{
+		this.services = services;
 	}
 	
 	public boolean isAvailable(DateTime dateTime, String service)
