@@ -13,14 +13,18 @@ import java.util.stream.Collectors;
 
 public class Formatter {
 
-    public static String keywordToFilter(String keyword) {
+    public static String keywordToFilter(String keyword) 
+    {
         return keyword.substring(1,keyword.length()-1).replace(',',' ');
     }
 
-    public static DateTime stringToDateTime(String date) {
-        if(date.equals("null")) {
+    public static DateTime stringToDateTime(String date) 
+    {
+        if(date.equals("null")) 
+        {
             return null;
         }
+        
         String[] splitedDate = date.split("-");
         return new DateTime(
                 Integer.valueOf(splitedDate[0]),
@@ -31,7 +35,8 @@ public class Formatter {
         );
     }
 
-    public static HistoricalSearchDTO logDTO(Log historicalSearch) {
+    public static HistoricalSearchDTO logDTO(Log historicalSearch) 
+    {
         return new HistoricalSearchDTO(
                     historicalSearch.getUserName(),
                     historicalSearch.getFilter(),

@@ -218,7 +218,7 @@ var init = function() {
         } 
 		else 
 		{
-			if (inputDateFrom != "" && inputDateTo != "")
+			if (inputDateFrom != "" || inputDateTo != "")
 			{
 				url = getHistoricalDateUrl(inputDateFrom, inputDateTo);
 			}
@@ -306,8 +306,20 @@ function getHistoricalUserUrl(user) {
     return "http://localhost:4567/poi/historical/" + user;
 }
 
-function getHistoricalDateUrl(from, to) {
-    return "http://localhost:4567/poi/historical/" + from + "/" + to;
+function getHistoricalDateUrl(from, to) 
+{
+	if (from == "")
+	{
+		return "http://localhost:4567/poi/historical/null/" + to;
+	}
+	else if (to == "")
+	{
+		return "http://localhost:4567/poi/historical/" + from + "/null";
+	}
+	else
+	{
+		return "http://localhost:4567/poi/historical/" + from + "/" + to;
+	}
 }
 
 function getSearchUrl(keyword) {

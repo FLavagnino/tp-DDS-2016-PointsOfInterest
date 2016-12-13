@@ -5,14 +5,12 @@ import ar.edu.utn.dds.poi.dto.HistoricalSearchDTO;
 import ar.edu.utn.dds.poi.dto.HistoricalSearchResponseDTO;
 import ar.edu.utn.dds.poi.repository.LogRepository;
 import ar.edu.utn.dds.poi.repository.MongoManager;
-
 import ar.edu.utn.dds.poi.utils.Formatter;
 import ar.edu.utn.dds.poi.utils.JsonFactory;
 import org.bson.Document;
 import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HistoricalManager 
 {
@@ -59,61 +57,86 @@ public class HistoricalManager
 		this.searches = searches;
 
         List<Document> documents = new ArrayList<>();
-        for(Log search : searches) {
+        for(Log search : searches) 
+        {
             documents.add(Document.parse(jsonFactory.toJson(Formatter.logDTO(search))));
         }
+        
 		MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.insertMany(documents);
 	}
 
-	public HistoricalSearchResponseDTO getSearches(String user) {
+	public HistoricalSearchResponseDTO getSearches(String user) 
+	{
 		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
+		
 		for (Document document : MongoManager.getInstance().getMongoDatabase()
-				.getCollection("historical_searches").find(new Document("user_name", user))) {
-
+				.getCollection("historical_searches").find(new Document("user_name", user))) 
+		{
             searchesFiltered.add(createHistoricalSearch(document));
 		}
+		
 		return new HistoricalSearchResponseDTO(searchesFiltered);
 	}
 
-	public HistoricalSearchResponseDTO getSearches(DateTime from, DateTime to) {
-        if(to == null) {
+	public HistoricalSearchResponseDTO getSearches(DateTime from, DateTime to) 
+	{
+        if(to == null) 
+        {
             return getSearchesFrom(from);
         }
-        if(from == null) {
+        else if(from == null) 
+        {
             return getSearchesTo(to);
         }
-
-		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
-		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
-				.find(Document.parse("{date: {$gte:" + from + ",$lt:" + to + "}}"))) {
-
-			searchesFiltered.add(createHistoricalSearch(document));
-		}
-		return new HistoricalSearchResponseDTO(searchesFiltered);
+        else
+        {
+			List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
+			String jsonQuery = "{date: {$gte:\"" + from.toString("dd/MM/yyyy") + "\",$lt:\"" + to.toString("dd/MM/yyyy") + "\"}}";
+			
+			for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
+					.find(Document.parse(jsonQuery))) 
+			{
+				searchesFiltered.add(createHistoricalSearch(document));
+			}
+			
+			return new HistoricalSearchResponseDTO(searchesFiltered);
+        }
 	}
 
-    private HistoricalSearchResponseDTO getSearchesFrom(DateTime from) {
+    private HistoricalSearchResponseDTO getSearchesFrom(DateTime from) 
+    {
 		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
+		
+		String jsonQuery = "{date: {$gte:\"" + from.toString("dd/MM/yyyy") + "\"}}";
+				
 		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
-				.find(Document.parse("{date: {$gte:" + from + "}}"))) {
-
+				.find(Document.parse(jsonQuery))) 
+		{
 			searchesFiltered.add(createHistoricalSearch(document));
 		}
+		
 		return new HistoricalSearchResponseDTO(searchesFiltered);
     }
 
-    private HistoricalSearchResponseDTO getSearchesTo(DateTime to) {
+    private HistoricalSearchResponseDTO getSearchesTo(DateTime to) 
+    {
 		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
+		
+		String jsonQuery = "{date: {$lt:\"" + to.toString("dd/MM/yyyy") + "\"}}";
+				
 		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
-				.find(Document.parse("{date: {$lt:" + to + "}}"))) {
-
+				.find(Document.parse(jsonQuery))) 
+		{
 			searchesFiltered.add(createHistoricalSearch(document));
 		}
+		
 		return new HistoricalSearchResponseDTO(searchesFiltered);
     }
 
-    private HistoricalSearchDTO createHistoricalSearch(Document document) {
+    @SuppressWarnings("unchecked")
+	private HistoricalSearchDTO createHistoricalSearch(Document document) 
+    {
 		return new HistoricalSearchDTO(
 				document.getString("user_name"),
 				document.getString("filter"),
