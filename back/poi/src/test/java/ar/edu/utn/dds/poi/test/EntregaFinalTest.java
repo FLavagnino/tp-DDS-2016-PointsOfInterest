@@ -234,7 +234,7 @@ public class EntregaFinalTest
 		OpeningHour thursday = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 15, 0);
 		OpeningHour friday = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 15, 0);
 		
-		bankGalicia.setZone("Boeado");
+		bankGalicia.setZone("Boedo");
 		bankGalicia.setServices("Atención al publico, Cajas de Seguridad, Cesión de Cheques");
 		bankGalicia.addOpeningHour(monday);
 		bankGalicia.addOpeningHour(tuesday);
