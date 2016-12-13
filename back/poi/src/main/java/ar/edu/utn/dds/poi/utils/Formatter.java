@@ -43,7 +43,7 @@ public class Formatter {
                     historicalSearch.getResultsNumber(),
                     historicalSearch.getTime(),
                     historicalSearch.getDate().toString(),
-                    historicalSearch.getResults().stream().map(LogResult::getPoiName).collect(Collectors.toCollection(ArrayList::new))
+                    historicalSearch.getResults() == null ? null : historicalSearch.getResults().stream().map(LogResult::getPoiName).collect(Collectors.toCollection(ArrayList::new))
         );
     }
 }
