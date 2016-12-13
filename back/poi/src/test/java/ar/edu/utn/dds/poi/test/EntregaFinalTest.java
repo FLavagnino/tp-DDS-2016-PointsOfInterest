@@ -234,6 +234,8 @@ public class EntregaFinalTest
 		OpeningHour thursday = new OpeningHour("No aplica", DateTimeConstants.THURSDAY, 10, 0, 15, 0);
 		OpeningHour friday = new OpeningHour("No aplica", DateTimeConstants.FRIDAY, 10, 0, 15, 0);
 		
+		bankGalicia.setZone("Boeado");
+		bankGalicia.setServices("Atención al publico, Cajas de Seguridad, Cesión de Cheques");
 		bankGalicia.addOpeningHour(monday);
 		bankGalicia.addOpeningHour(tuesday);
 		bankGalicia.addOpeningHour(wednesday);
@@ -249,6 +251,8 @@ public class EntregaFinalTest
 		Coordenate coordsSantander = new Coordenate(-34.616646, -58.428791);
 		Bank bankRio = new Bank("Banco Santander Rio", coordsSantander, "Banco,Rio,Dinero");
 		
+		bankRio.setZone("Almagro");
+		bankRio.setServices("Atención al publico, Cuentas");
 		bankRio.addOpeningHour(monday);
 		bankRio.addOpeningHour(tuesday);
 		bankRio.addOpeningHour(wednesday);
@@ -264,6 +268,8 @@ public class EntregaFinalTest
 		Coordenate coordsCiudad = new Coordenate(-34.617264, -58.436827);
 		Bank bankCiudad = new Bank("Banco Ciudad", coordsCiudad, "Banco,Ciudad,Dinero");
 		
+		bankCiudad.setZone("Caballito");
+		bankCiudad.setServices("Atención al publico, PYME, Prestamos");
 		bankCiudad.addOpeningHour(monday);
 		bankCiudad.addOpeningHour(tuesday);
 		bankCiudad.addOpeningHour(wednesday);

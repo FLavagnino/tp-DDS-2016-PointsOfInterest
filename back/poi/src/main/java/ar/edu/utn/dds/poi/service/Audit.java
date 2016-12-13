@@ -24,7 +24,8 @@ public class Audit implements Searcher
 		{
 			String email = authService.getMailOf(userName);
 
-			if(email != null) {
+			if(email != null) 
+			{
 				EmailSender emailSender = new EmailSender(email);
 				new Thread(emailSender).run();
 			}

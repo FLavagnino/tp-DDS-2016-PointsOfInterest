@@ -25,6 +25,8 @@ public class ProcessDeletePoi extends ProcessPoi
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException 
 	{	
+		arg0.put("poiService", poiservice);
+		
 		// Vemos como esta la lista actualmente, despues hay que borrarlo.
 		System.out.println("\nAntes de borrar...");
 		poiservice.listPOIs();
