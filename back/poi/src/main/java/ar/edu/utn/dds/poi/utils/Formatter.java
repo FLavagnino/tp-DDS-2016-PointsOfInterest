@@ -31,11 +31,6 @@ public class Formatter {
         );
     }
 
-    public static HistoricalSearchResponseDTO historicalSearchToDTO(List<Log> historicalSearches) {
-        List<HistoricalSearchDTO> historicalSearchDTOs = historicalSearches.stream().map(Formatter::logDTO).collect(Collectors.toList());
-        return new HistoricalSearchResponseDTO(historicalSearchDTOs);
-    }
-
     public static HistoricalSearchDTO logDTO(Log historicalSearch) {
         return new HistoricalSearchDTO(
                     historicalSearch.getUserName(),

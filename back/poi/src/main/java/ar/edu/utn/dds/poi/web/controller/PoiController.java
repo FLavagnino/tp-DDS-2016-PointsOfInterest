@@ -37,19 +37,17 @@ public class PoiController {
         {
             response.type("application/json");
             
-            return jsonFactory.toJson(Formatter.historicalSearchToDTO(
-                    					historicalManager.getSearches(
-        								request.params("user"))));
+            return jsonFactory.toJson(historicalManager.getSearches(
+        								request.params("user")));
         });
 
         post("/poi/historical/:dateFrom/:dateTo", (request, response) -> 
         {
             response.type("application/json");
             
-            return jsonFactory.toJson(Formatter.historicalSearchToDTO(
-                    					historicalManager.getSearches(
-				                            Formatter.stringToDateTime(request.params("dateFrom")),
-				                            Formatter.stringToDateTime(request.params("dateTo")))));
+            return jsonFactory.toJson(historicalManager.getSearches(
+                                        Formatter.stringToDateTime(request.params("dateFrom")),
+                                        Formatter.stringToDateTime(request.params("dateTo"))));
         });
 
         post("/poi/login", (request, response) -> 

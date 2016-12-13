@@ -46,10 +46,10 @@ public class Entrega7Test {
 		Log log = new Log("Pepito", "Bus", 23, Long.valueOf(2), "2016/11/02");
 		log.setResults(new ArrayList<>());
 
-		Assert.assertEquals(0, HistoricalManager.getInstance().getSearches("Pepito").size());
+		Assert.assertEquals(0, HistoricalManager.getInstance().getSearches("Pepito").getHistoricalSearch().size());
 
 		HistoricalManager.getInstance().saveSearch(log);
 
-		Assert.assertEquals(1, HistoricalManager.getInstance().getSearches("Pepito").size());
+		Assert.assertEquals(1, HistoricalManager.getInstance().getSearches("Pepito").getHistoricalSearch().size());
 	}
 }

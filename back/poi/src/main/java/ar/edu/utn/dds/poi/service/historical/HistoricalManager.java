@@ -1,6 +1,8 @@
 package ar.edu.utn.dds.poi.service.historical;
 
 import ar.edu.utn.dds.poi.domain.Log;
+import ar.edu.utn.dds.poi.dto.HistoricalSearchDTO;
+import ar.edu.utn.dds.poi.dto.HistoricalSearchResponseDTO;
 import ar.edu.utn.dds.poi.repository.LogRepository;
 import ar.edu.utn.dds.poi.repository.MongoManager;
 
@@ -64,17 +66,17 @@ public class HistoricalManager
 				.insertMany(documents);
 	}
 
-	public List<Log> getSearches(String user) {
-		List<Log> searchesFiltered = new ArrayList<>();
+	public HistoricalSearchResponseDTO getSearches(String user) {
+		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoManager.getInstance().getMongoDatabase()
 				.getCollection("historical_searches").find(new Document("user_name", user))) {
 
             searchesFiltered.add(createHistoricalSearch(document));
 		}
-		return searchesFiltered;
+		return new HistoricalSearchResponseDTO(searchesFiltered);
 	}
 
-	public List<Log> getSearches(DateTime from, DateTime to) {
+	public HistoricalSearchResponseDTO getSearches(DateTime from, DateTime to) {
         if(to == null) {
             return getSearchesFrom(from);
         }
@@ -82,41 +84,42 @@ public class HistoricalManager
             return getSearchesTo(to);
         }
 
-		List<Log> searchesFiltered = new ArrayList<>();
+		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$gte:" + from + ",$lt:" + to + "}}"))) {
 
 			searchesFiltered.add(createHistoricalSearch(document));
 		}
-		return searchesFiltered;
+		return new HistoricalSearchResponseDTO(searchesFiltered);
 	}
 
-    private List<Log> getSearchesFrom(DateTime from) {
-		List<Log> searchesFiltered = new ArrayList<>();
+    private HistoricalSearchResponseDTO getSearchesFrom(DateTime from) {
+		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$gte:" + from + "}}"))) {
 
 			searchesFiltered.add(createHistoricalSearch(document));
 		}
-		return searchesFiltered;
+		return new HistoricalSearchResponseDTO(searchesFiltered);
     }
 
-    private List<Log> getSearchesTo(DateTime to) {
-		List<Log> searchesFiltered = new ArrayList<>();
+    private HistoricalSearchResponseDTO getSearchesTo(DateTime to) {
+		List<HistoricalSearchDTO> searchesFiltered = new ArrayList<>();
 		for (Document document : MongoManager.getInstance().getMongoDatabase().getCollection("historical_searches")
 				.find(Document.parse("{date: {$lt:" + to + "}}"))) {
 
 			searchesFiltered.add(createHistoricalSearch(document));
 		}
-		return searchesFiltered;
+		return new HistoricalSearchResponseDTO(searchesFiltered);
     }
 
-    private Log createHistoricalSearch(Document document) {
-		return new Log(
+    private HistoricalSearchDTO createHistoricalSearch(Document document) {
+		return new HistoricalSearchDTO(
 				document.getString("user_name"),
 				document.getString("filter"),
 				Integer.valueOf(document.get("results_number").toString()),
 				Long.valueOf(document.get("time").toString()),
-				document.getString("date"));
+				document.getString("date"),
+				(List<String>) document.get("results_name"));
 	}
 }
