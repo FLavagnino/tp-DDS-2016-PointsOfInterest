@@ -254,6 +254,17 @@ function loadUsers(user, token)
 	{
 		if (response != "")
 		{
+			$('#ddlUsers').append($('<option>', { 
+				value: -1,
+				text : "Un usuario.."
+			}));
+				
+			$.each(response.names, function (i, name) {
+				$('#ddlUsers').append($('<option>', { 
+					value: name,
+					text : name
+				}));
+			});
 		}
 		else
 		{
