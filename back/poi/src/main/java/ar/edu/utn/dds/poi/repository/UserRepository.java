@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+
+import ar.edu.utn.dds.poi.domain.Action;
 import org.hibernate.Session;
 import ar.edu.utn.dds.poi.domain.User;
 
@@ -60,10 +62,10 @@ public class UserRepository
         Query query = session.createQuery(hql);
         query.setParameter("userName", userName);
 
-        List results = query.getResultList();
+        User result = (User) query.getSingleResult();
         session.close();
 
-        return (User) results.get(0);
+        return result;
     }
 
     public User getUserWithToken(String userName, String token) {
@@ -100,5 +102,9 @@ public class UserRepository
         session.close();
 
         return user;
+    }
+
+    public List<Action> getUserActions(String userName) {
+        return getUser(userName).getActions();
     }
 }

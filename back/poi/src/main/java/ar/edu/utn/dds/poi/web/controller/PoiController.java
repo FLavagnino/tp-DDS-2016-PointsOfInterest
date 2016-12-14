@@ -68,5 +68,18 @@ public class PoiController {
             }
             return null;
         });
+
+        post("/poi/:user/actions", (request, response) -> {
+            HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
+            if(AuthManager.getInstance().validate(request.params("user"), user.get("token"))) {
+                return jsonFactory.toJson(userRepository.getUserActions(request.params("user")));
+            }
+            return null;
+        });
+
+        get("/poi/:user/actions", (request, response) -> {
+            return jsonFactory.toJson(userRepository.getUserActions(request.params("user")));
+
+        });
     }
 }
