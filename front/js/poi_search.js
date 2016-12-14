@@ -3,7 +3,6 @@ var userName;
 var guid;
 
 var init = function() {
-
     $("input.available-login").click(function()
 	{
 		// Oculto el mensaje de error.
@@ -20,7 +19,7 @@ var init = function() {
         $.ajax({
             type: "POST",
             url: getLoginUrl(),
-            data: data,
+            data: data
         })
 		.done(function(response) 
 		{
@@ -75,32 +74,6 @@ var init = function() {
 
         $("#actionsTable").append(newRow);
     });
-    
-    $("#delete-action").click(function(){
-        event.preventDefault();   
-        $("#inputTableActions tr:last").remove();
-    });
-
-	$("#addaction").click(function(){
-		// Obtenemos el numero de filas (td) que tiene la primera columna
-		// (tr) del id "tabla"
-		$("#inputTableActions").css("display", "block");
-		var tds=$("#inputTableActions tr:first td").length;
-		// Obtenemos el total de columnas (tr) del id "tabla"
-		var trs=$("#inputTableActions tr").length;
-		var nuevaFila="<tr>";
-		for(var i=0;i<tds;i++){
-			// añadimos las columnas
-			nuevaFila+="<td>columna "+(i+1)+" Añadida con jquery</td>";
-		}
-		// Añadimos una columna con el numero total de columnas.
-		// Añadimos uno al total, ya que cuando cargamos los valores para la
-		// columna, todavia no esta añadida
-		nuevaFila+="<td>"+(trs+1)+" columnas";
-		nuevaFila+="</tr>";
-		$("#inputTableActions").append(nuevaFila);
-	});
-
 
     $("#search-link").click(function(){
         $("#login-box")[0].style.display = "none";
@@ -121,6 +94,7 @@ var init = function() {
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "none";
         $("#actions")[0].style.display = "block";
+		loadUsers(userName, guid);
     });
 
     $("#logout-link").click(function(){
@@ -259,9 +233,40 @@ var init = function() {
 		
         $("#button-historical-search").addClass('available-historical-search');
     });
-
-
 };
+
+function loadUsers(user, token)
+{
+	event.preventDefault();
+		
+	$("#actionsError").css("visibility", "hidden");
+	$("#actionsError").html("Error Default");
+	
+	var data = "";
+	data = data.concat("{\"user\":\"", user,"\",\"token\":\"", token,"\"}");
+
+	$.ajax({
+		type: "POST",
+		url: getUsersUrl(),
+		data: data,
+	})
+	.done(function(response) 
+	{
+		if (response != "")
+		{
+		}
+		else
+		{
+			$("#actionsError").html("No se encontraron usuarios. Intentelo nuevamente haciendo refresh de la pagina.");
+			$("#actionsError").css("visibility", "visible");	
+		}
+	})
+	.fail(function(response) 
+	{
+		$("#actionsError").html("No se pudieron obtener los usuarios. Intentelo nuevamente haciendo refresh de la pagina.");
+		$("#actionsError").css("visibility", "visible");	
+	});
+}
 
 function formatDate(date) 
 {
@@ -324,6 +329,16 @@ function getSearchUrl(keyword) {
 
 function getLoginUrl() {
     return "http://localhost:4567/poi/login";
+}
+
+function getUserActionsUrl(user) 
+{
+    return "http://localhost:4567/poi/" + user + "/actions";
+}
+
+function getUsersUrl() 
+{
+    return "http://localhost:4567/poi/users";
 }
 
 function showPOIs(searchData) {

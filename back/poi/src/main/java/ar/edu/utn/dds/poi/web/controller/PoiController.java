@@ -56,7 +56,6 @@ public class PoiController {
 
         post("/poi/login", (request, response) -> 
         {
-            response.type("application/json");
             HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
             return AuthManager.getInstance().login(user.get("user"), user.get("pass"));
         });
