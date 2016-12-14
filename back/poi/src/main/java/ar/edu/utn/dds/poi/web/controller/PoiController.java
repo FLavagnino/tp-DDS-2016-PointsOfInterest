@@ -60,6 +60,13 @@ public class PoiController {
             return AuthManager.getInstance().login(user.get("user"), user.get("pass"));
         });
 
-        get("/poi/users", (request, response) -> jsonFactory.toJson(userRepository.getAll().stream().map(User::getUserName).toArray()));
+        post("/poi/users", (request, response) ->
+        {
+            HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
+            if(AuthManager.getInstance().validate(user.get("user"), user.get("token"))) {
+                return jsonFactory.toJson(userRepository.getAll().stream().map(User::getUserName).toArray());
+            }
+            return null;
+        });
     }
 }
