@@ -1,6 +1,8 @@
 package ar.edu.utn.dds.poi.web.controller;
 
 import ar.edu.utn.dds.poi.auth.AuthManager;
+import ar.edu.utn.dds.poi.domain.User;
+import ar.edu.utn.dds.poi.repository.UserRepository;
 import ar.edu.utn.dds.poi.service.Historical;
 import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 import ar.edu.utn.dds.poi.utils.Formatter;
@@ -14,6 +16,7 @@ public class PoiController {
     private static Historical searcher;
     private static JsonFactory jsonFactory;
     private static HistoricalManager historicalManager;
+    private static UserRepository userRepository;
 
     @SuppressWarnings("unchecked")
 	public static void start() 
@@ -21,6 +24,7 @@ public class PoiController {
         searcher = new Historical();
         jsonFactory = new JsonFactory();
         historicalManager = HistoricalManager.getInstance();
+        userRepository = new UserRepository();
 
         post("/poi/search/:keyword", (request, response) -> 
         {
@@ -55,5 +59,7 @@ public class PoiController {
             HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
             return AuthManager.getInstance().login(user.get("user"), user.get("pass"));
         });
+
+        get("/poi/users", (request, response) -> jsonFactory.toJson(userRepository.getAll().stream().map(User::getUserName).toArray()));
     }
 }
