@@ -23,32 +23,68 @@
 			</div>
 		</div>
 		<div id="actions" style="display: none;width: 800px; margin: 0 auto; padding-bottom: 205px; padding-top: 50px">
-			<div>
-				Acciones ante la Búsqueda.
-			</div>
-			<select id="actions">
-				<option value="report">report</option>
-				<option value="resportpoi">resportpoi</option>
-				<option value="adduser">adduser</option>
-				<div class="button-content">
-								<div class="addaction">
-									<input type="button" value="Add Action" id="addaction2"> 
-										  <input type="button" value="Aceptar" id="aceptaction">
-										  <input type="button" value="Cancelar" id="cancelaction">
-								</div>
-					   <div class="input-search">
-						<form>
-							 <table id="inputTableActions">
-								<tr>
-									<td>
-										<!-- <input type="text" class="inputKeyWord"> -->.
-									</td>
-								</tr>
-							</table>
-					   </form>
+			<div class="post">
+				<h2 class="title"><a href="#">Gestor de acciones</a></h2>
+				<div class="entry">
+					User&nbsp;
+					<select id="ddlUsers" style="width:150px; height:22px; padding-left:10px;" onchange="ddlUsersOnChange();">
+						<option value="-1">Un usuario...</option>
+						<option value="luisk">luisk</option>
+						<option value="facundol">facundol</option>
+						<option value="facundob">facundob</option>
+						<option value="juanmc">juanmc</option>
+					</select>
+					&nbsp;&nbsp;Action&nbsp;
+					<select id="ddlActions" style="width:150px; height:22px; padding-left:10px;">
+						<option value="report">report</option>
+						<option value="resportpoi">resportpoi</option>
+						<option value="adduser">adduser</option>
+					</select>
+					<input type="button" value="Add" id="addAction" style="padding:1px 15px;">
+					<div>
+						<input type="button" value="Accept" id="actionAccept" style="padding:1px 15px;">
+						<input type="button" value="Cancel" id="actionCancel" style="padding:1px 15px;">
+						<div id="actionsError" style="color:red; font-weight:bold; visibility:hidden;">Error Default</div>
 					</div>
 				</div>
-			</select>
+				<div id="actionsSearch">
+					<table id="actionsTable">
+						<tr>
+							<th colspan="2">Acción</th>
+						</tr>
+						<tr>
+							<td style="width:95%; font-size:14px;">Envio mail</td>
+							<td style="width:5%">
+								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:95%; font-size:14px;">Historial</td>
+							<td style="width:5%">
+								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:95%; font-size:14px;">Gestor de acciones</td>
+							<td style="width:5%">
+								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:95%; font-size:14px;">Search</td>
+							<td style="width:5%">
+								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
+							</td>
+						</tr>
+						<tr>
+							<td style="width:95%; font-size:14px;">Reportes</td>
+							<td style="width:5%">
+								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 		<div id="login-box" style="width: 800px; margin: 0 auto; padding-bottom: 198px; padding-top:100px; text-align:center-left;">
 			<div style="margin-bottom:5px;">User</div>
@@ -201,7 +237,6 @@
 					<th>Nombre accion tres</th>
 					<th>Nombre accion cuatro</th>
 				</tr>
-				{{/each}}
 			</table>
 		</script>
 

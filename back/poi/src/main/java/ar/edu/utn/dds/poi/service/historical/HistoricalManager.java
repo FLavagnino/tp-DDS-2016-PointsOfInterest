@@ -81,7 +81,7 @@ public class HistoricalManager
 
 	public HistoricalSearchResponseDTO getSearches(DateTime from, DateTime to) 
 	{
-        if(to == null) 
+		if(to == null) 
         {
             return getSearchesFrom(from);
         }

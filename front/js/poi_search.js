@@ -61,22 +61,19 @@ var init = function() {
         $("#inputTable").append(newInput);
     });
 
-    $("#addaction2").click(function(){
-    var valor = $('select#actions').val();
-    var tds=$("#inputTableActions tr:first td").length;
-            // Obtenemos el total de columnas (tr) del id "tabla"
-            var trs=$("#inputTableActions tr").length;
-            var nuevaFila="<tr>";
-            for(var i=0;i<tds;i++){
-                // añadimos las columnas
-                nuevaFila+="<td> "+(valor)+" <input type=\"button\" class=\"eliminar\" value=\"Delete\" id=\"delete-action\"> </td>";
-            }
-            // Añadimos una columna con el numero total de columnas.
-            // Añadimos uno al total, ya que cuando cargamos los valores para la
-            // columna, todavia no esta añadida.
-          //  nuevaFila+="<td>"+ valor +" columnas";
-            nuevaFila+="</tr>";
-        $("#inputTableActions").append(nuevaFila);
+    $("#addAction").click(function(){
+		$("#actionsError").html("Error default");
+		$("#actionsError").css("visibility", "hidden");	
+		
+		var value = $('#ddlActions').val();
+		var newRow = "<tr>" +
+							"<td style=\"width:95%; font-size:14px;\">" + value + "</td>" +
+							"<td style=\"width:5%\">" +
+								"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
+							"</td>" +
+						"</tr>";
+
+        $("#actionsTable").append(newRow);
     });
     
     $("#delete-action").click(function(){
@@ -110,8 +107,6 @@ var init = function() {
         $("#page")[0].style.display = "block";
         $("#historical-box")[0].style.display = "none";
         $("#actions")[0].style.display = "none";
-        $("#inputTableActions")[0].style.display = "none";
-
     });
 
     $("#historical-link").click(function(){
@@ -119,7 +114,6 @@ var init = function() {
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "block";
         $("#actions")[0].style.display = "none";
-        $("#inputTableActions")[0].style.display = "none";
     });
 
     $("#action-link").click(function(){
@@ -127,8 +121,6 @@ var init = function() {
         $("#page")[0].style.display = "none";
         $("#historical-box")[0].style.display = "none";
         $("#actions")[0].style.display = "block";
-        $("#inputTableActions")[0].style.display = "block";
-
     });
 
     $("#logout-link").click(function(){
@@ -140,7 +132,11 @@ var init = function() {
         $("#page").hide();
         $("#historical-box").hide();
 		$("#actions").hide();
-		$("#inputTableActions").hide();
+    });
+	
+    $("#actionCancel").click(function(){
+		$("#ddlUsers").removeAttr('disabled');
+		// Agregar que limpie la grilla.
     });
 
     $("input.available").click(function(){
@@ -347,6 +343,27 @@ function showHistoricalSearches(searchData) {
 function removeFilter(row)
 {
 	row.parentElement.parentElement.remove();	
+}
+
+function ddlUsersOnChange()
+{
+	$("#ddlUsers").attr('disabled', 'disabled');
+	// Agregar que traiga las acciones del usuario.
+}
+
+function removeAction(row)
+{
+	var rowQty = $("#actionsTable tr").length;
+	
+	if (rowQty == 2)
+	{
+		$("#actionsError").html("No puede dejar al usuario sin ninguna acción asociada.");
+		$("#actionsError").css("visibility", "visible");		
+	}
+	else
+	{
+		row.parentElement.parentElement.remove();	
+	}
 }
 
 function openDetail(index) {
