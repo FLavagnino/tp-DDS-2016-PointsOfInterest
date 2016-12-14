@@ -56,30 +56,29 @@ public class PoiController {
 
         post("/poi/login", (request, response) -> 
         {
+            response.type("application/json");
             HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
             return AuthManager.getInstance().login(user.get("user"), user.get("pass"));
         });
 
         post("/poi/users", (request, response) ->
         {
+            response.type("application/json");
             HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
             if(AuthManager.getInstance().validate(user.get("user"), user.get("token"))) {
-                return jsonFactory.toJson(userRepository.getAll().stream().map(User::getUserName).toArray());
+                return jsonFactory.toJson(Formatter.usersNameDto(userRepository.getAll()));
             }
             return null;
         });
 
         post("/poi/:user/actions", (request, response) -> {
+            response.type("application/json");
             HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
             if(AuthManager.getInstance().validate(request.params("user"), user.get("token"))) {
-                return jsonFactory.toJson(userRepository.getUserActions(request.params("user")));
+                return jsonFactory.toJson(Formatter.userActionsDto(userRepository.getUser(request.params("user"))));
             }
             return null;
         });
 
-        get("/poi/:user/actions", (request, response) -> {
-            return jsonFactory.toJson(userRepository.getUserActions(request.params("user")));
-
-        });
     }
 }

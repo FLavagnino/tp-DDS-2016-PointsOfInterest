@@ -55,7 +55,7 @@ public class Formatter {
         return new UsersNameDTO(users.stream().map(User::getUserName).collect(Collectors.toCollection(ArrayList::new)));
     }
 
-    public static ActionsDTO userActionsDto(List<Action> actions) {
-        return new ActionsDTO(actions);
+    public static ActionsDTO userActionsDto(User user) {
+        return new ActionsDTO(user.getActions());
     }
 }

@@ -104,7 +104,4 @@ public class UserRepository
         return user;
     }
 
-    public List<Action> getUserActions(String userName) {
-        return getUser(userName).getActions();
-    }
 }
