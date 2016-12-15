@@ -30,10 +30,14 @@
 					<select id="ddlUsers" style="width:150px; height:22px; padding-left:10px;" onchange="ddlUsersOnChange();">
 					</select>
 					&nbsp;&nbsp;Action&nbsp;
-					<select id="ddlActions" style="width:150px; height:22px; padding-left:10px;">
-						<option value="report">report</option>
-						<option value="resportpoi">resportpoi</option>
-						<option value="adduser">adduser</option>
+					<select id="ddlActions" style="width:250px; height:22px; padding-left:10px;">
+						<option value="totFecha">Reporte: Totalizar por Fecha</option>
+						<option value="totUser">Reporte: Totalizar por Usuario</option>
+						<option value="log">Auditoria: Generar Log</option>
+						<option value="mail">Auditoria: Enviar Mail</option>
+						<option value="search">Aplicación: Search</option>
+						<option value="historico">Aplicación: Historico</option>
+						<option value="actions">Aplicación: Gestor de acciones</option>
 					</select>
 					<input type="button" value="Add" id="addAction" style="padding:1px 15px;">
 					<div>
@@ -43,40 +47,7 @@
 					</div>
 				</div>
 				<div id="actionsSearch">
-					<table id="actionsTable">
-						<tr>
-							<th colspan="2">Acción</th>
-						</tr>
-						<tr>
-							<td style="width:95%; font-size:14px;">Envio mail</td>
-							<td style="width:5%">
-								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
-							</td>
-						</tr>
-						<tr>
-							<td style="width:95%; font-size:14px;">Historial</td>
-							<td style="width:5%">
-								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
-							</td>
-						</tr>
-						<tr>
-							<td style="width:95%; font-size:14px;">Gestor de acciones</td>
-							<td style="width:5%">
-								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
-							</td>
-						</tr>
-						<tr>
-							<td style="width:95%; font-size:14px;">Search</td>
-							<td style="width:5%">
-								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
-							</td>
-						</tr>
-						<tr>
-							<td style="width:95%; font-size:14px;">Reportes</td>
-							<td style="width:5%">
-								<input type="button" value="X" style="padding:1px 10px;" onClick="javascript:removeAction(this);">
-							</td>
-						</tr>
+					<table id="actionsTable" style="display:none;">
 					</table>
 				</div>
 			</div>

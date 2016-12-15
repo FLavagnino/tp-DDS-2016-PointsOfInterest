@@ -73,7 +73,7 @@ public class PoiController {
         post("/poi/:user/actions", (request, response) -> {
             response.type("application/json");
             HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
-            if(AuthManager.getInstance().validate(request.params("user"), user.get("token"))) {
+            if(AuthManager.getInstance().validate(user.get("user"), user.get("token"))) {
                 return jsonFactory.toJson(Formatter.userActionsDto(userRepository.getUser(request.params("user"))));
             }
             return null;

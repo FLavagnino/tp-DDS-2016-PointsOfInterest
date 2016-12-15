@@ -63,16 +63,34 @@ var init = function() {
     $("#addAction").click(function(){
 		$("#actionsError").html("Error default");
 		$("#actionsError").css("visibility", "hidden");	
+		var duplicate = false;
 		
-		var value = $('#ddlActions').val();
-		var newRow = "<tr>" +
-							"<td style=\"width:95%; font-size:14px;\">" + value + "</td>" +
-							"<td style=\"width:5%\">" +
-								"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
-							"</td>" +
-						"</tr>";
+		if ($("#ddlUsers").val() != -1)
+		{
+			var value = $("#ddlActions option:selected").text()
+			
+			$.each($("#actionsTable tr"), function (i, row) {
+				if (row.textContent == value)
+				{
+					$("#actionsError").html("No puede ingresar la misma accion dos veces.");
+					$("#actionsError").css("visibility", "visible");
 
-        $("#actionsTable").append(newRow);
+					duplicate = true;
+				}
+			});
+			
+			if (!duplicate)
+			{
+				var newRow = "<tr>" +
+									"<td style=\"width:95%; font-size:14px;\">" + value + "</td>" +
+									"<td style=\"width:5%\">" +
+										"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
+									"</td>" +
+								"</tr>";
+
+				$("#actionsTable").append(newRow);
+			}
+		}
     });
 
     $("#search-link").click(function(){
@@ -110,7 +128,12 @@ var init = function() {
 	
     $("#actionCancel").click(function(){
 		$("#ddlUsers").removeAttr('disabled');
-		// Agregar que limpie la grilla.
+		$("#ddlUsers").val(-1);
+		$("#actionsTable").hide();
+		$("#actionsTable").empty();
+		
+		$("#actionsError").html("Error default");
+		$("#actionsError").css("visibility", "hidden");	
     });
 
     $("input.available").click(function(){
@@ -373,8 +396,65 @@ function removeFilter(row)
 
 function ddlUsersOnChange()
 {
-	$("#ddlUsers").attr('disabled', 'disabled');
-	// Agregar que traiga las acciones del usuario.
+	event.preventDefault();
+	
+	if ($("#ddlUsers").val() != -1)
+	{
+		$("#ddlUsers").attr('disabled', 'disabled');
+		$("#actionsError").css("visibility", "hidden");
+		$("#actionsError").html("Error Default");
+		
+		$("#actionsTable").hide();
+		$("#actionsTable").empty();
+		
+		var data = "";
+		data = data.concat("{\"user\":\"", userName,"\",\"token\":\"", guid,"\"}");
+
+		$.ajax({
+			type: "POST",
+			url: getUserActionsUrl($("#ddlUsers").val()),
+			data: data,
+		})
+		.done(function(response) 
+		{
+			if (response != "")
+			{	
+				var tableHeader = "<tr>" +
+									"<th colspan=\"2\">Acción</th>" +
+								"</tr>";
+							
+				$("#actionsTable").append(tableHeader);
+					
+				$.each(response.actions, function (i, action) {
+					var newRow = "<tr>" +
+									"<td style=\"width:95%; font-size:14px;\">" + action.name + "</td>" +
+									"<td style=\"width:5%\">" +
+										"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
+									"</td>" +
+								"</tr>";
+
+					$("#actionsTable").append(newRow);
+				});
+				
+				$("#actionsTable").show();
+			}
+			else
+			{
+				$("#actionsError").html("No se encontraron usuarios. Intentelo nuevamente haciendo refresh de la pagina.");
+				$("#actionsError").css("visibility", "visible");	
+			}
+		})
+		.fail(function(response) 
+		{
+			$("#actionsError").html("No se pudieron obtener los usuarios. Intentelo nuevamente haciendo refresh de la pagina.");
+			$("#actionsError").css("visibility", "visible");	
+		});
+	}
+	else
+	{
+		$("#actionsTable").hide();
+		$("#actionsTable").empty();
+	}
 }
 
 function removeAction(row)
