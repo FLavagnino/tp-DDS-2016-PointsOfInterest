@@ -1,6 +1,7 @@
 var indexFlag;
 var userName;
 var guid;
+var actions;
 
 var init = function() {
     $("input.available-login").click(function()
@@ -25,10 +26,8 @@ var init = function() {
 		{
 			if (response != "")
 			{
-				guid = response;
-				$("#login-box").hide();
-				$("#page")[0].style.display = "block";
-				$("#header").show();
+				guid = response;		
+				showMenu();
 			}
 			else
 			{
@@ -229,7 +228,8 @@ var init = function() {
             data: headers,
             url: url,
         })
-		.done(function(searchData) {
+		.done(function(searchData) 
+		{
             if(searchData) 
 			{
                 if(searchData.historical_search.length != 0) 
@@ -470,6 +470,64 @@ function removeAction(row)
 	{
 		row.parentElement.parentElement.remove();	
 	}
+}
+
+function showMenu()
+{
+	event.preventDefault();
+		
+	var data = "";
+	data = data.concat("{\"user\":\"", userName,"\",\"token\":\"", guid,"\"}");
+
+	$.ajax({
+		type: "POST",
+		url: getUserActionsUrl(userName),
+		data: data,
+	})
+	.done(function(response) 
+	{
+		if (response != "")
+		{	
+			actions = response.actions;
+			
+			$("#menu-search").hide();
+			$("#menu-historical").hide();
+			$("#menu-action").hide();	
+		
+			$.each(actions, function (i, action) {
+				if (action.name == "Aplicación: Search")
+				{
+					$("#menu-search").show();
+				}
+				else if (action.name == "Aplicación: Historico")
+				{
+					$("#menu-historical").show();			
+				}
+				else if (action.name == "Aplicación: Gestor de acciones")
+				{
+					$("#menu-action").show();			
+				}
+				else
+				{}
+			});
+			
+			if ($("#menu-search").css('display') != 'none')
+			{
+				$("#search-link").click();
+			}
+			else if ($("#menu-historical").css('display') != 'none')
+			{
+				$("#historical-link").click();
+			}
+			else
+			{
+				$("#action-link").click();
+			}
+			
+			$("#login-box").hide();
+			$("#header").show();
+		}
+	});
 }
 
 function openDetail(index) {
