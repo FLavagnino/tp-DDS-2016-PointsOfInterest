@@ -18,6 +18,6 @@ public class PoiServer
         Runnable periodicTask = () -> ExternalPOIService.update();
         executor.scheduleAtFixedRate(periodicTask, 0, 30, TimeUnit.MINUTES);
 
-        poiController.start();
+        poiController.starts();
     }
 }
