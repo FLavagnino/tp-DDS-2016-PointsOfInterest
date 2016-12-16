@@ -73,7 +73,7 @@ public class Entrega4Test
 		prueba1.setName("Prueba 1");
 
 		Action prueba2 = new Action();
-		prueba1.setName("Prueba 2");
+		prueba2.setName("Prueba 2");
 		
 		List<Action> actions = new ArrayList<Action>();
 		actions.add(prueba1);
