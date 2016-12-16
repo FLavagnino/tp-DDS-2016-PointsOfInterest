@@ -2,9 +2,15 @@ package ar.edu.utn.dds.poi.test;
 
 import org.quartz.SchedulerException;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.utn.dds.poi.domain.Action;
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
 import ar.edu.utn.dds.poi.process.ProcessConfig;
 import ar.edu.utn.dds.poi.service.*;
@@ -61,7 +67,22 @@ public class Entrega4Test
 		config.setRefireCount(2);
 		config.setSleepTime(10000000);
 		
-		poiService.addActionToUsersProcess(config);
+		Map<String, List<Action>> actionsByUser = new HashMap<>();
+		
+		Action prueba1 = new Action();
+		prueba1.setName("Prueba 1");
+
+		Action prueba2 = new Action();
+		prueba1.setName("Prueba 2");
+		
+		List<Action> actions = new ArrayList<Action>();
+		actions.add(prueba1);
+		actions.add(prueba2);
+		
+		actionsByUser.put("luisk", actions);
+		actionsByUser.put("facul", actions);
+		
+		poiService.addActionToUsersProcess(config, actionsByUser);
 	}
 	
 	@Test	

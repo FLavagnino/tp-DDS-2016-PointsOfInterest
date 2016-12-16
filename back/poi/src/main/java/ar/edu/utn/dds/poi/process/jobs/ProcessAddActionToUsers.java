@@ -1,57 +1,57 @@
 package ar.edu.utn.dds.poi.process.jobs;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-
-import ar.edu.utn.dds.poi.constant.Actions;
-import ar.edu.utn.dds.poi.constant.Constant;
-import ar.edu.utn.dds.poi.domain.Terminal;
+import org.quartz.SchedulerException;
+import ar.edu.utn.dds.poi.domain.Action;
+import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.process.ProcessPoi;
+import ar.edu.utn.dds.poi.repository.ActionRepository;
+import ar.edu.utn.dds.poi.repository.UserRepository;
 import ar.edu.utn.dds.poi.utils.DBBackupUtil;
 
 public class ProcessAddActionToUsers extends ProcessPoi 
-{	
-	private ArrayList<Actions> actionList;
-	protected ArrayList<Actions> actionListInitial;
-	Terminal terminal = new Terminal();
-	
-//	En el constructor es donde queda definido el proceso siguiente
+{		
+	// En el constructor es donde queda definido el proceso siguiente
 	public ProcessAddActionToUsers()
 	{
 		setSiguienteProceso(null);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException 
-	{		
-//		Iterator<Actions> iter = actionList.iterator();
-//		
-//		System.out.println("\nAntes de actualizar las acciones...");
-//		listActions();
-//
-//		while (iter.hasNext())
-//		{
-//			// TODO terminal.getActionList().add((Actions) iter.next());
-//			System.out.println(Constant.ACTION_ADDED_TO_USER);
-//		}
-//		
-//		System.out.println("\nDespues de actualizar las acciones...");
-//		listActions();
+	public void execute(JobExecutionContext context) throws JobExecutionException 
+	{	
+		UserRepository userRep = new UserRepository();
+		ActionRepository actionRep = new ActionRepository();
 		
-		DBBackupUtil dbUtil = new DBBackupUtil();
-		dbUtil.backupDB("poi", "root", "root2016", "C:\\Backup\\Db_" + DateTime.now().toString("yyyyMMdd") + ".sql");
-	}
-	
-	private void listActions()
-	{
-		// TODO
-//		for (Actions action : terminal.getActionList())
-//		{
-//			System.out.println("Action: " + action.toString());
-//		}
+		try 
+		{
+			DBBackupUtil dbUtil = new DBBackupUtil();
+			dbUtil.backupDB("poi", "root", "root2016", "C:\\Backup\\Db_" + DateTime.now().toString("yyyyMMdd") + ".sql");
+			
+			Map<String, List<Action>> actionsByUser = (Map<String, List<Action>>) context.getScheduler().getContext().get("actionsByUser");
+			
+			for ( Map.Entry<String, List<Action>> entry : actionsByUser.entrySet()) 
+			{
+			    String userName = entry.getKey();
+			    List<Action> actions = entry.getValue();
+			    
+			    User user = userRep.getUser(userName);
+			    
+			    for (Action action : actions)
+			    {
+			    	action.setUser(user);
+			    	actionRep.save(action);
+			    }
+			}
+		}
+		catch (SchedulerException e) 
+		{
+		}
 	}
 }

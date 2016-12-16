@@ -2,7 +2,9 @@ package ar.edu.utn.dds.poi.service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.quartz.JobBuilder;
@@ -177,35 +179,35 @@ public class POIService implements Searcher
 	public void updateShopProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
 		ProcessPoi process = new ProcessUpdateShop();		
-		launchJob(process, config);
+		launchJob(process, config, null);
 	}
 	
 	// Process 2: Delete POIs	
 	public void deletePOIProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
 		ProcessPoi process = new ProcessDeletePoi();
-		launchJob(process, config);
+		launchJob(process, config, null);
 	}
 	
 	// Process 3: Add actions to user
-	public void addActionToUsersProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	public void addActionToUsersProcess(ProcessConfig config, Map<String, List<Action>> actionsByUser) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
-		ProcessPoi process = new ProcessAddActionToUsers();
-		launchJob(process, config);
+		ProcessPoi process = new ProcessAddActionToUsers();		
+		launchJob(process, config, actionsByUser );
 	}
 	
 	// Process 3: Add actions to user
 	public void addActionToUsersRollbackProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
 		ProcessPoi process = new ProcessAddActionToUsersRollback();
-		launchJob(process, config);
+		launchJob(process, config, null);
 	}
 	
 	// Process 4: Multiprocess
 	public void multiProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
 		ProcessPoi process = new MultiProcessDeletePoi();	
-		launchJob(process, config);
+		launchJob(process, config, null);
 	}
 	
 	public Serializable saveUser(User user)
@@ -238,13 +240,18 @@ public class POIService implements Searcher
 		return logRep.getLogByUserName(userName);
 	}
 	
-	public void launchJob(ProcessPoi process, ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
+	public void launchJob(ProcessPoi process, ProcessConfig config, Map<String, List<Action>> actionsByUser) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
 		// Crea una instancia del planificador
 		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 		
 		// Pasamos la configuracion
 		scheduler.getContext().put("config", config);
+		
+		if (actionsByUser != null)
+		{
+			scheduler.getContext().put("actionsByUser", actionsByUser);
+		}
 		
 		// Inicia el planificador
 		scheduler.start();
