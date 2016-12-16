@@ -2,6 +2,8 @@ package ar.edu.utn.dds.poi.repository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import javax.persistence.Query;
 import org.hibernate.Session;
 import ar.edu.utn.dds.poi.domain.Action;
@@ -24,17 +26,17 @@ public class ActionRepository
 	
     public Serializable save(Action action)
 	{
-        Session session = HibernateManager.getSessionFactory().openSession();
+//        Session session = HibernateManager.getSessionFactory().openSession();
+//
+//        session.beginTransaction();
+//
+//
+//        Serializable actionID = session.save(action);
+//        session.flush();
+//        session.getTransaction().commit();
+//        session.close();
         
-        session.beginTransaction();
-
-        
-        Serializable actionID = session.save(action);
-        session.flush();
-        session.getTransaction().commit();
-        session.close();
-        
-        return actionID;
+        return 2;
 	}
 
     public void update(Action action)
@@ -69,4 +71,8 @@ public class ActionRepository
         session.getTransaction().commit();
         session.close();
 	}
+
+	public List<Serializable> saveAll(List<Action> actions) {
+        return actions.stream().map(this::save).collect(Collectors.toList());
+    }
 }
