@@ -26,15 +26,15 @@ public class ActionRepository
 	
     public Serializable save(Action action)
 	{
-//        Session session = HibernateManager.getSessionFactory().openSession();
-//
-//        session.beginTransaction();
-//
-//
-//        Serializable actionID = session.save(action);
-//        session.flush();
-//        session.getTransaction().commit();
-//        session.close();
+        Session session = HibernateManager.getSessionFactory().openSession();
+
+        session.beginTransaction();
+
+
+        Serializable actionID = session.save(action);
+        session.flush();
+        session.getTransaction().commit();
+        session.close();
         
         return 2;
 	}
