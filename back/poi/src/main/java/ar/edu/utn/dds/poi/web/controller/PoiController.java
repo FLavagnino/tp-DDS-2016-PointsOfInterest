@@ -1,8 +1,8 @@
 package ar.edu.utn.dds.poi.web.controller;
 
 import ar.edu.utn.dds.poi.auth.AuthManager;
-import ar.edu.utn.dds.poi.domain.User;
 import ar.edu.utn.dds.poi.repository.UserRepository;
+import ar.edu.utn.dds.poi.service.ActionService;
 import ar.edu.utn.dds.poi.service.Historical;
 import ar.edu.utn.dds.poi.service.historical.HistoricalManager;
 import ar.edu.utn.dds.poi.utils.Formatter;
@@ -17,6 +17,7 @@ public class PoiController {
     private static JsonFactory jsonFactory;
     private static HistoricalManager historicalManager;
     private static UserRepository userRepository;
+    private static ActionService actionService;
 
     @SuppressWarnings("unchecked")
 	public static void start() 
@@ -25,6 +26,7 @@ public class PoiController {
         jsonFactory = new JsonFactory();
         historicalManager = HistoricalManager.getInstance();
         userRepository = new UserRepository();
+        actionService = new ActionService();
 
         post("/poi/search/:keyword", (request, response) -> 
         {
@@ -78,6 +80,17 @@ public class PoiController {
             }
             return null;
         });
+
+//        post("/poi/:user/actions/save", (request, response) -> {
+//            response.type("application/json");
+//            HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
+//            if(AuthManager.getInstance().validate(user.get("user"), user.get("token"))) {
+//                User u = userRepository.getUser(request.params("user"));
+//                return jsonFactory.toJson(actionService
+//                        .updateActionsToUser(u, Formatter.toActions(request.params("actions"), u))));
+//            }
+//            return null;
+//        });
 
     }
 }

@@ -20,6 +20,12 @@ public class Action implements Serializable
     
     public Action()
     {}
+
+    public Action(String name, User user)
+    {
+        this.name = name;
+        this.user = user;
+    }
    
     @Id @GeneratedValue
     public Long getId() { return id; }
