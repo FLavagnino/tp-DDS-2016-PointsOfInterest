@@ -194,6 +194,13 @@ public class POIService implements Searcher
 		launchJob(process, config);
 	}
 	
+	// Process 3: Add actions to user
+	public void addActionToUsersRollbackProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	{
+		ProcessPoi process = new ProcessAddActionToUsersRollback();
+		launchJob(process, config);
+	}
+	
 	// Process 4: Multiprocess
 	public void multiProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{

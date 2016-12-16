@@ -59,9 +59,24 @@ public class Entrega4Test
 		config.setUserMail("luiskahrs@gmail.com");
 		config.setSendMail(true);
 		config.setRefireCount(2);
-		config.setSleepTime(10000);
+		config.setSleepTime(10000000);
 		
 		poiService.addActionToUsersProcess(config);
+	}
+	
+	@Test	
+	// Prueba sobre el proceso para agregar acciones sobre los usuarios.
+	// Imprime por consola el resultado.
+	public void addActionToUsersRollbackTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
+	{
+		ProcessConfig config = new ProcessConfig();
+		config.setUserName("luisk");
+		config.setUserMail("luiskahrs@gmail.com");
+		config.setSendMail(true);
+		config.setRefireCount(2);
+		config.setSleepTime(10000000);
+		
+		poiService.addActionToUsersRollbackProcess(config);
 	}
 	
 	@Test	

@@ -65,7 +65,7 @@ public abstract class ProcessListener implements JobListener
 			System.out.println("Start time: " + context.getFireTime());
 			System.out.println("End time: " + DateTime.now());
 			
-			jobException = new JobExecutionException("Prueba de error");
+			//jobException = new JobExecutionException("Prueba de error");
 			
 			if (jobException == null) 
 			{	
