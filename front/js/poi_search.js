@@ -81,7 +81,7 @@ var init = function() {
 			if (!duplicate)
 			{
 				var newRow = "<tr>" +
-									"<td style=\"width:95%; font-size:14px;\">" + value + "</td>" +
+									"<td class=\"actionTableItem\" style=\"width:95%; font-size:14px;\">" + value + "</td>" +
 									"<td style=\"width:5%\">" +
 										"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
 									"</td>" +
@@ -212,7 +212,7 @@ var init = function() {
 		actionsJSON += "]";
 
         var headers = "";
-        headers = headers.concat("{\"user\":\"", userName,"\",\"token\":\"", guid,"\",\"token\":\"", actionsJSON, "\"}");
+        headers = headers.concat("{\"user\":\"", userName,"\",\"token\":\"", guid,"\",\"actions\":\"", actionsJSON, "\"}");
 
         $.ajax({
             type: "POST",
@@ -481,7 +481,7 @@ function ddlUsersOnChange()
 					
 				$.each(response.actions, function (i, action) {
 					var newRow = "<tr>" +
-									"<td style=\"width:95%; font-size:14px;\" class=\"actionTableItem\">" + action.name + "</td>" +
+									"<td style=\"width:95%; font-size:14px;\" class=\"actionTableItem\" >" + action.name + "</td>" +
 									"<td style=\"width:5%\">" +
 										"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
 									"</td>" +
