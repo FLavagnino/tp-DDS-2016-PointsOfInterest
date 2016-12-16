@@ -33,6 +33,16 @@ public class UserRepository
         session.getTransaction().commit();
         session.close();
 	}
+
+    public void delete(User user)
+    {
+        Session session = HibernateManager.getSessionFactory().openSession();
+        session.beginTransaction();
+        User u = session.load(User.class, user.getId());
+        session.delete(u);
+        session.flush() ;
+        session.close();
+    }
 	
 	public User get(Serializable userID)
 	{

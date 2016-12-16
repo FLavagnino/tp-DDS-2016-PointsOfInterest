@@ -2,9 +2,9 @@ package ar.edu.utn.dds.poi.repository;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.persistence.Query;
+import ar.edu.utn.dds.poi.domain.User;
 import org.hibernate.Session;
 import ar.edu.utn.dds.poi.domain.Action;
 
@@ -23,6 +23,20 @@ public class ActionRepository
         
         return results;
 	}
+
+    public List<Action> getActionsByUser(User user)
+    {
+        Session session = HibernateManager.getSessionFactory().openSession();
+
+        String hql = "from User where userName = :userName";
+        Query query = session.createQuery(hql);
+        query.setParameter("userName", user.getUserName());
+
+        User result = (User)query.getSingleResult();
+        session.close();
+
+        return result.getActions();
+    }
 	
     public Serializable save(Action action)
 	{

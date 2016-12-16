@@ -1,6 +1,5 @@
 package ar.edu.utn.dds.poi.utils;
 
-import ar.edu.utn.dds.poi.constant.Actions;
 import ar.edu.utn.dds.poi.domain.Action;
 import ar.edu.utn.dds.poi.domain.Log;
 import ar.edu.utn.dds.poi.domain.LogResult;
@@ -12,6 +11,7 @@ import ar.edu.utn.dds.poi.dto.UsersNameDTO;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,11 +59,8 @@ public class Formatter {
         return new ActionsDTO(user.getActions());
     }
 
-    public static List<Action> toActions(List<String> actions, User user) {
-        List<Action> a = new ArrayList<>();
-        for (String action : actions) {
-            a.add(new Action(action, user));
-        }
-        return a;
+    public static List<Action> toActions(String actions, User user) {
+        return Arrays.asList(actions.substring(1, actions.length()-1).split(","))
+                .stream().map((String action) -> new Action(action, user)).collect(Collectors.toList());
     }
 }
