@@ -189,6 +189,55 @@ var init = function() {
 		
         $("#search").addClass('available');
     });
+	
+    $("#actionAccept").click(function()
+	{
+        event.preventDefault();
+		
+		$("#actionsError").css("visibility", "hidden");
+		$("#actionsError").html("Error Default");
+
+        var actions = $(".actionTableItem");
+		
+		var actionsJSON = "[" + actions[0].innerText;
+		
+        for (i = 1; i < actions.length; i++) 
+		{
+            var action = actions[i].innerText;
+            if (isValidInput(action)) {
+                actionsJSON += "," + action;
+            }
+        }
+		
+		actionsJSON += "]";
+
+        var headers = "";
+        headers = headers.concat("{\"user\":\"", userName,"\",\"token\":\"", guid,"\",\"token\":\"", actionsJSON, "\"}");
+
+        $.ajax({
+            type: "POST",
+            data: headers,
+            url: getSaveActionsUrl($("#ddlUsers").val()),
+        })
+		.done(function(response) 
+		{
+            if(response) 
+			{
+				$("#actionsError").html("Las acciones se grabaron correctamente.");
+				$("#actionsError").css("visibility", "visible");
+            } 
+			else 
+			{
+				$("#actionsError").html("No se obtuvo respuesta de ajax, intentelo nuevamente.");
+				$("#actionsError").css("visibility", "visible");
+            }
+        })
+		.fail(function(response) 
+		{
+            $("#actionsError").html("Hubo un error, por favor intentelo nuevamente.");
+			$("#actionsError").css("visibility", "visible");
+        });
+    });	
 
     $("input.available-historical-search").click(function(){
         event.preventDefault();
@@ -370,6 +419,11 @@ function getUserActionsUrl(user)
     return "http://localhost:4567/poi/" + user + "/actions";
 }
 
+function getSaveActionsUrl(user) 
+{
+    return "http://localhost:4567/poi/" + user + "/actions/save";
+}
+
 function getUsersUrl() 
 {
     return "http://localhost:4567/poi/users";
@@ -427,7 +481,7 @@ function ddlUsersOnChange()
 					
 				$.each(response.actions, function (i, action) {
 					var newRow = "<tr>" +
-									"<td style=\"width:95%; font-size:14px;\">" + action.name + "</td>" +
+									"<td style=\"width:95%; font-size:14px;\" class=\"actionTableItem\">" + action.name + "</td>" +
 									"<td style=\"width:5%\">" +
 										"<input type=\"button\" value=\"X\" style=\"padding:1px 10px;\" onClick=\"javascript:removeAction(this);\">" +
 									"</td>" +
