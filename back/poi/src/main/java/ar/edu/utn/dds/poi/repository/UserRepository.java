@@ -6,6 +6,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import ar.edu.utn.dds.poi.domain.Action;
+import ar.edu.utn.dds.poi.domain.Log;
+
 import org.hibernate.Session;
 import ar.edu.utn.dds.poi.domain.User;
 
@@ -103,5 +105,4 @@ public class UserRepository
 
         return user;
     }
-
 }

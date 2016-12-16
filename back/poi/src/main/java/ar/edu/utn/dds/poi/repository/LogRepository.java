@@ -59,5 +59,5 @@ public class LogRepository
         session.close();
         
         return results;
-	}
+	}		
 }

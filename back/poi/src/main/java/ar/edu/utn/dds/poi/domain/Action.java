@@ -5,6 +5,12 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @SuppressWarnings("serial")
+@NamedQueries({
+	@NamedQuery(
+	name = "actionsByUserID",
+	query = "from action a where a.user_id = :user_id"
+	)
+})
 @Entity
 public class Action implements Serializable
 {	
