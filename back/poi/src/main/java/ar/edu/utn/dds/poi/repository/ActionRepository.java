@@ -75,4 +75,8 @@ public class ActionRepository
 	public List<Serializable> saveAll(List<Action> actions) {
         return actions.stream().map(this::save).collect(Collectors.toList());
     }
+
+    public void deleteAll(List<Action> actions) {
+        actions.stream().forEach(this::delete);
+    }
 }
