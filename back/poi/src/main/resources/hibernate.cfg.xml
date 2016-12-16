@@ -32,6 +32,7 @@
 	<mapping class="ar.edu.utn.dds.poi.domain.BusStop" />
 	<mapping class="ar.edu.utn.dds.poi.domain.Log" />
 	<mapping class="ar.edu.utn.dds.poi.domain.LogResult" />
+	<mapping class="ar.edu.utn.dds.poi.domain.JobResult" />
 	<mapping class="ar.edu.utn.dds.poi.domain.Shop" />
 	<mapping class="ar.edu.utn.dds.poi.domain.CGP" />
 </session-factory>

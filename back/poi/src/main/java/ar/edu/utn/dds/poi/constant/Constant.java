@@ -39,13 +39,14 @@ public class Constant
 	public final static String JSONFACTORY_FROMJSON_ERROR_MSG = "Error reading an InputStreamReader";
 	
 	// Audit
+	public final static String AUDIT_MAIL_SUBJECT = "[DDS-POI] Search Time Notification";
+	public final static String AUDIT_MAIL_TEXT = "The search service has exceded the default time.";
+	
 	public final static int MAX_SEARCH_TIME = 1000;
 	public final static String MAIL_SMTP_AUTH_VALUE = "true";
 	public final static String MAIL_SMTP_STARTTLS_ENABLE_VALUE = "true";
 	public final static String MAIL_SMTP_HOST_VALUE = "smtp.gmail.com";
 	public final static String MAIL_SMTP_PORT_VALUE = "587";
-	public final static String MAIL_SUBJECT = "[DDS-POI] Search Time Notification";
-	public final static String MAIL_TEXT = "The search service has exceded the default time.";
 	public final static String MAIL_ERROR = "Could not send email to ";
 	
 	// Jobs
@@ -53,4 +54,10 @@ public class Constant
 	public final static String UPDATE_SHOP_FILE_NOT_FOUND_ERROR_MSG = "File not found";
 	public final static String UPDATE_SHOP_FILE_ERROR_MSG = "File error";
 	public final static String UPDATE_SHOP_FILE_INVALID_POI_ERROR_MSG = "Invalid POI.";
+	public final static String JOBRESULT_OK = "OK";
+	public final static String JOBRESULT_OK_MSG = "Execution SUCCESS.";
+	public final static String JOBRESULT_ERROR = "ERROR";	
+	public final static String JOBRESULT_ERROR_MSG = "Execution FAIL, exception: ";	
+	public final static String JOB_ERROR_MAIL_SUBJECT = "[DDS-POI] Job execution error.";
+	public final static String JOB_ERROR_MAIL_TEXT = " job fail to run.";
 }

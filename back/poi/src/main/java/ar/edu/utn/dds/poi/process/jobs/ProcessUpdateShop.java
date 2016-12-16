@@ -28,8 +28,7 @@ public class ProcessUpdateShop extends ProcessPoi
 		{
 			// Vemos como esta la lista actualmente, despues hay que borrarlo.
 			System.out.println("\nAntes de actualizar...");
-			poiservice.listPOIs();
-			
+
 			readFile = new ReadTextFile();
 			readFile.readText(Constant.UPDATE_SHOP_FILE_PATH);
 			

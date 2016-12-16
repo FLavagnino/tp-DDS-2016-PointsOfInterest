@@ -26,7 +26,7 @@ public class Audit implements Searcher
 
 			if(email != null) 
 			{
-				EmailSender emailSender = new EmailSender(email);
+				EmailSender emailSender = new EmailSender(email, Constant.AUDIT_MAIL_SUBJECT, Constant.AUDIT_MAIL_TEXT);
 				new Thread(emailSender).run();
 			}
 		}

@@ -152,8 +152,10 @@ public class POIService implements Searcher
 		return searchResult;
 	}
 
-	public void addPoi(POI poi) {
-		if (isValid(poi)) {
+	public void addPoi(POI poi) 
+	{
+		if (isValid(poi)) 
+		{
 			poiRepository.save(poi);
 		}
 	}
@@ -172,39 +174,31 @@ public class POIService implements Searcher
 	}
 		
 	// Process 1: Update Shops from FILE.
-	public void updateShopProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
+	public void updateShopProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
-		ProcessPoi process = new ProcessUpdateShop();
-		int sleepTime = 10000;
-		
-		launchJob(process, sleepTime);
+		ProcessPoi process = new ProcessUpdateShop();		
+		launchJob(process, config);
 	}
 	
 	// Process 2: Delete POIs	
-	public void deletePOIProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	public void deletePOIProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
 		ProcessPoi process = new ProcessDeletePoi();
-		int sleepTime = 30000;
-		
-		launchJob(process, sleepTime);
+		launchJob(process, config);
 	}
 	
 	// Process 3: Add actions to user
-	public void addActionToUsersProcess () throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
+	public void addActionToUsersProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
 		ProcessPoi process = new ProcessAddActionToUsers();
-		int sleepTime = 10000;
-		
-		launchJob(process, sleepTime);
+		launchJob(process, config);
 	}
 	
 	// Process 4: Multiprocess
-	public void multiProcess() throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
+	public void multiProcess(ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
-		ProcessPoi process = new MultiProcessDeletePoi();
-		int sleepTime = 10000;
-		
-		launchJob(process, sleepTime);
+		ProcessPoi process = new MultiProcessDeletePoi();	
+		launchJob(process, config);
 	}
 	
 	public Serializable saveUser(User user)
@@ -237,11 +231,14 @@ public class POIService implements Searcher
 		return logRep.getLogByUserName(userName);
 	}
 	
-	public void launchJob(ProcessPoi process, int sleepTime) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
+	public void launchJob(ProcessPoi process, ProcessConfig config) throws SchedulerException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException 
 	{
 		// Crea una instancia del planificador
 		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-
+		
+		// Pasamos la configuracion
+		scheduler.getContext().put("config", config);
+		
 		// Inicia el planificador
 		scheduler.start();
 		
@@ -249,11 +246,13 @@ public class POIService implements Searcher
 		JobKey key = new JobKey(process.getClass().getSimpleName());
 
 		// Crea una instancia del proceso y con la opción requestRecovery(true) se fuerzan reintentos en caso de fallas
-		JobDetail job = JobBuilder.newJob(process.getClass()).withIdentity(key).requestRecovery(true)
+		JobDetail job = JobBuilder.newJob(process.getClass()).withIdentity(key).requestRecovery(config.getRefireCount() != 0)
 				.build();
 
 		// Crea una instancia del disparador (trigger) de procesos
-		Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger").startNow().build();
+		Trigger trigger = TriggerBuilder.newTrigger()
+							.withIdentity("trigger")
+							.startNow().build();
 
 		// Crea una instancia del proceso inicial y su listener
 		ProcessPoi procesoInicial = process;	
@@ -268,7 +267,7 @@ public class POIService implements Searcher
 		
 		// Para darle tiempo al planificador que se puedea inicializar y
 		// ejecutar los procesos
-		Thread.sleep(sleepTime);
+		Thread.sleep(config.getSleepTime());
 
 		// Finaliza el planificador
 		scheduler.shutdown();

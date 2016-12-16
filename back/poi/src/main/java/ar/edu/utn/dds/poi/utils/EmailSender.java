@@ -15,14 +15,19 @@ import ar.edu.utn.dds.poi.constant.Constant;
 public class EmailSender implements Runnable 
 {	
 	private String mail;
+	private String subject;
+	private String msg;
+	
 	private final String MAIL_SMTP_AUTH = "mail.smtp.auth";
 	private final String MAIL_SMTP_STARTTLS_ENABLE = "mail.smtp.starttls.enable";
 	private final String MAIL_SMTP_HOST = "mail.smtp.host";
 	private final String MAIL_SMTP_PORT = "mail.smtp.port";
 	
-	public EmailSender(String mail) 
+	public EmailSender(String mail, String subject, String msg) 
 	{
 		this.mail = mail;
+		this.subject = subject;
+		this.msg = msg;
 	}
 	
 	public void run() 
@@ -45,8 +50,8 @@ public class EmailSender implements Runnable
 		{
 			Message message = new MimeMessage(session);
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
-			message.setSubject(Constant.MAIL_SUBJECT);
-			message.setText(Constant.MAIL_TEXT);
+			message.setSubject(subject);//(Constant.MAIL_SUBJECT);
+			message.setText(msg);//(Constant.MAIL_TEXT);
 
 			Transport.send(message);
 

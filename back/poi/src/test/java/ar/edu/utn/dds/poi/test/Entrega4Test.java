@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.dds.poi.exception.InvalidPoiException;
+import ar.edu.utn.dds.poi.process.ProcessConfig;
 import ar.edu.utn.dds.poi.service.*;
 
 public class Entrega4Test 
@@ -23,7 +24,14 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void updateShopTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		poiService.updateShopProcess();
+		ProcessConfig config = new ProcessConfig();
+		config.setUserName("luisk");
+		config.setUserMail("luiskahrs@gmail.com");
+		config.setSendMail(true);
+		config.setRefireCount(2);
+		config.setSleepTime(1000000);
+		
+		poiService.updateShopProcess(config);
 	}
 	
 	@Test
@@ -31,7 +39,14 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void deletePoiTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		poiService.deletePOIProcess();
+		ProcessConfig config = new ProcessConfig();
+		config.setUserName("luisk");
+		config.setUserMail("luiskahrs@gmail.com");
+		config.setSendMail(true);
+		config.setRefireCount(2);
+		config.setSleepTime(1000000);
+		
+		poiService.deletePOIProcess(config);
 	}
 
 	@Test	
@@ -39,7 +54,14 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void addActionToUsersTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		poiService.addActionToUsersProcess();
+		ProcessConfig config = new ProcessConfig();
+		config.setUserName("luisk");
+		config.setUserMail("luiskahrs@gmail.com");
+		config.setSendMail(true);
+		config.setRefireCount(2);
+		config.setSleepTime(10000);
+		
+		poiService.addActionToUsersProcess(config);
 	}
 	
 	@Test	
@@ -47,6 +69,13 @@ public class Entrega4Test
 	// Imprime por consola el resultado.
 	public void multiProcessTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SchedulerException, InterruptedException
 	{
-		poiService.multiProcess();
+		ProcessConfig config = new ProcessConfig();
+		config.setUserName("luisk");
+		config.setUserMail("luiskahrs@gmail.com");
+		config.setSendMail(true);
+		config.setRefireCount(2);
+		config.setSleepTime(10000);
+		
+		poiService.multiProcess(config);
 	}
 }

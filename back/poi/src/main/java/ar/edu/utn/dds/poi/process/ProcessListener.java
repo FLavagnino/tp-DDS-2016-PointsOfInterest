@@ -1,5 +1,8 @@
 package ar.edu.utn.dds.poi.process;
 
+import java.text.SimpleDateFormat;
+
+import org.joda.time.DateTime;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -11,6 +14,11 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.matchers.KeyMatcher;
+
+import ar.edu.utn.dds.poi.constant.Constant;
+import ar.edu.utn.dds.poi.domain.JobResult;
+import ar.edu.utn.dds.poi.repository.JobRepository;
+import ar.edu.utn.dds.poi.utils.EmailSender;
 
 public abstract class ProcessListener implements JobListener 
 {
@@ -33,33 +41,70 @@ public abstract class ProcessListener implements JobListener
 
 	public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) 
 	{
-		String jobName = context.getJobDetail().getKey().getName();
-
-		// Logueamos el resultado del job, la idea es que se persista en base de datos
-		System.out.println("\nProcess: " + jobName + " process executed successfully");
-		System.out.println("Start time: " + context.getFireTime());
-		System.out.println("End time: " + context.getFireTime());
-		
-		if (jobException == null) 
-		{	
-			System.out.println("Result: SUCCESS");
+		try 
+		{		
+			JobRepository jobRep = new JobRepository();
+			ProcessConfig config;
 			
-			try 
-			{
+			config = (ProcessConfig) context.getScheduler().getContext().get("config");
+			
+
+			// Obtengo los valores a loguear como resultado.
+			String startDate = new SimpleDateFormat("dd-MM-yyyy'T'hh:mm:ss'.000Z'").format(context.getFireTime());
+			String endDate = DateTime.now().toString("dd-MM-yyyy'T'hh:mm:ss'.000Z'");
+			String jobName = context.getJobDetail().getKey().getName();
+			String userName = config.getUserName();
+			String userMail = config.getUserMail();
+			String resultCode = "";
+			String resultMsg = "";
+			
+			JobResult result = new JobResult(startDate, endDate, jobName, userName, resultCode, resultMsg);
+					
+			// Logueamos el resultado del job, la idea es que se persista en base de datos
+			System.out.println("\nProcess: " + jobName + "executed.");
+			System.out.println("Start time: " + context.getFireTime());
+			System.out.println("End time: " + DateTime.now());
+			
+			jobException = new JobExecutionException("Prueba de error");
+			
+			if (jobException == null) 
+			{	
+				System.out.println("Result: SUCCESS");
+				
+				// Grabo el resultado por OK
+				result.setResultCode(Constant.JOBRESULT_OK);
+				result.setResultMsg(Constant.JOBRESULT_OK_MSG);
+				
+				jobRep.saveResult(result);
+				
 				ejecutarProcesoAnidado(context);
 			} 
-			catch (SchedulerException e) 
+			else 
 			{
-				System.out.println(e.getMessage());
+				// Grabo el resultado por falla
+				result.setResultCode(Constant.JOBRESULT_ERROR);
+				result.setResultMsg(Constant.JOBRESULT_ERROR_MSG + jobException.getMessage());
+				
+				jobRep.saveResult(result);
+				
+				// Enviar mail
+				if (config.getSendMail())
+				{
+					if(!userMail.isEmpty()) 
+					{
+						EmailSender emailSender = new EmailSender(userMail, Constant.JOB_ERROR_MAIL_SUBJECT, jobName + Constant.JOB_ERROR_MAIL_TEXT);
+						new Thread(emailSender).run();
+					}
+				}
+				
+				System.out.println("Result: FAIL");
+				System.out.println("Exception: " + jobException.getMessage() + "\n");
+				rollback();
 			}
-
-		} 
-		else 
+		}
+		catch (SchedulerException e) 
 		{
-			// Enviar mail
-			System.out.println("Result: FAIL");
-			System.out.println("Exception: " + jobException.getMessage() + "\n");
-			rollback();
+			System.out.println(e.getMessage());
 		}
 	}
 

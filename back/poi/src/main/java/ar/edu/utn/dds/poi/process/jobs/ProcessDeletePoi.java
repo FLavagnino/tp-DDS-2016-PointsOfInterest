@@ -25,13 +25,13 @@ public class ProcessDeletePoi extends ProcessPoi
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException 
 	{	
-		arg0.put("poiService", poiservice);
-		
 		// Vemos como esta la lista actualmente, despues hay que borrarlo.
 		System.out.println("\nAntes de borrar...");
 		poiservice.listPOIs();
 
+		// Simula el jSon de baja del servicio externo
 		String jsonString = "{\"Pois\":[{\"Valor\": \"muebleria\",\"Fecha\": \"30/09/2016\"}, {\"Valor\": \"libreria\",\"Fecha\": \"30/09/2016\"}]}";
+		
 		JSONObject obj = new JSONObject(jsonString.trim());
 		JSONArray arr = obj.getJSONArray("Pois");
 		
