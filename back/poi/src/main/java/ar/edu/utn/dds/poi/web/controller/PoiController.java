@@ -81,16 +81,16 @@ public class PoiController {
             return null;
         });
 
-//        post("/poi/:user/actions/save", (request, response) -> {
-//            response.type("application/json");
-//            HashMap<String,String> user = new ObjectMapper().readValue(request.body(), HashMap.class);
-//            if(AuthManager.getInstance().validate(user.get("user"), user.get("token"))) {
-//                User u = userRepository.getUser(request.params("user"));
-//                return jsonFactory.toJson(actionService
-//                        .updateActionsToUser(u, Formatter.toActions(request.params("actions"), u))));
-//            }
-//            return null;
-//        });
+        post("/poi/:user/actions/save", (request, response) -> {
+            response.type("application/json");
+            HashMap<String,String> body = new ObjectMapper().readValue(request.body(), HashMap.class);
+
+            if(AuthManager.getInstance().validate(body.get("user"), body.get("token"))) {
+                return jsonFactory.toJson(actionService
+                        .updateActionsOfUser(userRepository.getUser(request.params("user")), body.get("actions")));
+            }
+            return null;
+        });
 
     }
 }
