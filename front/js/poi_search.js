@@ -573,10 +573,12 @@ function showMenu()
 			{
 				$("#historical-link").click();
 			}
-			else
+			else if ($("#menu-action").css('display') != 'none')
 			{
 				$("#action-link").click();
 			}
+			else
+			{}
 			
 			$("#login-box").hide();
 			$("#header").show();
